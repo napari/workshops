@@ -70,7 +70,7 @@ project:
           title: Creating a napari Plugin
 site:
   options:
-    favicon: logo.ico
-    logo: logo.ico
+    favicon: resources/logo.ico
+    logo: resources/napari-logo.png
     folders: true
   template: book-theme
