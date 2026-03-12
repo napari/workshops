@@ -3,10 +3,10 @@ project:
   title: napari workshops
   authors:
     - name: napari core developers
-  github: TimMonko/napari-workshops
+  github: napari/napari-workshops
   thebe:
     binder:
-      repo: TimMonko/napari-workshops
+      repo: napari/napari-workshops
       provider: github
       url: https://mybinder.org
       ref: main
@@ -16,6 +16,13 @@ project:
     - format: pdf
       template: plain_latex_book
       output: exports/napari_workshop.pdf
+  error_rules:
+    - rule: link-resolves
+      severity: ignore
+      keys:
+        # GH is rather flaky for CI right now, temporary measure
+        # https://github.com/jupyter-book/mystmd/issues/2122#issuecomment-4042718629
+         - 'https://github.com/**'
   toc:
     - file: home.md
       title: Home
@@ -63,7 +70,7 @@ project:
           title: Creating a napari Plugin
 site:
   options:
-    favicon: logo.ico
-    logo: logo.ico
+    favicon: resources/logo.ico
+    logo: resources/napari-logo.png
     folders: true
   template: book-theme
