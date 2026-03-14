@@ -41,8 +41,7 @@ jobs:
       - name: Setup pixi
         uses: prefix-dev/setup-pixi@a0af7a228712d6121d37aba47adf55c1332c9c2e # v0.9.4
         with:
-          locked: false  # no pixi.lock committed; solve fresh each run
-          cache: true
+          locked: false  # solve fresh each run
       - name: Setup headless display
         uses: pyvista/setup-headless-display-action@7d84ae825e6d9297a8e99bdbbae20d1b919a0b19 # v4.2
         with:
