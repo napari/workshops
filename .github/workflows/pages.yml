@@ -15,7 +15,7 @@ on:
 
 env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
-  # Since your site lives at `https://{user/org}.github.io/napari-workshops`, set `BASE_URL=/napari-workshops`.
+  # Since your site lives at `https://{user/org}.github.io/workshops`, set `BASE_URL=/workshops`.
   BASE_URL: /${{ github.event.repository.name }}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages

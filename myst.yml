@@ -3,10 +3,10 @@ project:
   title: napari workshops
   authors:
     - name: napari core developers
-  github: napari/napari-workshops
+  github: napari/workshops
   thebe:
     binder:
-      repo: napari/napari-workshops
+      repo: napari/workshops
       provider: github
       url: https://mybinder.org
       ref: main

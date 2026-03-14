@@ -68,7 +68,7 @@ conda install -c conda-forge jupytext jupyterlab-myst
 Navigate to the directory you just cloned or downloaded.
 
 ```bash
-cd napari-workshops   # or the path where you extracted the .zip
+cd workshops   # or the path where you extracted the .zip
 ```
 
 Activate your environment and start JupyterLab:

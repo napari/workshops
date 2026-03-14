@@ -25,8 +25,8 @@ operating system — typically a single `curl` or `winget` command.
 ### 2. Clone the workshop repository
 
 ```bash
-git clone https://github.com/napari/napari-workshops.git
-cd napari-workshops
+git clone https://github.com/napari/workshops.git
+cd workshops
 ```
 
 ### 3. Install the environment

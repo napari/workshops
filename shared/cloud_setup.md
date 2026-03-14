@@ -46,10 +46,10 @@ Alternately, you can use the Git integration in the left-most sidebar and click 
 
 For the repository address, enter the following URL:
 ```
-https://github.com/napari/napari-workshops
+https://github.com/napari/workshops
 ```
 
-Once you have the materials cloned, you should see a directory named `napari-workshops` in the file browser tab, which can be accessed by the top-most button, the Folder icon, in the left-most sidebar. You can navigate to the workshop folders to find all the workshop materials.
+Once you have the materials cloned, you should see a directory named `workshops` in the file browser tab, which can be accessed by the top-most button, the Folder icon, in the left-most sidebar. You can navigate to the workshop folders to find all the workshop materials.
 
 ```{important}
 To open workshop notebooks such that they are runnable in the Jupyter interface, you must:

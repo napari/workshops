@@ -7,8 +7,8 @@
 [Install pixi](https://pixi.sh/latest/#installation) (one command), then:
 
 ```bash
-git clone https://github.com/napari/napari-workshops.git
-cd napari-workshops
+git clone https://github.com/napari/workshops.git
+cd workshops
 pixi install
 ```
 
@@ -20,8 +20,8 @@ into a managed environment. No `conda activate` or `pip install` needed.
 [Install uv](https://docs.astral.sh/uv/getting-started/installation/), then:
 
 ```bash
-git clone https://github.com/napari/napari-workshops.git
-cd napari-workshops
+git clone https://github.com/napari/workshops.git
+cd workshops
 uv sync --group dev
 ```
 
