@@ -1,8 +1,7 @@
 ---
-label: installation
+label: intro-setup
+title: Setup and Installation
 ---
-
-# Setup and Installation
 
 The easiest way to install napari is the **napari bundled app**. It packages napari and
 everything it needs into a single installer, just like any other desktop application. No
