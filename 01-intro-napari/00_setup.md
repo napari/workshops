@@ -9,7 +9,7 @@ Python knowledge or command-line setup required.
 
 ```{note}
 If you already have napari installed through another method (conda, pip, etc.) you are
-welcome to use that instead. Version 0.5 or newer is fine for this workshop.
+welcome to use that instead. Version 0.6.6 or newer is fine for this workshop.
 ```
 
 ## Download and install the bundled app

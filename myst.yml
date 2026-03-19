@@ -2,7 +2,7 @@ version: 1
 project:
   title: napari workshops
   authors:
-    - name: napari core developers
+    - name: napari core team
   github: napari/workshops
   thebe:
     binder:
@@ -29,11 +29,11 @@ project:
       children:
         - file: 01-intro-napari/index.md
         - file: 01-intro-napari/00_setup.md
-        - file: 01-intro-napari/01_napari_gui.md
-        - file: 01-intro-napari/02_intro_bioimage_viz.md
-        - file: 01-intro-napari/03_manual_annotation.md
-        - file: 01-intro-napari/04_interactive_analysis.md
-        - file: 01-intro-napari/05_using_plugins.md
+        # - file: 01-intro-napari/01_napari_gui.md
+        # - file: 01-intro-napari/02_intro_bioimage_viz.md
+        # - file: 01-intro-napari/03_manual_annotation.md
+        # - file: 01-intro-napari/04_interactive_analysis.md
+        # - file: 01-intro-napari/05_using_plugins.md
     - file: schedule.md
 site:
   options:

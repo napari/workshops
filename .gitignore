@@ -1,11 +1,11 @@
-.DS_Store
+﻿.DS_Store
 .ipynb_checkpoints
 _build/
 
 # Python virtual environments
 .venv/
 
-# pixi — lock file not committed; regenerated on install
+# pixi â€” lock file not committed; regenerated on install
 .pixi/
 pixi.lock
 
@@ -14,3 +14,6 @@ uv.lock
 
 # Generated CSS (built from napari-sphinx-theme + resources/_custom.css)
 resources/napari-theme.css
+
+# VS Code settings
+.vscode/

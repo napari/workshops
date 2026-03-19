@@ -12,7 +12,7 @@ annotation, and interactive analysis.
 ## Prerequisites
 
 - No prior napari experience needed
-- Basic familiarity with Python and Jupyter notebooks is helpful but not required
+- Familiarity with Python and Jupyter notebooks is helpful, but not required
 - Complete [installation setup](../shared/installation.md) before starting
 
 ## What you'll learn
