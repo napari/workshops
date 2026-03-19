@@ -1,6 +1,7 @@
-(installation)=
-
-# Setup and Installation
+---
+label: intro-setup
+title: Setup and Installation
+---
 
 The easiest way to install napari is the **napari bundled app**. It packages napari and
 everything it needs into a single installer, just like any other desktop application. No
@@ -8,7 +9,7 @@ Python knowledge or command-line setup required.
 
 ```{note}
 If you already have napari installed through another method (conda, pip, etc.) you are
-welcome to use that instead. Version 0.5 or newer is fine for this workshop.
+welcome to use that instead. Version 0.6.6 or newer is fine for this workshop.
 ```
 
 ## Download and install the bundled app

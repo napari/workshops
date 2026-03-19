@@ -1,4 +1,6 @@
-(intro-gui)=
+---
+label: intro-gui
+---
 
 # The napari application
 
@@ -10,30 +12,13 @@ For full documentation of the napari viewer, please see [the Viewer tutorial](ht
 
 ## Launch napari
 
-For this introduction, we will launch the napari application directly from the terminal.
+If you installed using the bundled app, launch napari from your Applications folder (macOS),
+Start menu (Windows), or desktop shortcut (Linux) — just like any other application.
 
-````{important}
-Remember to activate the right environment!
-
-```bash
-conda activate napari-workshop
+```{tip}
+The first launch can take up to a minute if your computer has security or antivirus software
+running. Subsequent launches are faster.
 ```
-
-````
-
-Once you have the proper environment active, you can launch napari by typing `napari`:
-
-```bash
-napari
-```
-
-````{note}
-If you are using {ref}`cloud-setup`, then in the Jupyter lab interface, you can open a Desktop in a browser tab using the `D` "Desktop" tile and then open a Terminal session using the `$_` "Terminal" tile. In this terminal, you can launch napari in the Desktop browser tab using the command:
-```bash
-DISPLAY=:1.0 napari
-```
-You will then be able to proceed with the rest of the instructions on this page.
-````
 
 After a few seconds (or up to a minute if it's the first launch and you have various security and antivirus software installed), you will get the `viewer` window, which is annotated below:
 
