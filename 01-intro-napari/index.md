@@ -3,23 +3,39 @@ label: intro-overview
 title: Overview
 ---
 
-**Level:** Beginner | **Duration:** 3–4 hours
+**Level:** Beginner | **Duration:** ~4 hours | **No Python required**
 
-This workshop introduces napari, a fast, interactive, multi-dimensional image viewer for
-Python. You'll learn to use napari's graphical interface for bioimage visualization, manual
-annotation, and interactive analysis.
+This workshop introduces napari through its graphical interface — no coding
+knowledge needed. You will load and explore multi-dimensional images, annotate
+data, run interactive analysis using plugins, and learn where to find the
+napari community.
 
 ## Prerequisites
 
-- No prior napari experience needed
-- Familiarity with Python and Jupyter notebooks is helpful, but not required
-- Complete [installation setup](../shared/installation.md) before starting
+- No prior napari or Python experience needed
+- Install the napari bundled app before starting — see [Setup](00_setup.md)
 
 ## What you'll learn
 
 - Launch and navigate the napari viewer
 - Open and visualize multi-dimensional image data
 - Work with layer types: Image, Points, Shapes, and Labels
+- Understand and edit image metadata (scale, units, axis labels)
 - Manually annotate images
-- Run interactive image analysis with scikit-image
-- Install and use community plugins
+- Discover and install community plugins from napari hub
+- Run interactive image analysis using napari-skimage
+
+## Session schedule
+
+For live workshops, see the [session schedule](session_schedule.md) for the
+timing and structure of each block. Self-guided learners can work through the
+lessons in order at their own pace.
+
+## Lessons
+
+| Lesson | Topics |
+|--------|--------|
+| [Setup](00_setup.md) | Install the bundle; verify your installation |
+| [The napari GUI](01_napari_gui.md) | Viewer layout; open images; 2D/3D view; layer controls; save and screenshot |
+| [Annotation](03_manual_annotation.md) | Points, Shapes, and Labels layers |
+| [Plugins and analysis](05_using_plugins.md) | napari hub; napari-metadata; napari-skimage |
