@@ -1,0 +1,195 @@
+## Philosophy
+
+These workshops are inspired by the
+[Carpentries](https://carpentries.org) model: live coding, learner-centred
+pacing, and a commitment to welcoming everyone
+regardless of background. We do not assume prior napari experience for the
+introductory workshop, and we invest heavily in setup, so that the first hour
+is not lost to installation problems.
+
+Key principles:
+
+- **Accessibility before features.** A learner who can open an image and
+  poke around is more valuable than one who saw a polished demo and is
+  intimidated.
+- **I → We → You.** Every concept is introduced by the instructor (I), then
+  worked through together as a group (We), then given as a free-exploration
+  exercise (You).
+- **Screen real-estate awareness.** Use light mode; increase GUI size. 
+  Walk participants through how to replicate the views. 
+- **Safety.** Follow the Code of Conduct; normalise questions in
+  chat or in the shared document.
+
+## Diversity, Equity, and Inclusion
+
+We are committed to building an inclusive environment. The workshop expects participants to follow the napari community
+[Code of Conduct](https://napari.org/stable/community/code_of_conduct.html) and
+the [Carpentries DEI statement](https://carpentries.org/about-us/#diversity-equity-and-inclusion-statement).
+
+Practical commitments:
+
+- Closed captions and transcription enabled by default in Zoom.
+- Shared notes (HackMD) for participants.
+- Post-workshop survey explicitly solicits accessibility and inclusion
+  feedback.
+
+## Roles
+
+### Lead instructor
+
+- Drives the screen — napari is always visible, not slides
+- Narrates every action out loud ("I'm clicking File > Open Sample >
+  napari builtins > Cells 3D + 2Ch")
+- Watches the HackMD for questions during exercises
+- Advances through the [session schedule](../01-intro-napari/session_schedule.md)
+  and calls time
+
+### Helper instructor
+
+- Monitor the Zoom chat and HackMD throughout
+- Join breakout rooms during "You" exercises; one helper per room minimum
+- DM participants with technical issues and escalate to breakout as needed
+- Signal the lead instructor (via Zoom reaction or private chat) if the group
+  is falling behind
+
+### Before the session
+
+- Install the napari bundle on your machine and run through the materials at
+  least once.
+- During practice, set your display to **light mode** and scale to `QT_SCALE_FACTOR=1.5`
+  see the [presentation instructions](#presentation-instructions) for details.
+- Close all applications except napari and a browser tab for the HackMD
+- Join the Zoom call **10 minutes early** to test screen sharing
+
+## I → We → You in Practice
+
+Every concept follows the same arc:
+
+| Phase | Who drives | What happens |
+|---|---|---|
+| **I** | Lead instructor | Instructor demos the feature live in napari with narration. Participants watch. |
+| **We** | Everyone together | Instructor and participants do the same steps simultaneously. "Now you do it with me." |
+| **You** | Participants | Breakout rooms or independent exploration. Curated task is provided. |
+
+**Key rule:** Use napari on-screen, and try not to have the workshop materials document on the shared screen. The
+materials are only a reference — show learners the actual interface and your thought process.
+
+## Live Teaching Tips
+
+- **Slow down.** Learners are watching, clicking, and reading simultaneously.
+  Pause after every action; ask "is everyone with me?" at natural breakpoints.
+- **Narrate.** Say the full menu path aloud: "Plugins menu, then Install /
+  Uninstall Plugins." Don't assume learners can see your mouse.
+- **Use the command palette in addition to GUI pathways** (`Ctrl+Shift+P` / `Cmd+Shift+P`) 
+  for live demos — it is searchable and visible to the whole screen.
+- **Tidy the viewer.** Delete layers you no longer need so learners can
+  focus. An empty layer list is less intimidating than an accumulation of
+  semi-related layers.
+
+## Online Delivery (Zoom)
+
+See also the Carpentries
+[resources for online workshops](https://docs.carpentries.org/resources/workshops/resources_for_online_workshops.html).
+
+- **Do not Disturb Mode.** Close email, notifications, and anything else that
+  could pop up over the screen share.
+- **Chat:** A helper should own the Zoom chat, summarising or escalating
+  questions. The lead instructor should not be reading chat while teaching.
+- **Reactions:** Ask learners to use the 👍 Zoom reaction to signal they are
+  ready to move on, and ✋ to signal they are stuck.
+- **Breakout rooms:** Announce when rooms are opening and closing, and give
+  a 2-minute warning before returning to main. State the task clearly (in
+  Zoom chat, in HackMD, and verbally) before opening rooms.
+
+## Presentation Instructions
+
+### Light mode
+
+Start the viewer in the default dark mode and show participants how to change to light mode.
+For the remainder of the session, use light mode to improve visibility.
+**View > Toggle Theme** (or napari Preferences > Appearance).
+
+### Scaling the napari UI for teaching
+
+For workshops, prefer Qt application scaling over text-only font changes.
+This scales the full napari interface, including toolbars, buttons, dialogs,
+and other controls.
+
+Recommended launch settings:
+
+- Start with `1.5` on standard laptop/projector setups.
+- Try `1.75` or `2` only if the display is still hard to read.
+- Add `QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough` if using Qt5 (<v0.7.0) to avoid excessive rounding up to integer scale factors (PassThrough is the Qt6 default).
+
+Windows PowerShell:
+
+```powershell
+$env:QT_SCALE_FACTOR = "1.5"
+napari
+```
+
+To launch with the bundle, on Windows target the napari launch command `.bat` in the bundle's `Menu` directory:
+
+```powershell
+$env:QT_SCALE_FACTOR = "1.5"
+& "C:\Users\timmo\AppData\Local\napari-0.7.0rc0\envs\napari-0.7.0rc0\Menu\napari (0.7.0rc0).bat"
+```
+
+Unix shells (`bash`, `zsh`):
+
+```bash
+export QT_SCALE_FACTOR=1.5
+napari
+```
+
+Defaults and reset behavior:
+
+- If these variables are unset, Qt falls back to its normal platform DPI
+  handling. There is no napari-specific custom default for UI enlargement.
+- These commands are not permanent. They affect only the current shell session
+  and processes launched from it.
+- Opening a new terminal resets them unless the user added them to a shell
+  profile or set them as persistent system environment variables.
+- To reset them in the current PowerShell session:
+
+```powershell
+Remove-Item Env:QT_SCALE_FACTOR -ErrorAction SilentlyContinue
+Remove-Item Env:QT_SCALE_FACTOR_ROUNDING_POLICY -ErrorAction SilentlyContinue
+```
+
+- To reset them in the current Unix shell session:
+
+```bash
+unset QT_SCALE_FACTOR
+unset QT_SCALE_FACTOR_ROUNDING_POLICY
+```
+
+## Pilot Workshop: Collecting Feedback
+
+This is a
+[lesson pilot](https://docs.carpentries.org/resources/curriculum/lesson-pilots.html).
+Collecting structured feedback is essential for improving the materials.
+
+**During the workshop:**
+- Note in the HackMD any moment where learners are visibly or verbally lost
+- Note instructions that require repeated clarification
+- Watch for steps where participants fall significantly behind
+
+**End-of-session:**
+- Reserve the last 10 minutes for the survey (send link in chat)
+- Ask verbally: "What is one thing that was confusing?" and "What was the
+  most useful thing today?"
+
+**After the session:**
+- File a GitHub issue per significant pain point (link to the relevant lesson
+  file and describe what happened)
+- Update with a brief post-pilot summary
+
+**What to watch for specifically in the pilot:**
+- Does the 4-block timing hold? Which blocks run over?
+- Is the GUI-only approach sustainable through Block 4 (analysis), or do
+  learners want/need to see code?
+- Is the drag-and-drop gallery exercise (Block 2) intuitive or confusing
+  for non-technical participants?
+- Are napari-metadata and napari-skimage stable enough under classroom
+  conditions?
