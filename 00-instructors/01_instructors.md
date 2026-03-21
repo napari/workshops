@@ -54,6 +54,16 @@ Practical commitments:
 
 ### Before the session
 
+- Join the workshop Zulip stream and say hello before the session.
+- Read the [Carpentries Instructor Training handbook](https://carpentries.github.io/instructor-training/instructor/index.html)
+  — at minimum the sections on motivation, live coding, and managing a diverse
+  classroom.
+- Read the [napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
+  and be prepared to enforce it.
+- Familiarise yourself with the DEI statement and commitments (see
+  [Diversity, Equity, and Inclusion](#diversity-equity-and-inclusion) above).
+- Test the bundle install on your own machine in a clean environment if
+  possible.
 - Install the napari bundle on your machine and run through the materials at
   least once.
 - During practice, set your display to **light mode** and scale to `QT_SCALE_FACTOR=1.5`
@@ -85,6 +95,10 @@ materials are only a reference — show learners the actual interface and your t
 - **Tidy the viewer.** Delete layers you no longer need so learners can
   focus. An empty layer list is less intimidating than an accumulation of
   semi-related layers.
+- **Mistakes are teaching moments.** Getting something wrong and fixing it live
+  is one of the most effective teaching moments — it normalises confusion.
+- **No jargon without definition.** Define every term the first time you use
+  it; do not assume knowledge of numpy, zarr, OME, etc.
 
 ## Online Delivery (Zoom)
 
@@ -163,6 +177,62 @@ Remove-Item Env:QT_SCALE_FACTOR_ROUNDING_POLICY -ErrorAction SilentlyContinue
 unset QT_SCALE_FACTOR
 unset QT_SCALE_FACTOR_ROUNDING_POLICY
 ```
+
+## Opening Segment (first 10 minutes)
+
+Run through this checklist at the start of every session:
+
+- [ ] Welcome everyone and introduce all instructors and helpers by name.
+- [ ] State the Code of Conduct:
+
+  > *"We expect all participants to be respectful and to follow the
+  > [napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html).
+  > If you experience or witness a violation, please DM an instructor or email
+  > conduct@napari.org."*
+
+- [ ] Read the DEI commitment (brief version):
+
+  > *"This workshop is designed for everyone regardless of background,
+  > nationality, or prior experience. We actively work to make it accessible.
+  > Please tell us if we can do better."*
+
+- [ ] Share the HackMD link in chat and ask everyone to add their name and
+  field/location to the icebreaker section.
+- [ ] Share the Zulip invite link and encourage participants to join the
+  napari community.
+- [ ] Explain Zoom conventions:
+  - Mute when not speaking
+  - Use chat for questions — a helper will relay or answer
+  - Use reactions (👍 ready to move on; ✋ stuck or need help)
+  - Video on if comfortable, off if not
+- [ ] Ask if anyone has accessibility needs we should accommodate (private DM is
+  fine).
+- [ ] State the rough schedule and when the breaks will be.
+
+## Closing Segment (last 20–30 minutes)
+
+- [ ] Ask aloud for a debrief: *"What is one thing that was confusing?"*
+  and *"What are you most excited to try after today?"*
+- [ ] Share the post-workshop survey link in chat and in HackMD.
+- [ ] Point to key community resources:
+  - [napari.org](https://napari.org/stable/) — documentation and gallery
+  - [napari-hub.org](https://napari-hub.org) — plugin discovery
+  - [Zulip](https://napari.zulipchat.com) — community chat
+  - [image.sc](https://forum.image.sc/) — image analysis forum
+- [ ] Invite participants to join the napari community — contributions are
+  welcome at all levels (docs, testing, plugins, core).
+- [ ] Keep the Zoom meeting open for 10 minutes after the official end time
+  for lingering questions.
+
+## After the Workshop (instructor tasks)
+
+- [ ] Submit any bugs or issues discovered during the live session as GitHub
+  issues, linking to the relevant lesson file.
+- [ ] Collect and summarise survey results for the team.
+- [ ] Post a follow-up message in the Zulip workshop stream with any resources,
+  links, or tips mentioned during the session.
+- [ ] Write a brief retrospective (what worked, what didn't, timing notes)
+  in `00-instructors/retrospectives/` — create the file if it doesn't exist.
 
 ## Pilot Workshop: Collecting Feedback
 

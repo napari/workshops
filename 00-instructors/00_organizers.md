@@ -23,7 +23,12 @@ Adapted from the
   - [napari Zulip](https://napari.zulipchat.com) `#announcements`
   - [image.sc forum](https://forum.image.sc/) under `napari` tag
   - LinkedIn, Bluesky, Mastodon
+- [ ] Plan a **second wave** of social posts ~1 week before each session; ask
+  the napari steering council or CZI comms for a repost or boost
+- [ ] Add both sessions to the napari community calendar and the image.sc
+  forum events page
 - [ ] Create a HackMD shared-notes document for each session (see [HackMD Template](#hackmd-shared-notes-template))
+- [ ] Set up the [Zulip workshop stream](#zulip-stream-setup)
 
 ### 2 weeks before
 
@@ -57,8 +62,11 @@ Adapted from the
 
 - [ ] Send the post-workshop survey to participants (see below)
 - [ ] Hold a brief instructor debrief (15–30 min): what worked, what to fix
-- [ ] Create a summary
-- [ ] Close the ti.to listing?
+- [ ] Collect and summarise survey results and share with the team
+- [ ] Post a follow-up in the Zulip workshop stream with resources mentioned
+  during the session; keep the stream open for follow-up questions
+- [ ] Publish a brief retrospective summary
+- [ ] Close the ti.to listing once the waitlist is no longer useful
 
 ## Zoom Setup
 
@@ -81,6 +89,22 @@ for detailed Zoom guidance. Key settings for napari workshops:
   assignment on the day.
 - Assign at least one helper per breakout room during "You" exercises.
 - Set a 10-minute timer so rooms close automatically; helpers return to main.
+
+## Zulip Stream Setup
+
+A dedicated Zulip stream gives participants a place to ask questions before,
+during, and after the workshop.
+
+- [ ] Create a thread in  `#workshops`
+- [ ] Pin a welcome message with:
+  - Workshop schedule and Zoom links (for participants)
+  - Bundle download link
+  - Code of Conduct link
+  - HackMD link for each session
+- [ ] Include the Zulip stream invite link in the pre-workshop email and Zoom
+  chat on the day.
+- [ ] After the workshop, announce the stream in `#general` so the broader
+  community can benefit from the Q&A.
 
 ## Ticketing (ti.to)
 
