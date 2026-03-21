@@ -22,19 +22,29 @@ project:
         # https://github.com/jupyter-book/mystmd/issues/2122#issuecomment-4042718629
          - 'https://github.com/**'
          - 'https://forum.image.sc/**'
+         # [image.sc] auto-links as http://image.sc (bare domain) and returns 403
+         - 'http*://image.sc*'
+         - 'http*://ti.to*'
+         - 'https://ti.to/**'
   toc:
     - file: home.md
       title: Home
     - title: Introduction to napari
       children:
         - file: 01-intro-napari/index.md
+        - file: 01-intro-napari/session_schedule.md
         - file: 01-intro-napari/00_setup.md
         # - file: 01-intro-napari/01_napari_gui.md
+        # notebook lessons below — hidden code cells generate screenshots
         # - file: 01-intro-napari/02_intro_bioimage_viz.md
         # - file: 01-intro-napari/03_manual_annotation.md
         # - file: 01-intro-napari/04_interactive_analysis.md
         # - file: 01-intro-napari/05_using_plugins.md
     - file: schedule.md
+    - title: Instructors
+      children:
+        - file: 00-instructors/00_organizers.md
+        - file: 00-instructors/01_instructors.md
 site:
   options:
     favicon: resources/logo.ico
