@@ -5,8 +5,6 @@ workshop: ticketing, communications, Zoom setup, and day-of coordination.
 For the teaching side (how to present, troubleshoot, and pace), see
 [01_instructors.md](01_instructors.md).
 
----
-
 ## Pre-Workshop Checklists
 
 Adapted from the
@@ -62,8 +60,6 @@ Adapted from the
 - [ ] Create a summary
 - [ ] Close the ti.to listing?
 
----
-
 ## Zoom Setup
 
 See the Carpentries
@@ -86,8 +82,6 @@ for detailed Zoom guidance. Key settings for napari workshops:
 - Assign at least one helper per breakout room during "You" exercises.
 - Set a 10-minute timer so rooms close automatically; helpers return to main.
 
----
-
 ## Ticketing (ti.to)
 
 These workshops run through [NumFOCUS](https://numfocus.org/) on
@@ -104,14 +98,11 @@ These workshops run through [NumFOCUS](https://numfocus.org/) on
 - **Attendee messaging:** ti.to supports markdown email to all registrants —
   use this for the pre-workshop email and reminder
 
----
-
 ## Pre-Workshop Email Template
 
 Send via ti.to **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
 
----
 
 > **Subject:** [napari workshop] See you [DATE] — setup instructions inside
 >
@@ -152,7 +143,6 @@ Adapt the bracketed fields.
 > See you soon!
 > [INSTRUCTOR_NAME] and the napari team
 
----
 
 ## HackMD Shared-Notes Template
 
@@ -173,7 +163,6 @@ Create one HackMD document per session. Suggested structure:
 **Zoom link:** [ZOOM_LINK] (do not post publicly)
 **Workshop materials:** https://napari.org/workshops/
 
----
 
 ## Icebreaker
 
@@ -182,7 +171,6 @@ Add your answer below:
 
 - 
 
----
 
 ## Key Links
 
@@ -191,8 +179,6 @@ Add your answer below:
 - napari hub (plugins): https://napari-hub.org
 - Zulip community chat: https://napari.zulipchat.com
 - napari gallery: https://napari.org/stable/gallery
-
----
 
 ## Questions & Answers
 
@@ -214,8 +200,6 @@ Post questions here — helpers will answer during breaks or as they come up.
 
 
 
----
-
 ## Feedback (end of session)
 
 What went well?
@@ -230,8 +214,6 @@ What are you most excited to try after today?
 
 - 
 ```
-
----
 
 ## Post-Workshop Survey
 
@@ -248,8 +230,6 @@ Send a short survey within 24 hours of the workshop. Suggested questions:
 
 Google Forms or a NumFOCUS-approved survey tool works well. Share the link in
 the final 10 minutes of the session and in the post-workshop email.
-
----
 
 ## Social Media Templates
 
