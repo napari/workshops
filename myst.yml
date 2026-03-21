@@ -20,12 +20,18 @@ project:
       keys:
         # GH is rather flaky for CI right now, temporary measure
         # https://github.com/jupyter-book/mystmd/issues/2122#issuecomment-4042718629
-         - 'https://github.com/**'
-         - 'https://forum.image.sc/**'
-         # [image.sc] auto-links as http://image.sc (bare domain) and returns 403
-         - 'http*://image.sc*'
-         - 'http*://ti.to*'
-         - 'https://ti.to/**'
+        - 'https://github.com/**'
+        - 'https://forum.image.sc/**'
+        # [image.sc] auto-links as http://image.sc (bare domain) and returns 403
+        - 'https://forum.image.sc/**'
+        # image.sc bare domain
+        - 'http://image.sc'
+        - 'https://image.sc'
+        # ti.to ticketing (external, slow on CI)
+        - 'http://ti.to'
+        - 'http://ti.to/**'
+        - 'https://ti.to'
+        - 'https://ti.to/**'
   toc:
     - file: home.md
       title: Home
