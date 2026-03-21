@@ -108,8 +108,8 @@ from tifffile import imread
 from pathlib import Path
 
 # Path of execution is different depending on whether the notebook is run locally or via jupyter-book
-if (Path() / 'notebooks' / 'data').exists():
-    data_dir = Path() / 'notebooks' / 'data'
+if (Path() / '01-intro-napari' / 'data').exists():
+    data_dir = Path() / '01-intro-napari' / 'data'
 else:
     data_dir = Path().resolve() / 'data'
 
