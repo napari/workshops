@@ -17,3 +17,5 @@ resources/napari-theme.css
 
 # VS Code settings
 .vscode/
+
+untracked-prep/
