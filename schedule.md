@@ -21,11 +21,10 @@ Reach out on [Zulip](https://napari.zulipchat.com) or the
 
 📅 **March 25, 2026** — 3–7pm US Pacific Time
 ([your local time](https://tinyurl.com/workshop-pacific-time)) |
-`https://ti.to/nf-projects/intronapari-pacific`
 
 📅 **April 1, 2026** — 2–6pm London Time
 ([your local time](https://tinyurl.com/workshop-atlantic-time)) |
-`https://ti.to/nf-projects/intronapari-atlantic`
+
 
 These are **pilot** sessions — among the first to use the new workshop materials.
 No discount codes are available for pilots; more workshops will follow.
