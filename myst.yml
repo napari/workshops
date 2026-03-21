@@ -24,6 +24,8 @@ project:
          - 'https://forum.image.sc/**'
          # [image.sc] auto-links as http://image.sc (bare domain) and returns 403
          - 'http://image.sc'
+         - 'http://ti.to'
+         - 'https://ti.to/**'
   toc:
     - file: home.md
       title: Home
