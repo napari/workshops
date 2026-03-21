@@ -1,74 +1,94 @@
 ---
 label: intro-gui
+kernelspec:
+  name: python3
+  display_name: Python
+  language: python
 ---
 
 # The napari application
 
-```{note}
-This content was based on [material from a workshop](https://github.com/dgmccart/intro-to-napari-workshop) prepared by Dannielle McCarthy ([`@dgmccart`](https://github.com/dgmccart)), Sean Martin ([`@seankmartin`](https://github.com/seankmartin)), and Melissa Weber Mendonça ([`@melissawm`](https://github.com/melissawm)).
-```
+## About napari
 
-For full documentation of the napari viewer, please see [the Viewer tutorial](https://napari.org/stable/tutorials/fundamentals/viewer.html) in the napari docs. Here we will just have an overview.
+**napari** is a fast, interactive, multi-dimensional image viewer for scientific
+data analysis in Python. It's designed for browsing, annotating, and analysing
+large multi-dimensional images. napari is free and open source, built and
+maintained by an international community of scientists and developers.
+
+For full documentation of the napari viewer, see the
+[Viewer tutorial](https://napari.org/stable/tutorials/fundamentals/viewer.html).
+Here we give a practical overview.
+
+
+napari supports several **layer types** for different kinds of data:
+
+For this workshop we will focus on **Image**, **Labels**, **Points**, **Shapes**,and
+ layers, though you may explore some examples using other layer types.
+ For a complete guide to all layer types, see the
+[napari layer guides](https://napari.org/stable/howtos/layers/index.html).
+
 
 ## Launch napari
 
 If you installed using the bundled app, launch napari from your Applications folder (macOS),
 Start menu (Windows), or desktop shortcut (Linux) — just like any other application.
 
-```{tip}
+```{code-cell}
+import napari
+from napari.utils import nbscreenshot
+viewer = napari.Viewer()
+nbscreenshot(viewer)
+```
+
+
+```{tip} Slow launch?
 The first launch can take up to a minute if your computer has security or antivirus software
 running. Subsequent launches are faster.
 ```
 
-After a few seconds (or up to a minute if it's the first launch and you have various security and antivirus software installed), you will get the `viewer` window, which is annotated below:
-
 ![Viewer](resources/viewer-with-arrows.png)  
 
 ## Open an Image
-  
-* Open a sample image that comes with napari by selecting:  
-**File** > **Open Sample** > **napari builtins** > **Cells (3D + 2Ch)**  
 
-
-   **Note:** Open one of your own images with:  
-**File** > **Open files** and select a tif, png, or jpg file to open—or drag-n-drop one onto
+- Open a sample image that comes with napari by selecting:
+  **File** > **Open Sample** > **napari builtins** > **Cells (3D + 2Ch)**
+- Open one of your own images with:  
+  **File** > **Open files** and select a tif, png, or jpg file to open—or drag-n-drop one onto
 the canvas.
 
-```{tip}
-You can search actions in the command palette, which you can open with the `Command+Shift+P` (Mac) or `Control+Shift+P` (Windows and Linux) keyboard shortcut. Search for 'Cells 3D' to open the sample image.
+```{tip} The command palette
+You can search actions in the command palette, which you can open with the `Control+Shift+P` (Windows and Linux) or `Command+Shift+P` (Mac). Search for 'Cells 3D' to open the sample image.
 ```
 
-```{note} By default, napari can open (and save) a wide range of non-proprietary file formats. For proprietary image formats, you will need to install an appropriate plugin. You can search the [napari-hub](https://napari-hub.org) to find one!
+```{note} File formats
+By default, napari can open (and save) a wide range of non-proprietary file formats. For proprietary image formats, you will need to install an appropriate plugin. You can search the [napari-hub](https://napari-hub.org) to find one!
 ```
 
 ## Explore Images in 2D and 3D  
 
-* Toggle layer visibility on and off with the **eye button to the left of the layer name** in the layer list.
+- Toggle layer visibility on and off with the **eye button to the left of the layer name** in the layer list.
+- Use the dimension sliders beneath the canvas to  control the z position/slice number. Slide through the 3D stack one 2D slice at a time.
+- Scroll (use two finger scroll on a touchpad) to zoom in and out.
+- Click and drag to move the images in the canvas.
 
-* Use the dimension sliders beneath the canvas to  control the z position/slice number. Slide through the 3D stack one 2D slice at a time.
-
-* Scroll (use two finger scroll on a touchpad) to zoom in and out.  
-
-* Click and drag to move the images in the canvas.  
-
-* Press the `home` button to bring the image back to the center of the canvas.  
-![home button](resources/home-button.png)  
+- Press the `home` button to bring the image back to the center of the canvas.  
+![home button](https://napari.org/stable/_images/button-right-click-indicator.png)  
 It is on the right end of the row of viewer buttons.  
 
-* Explore images in 3D by toggling the `2D/3D` button.  When you're in 2D mode, it looks like this:  
+- Explore images in 3D by toggling the `2D/3D` button.  When you're in 2D mode, it looks like this:  
 ![2d-3d-button](resources/2d-3d-button-2d.png)  
 When you're in 3D mode, it looks like this:  
 ![2d-3d-button-3d](resources/2d-3d-button-3d.png)  
 It is second from the left end on the row of viewer buttons.
-* Click and drag on the 3D image to rotate.
-* Shift + click and drag to translate (move) the 3D image.  
-* Scroll to zoom in and out of the 3D volume.
-* Move the _nuclei_ and _membrane_ images to be side-by-side by toggling the `grid mode` button; it's the second button from the right end on the row of viewer buttons and acts as a toggle. 
+- Click and drag on the 3D image to rotate.
+- Shift + click and drag to translate (move) the 3D image.  
+- Scroll to zoom in and out of the 3D volume.
+- Move the _nuclei_ and _membrane_ images to be side-by-side by toggling the `grid mode` button; it's the second button from the right end on the row of viewer buttons and acts as a toggle. 
 ![grid-button](resources/grid-button.png)  
  
 ## Adjust Image Visualization   
-* Select an image from the layers list (selected images are blue in the layer list).  
-* Adjust the contrast limits by using the contrast limits slider in the layer controls section.
+- Select an image from the layers list (selected images are blue in the layer list).  
+- Adjust the contrast limits by using the contrast limits slider in the layer controls section.
 
     ```{tip} You can Control+click (Mac) or right-click (Windows and Linux) on the slider to open the expanded view with min and max pixel values labeled on the ends of the slider.
 
@@ -160,6 +180,13 @@ individual layers (as described above) *to a folder.*
 
 ## Use the integrated Python console to interact with the viewer
 
+```{admonition} I (instructor peek)
+:class: tip
+Briefly show the console exists and that it mirrors the GUI state. This is
+not the focus of this workshop — keep it short. A full Python introduction is
+in the next workshop in the series.
+```
+
 ```{tip}
 You may want to delete any unneeded layers and/or re-open the Cells3D sample file.
 ```
@@ -226,3 +253,43 @@ the look (e.g. themes).
 - Preferences/Settings are stored *per Python environment*. 
 - They can reset using `napari --reset` in the terminal
 ```
+
+---
+
+## You — Personal Exploration
+
+```{admonition} You (free exploration)
+:class: seealso
+Take 10–15 minutes to explore napari on your own. Suggestions below — pick
+whatever looks interesting. There is no wrong answer.
+```
+
+**Option A — Gallery drag-and-drop (napari 0.7.0+)**
+
+Browse the [napari gallery](https://napari.org/stable/gallery) and find an
+example that looks interesting to you.
+
+1. Click the example to open its page, then use the **Download this file**
+   link (or the GitHub link) to download the `.py` script.
+2. Drag the `.py` file directly onto the napari canvas.
+3. See what happens!
+
+```{tip}
+**New in napari 0.7.0:** Gallery scripts can be dragged directly into napari
+and they will run immediately. If you are using napari 0.6.6, open a terminal,
+navigate to the downloaded file, and run `python script_name.py` instead.
+```
+
+**Option B — Open your own data**
+
+If you have an image file (`.tif`, `.png`, `.jpg`, or any other format) on
+your computer, drag it onto the napari canvas and explore.
+
+**Option C — Continue experimenting with Cells 3D**
+
+- Merge the nuclei and membrane channels, rename the sliders, then split them again
+- Paint some labels over a nucleus
+- Save a screenshot of your best view (**File > Save Screenshot**)
+
+After the exploration time, we will come back to the main room for a brief
+sharing round: *"What did you find or try?"*

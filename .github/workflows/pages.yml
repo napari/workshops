@@ -13,11 +13,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
-  # Since your site lives at `https://{user/org}.github.io/workshops`, set `BASE_URL=/workshops`.
-  BASE_URL: /${{ github.event.repository.name }}
-
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -47,7 +42,14 @@ jobs:
         with:
           qt: true
           wm: herbstluftwm
-      - name: Build workshop
+      - name: Build workshop preview artifact
+        if: github.event_name == 'pull_request'
+        run: pixi run build
+      - name: Build workshop Pages artifact
+        if: github.event_name != 'pull_request'
+        env:
+          # The deployed site lives at https://{user/org}.github.io/workshops.
+          BASE_URL: /${{ github.event.repository.name }}
         run: pixi run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0

@@ -13,9 +13,9 @@ Adapted from the
 ### >2 weeks before
 
 - Confirm workshop dates, times, and timezone coverage with the instructor team
-- Set up ticketing on [ti.to](https://ti.to):
+- Set up ticketing on `ti.to`:
   - Title, date, description, logo, color scheme
-  - Ticket price: **$20 USD** (pilot rate); NumFOCUS adds a ~5.1% fee (covers Stripe + ti.to)
+  - Ticket price: **$20 USD** (pilot rate); NumFOCUS adds a ~5.1% fee (covers Stripe + `ti.to`)
   - Seat cap: **20 per session** with a waitlist enabled
   - No discount codes for pilots; add them for future workshops
   - Enable attendee questions if you want dietary/accessibility info
@@ -31,7 +31,7 @@ Adapted from the
 ### 2 weeks before
 
 - Confirm instructor team and helper roles; communicate expectations
-- Send the [pre-workshop email](#pre-workshop-email-template) to registered participants via ti.to
+- Send the [pre-workshop email](#pre-workshop-email-template) to registered participants via `ti.to`
 - Set up Zoom meeting (see [Zoom Setup](#zoom-setup)):
   - Enable breakout rooms
   - Enable captions / live transcription
@@ -64,7 +64,7 @@ Adapted from the
 - Post a follow-up in the Zulip workshop stream with resources mentioned
   during the session; keep the stream open for follow-up questions
 - Publish a brief retrospective summary
-- Close the ti.to listing once the waitlist is no longer useful
+- Close the `ti.to` listing once the waitlist is no longer useful
 
 (zoom-setup)=
 ## Zoom Setup
@@ -106,26 +106,26 @@ during, and after the workshop.
 - After the workshop, announce the stream in `#general` so the broader
   community can benefit from the Q&A.
 
-## Ticketing (ti.to)
+## Ticketing
 
 These workshops run through [NumFOCUS](https://numfocus.org/) on
-[ti.to](https://ti.to). Key decisions documented during the 2026 pilot planning:
+`ti.to`. Key decisions documented during the 2026 pilot planning:
 
 - **Price:** $20 USD per participant for the pilot; revisit for future workshops
   (pay-what-you-can, regional pricing, and discount codes are all supported by
-  ti.to once we have sponsor partnerships)
-- **NumFOCUS fee:** ~5.1% covers Stripe and ti.to fees; can be built into
+  `ti.to` once we have sponsor partnerships)
+- **NumFOCUS fee:** ~5.1% covers Stripe and `ti.to` fees; can be built into
   ticket price or shown separately
 - **Seat cap:** 20 per session; enable the waitlist
-- **Event duplication:** ti.to supports duplicating events — use this when
+- **Event duplication:** `ti.to` supports duplicating events — use this when
   scheduling future cohorts
-- **Attendee messaging:** ti.to supports markdown email to all registrants —
+- **Attendee messaging:** `ti.to` supports markdown email to all registrants —
   use this for the pre-workshop email and reminder
 
 (pre-workshop-email-template)=
 ## Pre-Workshop Email Template
 
-Send via ti.to **one week before** the workshop and again **the day before**.
+Send via `ti.to` **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
 
 
