@@ -13,7 +13,7 @@ Adapted from the
 ### >2 weeks before
 
 - Confirm workshop dates, times, and timezone coverage with the instructor team
-- Set up ticketing on [ti.to](https://ti.to):
+- Set up ticketing on `ti.to`:
   - Title, date, description, logo, color scheme
   - Ticket price: **$20 USD** (pilot rate); NumFOCUS adds a ~5.1% fee (covers Stripe + ti.to)
   - Seat cap: **20 per session** with a waitlist enabled
@@ -109,7 +109,7 @@ during, and after the workshop.
 ## Ticketing (ti.to)
 
 These workshops run through [NumFOCUS](https://numfocus.org/) on
-[ti.to](https://ti.to). Key decisions documented during the 2026 pilot planning:
+`ti.to`. Key decisions documented during the 2026 pilot planning:
 
 - **Price:** $20 USD per participant for the pilot; revisit for future workshops
   (pay-what-you-can, regional pricing, and discount codes are all supported by
