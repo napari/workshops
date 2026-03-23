@@ -47,6 +47,10 @@ jobs:
         with:
           qt: true
           wm: herbstluftwm
+      - name: Configure herbstluftwm
+        # Float napari windows outside the tiling grid so parallel notebook
+        # execution doesn't cause herbstluftwm to re-tile and shrink them.
+        run: herbstclient rule title=napari floating=on
       - name: Build workshop
         run: pixi run build
       - name: Upload artifact
