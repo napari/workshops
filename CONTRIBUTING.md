@@ -42,6 +42,29 @@ uv run jupyter-book build --html --execute --strict
 
 ## Docs Configuration
 
+### Getting `nbscreenshot` to actual display screenshots.
+
+At least in mystmd, `nbscreenshot()` needs to live in its own code cells.
+If you put it in the same cell as other code, it will execute before the napari viewer window is fully initialized and not manager to capture an image. Additionally, closing viewers should be done it's own cell block. For example:
+
+```{code-cell} python
+:tags: [remove-cell]
+import napari
+from napari.utils import nbscreenshot
+
+viewer = napari.Viewer()
+```
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
+
 ### File Paths in Notebooks
 
 #### The Problem
