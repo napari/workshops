@@ -1,6 +1,6 @@
 ---
-label: schedule
-title: Schedule
+label: events
+title: Events
 ---
 
 # Workshop schedule
