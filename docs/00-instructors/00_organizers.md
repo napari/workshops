@@ -128,49 +128,52 @@ Send via `ti.to` **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
 
 
-> **Subject:** [napari workshop] See you [DATE] — setup instructions inside
->
-> Hi [NAME],
->
-> We're looking forward to seeing you at the **Introduction to napari workshop**
-> on **[DATE]** at **[TIME]**
-> ([convert to your timezone](https://www.timeanddate.com/worldclock/converter.html)).
->
-> **Before the workshop:**
->
-> This workshop will be run on the recently released napari 0.7.0 bundled application.
-> We encourage you to install the napari bundled app before we start — installation can
-> take a few minutes and troubleshooting can be challenging to do live during the
-> session.  Follow the
-> [installation instructions](https://napari.org/dev/getting_started/installation.html#installation-bundle-conda)
-> for your operating system.
-> If you are working on an institutional device,
-> please follow your institution's software guidelines,
-> and reach out to your IT department if you need help.
-> 
-> Once napari opens and you see an empty viewer, you're all set.
->
-> **On the day:**
->
-> - Zoom link: [ZOOM_LINK] *(keep this private — do not share publicly)*
-> - Shared notes for the session: [ETHERPAD_LINK]
->
-> **What to expect:**
->
-> - This is a **GUI-only** workshop — no Python or coding knowledge required.
-> - We'll work through napari together on-screen, so have napari open and
->   ready on your computer.
-> - There will be short breaks and time for your own exploration.
->
-> **Questions before the workshop?**
-> Post in the [napari Zulip chat](https://napari.zulipchat.com) or reply to
-> this email.
->
-> **Code of Conduct:** All participants are expected to follow the
-> [napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html).
->
-> See you soon!
-> [INSTRUCTOR_NAME] and the napari team
+**Subject:** [napari workshop] See you [DATE] — setup instructions inside
+
+Hi {{first_name}},
+
+We're looking forward to seeing you at the {{event_title}}
+on **[DATE]** at **[TIME]**
+([convert to your timezone] (TIME_AND_DATE_WORK_CLOCK)).
+
+**Before the workshop:**
+
+Fill out the [pre-workshop survey] (SURVEY_LINK) to help us tailor the session to your needs.
+After the workshop, we'll share a follow-up survey to get your feedback, so that we can improve future sessions.
+
+This workshop will be run on the recently released napari 0.7.0 bundled application.
+We encourage you to install the napari bundled app before we start — installation can
+take a few minutes and troubleshooting can be challenging to do live during the
+session.  Follow the
+[installation instructions](https://napari.org/workshops/intro-napari/setup/)
+for your operating system.
+If you are working on an institutional device,
+please follow your institution's software guidelines,
+and reach out to your IT department if you need help.
+
+Once napari opens and you see an empty viewer, you're all set. You can preview the workshop at https://napari.org/workshops/intro-napari/
+
+**Day of the workshop:**
+
+Zoom link: [ZOOM_LINK]
+*(keep this private — do not share publicly)*
+
+**What to expect:**
+
+- This is a **GUI-only** workshop — no Python or coding knowledge required.
+- We'll work through napari together on-screen, so have napari open and
+  ready on your computer.
+- There will be short breaks and time for your own exploration.
+
+**Questions before the workshop?**
+Post in the [napari Zulip chat] (ZULIP_WORKSHOP_LINK) or reply to
+this email.
+
+**Code of Conduct:** All participants are expected to follow the
+[napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html).
+
+See you soon!
+[INSTRUCTOR_NAME] and the napari team
 
 
 (hackmd-shared-notes-template)=
