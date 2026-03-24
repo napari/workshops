@@ -24,12 +24,10 @@ project:
         - file: 01-intro-napari/index.md
         - file: 01-intro-napari/00_setup.md
         - file: 01-intro-napari/session_schedule.md
-        # - file: 01-intro-napari/01_napari_gui.md
-        # notebook lessons below — hidden code cells generate screenshots
-        # - file: 01-intro-napari/02_intro_bioimage_viz.md
-        # - file: 01-intro-napari/03_manual_annotation.md
-        # - file: 01-intro-napari/04_interactive_analysis.md
-        # - file: 01-intro-napari/05_using_plugins.md
+        - file: 01-intro-napari/block1_welcome.md
+        # - file: 01-intro-napari/block2_gui.md
+        # - file: 01-intro-napari/block3_plugins_and_annotation.md
+        # - file: 01-intro-napari/block4_analysis_wrap_up.md
     - file: events.md
     - title: Instructors
       children:

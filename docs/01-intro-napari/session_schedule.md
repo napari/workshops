@@ -24,18 +24,6 @@ interface.
 | 8 | Open your first (sample) image and label it | 5 min |
 | 9 | Taking and sharing screenshots | 5 min |
 
-**Welcome:**
-- Introduce instructors and helpers
-- Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
-- Ask about accessibility needs (private DMs ok)
-- Share the HackMD shared-notes link; invite participants to add an
-  icebreaker answer: *"What field are you from, and what kind of images do
-  you work with?"*
-- Zoom etiquette
-  - Cameras tend to improve the experience, but it's ok to keep off
-  - 👍 reaction = ready to continue; ✋ = stuck/question
-  - If asking questions in chat, please send them to everyone unless it needs to be private
-
 ## Break (10 min)
 
 ## Block 2 — Exploring the napari GUI (55 min)
@@ -46,7 +34,6 @@ confidently, adjust visualizations, open and save files, and take screenshots.
 
 | # | Segment | Time |
 |---|---------|------|
-| 10 | BREAK | 10 min |
 | 11 | Instructor-guided GUI walkthrough | 25 min |
 | 12 | napari-metadata demo: scale, units, axis labels | 5 min |
 | 13 | Personal exploration of examples (breakout) | 15 min |
