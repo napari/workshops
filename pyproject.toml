@@ -10,7 +10,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "napari[all]>=0.7.0rc0",  # if napari 0.6.6, then pin python to <3.14
+    "napari[all]>=0.7.0",
     "matplotlib",
 ]
 
