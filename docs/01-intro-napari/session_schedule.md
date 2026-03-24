@@ -7,7 +7,7 @@ title: Session Schedule
 
 **Total time:** ~4 hours
 
-## Block 1 — Welcome and First Images (65 min)
+## Block 1 — Welcome and First Images (60 min)
 
 **By the end of this block you will:** have napari installed and explore the napari
 interface.
@@ -17,7 +17,7 @@ interface.
 | 1 | Welcome + introductions | 10 min |
 | 2 | Download the napari bundle | 5 min |
 | 3 | About napari: community, open source, plugins | 10 min |
-| 4 | Install the bundle | 5 min |
+| 4 | Install the bundle |  |
 | 5 | napari Demo | 10 min |
 | 6 | Installation check-in — everyone confirms napari opens | 5 min |
 | 7 | What are images and labels? Pixels, arrays, dimensionality | 10 min |
@@ -30,7 +30,6 @@ interface.
 
 **By the end of this block you will:** navigate the napari interface
 confidently, adjust visualizations, open and save files, and take screenshots.
-
 
 | # | Segment | Time |
 |---|---------|------|
