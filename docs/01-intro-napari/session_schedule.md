@@ -7,7 +7,7 @@ title: Session Schedule
 
 **Total time:** ~4 hours
 
-## Block 1 — Welcome and First Images (65 min)
+## Block 1 — Welcome and First Images (60 min)
 
 **By the end of this block you will:** have napari installed and explore the napari
 interface.
@@ -17,7 +17,7 @@ interface.
 | 1 | Welcome + introductions | 10 min |
 | 2 | Download the napari bundle | 5 min |
 | 3 | About napari: community, open source, plugins | 10 min |
-| 4 | Install the bundle | 5 min |
+| 4 | Install the bundle |  |
 | 5 | napari Demo | 10 min |
 | 6 | Installation check-in — everyone confirms napari opens | 5 min |
 | 7 | What are images and labels? Pixels, arrays, dimensionality | 10 min |
@@ -30,7 +30,6 @@ interface.
 
 **By the end of this block you will:** navigate the napari interface
 confidently, adjust visualizations, open and save files, and take screenshots.
-
 
 | # | Segment | Time |
 |---|---------|------|
@@ -79,17 +78,6 @@ with Points, Shapes, and Labels layers.
 | 19 | **Sharing time:** What did you discover? | 5 min |
 | 20 | What is annotation? Raster vs vector; when and why to annotate | 5 min |
 | 21 | Annotation with Points and Shapes | 10 min |
-
-**napari hub intro covers** ([full lesson](05_using_plugins.md)):
-- What plugins are and what they can do (readers, writers, widgets, sample data)
-- How to find plugins on [napari-hub.org](https://napari-hub.org)
-- How to install from within napari: **Plugins > Install/Uninstall Plugins**
-
-**Annotation "You" exercise:**
-- Use the nuclei image from Block 2
-- Mark at least 3 cell centres with the Points layer
-- Outline any region of interest with a Shapes layer
-- Use the Labels paintbrush to paint one cell
 
 ## Break (10 min)
 

@@ -1,6 +1,10 @@
 ---
 label: intro-setup
 title: Setup and Installation
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 The easiest way to install napari is the **napari bundled app**. It packages napari and
@@ -34,4 +38,21 @@ workshop.
 :class: tip
 Reach out to the workshop instructors or ask for help in the
 [napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+import napari
+from napari.utils import nbscreenshot
+viewer = napari.Viewer()
+```
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
 ```

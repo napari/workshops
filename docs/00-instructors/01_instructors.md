@@ -152,7 +152,7 @@ To launch with the bundle, on Windows target the napari launch command `.bat` in
 
 ```powershell
 $env:QT_SCALE_FACTOR = "1.5"
-& "C:\Users\timmo\AppData\Local\napari-0.7.0rc0\envs\napari-0.7.0rc0\Menu\napari (0.7.0rc0).bat"
+& "C:\Users\timmo\AppData\Local\napari-0.7.0\envs\napari-0.7.0\Menu\napari (0.7.0).bat"
 ```
 
 Unix shells (`bash`, `zsh`):

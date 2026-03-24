@@ -144,16 +144,16 @@ Adapt the bracketed fields.
 > session.  Follow the
 > [installation instructions](https://napari.org/dev/getting_started/installation.html#installation-bundle-conda)
 > for your operating system.
-> Please follow your institution's software guidelines, as some institutions may restrict application installations,
-> and reach out to your IT department if you need help. 
-> You are encouraged to complete setup ahead of time.
+> If you are working on an institutional device,
+> please follow your institution's software guidelines,
+> and reach out to your IT department if you need help.
 > 
 > Once napari opens and you see an empty viewer, you're all set.
 >
 > **On the day:**
 >
 > - Zoom link: [ZOOM_LINK] *(keep this private — do not share publicly)*
-> - Shared notes for the session: [HACKMD_LINK]
+> - Shared notes for the session: [ETHERPAD_LINK]
 >
 > **What to expect:**
 >
