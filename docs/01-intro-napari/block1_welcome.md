@@ -43,7 +43,7 @@ scientific image analysis. It is:
 - **Interoperable** — works with NumPy arrays, tiff files, zarr, and more
 - **Interactive** — explore and annotate your data with a handy GUI
 
-## 4. Install the downloaded bundle (5 min)
+## 4. Install the downloaded bundle
 
 ## 5. napari Demo (10 min)
 
@@ -80,7 +80,7 @@ Before diving into napari, a quick conceptual grounding:
 
 - **Images are arrays of numbers** — each pixel has a value (brightness, intensity)
 - **n-dimensional images** — beyond rows and columns in an array, images can have more array indexes
-- - **zero-based indexing** — the first element/pixel is at position 0, not 1
+- **zero-based indexing** — the first element/pixel is at position 0, not 1
 - A not-so standard **convention** TZYX ordering for time, depth, height, and width dimensions
 - **multi-channel images**  — can be just another dimension in the array (e.g. RGB(A) is shape height, width, 3 (or 4))
 - **labels** — images where pixel values are integers representing categories (e.g. 0=background, 1=cell1, 2=cell2, etc.)
