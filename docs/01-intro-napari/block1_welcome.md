@@ -1,6 +1,6 @@
 ---
 label: intro-block1
-title: "Block 1 — Welcome and First Images"
+title: "1. Welcome and First Images"
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -16,7 +16,7 @@ kernelspec:
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
 - Ask about accessibility needs (private DMs ok)
-- Share the HackMD shared-notes link; invite participants to add an
+- Share the Etherpad shared-notes link; invite participants to add an
   icebreaker answer: *"What field are you from, and what kind of images do
   you work with?"*
 - Zoom etiquette

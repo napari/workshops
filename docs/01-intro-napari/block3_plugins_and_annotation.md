@@ -1,6 +1,6 @@
 ---
 label: intro-block3
-title: "Block 3 — Plugins and Annotation"
+title: "3. Plugins and Annotation"
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
