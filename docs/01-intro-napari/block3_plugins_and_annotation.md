@@ -76,7 +76,7 @@ when available. In this case, we know this plugin will work fine.
 `.tiff` file with `ndevio`. If you see this error, try opening the file again.
 - If opening the file was successful, you may see a new GUI element on the right side of the viewer.
 This is because some TIFF files have multiple different scenes bundled into
-the same file e.g. one scene per well plate.
+the same file e.g. one scene for each imaged region of interest (e.g. well, slide, sample).
 Click on one of the detected scenes. You'll see the images added as layers to the viewer.
 
 ![Screenshot of the napari viewer with ndevio's scene selection widget open, and a white arrow pointing to the widget.](resources/ndevio-with-widget.png)
