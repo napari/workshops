@@ -3,7 +3,7 @@
 This document is for the people handling the **logistics** of running a napari
 workshop: ticketing, communications, Zoom setup, and day-of coordination.
 For the teaching side (how to present, troubleshoot, and pace), see
-[01_instructors.md](01_instructors.md).
+[01_instructors.md](instructors.md).
 
 ## Pre-Workshop Checklists
 
@@ -57,7 +57,7 @@ Adapted from the
 
 - Open Zoom **15 minutes early**; admit helpers and instructors first
 - Share the Etherpad link in Zoom chat as soon as participants start joining
-- Confirm screen sharing is working and Qt scaling is set (see [scaling guide](01_instructors.md#scaling-the-napari-ui-for-teaching))
+- Confirm screen sharing is working and Qt scaling is set (see [scaling guide](instructors.md#scaling-the-napari-ui-for-teaching))
 - Set up breakout rooms in advance (pre-assign or let Zoom auto-assign)
 
 ### After the workshop
@@ -215,7 +215,7 @@ Add your answer below:
 
 ## Key Links
 
-- Setup instructions: https://napari.org/workshops/01-intro-napari/setup.html
+- Setup instructions: https://napari.org/workshops/intro-napari/setup/
 - napari docs: https://napari.org/stable/
 - napari hub (plugins): https://napari-hub.org
 - Zulip community chat: https://napari.zulipchat.com
