@@ -43,18 +43,55 @@ If a plugin doesn't work as expected, check its GitHub page or ask on
 [forum.image.sc](https://forum.image.sc/tag/napari).
 ```
 
-## 17. Opening Images with napari-tiff (10 min)
+## 17. Opening Images with ndevio (10 min)
 
-[napari-tiff](https://napari-hub.org/plugins/napari-tiff) is a plugin that
-adds enhanced TIFF reading support, including OME-TIFF and BigTIFF.
+[ndevio](https://napari-hub.org/plugins/ndevio) is a plugin that
+adds enhanced reading support for a wide range of file formats,
+including OME-TIFF and BigTIFF.
 
-**Install it:**
-1. **Plugins > Install/Uninstall Plugins…** → search `napari-tiff` → Install
-2. Restart napari
+Today we'll be using it to look at an example TIFF file from the [QuPath
+documentation](https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html).
+
+**Download your TIFF:**
+1. [Click this link](https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/PKI_fields/LuCa-7color_%5B13860%2C52919%5D_1x1component_data.tif)
+to download your image so it's available on your device.
+
+
+**Install `ndevio`:**
+1. **Plugins > Install/Uninstall Plugins…** → search `ndevio` → Install
+2. You will see a warning about installing the plugin from PyPI. The napari bundle
+typically uses `conda` to manage packages and plugins. A plugin installed from
+PyPI **may** interact with other installed packages so we encourage using `conda`
+when available. In this case, we know this plugin will work fine.
+
+![Image displaying warning pop-up when installing a PyPI plugin in the napari bundle.](resources/pypi_install_warning.png)
+
+3. Click OK.
+4. Once the plugin is installed, close the plugin manager and restart napari, as advised.
 
 **Open an image:**
 - **File > Open File(s)** to open any `.tif` or `.tiff` file, or drag-and-drop onto the canvas
-- If napari-tiff is installed, it will be used automatically for TIFF files
+- You will be asked which plugin you want to use to open the file. Choose `ndevio`.
+- You **may** see an error (and no image open) when first trying to open a 
+`.tiff` file with `ndevio`. If you see this error, try opening the file again.
+- If opening the file was successful, you may see a new GUI element on the right side of the viewer.
+This is because some TIFF files have multiple different scenes bundled into
+the same file e.g. one scene per well plate.
+Click on one of the detected scenes. You'll see the images added as layers to the viewer.
+
+![Screenshot of the napari viewer with ndevio's scene selection widget open, and a white arrow pointing to the widget.](resources/ndevio-with-widget.png)
+
+If you'd like to read other different file types with `ndevio`, check out [its documentation](https://napari-hub.org/plugins/ndevio).
+
+```{note}Try some other TIFF files
+There are a number of TIFF files on the [QuPath acknowledgements page](https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html)
+and on the [OME-TIFF sample data page](https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html).
+
+Try downloading some other files and opening them in napari with builtins and/or with `ndevio`.
+
+Does the image display as you expected? Do both plugins open the images in the same way? Do some
+TIFF files not open at all and you get an error?
+```
 
 ## 18. napari-ome-zarr and the IDR (10 min)
 
@@ -114,9 +151,9 @@ Use the **Cells (3D + 2Ch)** sample for this exercise.
 
 1. In the layer list, click **Add Points layer** (the points icon in the top-left)
    — or go to **Layer > New Points Layer**
-2. In layer controls, ensure the **Add points** tool is active (pencil icon)
+2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
 3. Click on cell centres in the `nuclei` layer to add a point at each location
-4. Each click drops a point; Ctrl+Z undoes the last one
+4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
 5. Switch to the **Select** tool to move existing points
 
 ```{code-cell} python
