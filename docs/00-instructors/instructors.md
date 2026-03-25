@@ -5,7 +5,7 @@ title: Instructor Guide
 # Philosophy
 
 These workshops are inspired by the
-[Carpentries](https://carpentries.org) model: live coding, learner-centred
+[Carpentries](https://carpentries.org) model: live coding, learner-centered
 pacing, and a commitment to welcoming everyone
 regardless of background. We do not assume prior napari experience for the
 introductory workshop, and we invest heavily in setup, so that the first hour
@@ -46,7 +46,7 @@ Practical commitments:
 - Narrates every action out loud ("I'm clicking File > Open Sample >
   napari builtins > Cells 3D + 2Ch")
 - Watches the Etherpad for questions during exercises
-- Advances through the [session schedule](../01-intro-napari/session_schedule.md)
+- Advances through the [session schedule](../01-intro-napari/index.md#session-schedule)
   and calls time
 
 ### Helper instructor

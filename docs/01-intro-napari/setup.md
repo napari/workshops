@@ -13,10 +13,11 @@ Python knowledge or command-line setup required.
 
 ```{note}
 If you already have napari installed through another method (conda, pip, etc.) you are
-welcome to use that instead. Version 0.6.6 or newer is fine for this workshop.
+welcome to use that instead. However, we strongly encourage using a new, clean
+environment containing the newest version of napari.
 ```
 
-## Download and install the bundled app
+# Download and install the bundled app
 
 Follow the official napari documentation for step-by-step instructions:
 
@@ -28,10 +29,10 @@ The guide covers:
 - Running the installer
 - Launching napari for the first time
 
-## Verify your installation
+# Verify your installation
 
 Once napari is open you should see the napari viewer - an empty window with a layer list on
-the left and a canvas in the centre. If it opens successfully, you are ready for the
+the left and a canvas in the center. If it opens successfully, you are ready for the
 workshop.
 
 ```{admonition} Problems installing?

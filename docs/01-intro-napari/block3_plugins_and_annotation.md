@@ -7,13 +7,10 @@ kernelspec:
   name: python3
 ---
 
-# Block 3 — Plugins and Annotation
-
-**Duration:** ~45 min  
 **Goal:** Install a plugin from the napari hub, open images with it, and
 manually annotate images using Points, Shapes, and Labels layers.
 
-## 16. Plugins and the napari Hub (5 min)
+# Plugins and the napari Hub (5 min)
 
 napari's functionality can be extended with **plugins** — Python packages
 contributed by the community.
@@ -43,7 +40,7 @@ If a plugin doesn't work as expected, check its GitHub page or ask on
 [forum.image.sc](https://forum.image.sc/tag/napari).
 ```
 
-## 17. Opening Images with ndevio (10 min)
+# Opening Images with ndevio (10 min)
 
 [ndevio](https://napari-hub.org/plugins/ndevio) is a plugin that
 adds enhanced reading support for a wide range of file formats,
@@ -83,7 +80,7 @@ Click on one of the detected scenes. You'll see the images added as layers to th
 
 If you'd like to read other different file types with `ndevio`, check out [its documentation](https://napari-hub.org/plugins/ndevio).
 
-```{note}Try some other TIFF files
+```{note} Try some other TIFF files
 There are a number of TIFF files on the [QuPath acknowledgements page](https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html)
 and on the [OME-TIFF sample data page](https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html).
 
@@ -93,7 +90,7 @@ Does the image display as you expected? Do both plugins open the images in the s
 TIFF files not open at all and you get an error?
 ```
 
-## 18. napari-ome-zarr and the IDR (10 min)
+# napari-ome-zarr and the IDR (10 min)
 
 napari-ome-zarr lets you
 stream images directly from the web — no download required. The
@@ -121,13 +118,13 @@ is slow during the workshop, we recommend
 `https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr`.
 ```
 
-## 19. Sharing Time (5 min)
+# Sharing Time (5 min)
 
 - What did you open?
 - What did the metadata widget show for axis scales and units?
 - Any plugins you found interesting while browsing napari-hub?
 
-## 20. What Is Annotation? (5 min)
+# What Is Annotation? (5 min)
 
 **Manual annotation** means marking up images by hand. Common reasons:
 
@@ -143,16 +140,16 @@ Two fundamental approaches:
 | **Vector** | Points, Shapes | Marking locations, outlines |
 | **Raster** | Labels | Pixel-wise segmentation masks |
 
-## 21. Annotation with Points and Shapes (10 min)
+# Annotation with Points and Shapes (10 min)
 
 Use the **Cells (3D + 2Ch)** sample for this exercise.
 
-### Points layer — marking cell centres
+## Points layer — marking cell centers
 
 1. In the layer list, click **Add Points layer** (the points icon in the top-left)
    — or go to **Layer > New Points Layer**
 2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
-3. Click on cell centres in the `nuclei` layer to add a point at each location
+3. Click on cell centers in the `nuclei` layer to add a point at each location
 4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
 5. Switch to the **Select** tool to move existing points
 
@@ -194,14 +191,14 @@ viewer.close()
 
 Compare visualization in 2D with checking `out_of_slice_display` in layer controls — it shows points that are outside the current z-slice.
 
-### Shapes layer — outlining regions
+## Shapes layer — outlining a region
 
 1. Add a shapes layer: **Layer > New Shapes Layer**
 2. Choose a shape tool from layer controls (rectangle, ellipse, polygon, etc.)
 3. Draw an outline around a region of interest
 4. Use the **Select** tool to resize or move shapes
 
-### Labels layer — painting a cell
+## Labels layer — painting a cell
 
 1. Add a labels layer: **Layer > New Labels Layer** (choose the size to match your image)
 2. Select the **Paint** tool from layer controls and pick a brush size

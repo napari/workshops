@@ -23,7 +23,6 @@ project:
       children:
         - file: 01-intro-napari/index.md
         - file: 01-intro-napari/setup.md
-        - file: 01-intro-napari/session_schedule.md
         - file: 01-intro-napari/block1_welcome.md
         - file: 01-intro-napari/block2_gui.md
         - file: 01-intro-napari/block3_plugins_and_annotation.md
