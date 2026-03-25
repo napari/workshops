@@ -18,12 +18,12 @@ to go from here.
 
 ## 23. napari-skimage Segmentation Demo (5 min + 20 min hands-on)
 
-[napari-skimage-regionprops](https://napari-hub.org/plugins/napari-skimage-regionprops)
+[napari-skimage](https://napari-hub.org/plugins/napari-skimage)
 provides GUI access to common image-processing steps powered by scikit-image —
 no code required.
 
 **Install it:**
-1. **Plugins > Install/Uninstall Plugins…** → search `napari-skimage-regionprops` → Install
+1. **Plugins > Install/Uninstall Plugins…** → search `napari-skimage` → Install
 2. Restart napari
 
 ### Workflow (segments 23 + 25)
@@ -33,40 +33,59 @@ Use **File > Open Sample > napari builtins > Cells (3D + 2Ch)** as your starting
 | Step | What to do | Why |
 |------|-----------|-----|
 | 1. Load | Open Cells (3D + 2Ch) | Your raw data |
-| 2. Filter | **Plugins > napari-skimage-regionprops > Filtering > Gaussian** — apply to `nuclei` | Reduce noise |
-| 3. Threshold | **Plugins > napari-skimage-regionprops > Thresholding** — apply Otsu to the filtered layer | Separate foreground from background |
-| 4. Label | The threshold output is a binary layer — run **Label** to convert it to a Labels layer | Each connected region gets a unique integer ID |
-| 5. Measure | **Plugins > napari-skimage-regionprops > Measure > Regionprops (labels)** — select the Labels and nuclei layers | Outputs a table of area, intensity, centroid per cell |
-| 6. Save | Click **Save as CSV** in the measurement table widget | Export measurements for further analysis |
+| 2. Filter | **Layers > Filter > Filtering > Gaussian filter** — apply to `nuclei` | Reduce noise |
+| 3. Threshold | **Layers > Filter > Thresholding > Automated Threshold** — apply Otsu to the filtered layer. The threshold output is a binary Labels mask. | Separate foreground from background |
+| 4. Label | **Layers > Segment > Label connected components** on the mask to generate a new Labels layer with a unique ID (and color) for each object.  | Each connected region gets a unique integer ID |
+| 5. Measure | **Layers > Measure > Regionprops (labels)** — select the Labels and nuclei layers | Outputs a table of features e.g. area, intensity, eccentricity per cell |
+| 6. Save | Click **Save Results** in the Regionprops widget | Export measurements for further analysis |
 
 ```{tip}
-Work on a single z-slice first: set the dimension slider to slice 30, then
-apply the workflow to the 2D image that appears. The full 3D workflow is the
-same but takes longer to process.
+Make sure you look through all your z-slices when gauging whether a
+particular filter or thresholding algorithm worked as expected!
 ```
 
-````{note} Instructor screenshot — segmented nuclei
-```python
+```{code-cell} python
+:tags: [remove-cell]
 import napari
 import numpy as np
-from skimage.data import cells3d
-from skimage.filters import gaussian
-from skimage.filters import threshold_otsu
-from skimage.measure import label
 
-viewer = napari.current_viewer()
-data = cells3d()
-nuclei = data[30, 1, :, :]  # single z-slice
+from scipy import ndimage as ndi
+from skimage import data, filters, morphology
+from napari.utils import nbscreenshot
 
-smoothed = gaussian(nuclei, sigma=2)
-thresh = threshold_otsu(smoothed)
-binary = smoothed > thresh
-labels = label(binary)
 
-viewer.add_image(nuclei, name="nuclei", colormap="magenta", blending="additive")
-viewer.add_labels(labels, name="nuclei labels")
+cells3d = data.cells3d()
+viewer = napari.Viewer()
+membranes_layer, nuclei_layer = viewer.add_image(
+    cells3d, channel_axis=1, name=['membranes', 'nuclei']
+)
+membrane, nuclei = cells3d.transpose((1, 0, 2, 3)) / np.max(cells3d)
+edges = filters.scharr(nuclei)
+denoised = ndi.median_filter(nuclei, size=3)
+thresholded = denoised > filters.threshold_li(denoised)
+cleaned = morphology.remove_small_objects(
+    morphology.remove_small_holes(thresholded, 20**3),
+    20**3,
+)
+
+segmented = ndi.label(cleaned)[0]
+
+labels_layer = viewer.add_labels(segmented)
+
+# viewer.dims.current_step = (27, 0, 0)
+viewer.dims.ndisplay=3
+viewer.camera.angles = (-20, 35, -40)
 ```
-````
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
 
 ---
 
@@ -77,11 +96,6 @@ use to interact with the viewer programmatically.
 
 Open it with: **Window > Console**
 
-```{note}
-Code in the console is for **instructors and developers** — you won't need to
-use it during this workshop. This is just a quick peek to show it exists.
-```
-
 Example you can paste to see a quick result:
 
 ```python
@@ -91,8 +105,9 @@ labels = viewer.layers['nuclei labels'].data
 print(f"Number of labelled regions: {np.max(labels)}")
 ```
 
-The console also lets you access `viewer` directly to change colours,
-positions, and layer properties — the starting point for scripting napari in
+The console also lets you access the `viewer` directly to programmatically
+change different properties e.g. camera angles. You can also access individual
+layers using `viewer.layers` — the starting point for scripting napari in
 your own workflows.
 
 ---
@@ -117,21 +132,19 @@ your own workflows.
 | Plugin search | [napari-hub.org](https://napari-hub.org) |
 | These workshop materials | [napari.org/workshops](https://napari.org/workshops/) |
 
-### Community
+### Community & Getting Help
 
-| Channel | Link |
+| Channel | Description |
 |---------|------|
-| Image analysis forum | [forum.image.sc/tag/napari](https://forum.image.sc/tag/napari) |
-| Zulip chat | [napari.zulipchat.com](https://napari.zulipchat.com) |
-| GitHub | [github.com/napari/napari](https://github.com/napari/napari) |
-| Twitter / X | [napari_imaging](https://twitter.com/napari_imaging) |
+| [Image analysis forum](https://forum.image.sc/tag/napari) | Ask questions about using napari, how to perform different image analysis tasks, and get help from experienced image analysts. |
+| [Zulip chat](https://napari.zulipchat.com) | Chat with the napari community - developers, users and contributors. Ask questions, share your analyses, or just lurk for info! |
+| [napari GitHub](https://github.com/napari/napari) | Keep up with development, report bugs and request new features. |
 
 ### Next Steps
 
 - Try opening one of **your own images** in napari
 - Browse [napari-hub.org](https://napari-hub.org) for plugins relevant to your field
-- Work through the [self-guided lessons](index.md) at your own pace
-- Attend the next workshop — see [Events](../events.md)
+- Add a new example or sample data to napari!
 
 ---
 

@@ -27,7 +27,7 @@ project:
         - file: 01-intro-napari/block1_welcome.md
         # - file: 01-intro-napari/block2_gui.md
         - file: 01-intro-napari/block3_plugins_and_annotation.md
-        # - file: 01-intro-napari/block4_analysis_wrap_up.md
+        - file: 01-intro-napari/block4_analysis_wrap_up.md
     - file: events.md
     - title: Instructors
       children:
