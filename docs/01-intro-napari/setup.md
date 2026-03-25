@@ -20,7 +20,7 @@ welcome to use that instead. Version 0.6.6 or newer is fine for this workshop.
 
 Follow the official napari documentation for step-by-step instructions:
 
-**[napari bundled app installation guide](https://napari.org/dev/getting_started/installation.html#installation-bundle-conda)**
+**[napari bundled app installation guide](https://napari.org/stable/getting_started/installation.html#installation-bundle-conda)**
 
 The guide covers:
 
