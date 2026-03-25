@@ -53,7 +53,7 @@ nbscreenshot(viewer)
 Click the **2D/3D button** in the viewer button row to switch rendering modes.
 In 3D mode you can click-drag to rotate the volume.
 
-![viewer buttons](https://napari.org/dev/_images/viewer-buttons.png)
+![viewer buttons](https://napari.org/stable/_images/viewer-buttons.png)
 
 ```{code-cell} python
 :tags: [remove-cell]

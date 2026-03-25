@@ -14,12 +14,12 @@ The primary steps in making a napari plugin are as follows:
 4. Share your plugin with the community
 
 In the following sections, we will work through steps (1) - (3).
-To set up a minimal plugin, you can read the ["Your first plugin"](https://napari.org/dev/plugins/building_a_plugin/first_plugin.html#your-first-plugin) tutorial on napari.org.
+To set up a minimal plugin, you can read the ["Your first plugin"](https://napari.org/stable/plugins/building_a_plugin/first_plugin.html#your-first-plugin) tutorial on napari.org.
 A functional napari plugin only needs 4 files to be shared with the community,
 but you will find many other helpful files in the template that make plugins
 easier to develop and maintain.
 For step (4), you can refer to the [in depth plugin tutorial](https://www.youtube.com/watch?v=NL-VywidzXE),
-or [the deploy instructions on napari.org](https://napari.org/dev/plugins/building_a_plugin/index.html#[plugin-test-deploy]).
+or [the deploy instructions on napari.org](https://napari.org/stable/plugins/building_a_plugin/index.html#[plugin-test-deploy]).
 
 ![plugin example](./resources/plugin-01.png)
 
@@ -31,10 +31,10 @@ signature, i.e. the function linked to the contribution defines what napari
 provides to the plugin (e.g., data and parameters) and what the plugin returns
 to napari. napari is then able to use the functions pointed to in `napari.yaml`
 to carry out the plugin tasks. Please see the
-[contributions guide](https://napari.org/dev/plugins/building_a_plugin/guides.html) for more details.
+[contributions guide](https://napari.org/stable/plugins/building_a_plugin/guides.html) for more details.
 (And technical references for the
-[manifest](https://napari.org/dev/plugins/technical_references/manifest.html) and
-[contributions](https://napari.org/dev/plugins/technical_references/contributions.html).
+[manifest](https://napari.org/stable/plugins/technical_references/manifest.html) and
+[contributions](https://napari.org/stable/plugins/technical_references/contributions.html).
 Many plugins will declare multiple contributions to provide all of the desired
 functionality.
 
@@ -261,11 +261,11 @@ napari can infer the correct GUI elements to add to our plugin.
    `blob_log()` function to the top of the file.
     - `from scipy import ndimage as ndi`
     - `from skimage.feature import blob_log`
-12. Finally, we need to add the function to the [`napari.yaml`](https://napari.org/dev/plugins/building_a_plugin/first_plugin.html#add-a-napari-yaml-manifest)
+12. Finally, we need to add the function to the [`napari.yaml`](https://napari.org/stable/plugins/building_a_plugin/first_plugin.html#add-a-napari-yaml-manifest)
     file so that napari can find the declarations of the plugin without having to import every module
     at startup. You can read more about how to properly declare a widget in the
-    [Contributions Reference](https://napari.org/dev/plugins/technical_references/contributions.html#contributions-widgets).
-    In addition, we can declare plugin contributions to [napari menus](https://napari.org/dev/naps/6-contributable-menus.html#plugin-submenus)
+    [Contributions Reference](https://napari.org/stable/plugins/technical_references/contributions.html#contributions-widgets).
+    In addition, we can declare plugin contributions to [napari menus](https://napari.org/stable/naps/6-contributable-menus.html#plugin-submenus)
     so that users can find your contributions according to intended use.
 
 ### _function.py solution
@@ -454,7 +454,7 @@ provided some ideas for ways that you can extend the plugin. Please feel free to
 give them a go and ask the teaching team if you have any questions.
 
 - Add sample data to your plugin. To do so, you would need to implement the
-  [sample data contribution](https://napari.org/dev/plugins/building_a_plugin/guides.html#sample-data)
+  [sample data contribution](https://napari.org/stable/plugins/building_a_plugin/guides.html#sample-data)
 - Add an option to your `detect_spots()` function plugin to return the filtered
   image in addition to the points layer.
 - Add some tests to the `_tests/test_widget.py` file.
