@@ -30,12 +30,3 @@ napari community.
 For live workshops, see the [session schedule](session_schedule.md) for the
 timing and structure of each block. Self-guided learners can work through the
 lessons in order at their own pace.
-
-## Lessons
-
-| Lesson | Topics |
-|--------|--------|
-| [Setup](setup.md) | Install the bundle; verify your installation |
-| [The napari GUI](01_napari_gui.md) | Viewer layout; open images; 2D/3D view; layer controls; save and screenshot |
-| [Annotation](03_manual_annotation.md) | Points, Shapes, and Labels layers |
-| [Plugins and analysis](05_using_plugins.md) | napari hub; napari-metadata; napari-skimage |
