@@ -9,12 +9,9 @@ kernelspec:
 
 # Block 4 — Interactive Analysis and Next Steps
 
-**Duration:** ~50 min  
 **Goal:** Run a complete filter → threshold → segment → measure workflow
 using a plugin GUI, take a brief look at the napari console, and learn where
 to go from here.
-
----
 
 ## 23. napari-skimage Segmentation Demo (5 min + 20 min hands-on)
 
@@ -26,7 +23,7 @@ no code required.
 1. **Plugins > Install/Uninstall Plugins…** → search `napari-skimage` → Install
 2. Restart napari
 
-### Workflow (segments 23 + 25)
+### 24. Workflow 
 
 Use **File > Open Sample > napari builtins > Cells (3D + 2Ch)** as your starting image.
 
@@ -87,50 +84,21 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
----
-
-## 24. Console Peek (5 min)
-
-napari has a built-in **Python console** that advanced users and developers
-use to interact with the viewer programmatically.
-
-Open it with: **Window > Console**
-
-Example you can paste to see a quick result:
-
-```python
-# How many cells did we find?
-import numpy as np
-labels = viewer.layers['nuclei labels'].data
-print(f"Number of labelled regions: {np.max(labels)}")
-```
-
-The console also lets you access the `viewer` directly to programmatically
-change different properties e.g. camera angles. You can also access individual
-layers using `viewer.layers` — the starting point for scripting napari in
-your own workflows.
-
----
-
-## 26. Sharing Time and Q&A (5 min)
+## 25. Sharing Time and Q&A (5 min)
 
 - How many nuclei did your segmentation find?
 - What measurements were in the regionprops table?
 - Open questions about the workflow or napari in general?
 
----
-
-## 27. Where to Go From Here (5 min)
+## 26. Where to Go From Here (5 min)
 
 ### Learning Resources
 
 | Resource | Link |
 |----------|------|
 | napari documentation | [napari.org/stable](https://napari.org/stable/) |
-| Tutorials | [napari.org/stable/tutorials](https://napari.org/stable/tutorials/) |
 | Gallery | [napari.org/stable/gallery](https://napari.org/stable/gallery) |
 | Plugin search | [napari-hub.org](https://napari-hub.org) |
-| These workshop materials | [napari.org/workshops](https://napari.org/workshops/) |
 
 ### Community & Getting Help
 
@@ -138,7 +106,7 @@ your own workflows.
 |---------|------|
 | [Image analysis forum](https://forum.image.sc/tag/napari) | Ask questions about using napari, how to perform different image analysis tasks, and get help from experienced image analysts. |
 | [Zulip chat](https://napari.zulipchat.com) | Chat with the napari community - developers, users and contributors. Ask questions, share your analyses, or just lurk for info! |
-| [napari GitHub](https://github.com/napari/napari) | Keep up with development, report bugs and request new features. |
+| [napari GitHub](https://github.com/napari/napari) | Participate in development, report bugs and request new features. |
 
 ### Next Steps
 
@@ -146,9 +114,7 @@ your own workflows.
 - Browse [napari-hub.org](https://napari-hub.org) for plugins relevant to your field
 - Add a new example or sample data to napari!
 
----
-
-## 28. Survey + Wrap-up (10 min)
+## 27. Survey + Wrap-up (10 min)
 
 Please fill in the post-workshop survey (link shared by instructors).
 
