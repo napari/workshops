@@ -25,7 +25,7 @@ Adapted from the
   - LinkedIn, Bluesky, Mastodon
 - Plan a **second wave** of social posts ~1 week before each session
 - Add both sessions to the napari community calendar and the image.sc forum events page
-- Create a HackMD shared-notes document for each session (see [HackMD Template](#hackmd-shared-notes-template))
+- Create a Etherpad shared-notes document for each session (see [Etherpad Template](#etherpad-shared-notes-template))
 - Set up the [Zulip workshop stream](#zulip-stream-setup)
 
 ### 2 weeks before
@@ -37,22 +37,26 @@ Adapted from the
   - Enable captions / live transcription
   - Set co-hosts (all instructors and helpers)
   - Record locally if participants consent?
-- Confirm the HackMD link is shareable and populated with the template
+
 
 ### 1 week before
 
+- Create the pre-workshop survey
+- Confirm the Etherpad link is shareable and populated with the template
 - Send a reminder email to participants with:
   - Zoom link (do not post publicly)
   - Gentle, reminder to install the bundle *before* the workshop
-  - HackMD link
+  - Etherpad link
+  - Pre-workshop survey
 - Test screen sharing + Qt scaling on the presenter machine
 - Run a full tech rehearsal with at least one instructor
-- Create the pre-workshop survey
+
+
 
 ### Day of
 
 - Open Zoom **15 minutes early**; admit helpers and instructors first
-- Share the HackMD link in Zoom chat as soon as participants start joining
+- Share the Etherpad link in Zoom chat as soon as participants start joining
 - Confirm screen sharing is working and Qt scaling is set (see [scaling guide](01_instructors.md#scaling-the-napari-ui-for-teaching))
 - Set up breakout rooms in advance (pre-assign or let Zoom auto-assign)
 
@@ -99,7 +103,7 @@ during, and after the workshop.
   - Workshop schedule and Zoom links (for participants)
   - Bundle download link
   - Code of Conduct link
-  - HackMD link for each session
+  - Etherpad link for each session
 - Include the Zulip stream invite link in the pre-workshop email and Zoom
   chat on the day.
 - After the workshop, announce the stream in `#general` so the broader
@@ -127,7 +131,7 @@ These workshops run through [NumFOCUS](https://numfocus.org/) on
 Send via `ti.to` **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
 
-
+```markdown
 **Subject:** [napari workshop] See you [DATE] — setup instructions inside
 
 Hi {{first_name}},
@@ -174,10 +178,10 @@ this email.
 
 See you soon!
 [INSTRUCTOR_NAME] and the napari team
+```
 
-
-(hackmd-shared-notes-template)=
-## HackMD Shared-Notes Template
+(etherpad-shared-notes-template)=
+## Etherpad Shared-Notes Template
 
 See the Carpentries
 [Etherpads guide](https://docs.carpentries.org/resources/communications/etherpads.html)
@@ -187,14 +191,18 @@ for general shared-notes best practices. Shared notes serve as:
 - An accessibility aid (participants who mishear or miss something can catch up)
 - A record of key links shared during the session
 
-Create one HackMD document per session. Suggested structure:
+Create one Etherpad document per session. Suggested structure:
 
 ```markdown
 # Introduction to napari — [DATE]
 
 **Instructors:** [NAMES]
+
 **Zoom link:** [ZOOM_LINK] (do not post publicly)
+
 **Workshop materials:** https://napari.org/workshops/
+
+**Code of Conduct:** https://napari.org/stable/community/code_of_conduct.html 
 
 
 ## Icebreaker

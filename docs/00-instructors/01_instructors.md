@@ -34,7 +34,7 @@ the [Carpentries DEI statement](https://carpentries.org/about-us/#diversity-equi
 Practical commitments:
 
 - Closed captions and transcription enabled by default in Zoom.
-- Shared notes (HackMD) for participants.
+- Shared notes Etherpad for participants.
 - Post-workshop survey explicitly solicits accessibility and inclusion
   feedback.
 
@@ -45,13 +45,13 @@ Practical commitments:
 - Drives the screen — napari is always visible, not slides
 - Narrates every action out loud ("I'm clicking File > Open Sample >
   napari builtins > Cells 3D + 2Ch")
-- Watches the HackMD for questions during exercises
+- Watches the Etherpad for questions during exercises
 - Advances through the [session schedule](../01-intro-napari/session_schedule.md)
   and calls time
 
 ### Helper instructor
 
-- Monitor the Zoom chat and HackMD throughout
+- Monitor the Zoom chat and Etherpad throughout
 - Join breakout rooms during "You" exercises; one helper per room minimum
 - DM participants with technical issues and escalate to breakout as needed
 - Signal the lead instructor (via Zoom reaction or private chat) if the group
@@ -73,7 +73,7 @@ Practical commitments:
   least once.
 - During practice, set your display to **light mode** and scale to `QT_SCALE_FACTOR=1.5`
   see the [presentation instructions](#presentation-instructions) for details.
-- Close all applications except napari and a browser tab for the HackMD
+- Close all applications except napari and a browser tab for the Etherpad
 - Join the Zoom call **10 minutes early** to test screen sharing
 
 ## I → We → You in Practice
@@ -118,7 +118,7 @@ See also the Carpentries
   ready to move on, and ✋ to signal they are stuck.
 - **Breakout rooms:** Announce when rooms are opening and closing, and give
   a 2-minute warning before returning to main. State the task clearly (in
-  Zoom chat, in HackMD, and verbally) before opening rooms.
+  Zoom chat, in Etherpad, and verbally) before opening rooms.
 
 (presentation-instructions)=
 ## Presentation Instructions
@@ -202,7 +202,7 @@ Run through this checklist at the start of every session:
   > nationality, or prior experience. We actively work to make it accessible.
   > Please tell us if we can do better."*
 
-- Share the HackMD link in chat and ask everyone to add their name and
+- Share the Etherpad link in chat and ask everyone to add their name and
   field/location to the icebreaker section.
 - Share the Zulip invite link and encourage participants to join the
   napari community.
@@ -219,7 +219,7 @@ Run through this checklist at the start of every session:
 
 - Ask aloud for a debrief: *"What is one thing that was confusing?"*
   and *"What are you most excited to try after today?"*
-- Share the post-workshop survey link in chat and in HackMD.
+- Share the post-workshop survey link in chat and in Etherpad.
 - Point to key community resources:
   - [napari.org](https://napari.org/stable/) — documentation and gallery
   - [napari-hub.org](https://napari-hub.org) — plugin discovery
@@ -247,7 +247,7 @@ This is a
 Collecting structured feedback is essential for improving the materials.
 
 **During the workshop:**
-- Note in the HackMD any moment where learners are visibly or verbally lost
+- Note in the Etherpad any moment where learners are visibly or verbally lost
 - Note instructions that require repeated clarification
 - Watch for steps where participants fall significantly behind
 
