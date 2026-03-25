@@ -46,7 +46,7 @@ Practical commitments:
 - Narrates every action out loud ("I'm clicking File > Open Sample >
   napari builtins > Cells 3D + 2Ch")
 - Watches the Etherpad for questions during exercises
-- Advances through the [session schedule](../01-intro-napari/session_schedule.md)
+- Advances through the [session schedule](../01-intro-napari/index.md#session-schedule)
   and calls time
 
 ### Helper instructor

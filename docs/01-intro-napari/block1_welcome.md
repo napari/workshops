@@ -7,11 +7,9 @@ kernelspec:
   name: python3
 ---
 
-# Block 1 — Welcome and First Images
-
 **Goal:** Get napari installed and open your first images.
 
-## Welcome (10 min)
+# Welcome (10 min)
 
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
@@ -24,7 +22,7 @@ kernelspec:
   - 👍 reaction = ready to continue; ✋ = stuck/question
   - If asking questions in chat, please send them to everyone unless it needs to be private
 
-## Download napari
+# Download napari
 
 napari comes as a **bundled application** — a single installer, just like any
 other desktop app. No Python or command line required.
@@ -33,7 +31,7 @@ other desktop app. No Python or command line required.
 2. **Install:** Run the installer and follow the on-screen prompts.
 3. **Launch:** Open napari from your Applications folder / Start Menu / desktop shortcut.
 
-## About napari (10 min)
+# About napari (10 min)
 
 napari is a free, open-source, multi-dimensional image viewer for Python and
 scientific image analysis. It is:
@@ -43,11 +41,11 @@ scientific image analysis. It is:
 - **Interoperable** — works with NumPy arrays, tiff files, zarr, and more
 - **Interactive** — explore and annotate your data with a handy GUI
 
-## Install the downloaded bundle
+# Install the downloaded bundle
 
-## napari Demo (10 min)
+# napari Demo (10 min)
 
-## Installation Check-in (5 min)
+# Installation Check-in (5 min)
 
 ```{tip}
 The first launch can take up to a minute. Subsequent launches are much faster.
@@ -74,7 +72,7 @@ viewer = napari.Viewer()
 nbscreenshot(viewer)
 ```
 
-## What Are Images? (10 min)
+# What Are Images? (10 min)
 
 Before diving into napari, a quick conceptual grounding:
 
@@ -88,7 +86,7 @@ Before diving into napari, a quick conceptual grounding:
 napari can display all of these — the dimension sliders let you navigate indexes
 beyond the 2D canvas.
 
-## Open Your First Image (5 min)
+# Open Your First Image (5 min)
 
 1. In napari, select: **File > Open Sample > napari builtins > Cells (3D + 2Ch)**
 2. Two layers appear in the layer list: `membrane` and `nuclei`
@@ -114,7 +112,7 @@ viewer.open_sample('napari', 'cells3d')
 nbscreenshot(viewer)
 ```
 
-## Screenshots (5 min)
+# Screenshots (5 min)
 
 Save what you see in napari at any time:
 

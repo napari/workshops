@@ -7,13 +7,11 @@ kernelspec:
   name: python3
 ---
 
-# Block 4 — Interactive Analysis and Next Steps
-
 **Goal:** Run a complete filter → threshold → segment → measure workflow
 using a plugin GUI, take a brief look at the napari console, and learn where
 to go from here.
 
-## napari-skimage Segmentation Demo (5 min + 20 min hands-on)
+# napari-skimage Segmentation Demo (5 min + 20 min hands-on)
 
 [napari-skimage](https://napari-hub.org/plugins/napari-skimage)
 provides GUI access to common image-processing steps powered by scikit-image —
@@ -23,7 +21,7 @@ no code required.
 1. **Plugins > Install/Uninstall Plugins…** → search `napari-skimage` → Install
 2. Restart napari
 
-### Workflow 
+## Workflow 
 
 Use **File > Open Sample > napari builtins > Cells (3D + 2Ch)** as your starting image.
 
@@ -84,15 +82,15 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-## Sharing Time and Q&A (5 min)
+# Sharing Time and Q&A (5 min)
 
 - How many nuclei did your segmentation find?
 - What measurements were in the regionprops table?
 - Open questions about the workflow or napari in general?
 
-## Where to Go From Here (5 min)
+# Where to Go From Here (5 min)
 
-### Learning Resources
+## Learning Resources
 
 | Resource | Link |
 |----------|------|
@@ -100,7 +98,7 @@ viewer.close()
 | Gallery | [napari.org/stable/gallery](https://napari.org/stable/gallery) |
 | Plugin search | [napari-hub.org](https://napari-hub.org) |
 
-### Community & Getting Help
+## Community & Getting Help
 
 | Channel | Description |
 |---------|------|
@@ -108,13 +106,13 @@ viewer.close()
 | [Zulip chat](https://napari.zulipchat.com) | Chat with the napari community - developers, users and contributors. Ask questions, share your analyses, or just lurk for info! |
 | [napari GitHub](https://github.com/napari/napari) | Participate in development, report bugs and request new features. |
 
-### Next Steps
+## Next Steps
 
 - Try opening one of **your own images** in napari
 - Browse [napari-hub.org](https://napari-hub.org) for plugins relevant to your field
 - Add a new example or sample data to napari!
 
-## Survey + Wrap-up (10 min)
+# Survey + Wrap-up (10 min)
 
 Please fill in the post-workshop survey (link shared by instructors).
 

@@ -7,13 +7,10 @@ kernelspec:
   name: python3
 ---
 
-# Block 3 — Plugins and Annotation
-
-**Duration:** ~45 min  
 **Goal:** Install a plugin from the napari hub, open images with it, and
 manually annotate images using Points, Shapes, and Labels layers.
 
-## Plugins and the napari Hub (5 min)
+# Plugins and the napari Hub (5 min)
 
 napari's functionality can be extended with **plugins** — Python packages
 contributed by the community.
@@ -43,7 +40,7 @@ If a plugin doesn't work as expected, check its GitHub page or ask on
 [forum.image.sc](https://forum.image.sc/tag/napari).
 ```
 
-## Opening Images with ndevio (10 min)
+# Opening Images with ndevio (10 min)
 
 [ndevio](https://napari-hub.org/plugins/ndevio) is a plugin that
 adds enhanced reading support for a wide range of file formats,
@@ -93,7 +90,7 @@ Does the image display as you expected? Do both plugins open the images in the s
 TIFF files not open at all and you get an error?
 ```
 
-## napari-ome-zarr and the IDR (10 min)
+# napari-ome-zarr and the IDR (10 min)
 
 napari-ome-zarr lets you
 stream images directly from the web — no download required. The
@@ -121,13 +118,13 @@ is slow during the workshop, we recommend
 `https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr`.
 ```
 
-## Sharing Time (5 min)
+# Sharing Time (5 min)
 
 - What did you open?
 - What did the metadata widget show for axis scales and units?
 - Any plugins you found interesting while browsing napari-hub?
 
-## What Is Annotation? (5 min)
+# What Is Annotation? (5 min)
 
 **Manual annotation** means marking up images by hand. Common reasons:
 
@@ -194,14 +191,14 @@ viewer.close()
 
 Compare visualization in 2D with checking `out_of_slice_display` in layer controls — it shows points that are outside the current z-slice.
 
-### Shapes layer — outlining regions
+## Shapes layer — outlining regions
 
 1. Add a shapes layer: **Layer > New Shapes Layer**
 2. Choose a shape tool from layer controls (rectangle, ellipse, polygon, etc.)
 3. Draw an outline around a region of interest
 4. Use the **Select** tool to resize or move shapes
 
-### Labels layer — painting a cell
+## Labels layer — painting a cell
 
 1. Add a labels layer: **Layer > New Labels Layer** (choose the size to match your image)
 2. Select the **Paint** tool from layer controls and pick a brush size

@@ -10,12 +10,12 @@ knowledge needed. You will load and explore multi-dimensional images, annotate
 data, run interactive analysis using plugins, and learn where to find the
 napari community.
 
-## Prerequisites
+# Prerequisites
 
 - No prior napari or Python experience needed
 - Install the napari bundled app before starting — see [Setup](setup.md)
 
-## What you'll learn
+# What you'll learn
 
 - Launch and navigate the napari viewer
 - Open and visualize multi-dimensional image data
@@ -25,11 +25,11 @@ napari community.
 - Discover and install community plugins from napari hub
 - Run interactive image analysis using napari-skimage
 
-## Session schedule
+# Session schedule
 
 **Total time:** ~4 hours
 
-### Block 1 — Welcome and First Images (60 min)
+## Block 1 — Welcome and First Images (60 min)
 
 **By the end of this block you will:** have napari installed and open your first images.
 
@@ -45,9 +45,9 @@ napari community.
 | Open your first image | 5 min |
 | Screenshots | 5 min |
 
-### Break (10 min)
+## Break (10 min)
 
-### Block 2 — Exploring the napari GUI (55 min)
+## Block 2 — Exploring the napari GUI (55 min)
 
 **By the end of this block you will:** navigate the viewer confidently, adjust how
 images look, try the napari gallery, and understand image metadata.
@@ -59,9 +59,9 @@ images look, try the napari gallery, and understand image metadata.
 | Gallery exploration breakout | 15 min |
 | Sharing time | 5 min |
 
-### Break (10 min)
+## Break (10 min)
 
-### Block 3 — Plugins and Annotation (45 min)
+## Block 3 — Plugins and Annotation (45 min)
 
 **By the end of this block you will:** install a plugin from the napari hub, open images
 with it, and manually annotate images using Points, Shapes, and Labels layers.
@@ -75,9 +75,9 @@ with it, and manually annotate images using Points, Shapes, and Labels layers.
 | What is annotation? | 5 min |
 | Annotation with Points and Shapes | 10 min |
 
-### Break (10 min)
+## Break (10 min)
 
-### Block 4 — Interactive Analysis and Next Steps (45 min)
+## Block 4 — Interactive Analysis and Next Steps (45 min)
 
 **By the end of this block you will:** run a complete filter → threshold → segment →
 measure workflow using a plugin GUI and know where to go from here.

@@ -7,12 +7,10 @@ kernelspec:
   name: python3
 ---
 
-# Block 2 — Exploring the napari GUI
-
 **Goal:** Navigate the viewer confidently, adjust how images look, try the
 napari gallery, and understand image metadata.
 
-## Instructor-guided GUI Walkthrough (25 min)
+# Instructor-guided GUI Walkthrough (25 min)
 
 Follow along as the instructor walks through the major parts of the napari
 interface using the **Cells (3D + 2Ch)** sample image.
@@ -32,7 +30,7 @@ viewer.open_sample('napari', 'cells3d')
 nbscreenshot(viewer)
 ```
 
-### The Viewer Layout
+## The Viewer Layout
 
 | Area | Purpose |
 |------|---------|
@@ -42,13 +40,13 @@ nbscreenshot(viewer)
 | **Dimension sliders** (bottom) | Scrub through z, t, or other axes |
 | **Layer controls** (top-left) | Adjust appearance of the selected layer |
 
-### Key Interactions
+## Key Interactions
 
 - **Zoom:** scroll wheel (or two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas, hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** (bottom-right row of viewer buttons)
 
-### 2D ↔ 3D Toggle
+## 2D ↔ 3D Toggle
 
 Click the **2D/3D button** in the viewer button row to switch rendering modes.
 In 3D mode you can click-drag to rotate the volume.
@@ -65,7 +63,7 @@ viewer.camera.angles = (-27, 8, -58)
 nbscreenshot(viewer)
 ```
 
-### Dimension Sliders
+## Dimension Sliders
 
 When a layer has more dimensions than the viewer can display, sliders appear at the bottom of the
 canvas. Drag a slider to move through z-slices, time points, or channels.
@@ -103,7 +101,7 @@ viewer.dims.ndisplay = 3
 nbscreenshot(viewer)
 ```
 
-### Overlays
+## Overlays
 
 There are [viewer overlays](https://napari.org/stable/getting_started/viewer.html#viewer-overlays)
 that can be added to the canvas. In this case we will add the Axes overlay to show 
@@ -119,7 +117,7 @@ This allows you to search for (almost all) napari and plugin commands by name an
 without needing to remember menu location or keyboard shortcuts.
 ```
 
-### Layer Controls
+## Layer Controls
 
 With a layer selected, [layer controls](https://napari.org/stable/getting_started/layers.html) at the top-left let you change:
 
@@ -164,7 +162,7 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-### Grid View
+## Grid View
 
 Grid Mode allows you to view multiple layers in separate panels at the same time.
 This is especially useful for comparing channels in a multi-channel image.
@@ -182,13 +180,13 @@ viewer.grid.enabled = True
 nbscreenshot(viewer)
 ```
 
-### Scale Bar
+## Scale Bar
 
 Enable the scale bar with **View > Scale Bar > Visible** navbar.
 If all layers have consistent units, then the scalebar displays the physical scale.
 If not, it defaults to pixels.
 
-### Console Peek
+## Console Peek
 
 napari has a built-in **Python console** that allows you to interact
 with the viewer programmatically. Some features that
@@ -222,7 +220,7 @@ change different properties. You can also access individual
 layers using `viewer.layers` — the starting point for scripting napari in
 your own workflows.
 
-## Layer Metadata with napari-metadata  (5 min)
+# Layer Metadata with napari-metadata  (5 min)
 
 The [**napari-metadata**](https://napari.org/napari-metadata/)
 plugin lets you view and edit layer metadata, including 
@@ -236,7 +234,7 @@ There are three parts to the widget:
 2. **Axes metadata** — axis labels, physical scale, units, and more
 3. **Copy metadata** — copy metadata from one layer to another
 
-## Gallery Exploration Breakout (15 min)
+# Gallery Exploration Breakout (15 min)
 
 The [napari gallery](https://napari.org/stable/gallery) contains dozens of
 example visualizations covering various layer types and use cases.
@@ -253,7 +251,7 @@ Some examples require packages that are not in the bundle and will show an
 error — just try another one.
 ```
 
-## Sharing Time (5 min)
+# Sharing Time (5 min)
 
 - What did you find in the gallery?
 - Any surprising layer types or visualizations?
