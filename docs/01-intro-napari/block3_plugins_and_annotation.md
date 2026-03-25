@@ -144,12 +144,12 @@ Two fundamental approaches:
 
 Use the **Cells (3D + 2Ch)** sample for this exercise.
 
-### Points layer — marking cell centres
+### Points layer — marking cell centers
 
 1. In the layer list, click **Add Points layer** (the points icon in the top-left)
    — or go to **Layer > New Points Layer**
 2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
-3. Click on cell centres in the `nuclei` layer to add a point at each location
+3. Click on cell centers in the `nuclei` layer to add a point at each location
 4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
 5. Switch to the **Select** tool to move existing points
 

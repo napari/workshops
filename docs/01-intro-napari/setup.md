@@ -32,7 +32,7 @@ The guide covers:
 # Verify your installation
 
 Once napari is open you should see the napari viewer - an empty window with a layer list on
-the left and a canvas in the centre. If it opens successfully, you are ready for the
+the left and a canvas in the center. If it opens successfully, you are ready for the
 workshop.
 
 ```{admonition} Problems installing?
