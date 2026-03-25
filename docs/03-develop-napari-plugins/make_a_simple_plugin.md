@@ -19,7 +19,7 @@ A functional napari plugin only needs 4 files to be shared with the community,
 but you will find many other helpful files in the template that make plugins
 easier to develop and maintain.
 For step (4), you can refer to the [in depth plugin tutorial](https://www.youtube.com/watch?v=NL-VywidzXE),
-or [the deploy instructions on napari.org](https://napari.org/stable/plugins/building_a_plugin/index.html#[plugin-test-deploy]).
+or [the deploy instructions on napari.org](https://napari.org/stable/plugins/testing_and_publishing/index.html#plugin-test-deploy).
 
 ![plugin example](./resources/plugin-01.png)
 
