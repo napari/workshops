@@ -13,7 +13,7 @@ napari community.
 ## Prerequisites
 
 - No prior napari or Python experience needed
-- Install the napari bundled app before starting — see [Setup](00_setup.md)
+- Install the napari bundled app before starting — see [Setup](setup.md)
 
 ## What you'll learn
 
@@ -35,7 +35,7 @@ lessons in order at their own pace.
 
 | Lesson | Topics |
 |--------|--------|
-| [Setup](00_setup.md) | Install the bundle; verify your installation |
+| [Setup](setup.md) | Install the bundle; verify your installation |
 | [The napari GUI](01_napari_gui.md) | Viewer layout; open images; 2D/3D view; layer controls; save and screenshot |
 | [Annotation](03_manual_annotation.md) | Points, Shapes, and Labels layers |
 | [Plugins and analysis](05_using_plugins.md) | napari hub; napari-metadata; napari-skimage |

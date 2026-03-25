@@ -25,7 +25,7 @@ Adapted from the
   - LinkedIn, Bluesky, Mastodon
 - Plan a **second wave** of social posts ~1 week before each session
 - Add both sessions to the napari community calendar and the image.sc forum events page
-- Create a HackMD shared-notes document for each session (see [HackMD Template](#hackmd-shared-notes-template))
+- Create a Etherpad shared-notes document for each session (see [Etherpad Template](#etherpad-shared-notes-template))
 - Set up the [Zulip workshop stream](#zulip-stream-setup)
 
 ### 2 weeks before
@@ -37,22 +37,26 @@ Adapted from the
   - Enable captions / live transcription
   - Set co-hosts (all instructors and helpers)
   - Record locally if participants consent?
-- Confirm the HackMD link is shareable and populated with the template
+
 
 ### 1 week before
 
+- Create the pre-workshop survey
+- Confirm the Etherpad link is shareable and populated with the template
 - Send a reminder email to participants with:
   - Zoom link (do not post publicly)
   - Gentle, reminder to install the bundle *before* the workshop
-  - HackMD link
+  - Etherpad link
+  - Pre-workshop survey
 - Test screen sharing + Qt scaling on the presenter machine
 - Run a full tech rehearsal with at least one instructor
-- Create the pre-workshop survey
+
+
 
 ### Day of
 
 - Open Zoom **15 minutes early**; admit helpers and instructors first
-- Share the HackMD link in Zoom chat as soon as participants start joining
+- Share the Etherpad link in Zoom chat as soon as participants start joining
 - Confirm screen sharing is working and Qt scaling is set (see [scaling guide](01_instructors.md#scaling-the-napari-ui-for-teaching))
 - Set up breakout rooms in advance (pre-assign or let Zoom auto-assign)
 
@@ -99,7 +103,7 @@ during, and after the workshop.
   - Workshop schedule and Zoom links (for participants)
   - Bundle download link
   - Code of Conduct link
-  - HackMD link for each session
+  - Etherpad link for each session
 - Include the Zulip stream invite link in the pre-workshop email and Zoom
   chat on the day.
 - After the workshop, announce the stream in `#general` so the broader
@@ -127,54 +131,57 @@ These workshops run through [NumFOCUS](https://numfocus.org/) on
 Send via `ti.to` **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
 
+```markdown
+**Subject:** [napari workshop] See you [DATE] — setup instructions inside
 
-> **Subject:** [napari workshop] See you [DATE] — setup instructions inside
->
-> Hi [NAME],
->
-> We're looking forward to seeing you at the **Introduction to napari workshop**
-> on **[DATE]** at **[TIME]**
-> ([convert to your timezone](https://www.timeanddate.com/worldclock/converter.html)).
->
-> **Before the workshop:**
->
-> This workshop will be run on the recently released napari 0.7.0 bundled application.
-> We encourage you to install the napari bundled app before we start — installation can
-> take a few minutes and troubleshooting can be challenging to do live during the
-> session.  Follow the
-> [installation instructions](https://napari.org/dev/getting_started/installation.html#installation-bundle-conda)
-> for your operating system.
-> If you are working on an institutional device,
-> please follow your institution's software guidelines,
-> and reach out to your IT department if you need help.
-> 
-> Once napari opens and you see an empty viewer, you're all set.
->
-> **On the day:**
->
-> - Zoom link: [ZOOM_LINK] *(keep this private — do not share publicly)*
-> - Shared notes for the session: [ETHERPAD_LINK]
->
-> **What to expect:**
->
-> - This is a **GUI-only** workshop — no Python or coding knowledge required.
-> - We'll work through napari together on-screen, so have napari open and
->   ready on your computer.
-> - There will be short breaks and time for your own exploration.
->
-> **Questions before the workshop?**
-> Post in the [napari Zulip chat](https://napari.zulipchat.com) or reply to
-> this email.
->
-> **Code of Conduct:** All participants are expected to follow the
-> [napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html).
->
-> See you soon!
-> [INSTRUCTOR_NAME] and the napari team
+Hi {{first_name}},
 
+We're looking forward to seeing you at the {{event_title}}
+on **[DATE]** at **[TIME]**
+([convert to your timezone] (TIME_AND_DATE_WORK_CLOCK)).
 
-(hackmd-shared-notes-template)=
-## HackMD Shared-Notes Template
+**Before the workshop:**
+
+Fill out the [pre-workshop survey] (SURVEY_LINK) to help us tailor the session to your needs.
+After the workshop, we'll share a follow-up survey to get your feedback, so that we can improve future sessions.
+
+This workshop will be run on the recently released napari 0.7.0 bundled application.
+We encourage you to install the napari bundled app before we start — installation can
+take a few minutes and troubleshooting can be challenging to do live during the
+session.  Follow the
+[installation instructions](https://napari.org/workshops/intro-napari/setup/)
+for your operating system.
+If you are working on an institutional device,
+please follow your institution's software guidelines,
+and reach out to your IT department if you need help.
+
+Once napari opens and you see an empty viewer, you're all set. You can preview the workshop at https://napari.org/workshops/intro-napari/
+
+**Day of the workshop:**
+
+Zoom link: [ZOOM_LINK]
+*(keep this private — do not share publicly)*
+
+**What to expect:**
+
+- This is a **GUI-only** workshop — no Python or coding knowledge required.
+- We'll work through napari together on-screen, so have napari open and
+  ready on your computer.
+- There will be short breaks and time for your own exploration.
+
+**Questions before the workshop?**
+Post in the [napari Zulip chat] (ZULIP_WORKSHOP_LINK) or reply to
+this email.
+
+**Code of Conduct:** All participants are expected to follow the
+[napari Code of Conduct](https://napari.org/stable/community/code_of_conduct.html).
+
+See you soon!
+[INSTRUCTOR_NAME] and the napari team
+```
+
+(etherpad-shared-notes-template)=
+## Etherpad Shared-Notes Template
 
 See the Carpentries
 [Etherpads guide](https://docs.carpentries.org/resources/communications/etherpads.html)
@@ -184,14 +191,18 @@ for general shared-notes best practices. Shared notes serve as:
 - An accessibility aid (participants who mishear or miss something can catch up)
 - A record of key links shared during the session
 
-Create one HackMD document per session. Suggested structure:
+Create one Etherpad document per session. Suggested structure:
 
 ```markdown
 # Introduction to napari — [DATE]
 
 **Instructors:** [NAMES]
+
 **Zoom link:** [ZOOM_LINK] (do not post publicly)
+
 **Workshop materials:** https://napari.org/workshops/
+
+**Code of Conduct:** https://napari.org/stable/community/code_of_conduct.html 
 
 
 ## Icebreaker
@@ -204,7 +215,7 @@ Add your answer below:
 
 ## Key Links
 
-- Setup instructions: https://napari.org/workshops/01-intro-napari/00_setup.html
+- Setup instructions: https://napari.org/workshops/01-intro-napari/setup.html
 - napari docs: https://napari.org/stable/
 - napari hub (plugins): https://napari-hub.org
 - Zulip community chat: https://napari.zulipchat.com
@@ -269,49 +280,55 @@ before posting.
 
 ### LinkedIn
 
-> 🔬 Registration is open for our pilot **Introduction to napari Workshop**!
->
-> napari is a powerful open-source, multi-dimensional image viewer for
-> scientific data analysis in Python. This hands-on, GUI-only workshop is
-> designed for biologists, imaging specialists, and data scientists — no
-> Python or napari experience required.
->
-> **What you'll learn:**  
-> → Loading and exploring multi-dimensional datasets  
-> → Customizing visualizations for your research  
-> → Discovering and using community plugins  
->
-> ✅ **$20 USD pilot price** | 🪑 Limited to 20 participants | 🌐 Virtual
->
-> 📅 **[DATE 1]** — [TIME + TZ] | Register: LINK_1  
-> 📅 **[DATE 2]** — [TIME + TZ] | Register: LINK_2
->
-> \#napari \#Python \#ImageAnalysis \#BioImaging \#OpenSource
+```markdown
+🔬 Registration is open for our pilot **Introduction to napari Workshop**!
+
+napari is a powerful open-source, multi-dimensional image viewer for
+scientific data analysis in Python. This hands-on, GUI-only workshop is
+designed for biologists, imaging specialists, and data scientists — no
+Python or napari experience required.
+
+**What you'll learn:**  
+→ Loading and exploring multi-dimensional datasets  
+→ Customizing visualizations for your research  
+→ Discovering and using community plugins  
+
+✅ **$20 USD pilot price** | 🪑 Limited to 20 participants | 🌐 Virtual
+
+📅 **[DATE 1]** — [TIME + TZ] | Register: LINK_1  
+📅 **[DATE 2]** — [TIME + TZ] | Register: LINK_2
+
+\#napari \#Python \#ImageAnalysis \#BioImaging \#OpenSource
+```
 
 ### Bluesky / Mastodon (thread)
 
-> **1/3** Registration is open for a pilot Introduction to napari Workshop!
-> napari is open-source image viewer for scientific data analysis. Hands-on,
-> GUI-only — no Python required.
-> \#napari \#Python \#ImageAnalysis \#OpenSource
->
-> **2/3** ✅ $20 USD pilot | 20 seats | virtual
-> 📅 [DATE 1] — [TIME] | [LINK_1]
-> 📅 [DATE 2] — [TIME] | [LINK_2]
->
-> **3/3** These are pilot workshops — you'll be among the first to use the
-> new materials. More workshops to follow! Feedback welcome.
+```markdown
+**1/3** Registration is open for a pilot Introduction to napari Workshop!
+napari is open-source image viewer for scientific data analysis. Hands-on,
+GUI-only — no Python required.
+\#napari \#Python \#ImageAnalysis \#OpenSource
+
+**2/3** ✅ $20 USD pilot | 20 seats | virtual
+📅 [DATE 1] — [TIME] | [LINK_1]
+📅 [DATE 2] — [TIME] | [LINK_2]
+
+**3/3** These are pilot workshops — you'll be among the first to use the
+new materials. More workshops to follow! Feedback welcome.
+```
 
 ### Zulip / image.sc
 
-> **Introduction to napari workshop — registration open!**
->
-> We're running two pilot virtual workshops for anyone who wants to get
-> started with napari's GUI. No Python required.
->
-> - [DATE 1], [TIME + TZ] — Register: LINK_1
-> - [DATE 2], [TIME + TZ] — Register: LINK_2
->
-> Cost: $20 USD | 20 seats per session | bundled app install
->
-> Questions? Reply here or drop into #workshops (add stream link).
+```markdown
+**Introduction to napari workshop — registration open!**
+
+We're running two pilot virtual workshops for anyone who wants to get
+started with napari's GUI. No Python required.
+
+- [DATE 1], [TIME + TZ] — Register: LINK_1
+- [DATE 2], [TIME + TZ] — Register: LINK_2
+
+Cost: $20 USD | 20 seats per session | bundled app install
+
+Questions? Reply here or drop into #workshops (add stream link).
+```
