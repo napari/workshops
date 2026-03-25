@@ -186,7 +186,6 @@ nbscreenshot(viewer)
 Enable the scale bar with **View > Scale Bar > Visible** navbar.
 If all layers have consistent units, then the scalebar displays the physical scale.
 If not, it defaults to pixels.
-Speaking of which... let's look at layer metadata next!
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -199,6 +198,32 @@ viewer.scale_bar.visible = True
 :tags: [remove-input]
 nbscreenshot(viewer)
 ```
+
+### Console Peek
+
+napari has a built-in **Python console** that allows you to interact
+with the viewer programmatically. Some features that
+are not yet exposed through the GUI can be used via the console.
+
+Open it from the menu with **Window > Console**, or click the leftmost
+viewer button.
+
+As an example, here we change the viewer scale bar units (you can't do
+this through the GUI yet):
+
+```{code-cell} python
+viewer.scale_bar.unit = 'micrometer'
+```
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+The console lets you access the `viewer` directly to programmatically
+change different properties. You can also access individual
+layers using `viewer.layers` — the starting point for scripting napari in
+your own workflows.
 
 ## 12. Layer Metadata with napari-metadata  (5 min)
 
