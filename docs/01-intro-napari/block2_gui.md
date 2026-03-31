@@ -114,6 +114,10 @@ the Axis Labels attached to the data. Go to **View > Axes > Axes Visible** to tu
 
 Try also to visualize the Color Bar (LUT) overlay for each layer by **right clicking** on the layer(s) that you want to visualize or toggle the color bar from the navbar menu **Layers > Measure > Color Bar**.
 
+We can also enable the scale bar with **View > Scale Bar > Visible** from the navbar.
+If all layers have consistent units, then the scalebar displays the physical scale.
+If not, it defaults to pixels.
+
 ```{tip} The Command Palette
 The [Command Palette](https://napari.org/stable/getting_started/features.html#command-palette)
 can be launched via **View > Command Palette** or with 
@@ -185,12 +189,6 @@ viewer.grid.enabled = True
 :tags: [remove-input]
 nbscreenshot(viewer)
 ```
-
-## Scale Bar
-
-Enable the scale bar with **View > Scale Bar > Visible** navbar.
-If all layers have consistent units, then the scalebar displays the physical scale.
-If not, it defaults to pixels.
 
 ## Console Peek
 
