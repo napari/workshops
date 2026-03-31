@@ -206,26 +206,49 @@ viewer.close()
    — or go to **Layer > New Points Layer**
 2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
 3. Click on cell centers in the `nuclei` layer to add a point at each location
-4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
+4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)                        
 5. Switch to the **Select** tool to move existing points
 
 Compare visualization in 2D with checking `out_of_slice_display` in layer controls — it shows points that are outside the current z-slice.
 
 ## Shapes layer — outlining a region
 
+Manual shape drawing and modification is currently possible in 2D only.
+N-dimensional shapes can be added programmatically.
+
 1. Add a shapes layer: **Layer > New Shapes Layer**
-2. Choose a shape tool from layer controls (rectangle, ellipse, polygon, etc.)
-3. Draw an outline around a region of interest
-4. Use the **Select** tool to resize or move shapes
+2. Choose a shape tool from layer controls (rectangle, ellipse, polygon, etc.) and try it out
+   The Polygon (`P`) and Polygon Lasso (`Shift+P`) are especially useful for irregular shapes.
+3. You can modify the edge width, edge color and face color in the layer controls for individual shapes.
+4. Use the **Select Shapes** (`5` or `S`) tool to resize or move shapes.
+   Individual vertices can be modified with the **Select Vertices** (`4` or `D`) tool.
 
 ## Labels layer — painting a cell
 
 1. Add a labels layer: **Layer > New Labels Layer** (choose the size to match your image)
-2. Select the **Paint** tool from layer controls and pick a brush size
-3. Paint over one cell to label it — each label value is a different integer (colour)
-4. Use **Fill** to flood-fill an enclosed region
+2. Select the **Paint** tool from layer controls and pick a brush size. 
+   You can hold Alt and move the cursor left and right to adjust the brush size.
+3. Paint over one cell to label it — each label value is a different integer (colour).
+   You can change the label ID in the layer controls. 
+   To set the label ID to the largest existing label + 1, press `m` on your keyboard.
+4. Use **Fill** to flood-fill an enclosed region.
+   The behavior is quite different in 2D compared to 3D, so try it out in both contexts.
+5. Use the **Eraser** tool to remove part of a label.
+   It works like the paint tool, but instead of adding pixels to a label, it removes them (sets to 0). This is especially worth trying in 3D!
 
-```{tip}
+## Converting Shapes (ROIs) to labels
+
+There is currently no Polygon painting tool; however, you can convert Shapes layers
+to Labels layers to rasterize annotations. This is useful when you want to create
+a mask image from manually drawn ROIs.
+
+First, switch to 2D view. 
+Then, **Right Click** on the Shapes layer in the layer list and select **Convert to Labels**.
+This creates a new Labels layer where each shape is filled in with a different integer value (label).
+
+## Saving Annotations
+
 You can save any annotation layer via **File > Save Selected Layer(s)** as a
-tiff (labels) or csv/shapefile (shapes/points).
-```
+tiff (labels) or csv/shapefile (shapes/points) with the builtin napari writer, 
+but layer metadata is not saved with the data.
+Some writer plugins do support this — check the napari-hub for options.
