@@ -176,40 +176,18 @@ Two fundamental approaches:
 # Annotation with Points and Shapes (10 min)
 
 Use the **Cells (3D + 2Ch)** sample for this exercise.
-
-## Points layer — marking cell centers
-
-1. In the layer list, click **Add Points layer** (the points icon in the top-left)
-   — or go to **Layer > New Points Layer**
-2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
-3. Click on cell centers in the `nuclei` layer to add a point at each location
-4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
-5. Switch to the **Select** tool to move existing points
+You may use {download}`scripts/annotation.py` to have a base visualization for modification.
 
 ```{code-cell} python
 :tags: [remove-cell]
 import napari
-import numpy as np
-from skimage import data, feature, filters, morphology
 from napari.utils import nbscreenshot
+from pathlib import Path
 
-cells3d = data.cells3d()
-nuclei = cells3d[:, 1]
-
-nuclei_smoothed = filters.gaussian(nuclei, sigma=5)
-nuclei_thresholded = nuclei_smoothed > filters.threshold_otsu(nuclei_smoothed)
-nuclei_labels = morphology.label(nuclei_thresholded)
-nuclei_points = feature.peak_local_max(nuclei_smoothed, min_distance=20)
+script_dir = next(p for p in [Path('scripts'), Path('01-intro-napari/scripts')] if p.exists())
 
 viewer = napari.Viewer()
-viewer.add_image(nuclei, name='nuclei', contrast_limits = (10000, 65355))
-viewer.add_labels(nuclei_labels, name='nuclei labels')
-viewer.add_points(
-    nuclei_points, name='nuclei maxima', blending='additive', opacity=0.5
-)
-viewer.dims.ndisplay = 3
-viewer.camera.angles = (-27, 8, -58)
-viewer.fit_to_view()
+viewer.open(script_dir / 'annotation.py')
 ```
 
 ```{code-cell} python
@@ -221,6 +199,15 @@ nbscreenshot(viewer)
 :tags: [remove-cell]
 viewer.close()
 ```
+
+## Points layer — marking cell centers
+
+1. In the layer list, click **Add Points layer** (the points icon in the top-left)
+   — or go to **Layer > New Points Layer**
+2. In layer controls, ensure the **Add points** tool is active (circle icon with a + inside)
+3. Click on cell centers in the `nuclei` layer to add a point at each location
+4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)
+5. Switch to the **Select** tool to move existing points
 
 Compare visualization in 2D with checking `out_of_slice_display` in layer controls — it shows points that are outside the current z-slice.
 
