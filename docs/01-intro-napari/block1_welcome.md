@@ -14,8 +14,8 @@ kernelspec:
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
 - Ask about accessibility needs (private DMs ok)
-- Share the Etherpad shared-notes link; invite participants to add an
-  icebreaker answer: *"What field are you from, and what kind of images do
+- Share the Zulip **#napari-workshop-[DATE]** stream link in the Zoom chat; invite participants
+  to post an introduction: *"What field are you from, and what kind of images do
   you work with?"*
 - Zoom etiquette
   - Cameras tend to improve the experience, but it's ok to keep off
@@ -44,6 +44,10 @@ scientific image analysis. It is:
 # Install the downloaded bundle
 
 # napari Demo (10 min)
+
+During this demo, just **watch** — you don't need to follow along yet.
+Focus on seeing what napari can do, not on reproducing every step.
+You'll have plenty of hands-on time shortly.
 
 # Installation Check-in (5 min)
 
@@ -86,21 +90,12 @@ Before diving into napari, a quick conceptual grounding:
 napari can display all of these — the dimension sliders let you navigate indexes
 beyond the 2D canvas.
 
-# Open Your First Image (5 min)
+# Open Your First Image and take Screenshots (5 min)
 
 1. In napari, select: **File > Open Sample > napari builtins > Cells (3D + 2Ch)**
 2. Two layers appear in the layer list: `membrane` and `nuclei`
 3. Use the **dimension slider** at the bottom to scroll through z-slices
 4. Toggle each layer on/off with the **eye icon** next to its name
-
-```{tip}
-Shortcut: open the command palette with `Ctrl+Shift+P` (Windows/Linux) or
-`Cmd+Shift+P` (macOS) and search for *"Cells 3D"*.
-```
-
-> **What you're looking at:** Confocal microscopy images of cells in 3D.
-> The `nuclei` channel (channel 1) shows cell nuclei stained with a dye.
-> The `membrane` channel (channel 0) shows cell membranes.
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -112,7 +107,11 @@ viewer.open_sample('napari', 'cells3d')
 nbscreenshot(viewer)
 ```
 
-# Screenshots (5 min)
+> **What you're looking at:** Confocal microscopy images of cells in 3D.
+> The `nuclei` channel (channel 1) shows cell nuclei stained with a dye.
+> The `membrane` channel (channel 0) shows cell membranes.
+
+## Screenshots
 
 Save what you see in napari at any time:
 
@@ -120,7 +119,8 @@ Save what you see in napari at any time:
 - **File > Save Screenshot with Viewer** — saves the canvas plus the entire GUI
 - **File > Copy Screenshot to Clipboard** — paste it directly into a document or chat
 
-Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard). Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
+Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard).
+Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
 
 ```{code-cell} python
 :tags: [remove-input]
