@@ -17,6 +17,11 @@ interface using the **Cells (3D + 2Ch)** sample image.
 
 Check out the [napari viewer documentation](https://napari.org/stable/tutorials/fundamentals/viewer.html) for a full walkthrough.
 
+```{hint} Error? Help us out!
+If you run into any issues during the walkthrough, please try to copy and paste
+the error or warning message and paste into the **#napari-workshop-[DATE]** stream on [Zulip](https://napari.zulipchat.com) so we can help you troubleshoot or fix the issue for future workshops. Thank you!
+```
+
 ```{code-cell} python
 :tags: [remove-cell]
 import napari
