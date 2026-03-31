@@ -2,8 +2,6 @@
 title: Instructor Guide
 ---
 
-# Philosophy
-
 These workshops are inspired by the
 [Carpentries](https://carpentries.org) model: live coding, learner-centered
 pacing, and a commitment to welcoming everyone
@@ -25,7 +23,7 @@ Key principles:
   chat or in the shared document.
 
 (diversity-equity-and-inclusion)=
-## Diversity, Equity, and Inclusion
+# Diversity, Equity, and Inclusion
 
 We are committed to building an inclusive environment. The workshop expects participants to follow the napari community
 [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html) and
@@ -34,30 +32,30 @@ the [Carpentries DEI statement](https://carpentries.org/about-us/#diversity-equi
 Practical commitments:
 
 - Closed captions and transcription enabled by default in Zoom.
-- Shared notes Etherpad for participants.
+- Zulip workshop stream for participant Q&A and sharing.
 - Post-workshop survey explicitly solicits accessibility and inclusion
   feedback.
 
-## Roles
+# Roles
 
-### Lead instructor
+## Lead instructor
 
 - Drives the screen — napari is always visible, not slides
 - Narrates every action out loud ("I'm clicking File > Open Sample >
   napari builtins > Cells 3D + 2Ch")
-- Watches the Etherpad for questions during exercises
+- Watches the Zulip workshop stream and Zoom chatfor questions during exercises
 - Advances through the [session schedule](../01-intro-napari/index.md#session-schedule)
   and calls time
 
-### Helper instructor
+## Helper instructor
 
-- Monitor the Zoom chat and Etherpad throughout
+- Monitor the Zoom chat and Zulip workshop stream throughout
 - Join breakout rooms during "You" exercises; one helper per room minimum
 - DM participants with technical issues and escalate to breakout as needed
 - Signal the lead instructor (via Zoom reaction or private chat) if the group
   is falling behind
 
-### Before the session
+## Before the session
 
 - Join the workshop Zulip stream and say hello before the session.
 - Read the [Carpentries Instructor Training handbook](https://carpentries.github.io/instructor-training/instructor/index.html)
@@ -71,12 +69,12 @@ Practical commitments:
   possible.
 - Install the napari bundle on your machine and run through the materials at
   least once.
-- During practice, set your display to **light mode** and scale to `QT_SCALE_FACTOR=1.5`
+- During practice, set your display scale higher or use an env var scale to `QT_SCALE_FACTOR=1.5`
   see the [presentation instructions](#presentation-instructions) for details.
-- Close all applications except napari and a browser tab for the Etherpad
+- Close all applications except napari and a browser tab for the Zulip workshop stream
 - Join the Zoom call **10 minutes early** to test screen sharing
 
-## I → We → You in Practice
+# I → We → You in Practice
 
 Every concept follows the same arc:
 
@@ -89,7 +87,7 @@ Every concept follows the same arc:
 **Key rule:** Use napari on-screen, and try not to have the workshop materials document on the shared screen. The
 materials are only a reference — show learners the actual interface and your thought process.
 
-## Live Teaching Tips
+# Live Teaching Tips
 
 - **Slow down.** Learners are watching, clicking, and reading simultaneously.
   Pause after every action; ask "is everyone with me?" at natural breakpoints.
@@ -105,7 +103,7 @@ materials are only a reference — show learners the actual interface and your t
 - **No jargon without definition.** Define every term the first time you use
   it; do not assume knowledge of numpy, zarr, OME, etc.
 
-## Online Delivery (Zoom)
+# Online Delivery (Zoom)
 
 See also the Carpentries
 [resources for online workshops](https://docs.carpentries.org/resources/workshops/resources_for_online_workshops.html).
@@ -118,18 +116,12 @@ See also the Carpentries
   ready to move on, and ✋ to signal they are stuck.
 - **Breakout rooms:** Announce when rooms are opening and closing, and give
   a 2-minute warning before returning to main. State the task clearly (in
-  Zoom chat, in Etherpad, and verbally) before opening rooms.
+  Zoom chat, in the Zulip stream, and verbally) before opening rooms.
 
 (presentation-instructions)=
-## Presentation Instructions
+# Presentation Instructions
 
-### Light mode
-
-Start the viewer in the default dark mode and show participants how to change to light mode.
-For the remainder of the session, use light mode to improve visibility.
-**View > Toggle Theme** (or napari Preferences > Appearance).
-
-### Scaling the napari UI for teaching
+## Scaling the napari UI for teaching
 
 For workshops, prefer Qt application scaling over text-only font changes.
 This scales the full napari interface, including toolbars, buttons, dialogs,
@@ -184,7 +176,7 @@ unset QT_SCALE_FACTOR
 unset QT_SCALE_FACTOR_ROUNDING_POLICY
 ```
 
-## Opening Segment (first 10 minutes)
+# Opening Segment (first 10 minutes)
 
 Run through this checklist at the start of every session:
 
@@ -202,8 +194,8 @@ Run through this checklist at the start of every session:
   > nationality, or prior experience. We actively work to make it accessible.
   > Please tell us if we can do better."*
 
-- Share the Etherpad link in chat and ask everyone to add their name and
-  field/location to the icebreaker section.
+- Share the Zulip workshop stream link in chat and ask everyone to post
+  an introduction (field and type of images they work with) in the **#workshops** stream.
 - Share the Zulip invite link and encourage participants to join the
   napari community.
 - Explain Zoom conventions:
@@ -215,11 +207,11 @@ Run through this checklist at the start of every session:
   fine).
 - State the rough schedule and when the breaks will be.
 
-## Closing Segment (last 20–30 minutes)
+# Closing Segment (last 20–30 minutes)
 
 - Ask aloud for a debrief: *"What is one thing that was confusing?"*
   and *"What are you most excited to try after today?"*
-- Share the post-workshop survey link in chat and in Etherpad.
+- Share the post-workshop survey link in chat and in the Zulip workshop stream.
 - Point to key community resources:
   - [napari.org](https://napari.org/stable/) — documentation and gallery
   - [napari-hub.org](https://napari-hub.org) — plugin discovery
@@ -230,42 +222,10 @@ Run through this checklist at the start of every session:
 - Keep the Zoom meeting open for 10 minutes after the official end time
   for lingering questions.
 
-## After the Workshop (instructor tasks)
+# After the Workshop (instructor tasks)
 
 - Submit any bugs or issues discovered during the live session as GitHub
   issues, linking to the relevant lesson file.
 - Collect and summarise survey results for the team.
 - Post a follow-up message in the Zulip workshop stream with any resources,
   links, or tips mentioned during the session.
-- Write a brief retrospective (what worked, what didn't, timing notes)
-  in `00-instructors/retrospectives/` — create the file if it doesn't exist.
-
-## Pilot Workshop: Collecting Feedback
-
-This is a
-[lesson pilot](https://docs.carpentries.org/resources/curriculum/lesson-pilots.html).
-Collecting structured feedback is essential for improving the materials.
-
-**During the workshop:**
-- Note in the Etherpad any moment where learners are visibly or verbally lost
-- Note instructions that require repeated clarification
-- Watch for steps where participants fall significantly behind
-
-**End-of-session:**
-- Reserve the last 10 minutes for the survey (send link in chat)
-- Ask verbally: "What is one thing that was confusing?" and "What was the
-  most useful thing today?"
-
-**After the session:**
-- File a GitHub issue per significant pain point (link to the relevant lesson
-  file and describe what happened)
-- Update with a brief post-pilot summary
-
-**What to watch for specifically in the pilot:**
-- Does the 4-block timing hold? Which blocks run over?
-- Is the GUI-only approach sustainable through Block 4 (analysis), or do
-  learners want/need to see code?
-- Is the drag-and-drop gallery exercise (Block 2) intuitive or confusing
-  for non-technical participants?
-- Are napari-metadata and napari-skimage stable enough under classroom
-  conditions?

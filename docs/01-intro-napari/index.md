@@ -13,7 +13,7 @@ napari community.
 # Prerequisites
 
 - No prior napari or Python experience needed
-- Install the napari bundled app before starting — see [Setup](setup.md)
+- Install the napari bundled app before starting — see [](#intro-setup)
 
 # What you'll learn
 
@@ -29,14 +29,14 @@ napari community.
 
 **Total time:** ~4 hours
 
-## Block 1 — Welcome and First Images (60 min)
+## Block 1 — Welcome and First Images (55 min)
 
 **By the end of this block you will:** have napari installed and open your first images.
 
 | Segment | Time |
 |---------|------|
 | Welcome | 10 min |
-| Download napari | 5 min |
+| Download napari | |
 | About napari | 10 min |
 | Install the bundle | |
 | napari Demo | 10 min |

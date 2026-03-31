@@ -17,6 +17,11 @@ interface using the **Cells (3D + 2Ch)** sample image.
 
 Check out the [napari viewer documentation](https://napari.org/stable/tutorials/fundamentals/viewer.html) for a full walkthrough.
 
+```{hint} Error? Help us out!
+If you run into any issues during the walkthrough, please try to copy and paste
+the error or warning message and paste into the **#napari-workshop-[DATE]** stream on [Zulip](https://napari.zulipchat.com) so we can help you troubleshoot or fix the issue for future workshops. Thank you!
+```
+
 ```{code-cell} python
 :tags: [remove-cell]
 import napari
@@ -42,7 +47,7 @@ nbscreenshot(viewer)
 
 ## Key Interactions
 
-- **Zoom:** scroll wheel (or two-finger scroll on trackpad)
+- **Zoom:** right-click and drag or scroll wheel (or two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas, hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** (bottom-right row of viewer buttons)
 
@@ -107,7 +112,7 @@ There are [viewer overlays](https://napari.org/stable/getting_started/viewer.htm
 that can be added to the canvas. In this case we will add the Axes overlay to show 
 the Axis Labels attached to the data. Go to **View > Axes > Axes Visible** to turn it on.
 
-Try also to visualize the Color Bar (LUT) overlay for each layer by right clicking on the layer(s) that you want to visualize or toggle the color bar from the navbar menu **Layers > Measure > Color Bar**.
+Try also to visualize the Color Bar (LUT) overlay for each layer by **right clicking** on the layer(s) that you want to visualize or toggle the color bar from the navbar menu **Layers > Measure > Color Bar**.
 
 ```{tip} The Command Palette
 The [Command Palette](https://napari.org/stable/getting_started/features.html#command-palette)
@@ -167,7 +172,8 @@ viewer.close()
 Grid Mode allows you to view multiple layers in separate panels at the same time.
 This is especially useful for comparing channels in a multi-channel image.
 You can enable it with the **grid button** in the viewer buttons (bottom row, second from the right).
-You can right-click the grid button to adjust the number of rows and columns in the grid.
+You can right-click the grid button to adjust the number of rows and columns in the grid,
+including how many layers are shown in each panel (i.e. stride).
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -234,25 +240,64 @@ There are three parts to the widget:
 2. **Axes metadata** — axis labels, physical scale, units, and more
 3. **Copy metadata** — copy metadata from one layer to another
 
+```{important} Layer metadata is always connected to viewer metadata
+Changing layer metadata usually has some effect on how the image is displayed 
+in the viewer, such as with scale and translate. However, other metadata fields,
+like axis labels and units do not update corresponding viewer metadata visuals,
+like the axes overlay, dimension slider labels, or scale bar units.
+This is partly due to the complexity of having multiple layer metadata sources,
+but is something we are looking to improve in future releases.
+```
+
 # Gallery Exploration Breakout (15 min)
 
-The [napari gallery](https://napari.org/stable/gallery) contains dozens of
-example visualizations covering various layer types and use cases.
+```{admonition} Breakout
+:class: tip
+**Goal:** Try a napari gallery example and share what you found.
 
-**To try a gallery example without any code:**
+**Tasks:**
 
-1. Open a gallery page that looks interesting: https://napari.org/stable/gallery
-2. Scroll to the bottom of the example page and click **Download Python source**
-3. Drag-and-drop the downloaded `.py` file onto the napari canvas
-4. napari will run it automatically, adding the results to the viewer
+1. Open the [napari gallery](https://napari.org/stable/gallery) and find an example
+   that looks interesting to you; you may wish to look through the [](#recommended-examples).
+2. Scroll to the bottom of the example page and click **Download Python source**.
+3. Drag-and-drop the downloaded `.py` file onto the napari canvas.
+4. napari runs it automatically — explore the result! Try adjusting colors, contrast,
+   or the 3D view.
 
-```{note} Some examples require extra packages
-Some examples require packages that are not in the bundle and will show an
-error — just try another one.
+> **Note:** Some examples require extra packages not in the bundle and will show an
+> error — just try another one.
+
+**When you're done (or any time during the breakout):**
+Take a screenshot and post it to the **#workshops** stream on
+[Zulip](https://napari.zulipchat.com):
+- Press `Alt+C` or `Shift+Alt+C` to copy the canvas to clipboard, then paste (`Ctrl+V`) into Zulip.
+- Add a note: *what example did you try, and what surprised or interested you?*
 ```
+
+(recommended-examples)=
+## Recommended Examples
+
+1. 3D Layer Bounding Box Overlay
+2. 3D vector field and image across time
+3. Add labels with features
+4. Add points 3D
+5. Add vectors color by angle
+6. Anisotropic data with scale
+7. Annotate segmentation with text
+8. Colorbars and auto-tiling of overlays in grid mode
+9. Displaying xarray data in napari
+10. Features table widget
+11. Heart with multiple annotations
+12. Image points 3D
+13. Labels 3D
+14. Minimum blending
+15. Show points based on feature
+16. Surface with texture and vertex_oolors
+17. Tracks 3D
+
 
 # Sharing Time (5 min)
 
-- What did you find in the gallery?
+- What did you find in the gallery? *(check the Zulip stream for screenshots!)*
 - Any surprising layer types or visualizations?
 - Questions about the interface?

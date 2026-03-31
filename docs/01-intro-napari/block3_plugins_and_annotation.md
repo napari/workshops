@@ -53,7 +53,6 @@ documentation](https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgemen
 1. [Click this link](https://downloads.openmicroscopy.org/images/Vectra-QPTIFF/perkinelmer/PKI_fields/LuCa-7color_%5B13860%2C52919%5D_1x1component_data.tif)
 to download your image so it's available on your device.
 
-
 **Install `ndevio`:**
 1. **Plugins > Install/Uninstall Plugins…** → search `ndevio` → Install
 2. You will see a warning about installing the plugin from PyPI. The napari bundle
@@ -80,7 +79,7 @@ Click on one of the detected scenes. You'll see the images added as layers to th
 
 If you'd like to read other different file types with `ndevio`, check out [its documentation](https://napari-hub.org/plugins/ndevio).
 
-```{note} Try some other TIFF files
+```{note} Try some other TIFF files — post a screenshot to Zulip!
 There are a number of TIFF files on the [QuPath acknowledgements page](https://qupath.readthedocs.io/en/stable/docs/intro/acknowledgements.html)
 and on the [OME-TIFF sample data page](https://docs.openmicroscopy.org/ome-model/5.6.3/ome-tiff/data.html).
 
@@ -88,6 +87,12 @@ Try downloading some other files and opening them in napari with builtins and/or
 
 Does the image display as you expected? Do both plugins open the images in the same way? Do some
 TIFF files not open at all and you get an error?
+
+Once you have an image open, take a screenshot and share it in the **#napari-workshop-[DATE]** thread
+stream on [Zulip](https://napari.zulipchat.com):
+- Press `Alt+C` to copy the canvas or `Shift+Alt+C` to copy the canvas with the viewer UI,
+then paste (`Ctrl+V`) into Zulip.
+- What format did you open? What did you notice about how it loaded?
 ```
 
 # napari-ome-zarr and the IDR (10 min)
@@ -95,7 +100,8 @@ TIFF files not open at all and you get an error?
 napari-ome-zarr lets you
 stream images directly from the web — no download required. The
 [Image Data Resource (IDR)](https://idr.openmicroscopy.org/) hosts thousands
-of public bioimages in OME-Zarr format. You will first need to install `napari-ome-zarr`
+of public bioimages in OME-Zarr format.
+You will first need to install `napari-ome-zarr` from the napari plugin manager.
 
 ```{admonition} Asynchronous Rendering
 However, for the best experience, you should turn on the "experimental" `Asynchronous Rendering`
@@ -104,23 +110,50 @@ the box for "Render Images Asynchronously". This allows napari to load and rende
 large datasets in pieces without freezing the interface.
 ```
 
-To open a remote image, you can drag-drop a URL onto the canvas, or on some platforms,
-use **File > Open File(s)** and paste the URL there.
+To open a remote image there are a few ways:
+1. Drag-drop a URL onto the canvas or copy the url and select the `napari-ome-zarr` plugin
+2. **File > New Image from Clipboard** (Ctrl+N or Cmd+N)
+3. On some platforms, use **File > Open File(s)** and paste the URL into the filepath entry
+
 While you can try any image on the IDR, we suggest starting with any from the
-[OME-NGFF Samples collection](https://idr.github.io/ome-ngff-samples/).
+[OME-NGFF Samples collection](https://idr.github.io/ome-ngff-samples/)
+that is OME-NGFF version 0.4 or 0.5 and drag-dropping the url onto the canvas.
+You can also browse the [2024 NGFF Challenge](https://ome.github.io/ome2024-ngff-challenge/)
+datasets and filter by dimension count, organism, and modality to find something interesting to you.
+For NGFF Challenge datasets, press the "Copy" icon to copy the URL to your clipboard
+use option 2 or 3 from the file menu above.
 
-**After it loads, open napari-metadata** (**Plugins > napari-metadata: Metadata Widget**)
-and examine the axis names and pixel scales the images come with.
-
-```{note}
+```{caution}
 Streaming large remote datasets requires a network connection. If the connection
 is slow during the workshop, we recommend 
 `https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr`.
 ```
 
+**After it loads, open napari-metadata** (**Plugins > napari-metadata: Metadata Widget**)
+and examine the axis names and pixel scales the images come with.
+
+```{tip} Breakout — Open a remote ome-zarr image
+**Goal:** Stream a remote bioimaging dataset into napari and inspect its metadata.
+
+**Tasks:**
+
+1. Open the [OME-NGFF Samples collection](https://idr.github.io/ome-ngff-samples/)
+   or the [2024 NGFF Challenge](https://ome.github.io/ome2024-ngff-challenge/) and
+   pick an image that interests you. Copy its URL.
+2. Drag-and-drop the URL onto the napari canvas (or use **File > Open File(s)**).
+3. Once loaded, open **napari-metadata** (**Plugins > napari-metadata: Metadata Widget**)
+   and look at the axis labels, scale values, and units.
+
+**When you're done:**
+Post a screenshot to the **#napari-workshop-[DATE]** stream on [Zulip](https://napari.zulipchat.com):
+- Press `Alt+C` to copy the canvas or `Shift+Alt+C` to copy the canvas with the viewer UI,
+then paste (`Ctrl+V`) into Zulip.
+- (Optional) Include what the metadata widget showed for axis scales and units.
+```
+
 # Sharing Time (5 min)
 
-- What did you open?
+- What did you open? *(check the Zulip stream for screenshots!)*
 - What did the metadata widget show for axis scales and units?
 - Any plugins you found interesting while browsing napari-hub?
 

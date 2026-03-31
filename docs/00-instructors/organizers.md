@@ -25,7 +25,7 @@ Adapted from the
   - LinkedIn, Bluesky, Mastodon
 - Plan a **second wave** of social posts ~1 week before each session
 - Add both sessions to the napari community calendar and the image.sc forum events page
-- Create a Etherpad shared-notes document for each session (see [Etherpad Template](#etherpad-shared-notes-template))
+- Set up pre-workshop Zulip topics for the session (see [Zulip Stream Setup](#zulip-stream-setup))
 - Set up the [Zulip workshop stream](#zulip-stream-setup)
 
 ### 2 weeks before
@@ -42,11 +42,11 @@ Adapted from the
 ### 1 week before
 
 - Create the pre-workshop survey
-- Confirm the Etherpad link is shareable and populated with the template
+- Confirm the Zulip workshop stream is set up and topics are pre-populated
 - Send a reminder email to participants with:
   - Zoom link (do not post publicly)
   - Gentle, reminder to install the bundle *before* the workshop
-  - Etherpad link
+  - Zulip workshop stream link
   - Pre-workshop survey
 - Test screen sharing + Qt scaling on the presenter machine
 - Run a full tech rehearsal with at least one instructor
@@ -56,7 +56,7 @@ Adapted from the
 ### Day of
 
 - Open Zoom **15 minutes early**; admit helpers and instructors first
-- Share the Etherpad link in Zoom chat as soon as participants start joining
+- Share the Zulip workshop stream link in Zoom chat as soon as participants start joining
 - Confirm screen sharing is working and Qt scaling is set (see [scaling guide](instructors.md#scaling-the-napari-ui-for-teaching))
 - Set up breakout rooms in advance (pre-assign or let Zoom auto-assign)
 
@@ -103,7 +103,12 @@ during, and after the workshop.
   - Workshop schedule and Zoom links (for participants)
   - Bundle download link
   - Code of Conduct link
-  - Etherpad link for each session
+  - Workshop materials link
+- Create pre-set topics for participants to use during the session:
+  - **Welcome & introductions** — participants post their name, field, and type of images they work with
+  - **Installation issues** — for troubleshooting before and during the workshop
+  - **Screenshots** — participants post screenshots from breakout exercises
+  - **Block 1 Q&A**, **Block 2 Q&A**, **Block 3 Q&A**, **Block 4 Q&A** — per-block question threads
 - Include the Zulip stream invite link in the pre-workshop email and Zoom
   chat on the day.
 - After the workshop, announce the stream in `#general` so the broader
@@ -180,80 +185,33 @@ See you soon!
 [INSTRUCTOR_NAME] and the napari team
 ```
 
-(etherpad-shared-notes-template)=
-## Etherpad Shared-Notes Template
+(zulip-workshop-topics-template)=
+## Zulip Workshop Topics Template
 
-See the Carpentries
-[Etherpads guide](https://docs.carpentries.org/resources/communications/etherpads.html)
-for general shared-notes best practices. Shared notes serve as:
+Set these topics up in a new **#napari-workshop-[DATE]** Zulip stream before each session.
+Post a pinned welcome message in each topic so participants know what it's for.
 
-- A live Q&A space (participants post questions; helpers answer in-doc)
-- An accessibility aid (participants who mishear or miss something can catch up)
-- A record of key links shared during the session
+| Topic | Purpose |
+|---|---|
+| `Welcome & introductions` | Icebreaker: name, field, type of images |
+| `Installation Questions and Troubleshooting` | Pre-workshop and day-of install help |
+| `Resources & links` | Links shared during the session; stays open after |
+| `Screenshots` | Participants post screenshots from breakout exercises |
+| `Block 1 Q&A` | Questions during Welcome & First Images |
+| `Block 2 Q&A` | Questions during Exploring the napari GUI |
+| `Block 3 Q&A` | Questions during Plugins and Annotation |
+| `Block 4 Q&A` | Questions during Interactive Analysis |
 
-Create one Etherpad document per session. Suggested structure:
+
+**Suggested welcome message for the Screenshots topic:**
 
 ```markdown
-# Introduction to napari — [DATE]
+Hi everyone! Use this topic to post screenshots from today's breakout
+exercises. To take a screenshot in napari, press **Alt+C** to copy the
+canvas or **Shift+Alt+C** to copy the canvas with the viewer UI,
+then paste here with Ctrl+V (or Cmd+V on macOS).
 
-**Instructors:** [NAMES]
-
-**Zoom link:** [ZOOM_LINK] (do not post publicly)
-
-**Workshop materials:** https://napari.org/workshops/
-
-**Code of Conduct:** https://napari.org/stable/community/code_of_conduct.html 
-
-
-## Icebreaker
-
-What field are you from, and what kind of images do you work with?
-Add your answer below:
-
-- 
-
-
-## Key Links
-
-- Setup instructions: https://napari.org/workshops/intro-napari/setup/
-- napari docs: https://napari.org/stable/
-- napari hub (plugins): https://napari-hub.org
-- Zulip community chat: https://napari.zulipchat.com
-- napari gallery: https://napari.org/stable/gallery
-
-## Questions & Answers
-
-Post questions here — helpers will answer during breaks or as they come up.
-
-### Block 1
-
-
-
-### Block 2
-
-
-
-### Block 3
-
-
-
-### Block 4
-
-
-
-## Feedback (end of session)
-
-What went well?
-
-- 
-
-What could be improved?
-
-- 
-
-What are you most excited to try after today?
-
-- 
+We'd love to see what you find! Add a quick note about what you're looking at.
 ```
 
 ## Post-Workshop Survey

@@ -25,6 +25,9 @@ no code required.
 
 Use **File > Open Sample > napari builtins > Cells (3D + 2Ch)** as your starting image.
 
+Make sure you look through all your z-slices when gauging whether a
+particular filter or thresholding algorithm worked as expected!
+
 | Step | What to do | Why |
 |------|-----------|-----|
 | 1. Load | Open Cells (3D + 2Ch) | Your raw data |
@@ -34,9 +37,18 @@ Use **File > Open Sample > napari builtins > Cells (3D + 2Ch)** as your starting
 | 5. Measure | **Layers > Measure > Regionprops (labels)** — select the Labels and nuclei layers | Outputs a table of features e.g. area, intensity, eccentricity per cell |
 | 6. Save | Click **Save Results** in the Regionprops widget | Export measurements for further analysis |
 
-```{tip}
-Make sure you look through all your z-slices when gauging whether a
-particular filter or thresholding algorithm worked as expected!
+```{tip} Breakout — Segmentation Workflow
+**Goal:** Run a full filter → threshold → segment → measure pipeline on the Cells sample.
+
+**Tasks:**
+
+Follow the workflow table above to process the `nuclei` layer, measure the labels, and export the results.
+
+**When you're done:**
+Post a screenshot to the **#napari-workshop-[DATE]** stream on [Zulip](https://napari.zulipchat.com):
+- Press `Alt+C` to copy the canvas or `Shift+Alt+C` to copy the canvas with the viewer UI,
+then paste (`Ctrl+V`) into Zulip.
+- Share how many nuclei your segmentation found and one thing you noticed.
 ```
 
 ```{code-cell} python
@@ -84,7 +96,7 @@ viewer.close()
 
 # Sharing Time and Q&A (5 min)
 
-- How many nuclei did your segmentation find?
+- How many nuclei did your segmentation find? *(check the Zulip stream for screenshots!)*
 - What measurements were in the regionprops table?
 - Open questions about the workflow or napari in general?
 
@@ -102,9 +114,9 @@ viewer.close()
 
 | Channel | Description |
 |---------|------|
-| [Image analysis forum](https://forum.image.sc/tag/napari) | Ask questions about using napari, how to perform different image analysis tasks, and get help from experienced image analysts. |
 | [Zulip chat](https://napari.zulipchat.com) | Chat with the napari community - developers, users and contributors. Ask questions, share your analyses, or just lurk for info! |
 | [napari GitHub](https://github.com/napari/napari) | Participate in development, report bugs and request new features. |
+| [Image.sc](https://forum.image.sc/tag/napari) | Ask questions about using napari, how to perform different image analysis tasks, and get help from experienced image analysts. |
 
 ## Next Steps
 
