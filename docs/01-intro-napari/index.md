@@ -13,7 +13,7 @@ napari community.
 # Prerequisites
 
 - No prior napari or Python experience needed
-- Install the napari bundled app before starting — see [Setup](setup.md)
+- Install the napari bundled app before starting — see [](#intro-setup)
 
 # What you'll learn
 

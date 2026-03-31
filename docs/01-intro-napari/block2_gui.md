@@ -258,7 +258,7 @@ but is something we are looking to improve in future releases.
 **Tasks:**
 
 1. Open the [napari gallery](https://napari.org/stable/gallery) and find an example
-   that looks interesting to you.
+   that looks interesting to you; you may wish to look through the [](#recommended-examples).
 2. Scroll to the bottom of the example page and click **Download Python source**.
 3. Drag-and-drop the downloaded `.py` file onto the napari canvas.
 4. napari runs it automatically — explore the result! Try adjusting colors, contrast,
@@ -273,6 +273,10 @@ Take a screenshot and post it to the **#workshops** stream on
 - Press `Alt+C` or `Shift+Alt+C` to copy the canvas to clipboard, then paste (`Ctrl+V`) into Zulip.
 - Add a note: *what example did you try, and what surprised or interested you?*
 ```
+
+(recommended-examples)=
+## Recommended Examples
+
 
 # Sharing Time (5 min)
 
