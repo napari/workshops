@@ -40,9 +40,9 @@ nbscreenshot(viewer)
 | Area | Purpose |
 |------|---------|
 | **Canvas** (center) | Where your image is displayed |
+| **Dimension sliders** (bottom) | Scrub through z, t, or other axes |
 | **Viewer buttons** (bottom-left) | 2D/3D toggle, home, grid, axes, scale bar |
 | **Layer list** (left) | All open layers; click to select, eye to toggle visibility |
-| **Dimension sliders** (bottom) | Scrub through z, t, or other axes |
 | **Layer controls** (top-left) | Adjust appearance of the selected layer |
 
 ## Key Interactions
@@ -50,23 +50,6 @@ nbscreenshot(viewer)
 - **Zoom:** right-click and drag or scroll wheel (or two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas, hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** (bottom-right row of viewer buttons)
-
-## 2D ↔ 3D Toggle
-
-Click the **2D/3D button** in the viewer button row to switch rendering modes.
-In 3D mode you can click-drag to rotate the volume.
-
-![viewer buttons](https://napari.org/stable/_images/viewer-buttons.png)
-
-```{code-cell} python
-:tags: [remove-cell]
-viewer.dims.ndisplay = 3
-viewer.camera.angles = (-27, 8, -58)
-```
-```{code-cell} python
-:tags: [remove-input]
-nbscreenshot(viewer)
-```
 
 ## Dimension Sliders
 
@@ -100,6 +83,23 @@ it means you can click it with the right mouse button to bring up more advanced 
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
 viewer.axes.visible = True
 viewer.dims.ndisplay = 3
+```
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+## 2D ↔ 3D Toggle
+
+Click the **2D/3D button** in the viewer button row to switch rendering modes.
+In 3D mode you can click-drag to rotate the volume.
+
+![viewer buttons](https://napari.org/stable/_images/viewer-buttons.png)
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.dims.ndisplay = 3
+viewer.camera.angles = (-27, 8, -58)
 ```
 ```{code-cell} python
 :tags: [remove-input]
