@@ -44,7 +44,7 @@ project:
   #     output: exports/napari_workshop.pdf
 site:
   options:
-    favicon: _resources/silhouette-theme-aware.svg
+    favicon: _resources/workshop-logo-light.ico
     logo: _resources/workshop-logo-light.svg
     logo_dark: _resources/workshop-logo-dark.svg
     folders: true
