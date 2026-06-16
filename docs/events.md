@@ -15,6 +15,24 @@ Reach out on [Zulip](https://napari.zulipchat.com) or the
 
 ## Upcoming
 
+### SciPy 2026
+
+**Format:** In-person. Minneapolis, Minnesota, USA
+
+📅 **July 13, 2026** — 1:30pm–5:30pm US Central Time
+
+[SciPy schedule](https://www.scipy2026.scipy.org/schedule#session/FVRNKP/)
+
+### EuroSciPy 2026
+
+**Format:** In-person. Kraków, Poland
+
+📅 **July 23, 2026** — 9am–10:30pm Central European Time
+
+[EuroSciPy schedule](https://euroscipy.org/schedule/#session/TRFRMH/)
+
+## Previous
+
 ### Introduction to napari — pilot
 
 **Format:** Virtual, live-instructed | **Cost:** $20 USD | **Seats:** 20 per session
