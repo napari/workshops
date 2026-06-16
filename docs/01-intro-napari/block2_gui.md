@@ -115,8 +115,9 @@ the Axis Labels attached to the data. Go to **View > Axes > Axes Visible** to tu
 Try also to visualize the Color Bar (LUT) overlay for each layer by **right clicking** on the layer(s) that you want to visualize or toggle the color bar from the navbar menu **Layers > Measure > Color Bar**.
 
 We can also enable the scale bar with **View > Scale Bar > Visible** from the navbar.
-If all layers have consistent units, then the scalebar displays the physical scale.
-If not, it defaults to pixels.
+The scale bar automatically detects units from the currently
+loaded layers. If your layers have [consistent units](https://napari.org/stable/guides/units.html#when-units-are-consistent-across-layers),
+the scale bar displays the physical scale in the correct unit (e.g. `µm`).
 
 ```{tip} The Command Palette
 The [Command Palette](https://napari.org/stable/getting_started/features.html#command-palette)
@@ -199,8 +200,8 @@ are not yet exposed through the GUI can be used via the console.
 Open it from the menu with **Window > Console**, or click the leftmost
 viewer button.
 
-As an example, here we change the viewer scale bar units (you can't do
-this through the GUI yet):
+As an example, here we access layers through the console and set their
+physical units — the scale bar automatically picks them up:
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -211,7 +212,8 @@ viewer.scale_bar.visible = True
 ```
 
 ```{code-cell} python
-viewer.scale_bar.unit = 'micrometer'
+for layer in viewer.layers:
+    layer.units = ('µm', 'micrometer')
 ```
 
 ```{code-cell} python
@@ -240,11 +242,12 @@ There are three parts to the widget:
 
 ```{important} Layer metadata is always connected to viewer metadata
 Changing layer metadata usually has some effect on how the image is displayed 
-in the viewer, such as with scale and translate. However, other metadata fields,
-like axis labels and units do not update corresponding viewer metadata visuals,
-like the axes overlay, dimension slider labels, or scale bar units.
-This is partly due to the complexity of having multiple layer metadata sources,
-but is something we are looking to improve in future releases.
+in the viewer, such as with scale, units and translate. However, other
+metadata fields like axis labels still do not update the axes overlay or
+dimension slider labels. This is partly due to the complexity of having multiple
+layer metadata sources, but is something we are looking to improve in future
+releases. For details, see the progress made with units in the
+[scale bar auto-units guide](https://napari.org/stable/guides/units.html).
 ```
 
 # Gallery Exploration Breakout (15 min)
