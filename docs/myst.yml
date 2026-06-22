@@ -27,6 +27,10 @@ project:
         - file: 01-intro-napari/block2_gui.md
         - file: 01-intro-napari/block3_plugins_and_annotation.md
         - file: 01-intro-napari/block4_analysis_wrap_up.md
+    - title: Extending napari
+      children:
+        - file: 02-extend-napari/index.md
+        - file: 02-extend-napari/setup.md
     - file: events.md
     - title: Instructors
       children:
