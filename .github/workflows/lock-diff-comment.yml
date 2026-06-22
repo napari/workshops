@@ -1,0 +1,73 @@
+# PR comment with a human-readable pixi.lock diff
+#
+# When a pull request modifies pixi.lock (new deps, version bumps, etc.),
+# this workflow swaps in the base branch's old lock file and runs
+# `pixi update`, then pipes the output through pixi-diff-to-markdown.
+# The resulting table is posted as a PR comment so reviewers can see
+# at a glance exactly which packages changed and how.
+#
+# The comment is updated on every push so it always reflects the latest
+# state of the PR.
+
+name: Lock file diff
+
+on:
+  pull_request:
+    paths:
+      - pixi.lock
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with full history for base ref)
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@5185adfbffb4bd703da3010310260805d89ebb11 # v0.9.6
+        with:
+          locked: false
+          run-install: false
+
+      - name: Generate lock diff
+        run: |
+          set -o pipefail
+          if git show "${{ github.event.pull_request.base.sha }}:pixi.lock" > /dev/null 2>&1; then
+            # Save PR's lock, swap in the base branch's lock, run pixi update
+            # to show what changed, then restore the PR's lock.
+            cp pixi.lock pr-pixi.lock
+            git show "${{ github.event.pull_request.base.sha }}:pixi.lock" > pixi.lock
+            pixi update --json --no-install 2>/dev/null | \
+              pixi exec pixi-diff-to-markdown \
+                --merge-dependencies=split-explicit \
+                --hide-tables=auto \
+                --change-type-column \
+                --package-type-column \
+                --create-links-for-packages \
+                > lock-diff.md || echo "No changes detected." > lock-diff.md
+            cp pr-pixi.lock pixi.lock
+          else
+            echo "This PR adds \`pixi.lock\` for the first time — no base to diff against." > lock-diff.md
+          fi
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-actions[bot]
+          body-includes: "## pixi.lock changes"
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: lock-diff.md
+          edit-mode: replace
