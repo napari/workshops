@@ -1,0 +1,170 @@
+# Weekly pixi.lock update with build validation
+#
+# Runs every Tuesday at 04:00 UTC,
+# or manually via workflow_dispatch.
+#
+#   1. Update pixi.lock with the latest compatible dependencies
+#   2. Generate a human-readable diff of what changed
+#   3. Build the docs with the updated lock (unfrozen)
+#   4a. Build succeeds → create/update a PR with the new lock
+#   4b. Build fails   → create/update an issue with the diff + failure details
+#   4c. Lock unchanged → nothing to do
+#
+# If a PR from a previous run already exists, it is updated in-place
+# (branches don't accumulate).  If a stale failure issue exists from a
+# previous week and the build now passes, the issue is auto-closed.
+
+name: Weekly lock update
+
+on:
+  schedule:
+    # Tuesday at 04:00 UTC
+    - cron: '0 4 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@5185adfbffb4bd703da3010310260805d89ebb11 # v0.9.6
+        with:
+          locked: false
+          run-install: false
+
+      # ── Step 1: update lock + generate diff ─────────────────────
+      - name: Update pixi.lock and generate diff
+        id: update
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          pixi update --json --no-install 2>&1 | \
+            pixi exec pixi-diff-to-markdown \
+              --merge-dependencies=split-explicit \
+              --hide-tables=auto \
+              --change-type-column \
+              --package-type-column \
+              --create-links-for-packages \
+              > diff.md 2>&1 || echo "update_failed=true" >> "$GITHUB_OUTPUT"
+
+      # ── Handle dependency resolution failure ────────────────────
+      - name: Report resolution failure
+        if: steps.update.outputs.update_failed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ISSUE_TITLE="Weekly lock update: Docs build failed"
+          BODY="## ${ISSUE_TITLE}
+
+          The weekly \`pixi update\` failed when building the docs.
+          See the workflow run for details:
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          EXISTING=$(
+            gh issue list \
+              --label dependencies --json number,title \
+              --jq '.[] | select(.title == "'"$ISSUE_TITLE"'") | .number' \
+              | head -1
+          )
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "Failed again on $(date -u). See: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          else
+            gh issue create --title "$ISSUE_TITLE" --body "$BODY"
+          fi
+
+      # ── Step 2: build with updated lock ─────────────────────────
+      - name: Setup headless display
+        uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
+        with:
+          qt: true
+          wm: herbstluftwm
+
+      - name: Configure herbstluftwm
+        run: herbstclient rule title=napari floating=on
+
+      - name: Build docs with updated lock
+        id: build
+        continue-on-error: true
+        run: |
+          pixi run build 2>&1 | tee build-output.txt
+
+      # ── Step 3a: success → create/update PR ────────────────────
+      - name: Create or update PR
+        if: steps.build.outcome == 'success'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update pixi lock file"
+          title: "Update pixi lock file"
+          body-path: diff.md
+          branch: update-pixi-lock
+          base: main
+          labels: dependencies
+          delete-branch: true
+          add-paths: pixi.lock
+
+      # ── Step 3b: failure → create/update issue ─────────────────
+      - name: Create or update failure issue
+        if: steps.build.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BUILD_OUTPUT=$(cat build-output.txt 2>/dev/null || echo "No build output captured")
+          ISSUE_TITLE="Weekly lock update: build failed"
+
+          cat > issue-body.md << BODY
+          ## ${ISSUE_TITLE}
+
+          The weekly lock update upgraded some dependencies but the docs build failed.
+          See the workflow run for details:
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          ### Lock diff
+
+          $(cat diff.md 2>/dev/null || echo "No diff available")
+
+          ### Build output
+
+          \`\`\`
+          ${BUILD_OUTPUT}
+          \`\`\`
+          BODY
+
+          EXISTING=$(
+            gh issue list \
+              --label dependencies --json number,title \
+              --jq '.[] | select(.title == "'"$ISSUE_TITLE"'") | .number' \
+              | head -1
+          )
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" \
+              --body "Build failed again on $(date -u). See: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          else
+            gh issue create --title "$ISSUE_TITLE" --label dependencies --body-file issue-body.md
+          fi
+
+      # ── Close stale failure issue when build recovers ──────────
+      - name: Close stale failure issue
+        if: steps.lock_changed.outputs.changed == 'true' && steps.build.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          STALE=$(
+            gh issue list \
+              --label dependencies --json number,title \
+              --jq '.[] | select(.title == "Weekly lock update: build failed") | .number' \
+              | head -1
+          )
+          if [ -n "$STALE" ]; then
+            gh issue close "$STALE" --comment "The docs build now succeeds with the latest dependency update. Closing this issue."
+          fi
