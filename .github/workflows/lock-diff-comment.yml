@@ -1,13 +1,12 @@
-# PR comment with a human-readable pixi.lock diff
+# Show a human-readable pixi.lock diff in the workflow run summary
 #
-# When a pull request modifies pixi.lock (new deps, version bumps, etc.),
-# this workflow swaps in the base branch's old lock file and runs
-# `pixi update`, then pipes the output through pixi-diff-to-markdown.
-# The resulting table is posted as a PR comment so reviewers can see
-# at a glance exactly which packages changed and how.
+# When a pull request modifies pixi.lock, this workflow computes
+# the diff between the base branch's lock file and what `pixi update`
+# would produce.  The result is written to the workflow run summary
+# (visible from the PR's "Checks" tab).
 #
-# The comment is updated on every push so it always reflects the latest
-# state of the PR.
+# The napari org has write permissions for Actions disabled, so we
+# can't post PR comments.  The step summary is the best alternative.
 
 name: Lock file diff
 
@@ -17,12 +16,10 @@ on:
       - pixi.lock
 
 permissions:
-  pull-requests: write
-  issues: write
   contents: read
 
 jobs:
-  comment:
+  diff:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (with full history for base ref)
@@ -37,11 +34,10 @@ jobs:
           run-install: false
 
       - name: Generate lock diff
+        id: diff
         run: |
           set -o pipefail
           if git show "${{ github.event.pull_request.base.sha }}:pixi.lock" > /dev/null 2>&1; then
-            # Save PR's lock, swap in the base branch's lock, run pixi update
-            # to show what changed, then restore the PR's lock.
             cp pixi.lock pr-pixi.lock
             git show "${{ github.event.pull_request.base.sha }}:pixi.lock" > pixi.lock
             pixi update --json --no-install 2>/dev/null | \
@@ -57,18 +53,10 @@ jobs:
             echo "This PR adds \`pixi.lock\` for the first time — no base to diff against." > lock-diff.md
           fi
 
-      - name: Find existing comment
-        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-          body-includes: "## pixi.lock changes"
-
-      - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body-path: lock-diff.md
-          edit-mode: replace
+      - name: Write diff to job summary
+        run: |
+          {
+            echo "## pixi.lock changes"
+            echo ""
+            cat lock-diff.md
+          } >> "$GITHUB_STEP_SUMMARY"
