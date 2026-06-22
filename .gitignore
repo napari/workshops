@@ -19,3 +19,6 @@ uv.lock
 .vscode/
 
 untracked-prep/
+# pixi environments
+.pixi/*
+!.pixi/config.toml
