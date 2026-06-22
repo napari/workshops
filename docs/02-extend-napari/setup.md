@@ -1,20 +1,22 @@
 ---
+label: extend-setup
 title: Setup and Installation
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
-# Setup and Installation
-
 This guide walks you through setting up your environment for the "Extending napari"
-workshop. Unlike [Workshop 1](../01-intro-napari/setup.md), which uses the napari
+workshop. Unlike [Workshop 1](#intro-setup), which uses the napari
 bundled app, this workshop uses a Python environment and `pixi`.
 
-## Prerequisites
+# Prerequisites
 
 - [**Git**](https://git-scm.com/) for cloning the repository (can also use a git GUI like [Github Desktop](https://desktop.github.com/download/))
-- [**pixi**](https://pixi.sh/latest/#installation) for managing environments
-- **Basic familiarity** with the terminal/command line
+- [**pixi**](https://pixi.sh/latest/#installation) for running the workshop tasks and environment management
 
-## Setup
+# Setup
 
 [Install pixi](https://pixi.sh/latest/#installation) with a single command, then:
 
@@ -32,5 +34,19 @@ Reach out to the workshop instructors or ask for help in the
 [napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
 ```
 
-> Under the hood, pixi features are `[dependency-groups]` in `pyproject.toml`.
-> If you use uv instead, run `uv sync --group dev` for the full dependency set.
+```{code-cell} python
+:tags: [remove-cell]
+import napari
+from napari.utils import nbscreenshot
+viewer = napari.Viewer()
+```
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
