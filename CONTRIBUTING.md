@@ -2,42 +2,24 @@
 
 ## Environment setup
 
-### Option A: pixi (recommended)
+## Environment setup
 
 [Install pixi](https://pixi.sh/latest/#installation) (one command), then:
 
 ```bash
 git clone https://github.com/napari/workshops.git
 cd workshops
-pixi install
+pixi run
 ```
 
-This installs napari, jupyter-book, and all other dependencies from conda-forge + PyPI
-into a managed environment. No `conda activate` or `pip install` needed.
+> The pixi features are specified as `[dependency-groups]` in `pyproject.toml`.
+> If you prefer using uv, run `uv sync --group dev` for the full set of deps.
 
-### Option B: uv
-
-[Install uv](https://docs.astral.sh/uv/getting-started/installation/), then:
+## Common commands
 
 ```bash
-git clone https://github.com/napari/workshops.git
-cd workshops
-uv sync --group dev
-```
-
-All dependencies are resolved from PyPI into `.venv/`.
-
-## Build and serve
-
-```bash
-# pixi
-pixi run start   # live-preview server (runs copy-css then jupyter-book start)
-pixi run build   # full build with notebook execution (requires a display server)
-pixi run clean   # remove _build/
-
-# uv (must cd into docs/ first)
-uv run jupyter-book start --execute
-uv run jupyter-book build --html --execute --strict
+pixi run docs-live                       # live preview server (dev env)
+pixi run _docs-build                     # full site build (dev env)
 ```
 
 ## Docs Configuration
