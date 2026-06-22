@@ -155,7 +155,7 @@ jobs:
 
       # ── Close stale failure issue when build recovers ──────────
       - name: Close stale failure issue
-        if: steps.lock_changed.outputs.changed == 'true' && steps.build.outcome == 'success'
+        if: steps.build.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
