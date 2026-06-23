@@ -184,7 +184,7 @@ import napari
 from napari.utils import nbscreenshot
 from pathlib import Path
 
-script_dir = next(p for p in [Path('scripts'), Path('01-intro-napari/scripts')] if p.exists())
+script_dir = next(p for p in [Path('scripts'), Path('intro-gui/scripts')] if p.exists())
 
 viewer = napari.Viewer()
 viewer.open(script_dir / 'annotation.py')

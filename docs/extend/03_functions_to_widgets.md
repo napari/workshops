@@ -1,4 +1,5 @@
 ---
+label: functions-to-widgets
 jupytext:
   text_representation:
     extension: .md
@@ -19,7 +20,7 @@ There are a number of ways to go about creating your own widgets, you can see [a
 
 In this module, we will implement elements of our previous workflow as functions and then use [`magicgui.magicgui`](https://pyapp-kit.github.io/magicgui/api/magicgui/#magicguimagicgui) decorator on those functions to return us compound widgets that we can use to make exploring the parameters easier in the GUI. For a nice overview of the `magicgui` decorators, see [the official documentation](https://pyapp-kit.github.io/magicgui/decorators/).
 
-This notebook converts the exploratory analysis of the previous notebook, [Exploratory analysis: spot detection](02_spot_detection_exploratory.md), and makes it more reproducible by 1. turning the workflow info functions, and 2. using `magicgui` to create widgets that can be used in the napari GUI. This can then serve as the basis for a napari plugin!
+This notebook converts the exploratory analysis of the previous notebook, [Exploratory analysis: spot detection](#spot-detection), and makes it more reproducible by 1. turning the workflow info functions, and 2. using `magicgui` to create widgets that can be used in the napari GUI. This can then serve as the basis for a napari plugin!
 
 ## `Nebari` and `Binder` setup
 
@@ -34,7 +35,7 @@ if 'BINDER_SERVICE_HOST' in os.environ or 'NEBARI_JUPYTERHUB_SSH_SERVICE_HOST' i
 
 ## Loading data
 
-Let's get everything set up, loading the remote data as in the [Exploratory analysis: spot detection](02_spot_detection_exploratory.md) notebook.
+Let's get everything set up, loading the remote data as in the [Exploratory analysis: spot detection](#spot-detection) notebook.
 
 ```{code-cell} ipython3
 from skimage import io
@@ -290,7 +291,7 @@ nbscreenshot(viewer)
 
 ## A more complex example
 
-Finally, lets make a widget for the whole workflow developed in the [Exploratory analysis: spot detection](02_spot_detection_exploratory.md)
+Finally, lets make a widget for the whole workflow developed in the [Exploratory analysis: spot detection](#spot-detection)
 notebook as a function. We will need to write a function and then properly annotate it such that `magicgui` can generate the widgets.
 This time we are also starting with image layer (data), but then we want a Points layer with points. We could again return
 just the layer data using `napari.types.PointsData`. However, we would like some control over the Points layer visualization, so

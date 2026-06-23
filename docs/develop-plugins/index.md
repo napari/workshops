@@ -24,7 +24,7 @@ By completing this workshop, you will be able to:
 
 ## Prerequisites
 
-- Completion of [Workshop 2: Extending napari with Scripts](../02-extend-napari/index.md) or equivalent experience with magicgui and napari scripting
+- Completion of [Workshop 2: Extending napari with Scripts](#extend-overview) or equivalent experience with magicgui and napari scripting
 - Comfortable with Python package structure and imports
 - Basic familiarity with git and GitHub (helpful for publishing)
 - Understanding of virtual environments and pip installation
