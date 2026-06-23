@@ -13,6 +13,11 @@ on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    # Every Tuesday at 12:00 UTC
+    - cron: '0 12 * * 2'
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
@@ -44,7 +49,7 @@ jobs:
       - name: Set up pixi
         uses: prefix-dev/setup-pixi@5185adfbffb4bd703da3010310260805d89ebb11 # v0.9.6
         with:
-          locked: true
+          locked: github.event_name != 'schedule'
 
       - name: Setup headless display
         uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
@@ -66,7 +71,7 @@ jobs:
           path: './docs/_build/html'
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'schedule'
     needs: build
     environment:
       name: github-pages
