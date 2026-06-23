@@ -1,6 +1,6 @@
 [project]
-name = "napari-workshops"
-version = "0.1.0"
+name = "workshops"
+dynamic = ["version"]
 description = "Hands-on napari training workshops"
 readme = "README.md"
 license = "BSD-3-Clause"
@@ -11,14 +11,18 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "napari[all]>=0.7.1",
-    "matplotlib",
 ]
 
 [dependency-groups]
+extend = [
+    "scikit-image",
+    "magicgui",
+    "jupyterlab",
+]
 dev = [
+    {include-group = "extend"},
     "mystmd",
     "jupyter-book>=2",
-    "jupyterlab",
     "jupyterlab-myst",
     "jupytext",
     "napari-sphinx-theme",
@@ -31,18 +35,27 @@ package = false
 channels = ["conda-forge"]
 platforms = ["win-64", "linux-64", "osx-arm64", "osx-64"]
 
-[tool.pixi.environments]
-default = { features = ["dev"], solve-group = "default" }
-
 [tool.pixi.tasks]
-copy-css = "python docs/_scripts/copy_theme_css.py"
-# Seed napari's saved window geometry to 1280x720 before any notebook runs.
-# napari restores QSettings on startup, so this once gives all kernels a
-# consistent default size without any per-notebook code.
-seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
-# Build the full site (executes notebooks — requires a display server on Linux)
-build = { cmd = "cd docs && jupyter-book build --html --execute --strict", depends-on = ["copy-css", "seed-geometry"] }
-# Live-preview server for local development
-start = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["copy-css", "seed-geometry"] }
-# Remove build artifacts
-clean = { cmd = "cd docs && jupyter-book clean" }
+napari = "napari"
+
+[tool.pixi.feature.extend.tasks]
+jupyter-lab = { cmd = "jupyter lab docs/02-extend-napari" }
+
+[tool.pixi.feature.dev.tasks]
+_copy-css = "python docs/_scripts/copy_theme_css.py"
+_seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
+_docs-clean = { cmd = "cd docs && jupyter-book clean -y" }
+_docs-build = { cmd = "cd docs && jupyter-book build --html --execute --strict", depends-on = ["_copy-css", "_seed-geometry"] }
+docs-live = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["_docs-clean", "_copy-css", "_seed-geometry"] }
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+extend = { features = ["extend"], solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
