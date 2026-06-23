@@ -1,11 +1,19 @@
-# Workflow for building and deploying the napari workshops to GitHub Pages
+# Build docs on PR/push, deploy to GitHub Pages on main
+#
+# On pull requests and pushes to main, this workflow builds the workshop
+# site using the committed pixi.lock (reproducible builds).  On main it
+# also deploys to GitHub Pages.
+#
+# On a schedule, this workflow builds the workshop site using the latest
+# dependencies (pixi.lock is ignored).  This is to catch any breakages
+# due to upstream changes in dependencies.
+
 name: Build and Deploy Site
 
 on:
-  # Runs on pushes targeting the default branch
   pull_request:
   push:
-    branches: ["main"]
+    branches: [main]
   schedule:
     # Every Tuesday at 12:00 UTC
     - cron: '0 12 * * 2'
@@ -30,29 +38,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Build job for PRs and main
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
-      - name: Setup pixi
+
+      - name: Set up pixi
         uses: prefix-dev/setup-pixi@5185adfbffb4bd703da3010310260805d89ebb11 # v0.9.6
         with:
-          locked: false  # solve fresh each run
+          locked: ${{ github.event_name != 'schedule' }}
+
       - name: Setup headless display
         uses: pyvista/setup-headless-display-action@5bc8de3bc71fcda7a96439571287a554901541a0 # v4.3
         with:
           qt: true
           wm: herbstluftwm
+
       - name: Configure herbstluftwm
         # Float napari windows outside the tiling grid so parallel notebook
         # execution doesn't cause herbstluftwm to re-tile and shrink them.
         run: herbstclient rule title=napari floating=on
+
       - name: Build workshop
         run: pixi run build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:

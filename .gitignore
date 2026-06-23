@@ -5,10 +5,6 @@ _build/
 # Python virtual environments
 .venv/
 
-# pixi â€” lock file not committed; regenerated on install
-.pixi/
-pixi.lock
-
 # uv
 uv.lock
 
@@ -19,3 +15,7 @@ uv.lock
 .vscode/
 
 untracked-prep/
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml
