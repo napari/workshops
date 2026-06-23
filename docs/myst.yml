@@ -34,8 +34,8 @@ project:
     - file: events.md
     - title: Instructors
       children:
-        - file: 00-instructors/organizers.md
-        - file: 00-instructors/instructors.md
+        - file: instructors/organizers.md
+        - file: instructors/instructors.md
   # thebe:
   #   binder:
   #     repo: napari/workshops
