@@ -2,8 +2,6 @@
 
 ## Environment setup
 
-## Environment setup
-
 [Install pixi](https://pixi.sh/latest/#installation) (one command), then:
 
 ```bash
@@ -12,15 +10,56 @@ cd workshops
 pixi run
 ```
 
-> The pixi features are specified as `[dependency-groups]` in `pyproject.toml`.
-> If you prefer using uv, run `uv sync --group dev` for the full set of deps.
+If you prefer using uv, run `uv sync --group dev` for the full set of deps.
 
-## Common commands
+## Project environments
 
-```bash
-pixi run docs-live                       # live preview server (dev env)
-pixi run _docs-build                     # full site build (dev env)
+This project uses [pixi](https://pixi.sh/latest/) for environment management,
+with dependencies, tasks, and environments defined in `pyproject.toml`.
+
+### How pixi environments are structured
+
+Dependencies are organized into **dependency groups** in `[dependency-groups]`,
+which pixi maps directly to **features**. Each feature can also define its own
+[tasks](https://pixi.sh/latest/features/tasks/) and any dependency overrides. 
+Features are then composed into named **environments** under `[tool.pixi.environments]`.
+
+```text
+[dependency-groups]  ──►  pixi features  ──►  [tool.pixi.environments]
+   extend                                      default  (catch-all solve group)
+   dev                                         extend   (extend feature)
+                                                dev      (dev feature → includes extend)
 ```
+
+- **`default`** — a catch-all solve group with no features. Skips installing
+  workshop-specific dependencies for contributors who only need the base
+  environment.
+- **`extend`** — the "Extending napari" workshop environment. Run with
+  `pixi run -e extend <task>`.
+- **`dev`** — full development environment (includes everything in `extend`
+  plus build tools like `jupyter-book`, `mystmd`, etc.).
+
+> Environments **must** be explicitly listed under `[tool.pixi.environments]`
+> to be usable. Pixi will not auto-create environments from dependency groups
+> alone. See [pixi environments docs](https://pixi.sh/latest/features/environment/).
+
+### Tasks
+
+Tasks are defined per feature. Tasks prefixed with `_` are hidden from
+`pixi run` (which lists all tasks across all environments), keeping the
+output focused on user-facing commands. Use `pixi run -e <env>` to scope
+the task list to a specific environment.
+
+| Command | Environment | Description |
+|---|---|---|
+| `pixi run docs-live` | dev | Live preview server (starts jupyter-book with `--execute`) |
+| `pixi run _docs-build` | dev | Full site build with notebook execution |
+| `pixi run -e extend napari` | extend | Launch napari to verify the extend environment |
+| `pixi run -e extend jupyter-lab` | extend | Launch JupyterLab inside the `docs/02-extend-napari/` directory |
+
+For a complete list of available tasks, see `[tool.pixi.tasks]` and
+`[tool.pixi.feature.*.tasks]` in `pyproject.toml`, or refer to the
+[pixi tasks documentation](https://pixi.sh/latest/features/tasks/).
 
 ## Docs Configuration
 
@@ -52,32 +91,13 @@ viewer.close()
 #### The Problem
 
 JupyterBook/MyST sets each kernel's working directory to the **directory
-containing the notebook file** at execution time. A notebook in `notebooks/`
-runs with `CWD = .../napari-jupyterbook/notebooks/`. However, when opening
-notebooks directly in JupyterLab via `pixi run start`, the kernel starts from
-the **JupyterLab server root** (the repo root).
+containing the notebook file** at execution time. A notebook in `docs/01-intro-napari/`
+runs with `CWD = .../workshops/docs/01-intro-napari/`. However, when opening
+notebooks directly in JupyterLab via `pixi run docs-live`, the
+kernel starts from the **JupyterLab server root** (the repo root).
 
-This produces a cross-environment CWD mismatch:
-
-| Environment | `Path().resolve()` | `Path('data').exists()` | `Path('notebooks/data').exists()` |
-|---|---|---|---|
-| `pixi run build` locally | repo root | ✗ | ✓ |
-| `pixi run build` on CI | `notebooks/` | ✓ | ✗ |
-| JupyterLab (`pixi run start`) | repo root | ✗ | ✓ |
-
-Actual output from `notebooks/files.md` in `timmonko/napari-jupyterbook`, where `data/` is a sibling of `notebooks/`:
-
-```
-# Locally (pixi run start --execute or build)
-Current working directory:  C:\Users\...\napari-jupyterbook
-Does notebooks/data exist?  True
-Does data exist?  False
-
-# On CI (pixi run build)
-Current working directory:  /home/runner/work/napari-jupyterbook/napari-jupyterbook/notebooks
-Does notebooks/data exist?  False
-Does data exist?  True
-```
+This produces a cross-environment CWD mismatch when notebooks reference data
+files by relative path.
 
 #### Recommendation
 
@@ -93,7 +113,7 @@ data_dir = next(p for p in [Path('data'), Path('notebooks/data')] if p.exists())
 
 ### CSS and napari-sphinx theme
 
-The `start` and `build` tasks automatically run `copy-css`
+The `docs-live` and `_docs-build` tasks automatically run `_copy-css`
 first, which merges `napari-sphinx-theme`'s CSS with `docs/_resources/_custom.css`
 to produce `docs/_resources/napari-theme.css`. This generated file is gitignored.
 uv users need to run `uv run python docs/_scripts/copy_theme_css.py` once before building.
