@@ -1,5 +1,6 @@
 ---
 title: Instructor Guide
+label: instructor-guide
 ---
 
 These workshops are inspired by the
@@ -44,7 +45,7 @@ Practical commitments:
 - Narrates every action out loud ("I'm clicking File > Open Sample >
   napari builtins > Cells 3D + 2Ch")
 - Watches the Zulip workshop stream and Zoom chatfor questions during exercises
-- Advances through the [session schedule](../01-intro-napari/index.md#session-schedule)
+- Advances through the [session schedule](#session-schedule)
   and calls time
 
 ## Helper instructor

@@ -3,7 +3,7 @@
 This document is for the people handling the **logistics** of running a napari
 workshop: ticketing, communications, Zoom setup, and day-of coordination.
 For the teaching side (how to present, troubleshoot, and pace), see
-[01_instructors.md](instructors.md).
+the [Instructor Guide](#instructor-guide).
 
 ## Pre-Workshop Checklists
 

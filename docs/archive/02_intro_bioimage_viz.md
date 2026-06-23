@@ -1,4 +1,5 @@
 ---
+label: bioimage-viz
 jupytext:
   text_representation:
     extension: .md
@@ -108,8 +109,8 @@ from tifffile import imread
 from pathlib import Path
 
 # Path of execution is different depending on whether the notebook is run locally or via jupyter-book
-if (Path() / '01-intro-napari' / 'data').exists():
-    data_dir = Path() / '01-intro-napari' / 'data'
+if (Path() / 'intro-gui' / 'data').exists():
+    data_dir = Path() / 'intro-gui' / 'data'
 else:
     data_dir = Path().resolve() / 'data'
 
