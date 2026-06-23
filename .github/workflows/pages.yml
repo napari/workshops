@@ -4,8 +4,9 @@
 # site using the committed pixi.lock (reproducible builds).  On main it
 # also deploys to GitHub Pages.
 #
-# Lock-file updates are handled by update-lock-weekly.yml — this workflow
-# does not run on a schedule.
+# On a schedule, this workflow builds the workshop site using the latest
+# dependencies (pixi.lock is ignored).  This is to catch any breakages
+# due to upstream changes in dependencies.
 
 name: Build and Deploy Site
 
@@ -70,6 +71,7 @@ jobs:
         with:
           path: './docs/_build/html'
 
+  # Deploy job - only runs on main and not on schedule
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'schedule'
     needs: build
