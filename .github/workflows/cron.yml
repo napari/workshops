@@ -44,11 +44,6 @@ jobs:
           set -o pipefail
           pixi update --json --no-install 2>&1 | \
             pixi exec pixi-diff-to-markdown \
-              --merge-dependencies=split-explicit \
-              --hide-tables=auto \
-              --change-type-column \
-              --package-type-column \
-              --create-links-for-packages \
               > diff.md 2>&1 || echo "update_failed=true" >> "$GITHUB_OUTPUT"
 
       # ── Step 2: build with updated lock ─────────────────────────

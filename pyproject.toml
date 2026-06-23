@@ -49,3 +49,4 @@ clean = { cmd = "cd docs && jupyter-book clean" }
 
 [tool.pixi-diff-to-markdown]
 merge-dependencies = "split-explicit"
+package-type-column = true

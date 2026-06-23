@@ -42,11 +42,6 @@ jobs:
             git show "${{ github.event.pull_request.base.sha }}:pixi.lock" > pixi.lock
             pixi update --json --no-install 2>/dev/null | \
               pixi exec pixi-diff-to-markdown \
-                --merge-dependencies=split-explicit \
-                --hide-tables=auto \
-                --change-type-column \
-                --package-type-column \
-                --create-links-for-packages \
                 > lock-diff.md || echo "No changes detected." > lock-diff.md
             cp pr-pixi.lock pixi.lock
           else
