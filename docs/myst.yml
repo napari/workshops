@@ -19,23 +19,23 @@ project:
   toc:
     - file: home.md
       title: Home
-    - title: Introduction to napari
+    - title: Intro to napari (GUI)
       children:
-        - file: 01-intro-napari/index.md
-        - file: 01-intro-napari/setup.md
-        - file: 01-intro-napari/block1_welcome.md
-        - file: 01-intro-napari/block2_gui.md
-        - file: 01-intro-napari/block3_plugins_and_annotation.md
-        - file: 01-intro-napari/block4_analysis_wrap_up.md
-    - title: Extending napari
+        - file: intro-gui/index.md
+        - file: intro-gui/setup.md
+        - file: intro-gui/block1_welcome.md
+        - file: intro-gui/block2_gui.md
+        - file: intro-gui/block3_plugins_and_annotation.md
+        - file: intro-gui/block4_analysis_wrap_up.md
+    - title: Extending napari with Code
       children:
-        - file: 02-extend-napari/index.md
-        - file: 02-extend-napari/setup.md
+        - file: extend/index.md
+        - file: extend/setup.md
     - file: events.md
     - title: Instructors
       children:
-        - file: 00-instructors/organizers.md
-        - file: 00-instructors/instructors.md
+        - file: instructors/organizers.md
+        - file: instructors/instructors.md
   # thebe:
   #   binder:
   #     repo: napari/workshops

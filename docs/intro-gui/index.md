@@ -25,6 +25,7 @@ napari community.
 - Discover and install community plugins from napari hub
 - Run interactive image analysis using napari-skimage
 
+(session-schedule)=
 # Session schedule
 
 **Total time:** ~4 hours

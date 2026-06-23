@@ -15,7 +15,7 @@ curious about what napari can do — these workshops are designed to meet you wh
 No prior napari experience required. Some workshops require Python familiarity; the
 introductory workshop uses napari's graphical interface and is accessible to all.
 
-Live workshops are available — see the [workshop events](events.md) for upcoming
+Live workshops are available — see the [workshop events](#events) for upcoming
 sessions and past events.
 
 ```{code-cell} python
@@ -38,7 +38,7 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-## [Introduction to napari](01-intro-napari/index.md)
+## [Introduction to napari](#intro-overview)
 
 **Level:** Beginner | **Duration:** ~4 hours
 
@@ -46,7 +46,7 @@ Get started with napari's bundled application. Load and explore multi-dimensiona
 annotate data, run interactive analysis, and discover community plugins. No Python
 experience required.
 
-## [Extending napari](02-extend-napari/index.md)
+## [Extending napari](#extend-overview)
 
 **Level:** Intermediate (napari Beginner) | **Duration:** ~4 hours
 

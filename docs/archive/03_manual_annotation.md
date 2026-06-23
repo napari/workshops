@@ -20,7 +20,7 @@ There are 3 main types of manual annotation that napari provides, each correspon
 - drawing 2D polygons to identify particular regions of interest with the **Shapes** layer
 - painting labels to provide a pixel-wise annotation of an image with the **Labels** layer
 
-This tutorial will explore these three manual annotations in napari, using the same data from the [Bioimage visualization in Python tutorial](02_intro_bioimage_viz.md). Once again, we will try to highlight the bidirectional communication between the viewer and the Python kernel.
+This tutorial will explore these three manual annotations in napari, using the same data from the [Bioimage visualization in Python tutorial](#bioimage-viz). Once again, we will try to highlight the bidirectional communication between the viewer and the Python kernel.
 
 ## `Nebari` and `Binder` setup
 
