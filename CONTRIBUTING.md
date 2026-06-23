@@ -65,7 +65,16 @@ For a complete list of available tasks, see `[tool.pixi.tasks]` and
 
 ### Getting `nbscreenshot` to actual display screenshots.
 
-At least in mystmd, `nbscreenshot()` needs to live in its own code cells.
+**Window size on CI.** The CI workflow (`pages.yml`) runs `seed_napari_geometry.py`
+before building docs, which creates a napari viewer, resizes it to 1200×680, and
+saves the size to napari's YAML settings. Subsequent notebooks inherit the size.
+
+The CI virtual display (Xvfb) defaults to 1024×768, which clamps Qt `resize()`.
+The workflow restarts Xvfb at 1920×1080 to accommodate the requested size.
+If the screenshots are the wrong size on CI, check the `seed_napari_geometry`
+step output in the build logs — it prints the actual saved `window_size`.
+
+**Cell layout.** `nbscreenshot()` needs to live in its own code cells.
 If you put it in the same cell as other code, it will execute before the napari viewer window is fully initialized and not manager to capture an image. Additionally, closing viewers should be done it's own cell block. For example:
 
 ```{code-cell} python

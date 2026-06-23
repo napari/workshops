@@ -64,10 +64,9 @@ jobs:
         run: herbstclient rule title=napari floating=on
 
       - name: Enlarge Xvfb screen for napari screenshots
-        # The default Xvfb screen (1024x768) clamps resize() to ~682x512 on CI.
-        # Bump to 1920x1080 so seed_napari_geometry.py's 1200x680 takes effect.
-        # Confirmed via CI diagnostic logs: window_size saved as 682x512 at
-        # default resolution, but 1200x680 locally on a real display.
+        # The pyvista action hardcodes Xvfb at 1024x768, which clamps Qt
+        # resize() — napari's seed_napari_geometry.py requests 1200x680.
+        # The action doesn't expose a screen-size input, so restart Xvfb ourselves at 1920x1080.
         shell: bash
         run: |
           killall Xvfb 2>/dev/null || true
