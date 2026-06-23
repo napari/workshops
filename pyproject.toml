@@ -46,7 +46,3 @@ build = { cmd = "cd docs && jupyter-book build --html --execute --strict", depen
 start = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["copy-css", "seed-geometry"] }
 # Remove build artifacts
 clean = { cmd = "cd docs && jupyter-book clean" }
-
-[tool.pixi-diff-to-markdown]
-merge-dependencies = "split-explicit"
-package-type-column = true
