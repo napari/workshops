@@ -39,12 +39,18 @@ settings_path = Path(
 ).expanduser()
 if settings_path.exists():
     raw = settings_path.read_text()
-    if f'window_size: [{WIDTH}, {HEIGHT}]' in raw:
+    # YAML serializes lists as multi-line by default, so check both formats
+    found = (
+        f'window_size: [{WIDTH}, {HEIGHT}]' in raw
+        or f'window_size:\n  - {WIDTH}\n  - {HEIGHT}' in raw
+    )
+    if found:
         print(f"seed_napari_geometry: YAML settings OK — {WIDTH}x{HEIGHT} at {settings_path}")
     else:
-        print(f"seed_napari_geometry: WARNING — YAML settings file exists but window_size not found!")
+        print(f"seed_napari_geometry: WARNING — window_size not {WIDTH}x{HEIGHT}!")
         print(f"  file: {settings_path}")
         print(f"  content:\n{raw}")
+        print(f"  saved_size: check YAML content above")
 else:
     # If settings_path doesn't exist, _save_current_window_settings may have
     # written to a different path (e.g. platformdirs with environment_marker).

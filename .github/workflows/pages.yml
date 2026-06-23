@@ -63,6 +63,18 @@ jobs:
         # execution doesn't cause herbstluftwm to re-tile and shrink them.
         run: herbstclient rule title=napari floating=on
 
+      - name: Enlarge Xvfb screen for napari screenshots
+        # The default Xvfb screen (1024x768) clamps resize() to ~682x512 on CI.
+        # Bump to 1920x1080 so seed_napari_geometry.py's 1200x680 takes effect.
+        # Confirmed via CI diagnostic logs: window_size saved as 682x512 at
+        # default resolution, but 1200x680 locally on a real display.
+        shell: bash
+        run: |
+          killall Xvfb 2>/dev/null || true
+          sleep 1
+          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+          sleep 3
+
       - name: Build workshop
         run: pixi run _docs-build
 
