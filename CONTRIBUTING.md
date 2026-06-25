@@ -12,6 +12,30 @@ pixi run
 
 If you prefer using uv, run `uv sync --group dev` for the full set of deps.
 
+### Pre-commit hooks
+
+This project uses [pre-commit](https://pre-commit.com/) hooks to format and
+lint code automatically prior to each commit. The hooks are configured in
+`.pre-commit-config.yaml`.
+
+We recommend using [`prek`](https://github.com/j178/prek), a fast drop-in
+replacement for `pre-commit` written in Rust (included in the dev dependencies).
+Register the git hooks with:
+
+```bash
+pixi run prek install
+```
+
+Upon committing, your code will be checked for common issues, Python files
+will be linted and formatted via `ruff`, and the `pixi.lock` file will be
+validated against `pyproject.toml` to ensure it's up to date.
+
+You can run all hooks against the entire codebase at any time:
+
+```bash
+pixi run prek -a
+```
+
 ## Project environments
 
 This project uses [pixi](https://pixi.sh/latest/) for environment management,
