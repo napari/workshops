@@ -5,9 +5,6 @@ _build/
 # Python virtual environments
 .venv/
 
-# uv
-uv.lock
-
 # Generated CSS (built from napari-sphinx-theme + docs/_resources/_custom.css)
 *napari-theme.css
 
