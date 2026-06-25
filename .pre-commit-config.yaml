@@ -1,0 +1,31 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: \.md$
+      - id: mixed-line-ending
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.17
+    hooks:
+      # linter
+      - id: ruff-check
+        types_or: [python, pyi]
+        args: [--fix]
+      # formatter
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  - repo: local
+    hooks:
+      - id: pixi-lock-check
+        name: pixi lock is up to date
+        language: system
+        entry: pixi lock --check --no-install
+        pass_filenames: false
+        files: ^pyproject\.toml$|^pixi\.lock$
