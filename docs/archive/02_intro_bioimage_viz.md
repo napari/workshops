@@ -108,11 +108,8 @@ Here we will explore the fourth option, explicitly loading a 3D image using the 
 from tifffile import imread
 from pathlib import Path
 
-# Path of execution is different depending on whether the notebook is run locally or via jupyter-book
-if (Path() / 'intro-gui' / 'data').exists():
-    data_dir = Path() / 'intro-gui' / 'data'
-else:
-    data_dir = Path().resolve() / 'data'
+# CWD is project root (docs/) in MyST, notebook dir in JupyterLab
+data_dir = next(p for p in [Path('archive/data'), Path('data')] if p.exists())
 
 # load the image data and inspect its shape
 nuclei = imread(data_dir / 'nuclei.tif')

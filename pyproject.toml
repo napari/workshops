@@ -39,7 +39,7 @@ platforms = ["win-64", "linux-64", "osx-arm64", "osx-64"]
 napari = "napari"
 
 [tool.pixi.feature.extend.tasks]
-jupyter-lab = { cmd = "jupyter lab docs/02-extend-napari" }
+jupyter-lab = { cmd = "jupyter lab docs/extend" }
 
 [tool.pixi.feature.dev.tasks]
 _copy-css = "python docs/_scripts/copy_theme_css.py"

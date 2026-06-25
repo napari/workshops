@@ -55,7 +55,7 @@ the task list to a specific environment.
 | `pixi run docs-live` | dev | Live preview server (starts jupyter-book with `--execute`) |
 | `pixi run _docs-build` | dev | Full site build with notebook execution |
 | `pixi run -e extend napari` | extend | Launch napari to verify the extend environment |
-| `pixi run -e extend jupyter-lab` | extend | Launch JupyterLab inside the `docs/02-extend-napari/` directory |
+| `pixi run -e extend jupyter-lab` | extend | Launch JupyterLab inside the `docs/extend/` directory |
 
 For a complete list of available tasks, see `[tool.pixi.tasks]` and
 `[tool.pixi.feature.*.tasks]` in `pyproject.toml`, or refer to the
@@ -99,25 +99,37 @@ viewer.close()
 
 #### The Problem
 
-JupyterBook/MyST sets each kernel's working directory to the **directory
-containing the notebook file** at execution time. A notebook in `docs/01-intro-napari/`
-runs with `CWD = .../workshops/docs/01-intro-napari/`. However, when opening
-notebooks directly in JupyterLab via `pixi run docs-live`, the
-kernel starts from the **JupyterLab server root** (the repo root).
+**MyST (Jupyter Book v2)** executes notebooks with the working directory set to
+the **project root** (`docs/`), not the notebook's directory. However, **JupyterLab**
+sets the kernel's working directory to the **notebook's own directory**
+(e.g., `docs/extend/`).
 
-This produces a cross-environment CWD mismatch when notebooks reference data
-files by relative path.
+This produces a cross-environment CWD mismatch when notebooks reference nearby
+data files by relative path.
+
+For example, with a notebook at `docs/extend/02_notebook.md` referencing
+`extend/data/nuclei.tif`:
+- In MyST (`pixi run docs-live` or `pixi run _docs-build`): CWD = `docs/`,
+  so `Path('data')` resolves to `docs/data/` — **wrong**.
+- In JupyterLab (`pixi run -e extend jupyter-lab`): CWD = `docs/extend/`,
+  so `Path('data')` resolves to `docs/extend/data/` — **correct**.
+
+> Note: This behavior is specific to MyST (Jupyter Book v2, `jupyter-book>=2`).
+> The older Jupyter Book v1 set CWD to the notebook's directory.
+> `pixi run docs-live` runs `jupyter-book start`, *not* JupyterLab.
 
 #### Recommendation
 
-Use a robust fallback at the top of any notebook that accesses data files,
-so the path resolves correctly regardless of CWD:
+Use a `next()` fallback at the top of any notebook that accesses data files.
+Check the project-root-relative path first (for MyST), then the notebook-relative
+path (for JupyterLab):
 
 ```python
 from pathlib import Path
 
-# Works whether CWD is the repo root or the notebooks/ subdirectory
-data_dir = next(p for p in [Path('data'), Path('notebooks/data')] if p.exists())
+# CWD is docs/ in MyST, notebook dir in JupyterLab
+# For a notebook at docs/extend/02_notebook.md loading docs/extend/data/*:
+data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
 ```
 
 ### CSS and napari-sphinx theme
