@@ -26,6 +26,8 @@ dev = [
     "jupyterlab-myst",
     "jupytext",
     "napari-sphinx-theme",
+    "prek",
+    "ruff",
 ]
 
 [tool.uv]
@@ -56,6 +58,24 @@ dev = { features = ["dev"], solve-group = "default" }
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 88
+fix = true
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W",   # flake8
+    "UP",             # pyupgrade
+    "I",              # isort
+    "N",              # pep8-naming
+]
+ignore = [
+    "E501",           # line too long — handled by formatter
+]
 
 [tool.hatch.version]
 source = "vcs"
