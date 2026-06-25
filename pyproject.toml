@@ -19,8 +19,16 @@ extend = [
     "magicgui",
     "jupyterlab",
 ]
+express = [
+    "scikit-image",
+    "magicgui",
+    "scipy",
+    "jupyterlab",
+    "napari-animation",
+]
 dev = [
     {include-group = "extend"},
+    {include-group = "express"},
     "mystmd",
     "jupyter-book>=2",
     "jupyterlab-myst",
@@ -41,6 +49,9 @@ napari = "napari"
 [tool.pixi.feature.extend.tasks]
 jupyter-lab = { cmd = "jupyter lab docs/extend" }
 
+[tool.pixi.feature.express.tasks]
+jupyter-lab = { cmd = "jupyter lab docs/express" }
+
 [tool.pixi.feature.dev.tasks]
 _copy-css = "python docs/_scripts/copy_theme_css.py"
 _seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
@@ -51,6 +62,7 @@ docs-live = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["
 [tool.pixi.environments]
 default = { solve-group = "default" }
 extend = { features = ["extend"], solve-group = "default" }
+express = { features = ["express"], solve-group = "default" }
 dev = { features = ["dev"], solve-group = "default" }
 
 [build-system]
