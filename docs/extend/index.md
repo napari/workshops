@@ -17,4 +17,3 @@ analysis tools.
 - Comfortable writing Python functions
 - Basic familiarity with NumPy and scientific Python libraries
 - Basic usage of jupyter notebooks and the command line
-
