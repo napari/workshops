@@ -27,7 +27,8 @@ Features are then composed into named **environments** under `[tool.pixi.environ
 ```text
 [dependency-groups]  ──►  pixi features  ──►  [tool.pixi.environments]
    extend                                      default  (catch-all solve group)
-   dev                                         extend   (extend feature)
+   express                                     extend   (extend feature)
+   dev                                         express  (express feature)
                                                 dev      (dev feature → includes extend)
 ```
 
@@ -36,6 +37,8 @@ Features are then composed into named **environments** under `[tool.pixi.environ
   environment.
 - **`extend`** — the "Extending napari" workshop environment. Run with
   `pixi run -e extend <task>`.
+- **`express`** — the "napari Express" workshop environment. Run with
+  `pixi run -e express <task>`.
 - **`dev`** — full development environment (includes everything in `extend`
   plus build tools like `jupyter-book`, `mystmd`, etc.).
 
@@ -56,6 +59,8 @@ the task list to a specific environment.
 | `pixi run _docs-build` | dev | Full site build with notebook execution |
 | `pixi run -e extend napari` | extend | Launch napari to verify the extend environment |
 | `pixi run -e extend jupyter-lab` | extend | Launch JupyterLab inside the `docs/extend/` directory |
+| `pixi run -e express napari` | express | Launch napari to verify the express environment |
+| `pixi run -e express jupyter-lab` | express | Launch JupyterLab inside the `docs/express/` directory |
 
 For a complete list of available tasks, see `[tool.pixi.tasks]` and
 `[tool.pixi.feature.*.tasks]` in `pyproject.toml`, or refer to the
@@ -141,4 +146,4 @@ uv users need to run `uv run python docs/_scripts/copy_theme_css.py` once before
 
 ### Window management, sizing, and CI reproducibility
 
-The `start` and `build` tasks also execute `docs/_scripts/seed_napari_geometry.py` to write a known window geometry to QSettings before launching notebooks. This ensures that all napari windows start with the same size, which is critical for reproducibility in CI. If you want to test different window sizes, modify the constants in that script.
+The `docs-live` and `_docs-build` tasks also execute `docs/_scripts/seed_napari_geometry.py` to write a known window geometry to QSettings before launching notebooks. This ensures that all napari windows start with the same size, which is critical for reproducibility in CI. If you want to test different window sizes, modify the constants in that script.
