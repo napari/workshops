@@ -28,7 +28,10 @@ pixi run prek install
 
 Upon committing, your code will be checked for common issues, Python files
 will be linted and formatted via `ruff`, and the `pixi.lock` file will be
-validated against `pyproject.toml` to ensure it's up to date.
+validated against `pyproject.toml` to ensure it's up to date. If the pixi
+lock check fails, run `pixi update` (installs dependencies) or
+`pixi lock` (does not install dependencies) to synchronize the lock file, then
+stage and commit the updated `pixi.lock`.
 
 You can run all hooks against the entire codebase at any time:
 
