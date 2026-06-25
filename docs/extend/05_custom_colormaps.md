@@ -26,7 +26,7 @@ We will start by loading an image of DAPI stained nuclei. We can use `scikit-ima
 
 from skimage.io import imread
 
-nuclei_url = 'https://raw.githubusercontent.com/alisterburt/napari-workshops/main/napari-workshops/notebooks/data/nuclei.tif'
+nuclei_url = 'https://raw.githubusercontent.com/napari/workshops/main/docs/extend/data/nuclei.tif'
 nuclei = imread(nuclei_url)
 ```
 
@@ -108,7 +108,7 @@ We can also use a custom colormap when creating a new layer. We define the color
 
 ```{code-cell} ipython3
 # load the image data
-membranes_url = 'https://raw.githubusercontent.com/alisterburt/napari-workshops/main/napari-workshops/notebooks/data/cell_membranes.tif'
+membranes_url = 'https://raw.githubusercontent.com/napari/workshops/main/docs/extend/data/cell_membranes.tif'
 membranes = imread(membranes_url)
 ```
 

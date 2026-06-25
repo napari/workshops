@@ -184,6 +184,7 @@ import napari
 from napari.utils import nbscreenshot
 from pathlib import Path
 
+# CWD is project root (docs/) in MyST, notebook dir in JupyterLab
 script_dir = next(p for p in [Path('scripts'), Path('intro-gui/scripts')] if p.exists())
 
 viewer = napari.Viewer()
