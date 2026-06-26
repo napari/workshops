@@ -35,6 +35,9 @@ project:
       children:
         - file: express/index.md
         - file: express/setup.md
+        - file: express/01_python_to_widget.md
+        - file: express/02_segmentation_pipeline.md
+        - file: express/03_interactivity_and_3d.md
     - file: events.md
     - title: Instructors
       children:
