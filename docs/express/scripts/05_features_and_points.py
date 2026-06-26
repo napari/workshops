@@ -7,18 +7,12 @@ from skimage import data, filters, measure, morphology
 
 def threshold_and_label(
     layer: napari.layers.Image,
-    sigma: Annotated[
-        float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 2, 'step': 0.1}
-    ] = 0.5,
+    sigma: Annotated[float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 2, 'step': 0.1}] = 0.5,
     threshold: Annotated[
         float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 1, 'step': 0.05}
     ] = 0.3,
-    min_hole_size: Annotated[
-        int, {'widget_type': 'Slider', 'min': 0, 'max': 1000, 'step': 50}
-    ] = 0,
-    min_obj_size: Annotated[
-        int, {'widget_type': 'Slider', 'min': 0, 'max': 1000, 'step': 50}
-    ] = 0,
+    min_hole_size: Annotated[int, {'widget_type': 'Slider', 'min': 0, 'max': 1000, 'step': 50}] = 0,
+    min_obj_size: Annotated[int, {'widget_type': 'Slider', 'min': 0, 'max': 1000, 'step': 50}] = 0,
 ) -> list[napari.types.LayerDataTuple]:
     """Apply a gaussian filter, threshold, and compute labels on a napari Image.
 
@@ -31,8 +25,8 @@ def threshold_and_label(
     blur = filters.gaussian(norm, sigma=sigma)
     blobs = blur >= threshold
 
-    filled = morphology.remove_small_holes(blobs, min_hole_size)
-    cleaned = morphology.remove_small_objects(filled, min_obj_size)
+    filled = morphology.remove_small_holes(blobs, max_size=min_hole_size)
+    cleaned = morphology.remove_small_objects(filled, max_size=min_obj_size)
     labels = measure.label(cleaned)
 
     props = measure.regionprops_table(labels, properties=['label', 'area', 'centroid'])
@@ -53,8 +47,6 @@ if __name__ == '__main__':
     image = data.cells3d()[30, 1]  # 2d
     image_layer = viewer.add_image(image)
 
-    viewer.window.add_function_widget(
-        threshold_and_label, magic_kwargs={'auto_call': True}
-    )
+    viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call': True})
 
     napari.run()

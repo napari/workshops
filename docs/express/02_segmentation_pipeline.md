@@ -27,13 +27,19 @@ quantitative features (area, centroid), display them on a Points layer, and
 finally refine the result with a watershed step seeded by manual point
 annotations.
 
-## Step 1: Thresholding + morphology + labels
+## 1. Thresholding + morphology + labels
 
 Let's build on the previous widget. We add two new parameters —
 `min_hole_size` and `min_obj_size` — and return intermediate layers so you can
 see each processing step.
 
+{button}`04_labels.py <./scripts/04_labels.py>`
+
 ```{code-cell} python
+:tags: [remove-output]
+:lineno-start: 1
+:emphasize-lines: 1,11-12,21-23,28-30
+
 from skimage import data, filters, morphology, measure
 import napari
 import numpy as np
@@ -54,8 +60,8 @@ def threshold_and_label(
     blur = filters.gaussian(norm, sigma=sigma)
     blobs = blur >= threshold
 
-    filled = morphology.remove_small_holes(blobs, min_hole_size)
-    cleaned = morphology.remove_small_objects(filled, min_obj_size)
+    filled = morphology.remove_small_holes(blobs, max_size=min_hole_size)
+    cleaned = morphology.remove_small_objects(filled, max_size=min_obj_size)
     labels = measure.label(cleaned)
 
     return [
@@ -74,28 +80,34 @@ image_layer = viewer.add_image(image)
 viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call': True})
 ```
 
+Play with `min_hole_size` and `min_obj_size` to clean up the binary mask
+before labeling. You can toggle visibility (eye icon in the layerlist) of the
+intermediate layers to see what each step does.
+
 ```{code-cell} python
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
+viewer.window.dock_widgets['threshold and label']()
 nbscreenshot(viewer)
 ```
-
-Play with `min_hole_size` and `min_obj_size` to clean up the binary mask
-before labeling. Toggle visibility of the intermediate layers to see what each
-step does.
 
 ```{code-cell} python
 :tags: [remove-cell]
 viewer.close()
 ```
 
-## Step 2: Quantitative features + Points layer
+## 2. Quantitative features + Points layer
 
 Let's compute region properties (area, centroid) for each detected object and
 display them. We use `skimage.measure.regionprops_table` and attach the
-results as layer `features`, then add a Points layer at the centroids.
+results as layer `features`, then add a `Points` layer with the centroids.
 
 ```{code-cell} python
+:tags: [remove-output]
+:lineno-start: 1
+:emphasize-lines: 27-29,36-37
+
 from skimage import data, filters, morphology, measure
 import napari
 import numpy as np
@@ -118,8 +130,8 @@ def threshold_and_label(
     blur = filters.gaussian(norm, sigma=sigma)
     blobs = blur >= threshold
 
-    filled = morphology.remove_small_holes(blobs, min_hole_size)
-    cleaned = morphology.remove_small_objects(filled, min_obj_size)
+    filled = morphology.remove_small_holes(blobs, max_size=min_hole_size)
+    cleaned = morphology.remove_small_objects(filled, max_size=min_obj_size)
     labels = measure.label(cleaned)
 
     props = measure.regionprops_table(labels, properties=['label', 'area', 'centroid'])
@@ -144,14 +156,28 @@ viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call'
 ```
 
 ```{code-cell} python
+:tags: [remove-input]
+
+viewer.window.dock_widgets['threshold and label']()
 nbscreenshot(viewer)
 ```
 
-```{tip}
-With `features` attached to the labels layer, you can use napari's built-in
-[shape statistics](https://napari.org/stable/howtos/layers/labels.html#shape-statistics)
-to explore per-object measurements. The Points layer shows centroids and
-inherits the same feature table for interactive exploration.
+The number of layers is starting to be high and knowing exactly which parameter
+to adjust can be tricky without an overview of all the steps. Let's enable the
+grid view to spread out each individual layer into its own viewbox. We can also
+enable the layer name overlay on each layer, to make it easier to know what's what.
+
+```{code-cell} python
+:tags: [remove-output]
+viewer.grid.enabled = True
+for layer in viewer.layers:
+    layer.name_overlay.visible = True
+viewer.reset_view()
+```
+
+```{code-cell} python
+:tags: [remove-input]
+nbscreenshot(viewer)
 ```
 
 ```{code-cell} python
@@ -159,13 +185,20 @@ inherits the same feature table for interactive exploration.
 viewer.close()
 ```
 
-## Step 3: Watershed refinement
+## 3. Watershed refinement
 
 Sometimes the label boundaries are not perfect — especially when objects touch.
 We can refine them using a watershed segmentation, seeded by points we place
 manually.
 
+For this, let's implement a separate function, since this requires manual intervention
+and is also too computationally expensive to run continuously.
+
 ```{code-cell} python
+:tags: [remove-output]
+:lineno-start: 1
+:emphasize-lines: 1,5,40-60,68
+
 from skimage import data, filters, morphology, measure, segmentation
 import napari
 import numpy as np
@@ -187,8 +220,8 @@ def threshold_and_label(
     blur = filters.gaussian(norm, sigma=sigma)
     blobs = blur >= threshold
 
-    filled = morphology.remove_small_holes(blobs, min_hole_size)
-    cleaned = morphology.remove_small_objects(filled, min_obj_size)
+    filled = morphology.remove_small_holes(blobs, max_size=min_hole_size)
+    cleaned = morphology.remove_small_objects(filled, max_size=min_obj_size)
     labels = measure.label(cleaned)
 
     props = measure.regionprops_table(labels, properties=['label', 'area', 'centroid'])
@@ -236,17 +269,24 @@ viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call'
 viewer.window.add_function_widget(watershed)
 ```
 
-```{code-cell} python
-nbscreenshot(viewer)
-```
-
 ```{admonition} How to use the watershed widget
 1. Run the `threshold_and_label` widget to get a `result` labels layer.
-2. Add a **Points layer** (`New > Points`) and place point markers inside
-   the objects you want to separate — one marker per object.
+2. Create a new **Points layer** (`New > Points` or use the button above the layerlist),
+   select the add mode (+ button at the top left) and place point markers inside the
+   objects you want to separate — one marker per object.
 3. Select the `watershed` widget in the UI, choose your Points layer as
-   `markers` and the labels layer as `labels`, then click **Run**.
+   `markers` and the `result` labels layer as `labels`, then click **Run**.
 4. A new `watershed` labels layer will appear with separated objects.
+```
+
+```{code-cell} python
+:tags: [remove-input]
+
+l = viewer.add_points()
+l.mode = 'add'
+viewer.layers.selected = {l}
+viewer.window.dock_widgets['threshold and label']()
+nbscreenshot(viewer)
 ```
 
 ```{code-cell} python
@@ -256,11 +296,11 @@ viewer.close()
 
 ## Recap
 
-- **Step 1:** Added morphological cleaning (`remove_small_holes`,
+- **1.** Added morphological cleaning (`remove_small_holes`,
   `remove_small_objects`) and connected-component labeling.
-- **Step 2:** Computed region properties (area, centroid) and displayed them
+- **2.** Computed region properties (area, centroid) and displayed them
   as layer features and a Points layer.
-- **Step 3:** Added a watershed refinement widget that uses manual point
+- **3.** Added a watershed refinement widget that uses manual point
   markers to split touching objects.
 
 Next up: mouse callbacks for interactive label inspection, and taking our

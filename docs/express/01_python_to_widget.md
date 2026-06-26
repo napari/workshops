@@ -72,7 +72,7 @@ This works, but every time we want to try different parameters we have to
 re-run the function. Wouldn't it be nice to tweak `sigma` and `threshold`
 interactively inside napari?
 
-## 2. Napari + magicgui — a widget from a function
+## 2. napari + magicgui — a widget from a function
 
 napari has built-in support for
 [magicgui](https://pyapp-kit.github.io/magicgui/), a library that
@@ -120,7 +120,6 @@ Notice the changes:
   is present in the viewer.
 
 Now let's launch napari and add this function as a dock widget.
-
 ```{code-cell} python
 :tags: [remove-output]
 viewer = napari.Viewer()
@@ -130,16 +129,17 @@ image_layer = viewer.add_image(image)
 viewer.window.add_function_widget(threshold)
 ```
 
+You should see a widget panel with dropdowns for `layer`, and spin boxes
+for `sigma` and `threshold`. Click **Run** to apply the function. Try different
+values!
+
 ```{code-cell} python
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
+viewer.window.dock_widgets['threshold']()
 nbscreenshot(viewer)
 ```
-
-Now you should see a widget panel with dropdowns for `layer`, and spin boxes
-for `sigma` and `threshold`. Click **Run** to apply the function. Try different
-values!
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -152,7 +152,7 @@ a bit clunky, and we have to press `Run` every time we change the parameters...
 ## 3. Annotated sliders with auto_call
 
 Let's replace the spin boxes with sliders, and autorun the function every time the
-parameters are changed! We use `typing.Annotated` to attach widget metadata to each
+parameters are changed. We use `typing.Annotated` to attach widget metadata to each
 parameter, and use the `magic_kwargs={'auto_call': True}` argument when adding the
 function widget to napari.
 
@@ -201,6 +201,8 @@ viewer.window.add_function_widget(threshold, magic_kwargs={'auto_call': True})
 
 ```{code-cell} python
 :tags: [remove-input]
+
+viewer.window.dock_widgets['threshold']()
 nbscreenshot(viewer)
 ```
 
