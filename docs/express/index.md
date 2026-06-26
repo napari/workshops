@@ -6,14 +6,14 @@ title: Overview
 **Level:** Intermediate | **Duration:** 90 minutes | **Python required**
 
 This workshop is a fast-paced tour through what napari can do for interactive
-image analysis. Starting from a pure-Python segmentation function, you will
+image and data analysis. Starting from pure-Python functions, you will
 progressively integrate it with napari using `magicgui` widgets, customize
 parameters with annotated sliders, compute quantitative features, add
 interactive mouse callbacks, and see how everything works in 3D — all without
 leaving napari's GUI.
 
-By the end, you will have built a complete interactive cell segmentation
-workflow and know how to turn it into a reusable plugin.
+By the end, you will have built complete interactive segmentation and
+classification workflows, and know how to turn them into a reusable plugins.
 
 ```{tip}
 All standalone scripts from this workshop are available in the
