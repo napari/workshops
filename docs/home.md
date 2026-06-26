@@ -54,6 +54,14 @@ Write Python scripts that control napari programmatically, create interactive wi
 with magicgui, connect functions to layer events, implement mouse callbacks, and define
 custom colormaps. Requires basic Python familiarity.
 
+## [napari Express](#express-overview)
+
+**Level:** Intermediate | **Duration:** 90 minutes
+
+A quickstart tour through napari's capabilities for interactive image analysis.
+Build a complete cell segmentation workflow using magicgui widgets, annotated
+sliders, quantitative features, and mouse callbacks — all from Python.
+
 ## Resources
 
 - **napari documentation:** [napari.org](https://napari.org)
