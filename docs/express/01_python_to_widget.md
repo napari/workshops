@@ -68,6 +68,30 @@ print(f"Input shape: {image.shape}, Output shape: {blobs.shape}")
 print(f"Number of foreground pixels: {blobs.sum()}")
 ```
 
+We can now run it on an image loaded into napari.
+
+```{code-cell} python
+:tags: [remove-output]
+viewer = napari.Viewer()
+image = data.cells3d()[30, 1]  # 2d
+image_layer = viewer.add_image(image)
+
+blobs = threshold(image_layer.data, sigma=1, threshold=0.5)
+blobs_layer = viewer.add_image(blobs)
+```
+
+```{code-cell} python
+:tags: [remove-input]
+from napari.utils import nbscreenshot
+
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
+
 This works, but every time we want to try different parameters we have to
 re-run the function. Wouldn't it be nice to tweak `sigma` and `threshold`
 interactively inside napari?
@@ -135,9 +159,11 @@ values!
 
 ```{code-cell} python
 :tags: [remove-input]
-from napari.utils import nbscreenshot
 
-viewer.window.dock_widgets['threshold']()
+t = viewer.window.dock_widgets['threshold']
+t.sigma.value = 1
+t.threshold.value = 0.15
+t()
 nbscreenshot(viewer)
 ```
 
@@ -191,7 +217,6 @@ def threshold(
         (blobs, {'name': 'blobs'}, 'image'),
     ]
 
-
 viewer = napari.Viewer()
 image = data.cells3d()[30, 1]  # 2d
 image_layer = viewer.add_image(image)
@@ -202,7 +227,10 @@ viewer.window.add_function_widget(threshold, magic_kwargs={'auto_call': True})
 ```{code-cell} python
 :tags: [remove-input]
 
-viewer.window.dock_widgets['threshold']()
+t = viewer.window.dock_widgets['threshold']
+t.sigma.value = 1
+t.threshold.value = 0.15
+t()
 nbscreenshot(viewer)
 ```
 

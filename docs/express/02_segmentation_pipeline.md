@@ -88,7 +88,12 @@ intermediate layers to see what each step does.
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window.dock_widgets['threshold and label']()
+t = viewer.window.dock_widgets['threshold and label']
+t.sigma.value = 1
+t.threshold.value = 0.15
+t.min_hole_size.value = 471
+t.min_obj_size.value = 79
+t()
 nbscreenshot(viewer)
 ```
 
@@ -102,6 +107,8 @@ viewer.close()
 Let's compute region properties (area, centroid) for each detected object and
 display them. We use `skimage.measure.regionprops_table` and attach the
 results as layer `features`, then add a `Points` layer with the centroids.
+
+{button}`05_features_and_points.py <./scripts/05_features_and_points.py>`
 
 ```{code-cell} python
 :tags: [remove-output]
@@ -158,7 +165,12 @@ viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call'
 ```{code-cell} python
 :tags: [remove-input]
 
-viewer.window.dock_widgets['threshold and label']()
+t = viewer.window.dock_widgets['threshold and label']
+t.sigma.value = 1
+t.threshold.value = 0.15
+t.min_hole_size.value = 471
+t.min_obj_size.value = 79
+t()
 nbscreenshot(viewer)
 ```
 
@@ -193,6 +205,8 @@ manually.
 
 For this, let's implement a separate function, since this requires manual intervention
 and is also too computationally expensive to run continuously.
+
+{button}`06_watershed.py <./scripts/06_watershed.py>`
 
 ```{code-cell} python
 :tags: [remove-output]
@@ -270,11 +284,11 @@ viewer.window.add_function_widget(watershed)
 ```
 
 ```{admonition} How to use the watershed widget
-1. Run the `threshold_and_label` widget to get a `result` labels layer.
+1. Run the `threshold and label` widget to get a `result` labels layer.
 2. Create a new **Points layer** (`New > Points` or use the button above the layerlist),
    select the add mode (+ button at the top left) and place point markers inside the
    objects you want to separate — one marker per object.
-3. Select the `watershed` widget in the UI, choose your Points layer as
+3. In the `watershed` widget in the UI, choose your Points layer as
    `markers` and the `result` labels layer as `labels`, then click **Run**.
 4. A new `watershed` labels layer will appear with separated objects.
 ```
@@ -282,10 +296,42 @@ viewer.window.add_function_widget(watershed)
 ```{code-cell} python
 :tags: [remove-input]
 
-l = viewer.add_points()
-l.mode = 'add'
-viewer.layers.selected = {l}
-viewer.window.dock_widgets['threshold and label']()
+t = viewer.window.dock_widgets['threshold and label']
+t.sigma.value = 1
+t.threshold.value = 0.15
+t.min_hole_size.value = 471
+t.min_obj_size.value = 79
+t()
+
+# done this manually so we can show what it looks like in the screenshot
+manual_seeds = np.array(
+    [
+        [ 13.96171682,  26.20149842],
+        [ 30.29515511,  80.64629274],
+        [ 10.33206386, 155.05417831],
+        [ 41.18411398, 178.64692252],
+        [ 39.3692875 , 222.20275798],
+        [ 70.22133761, 111.49834286],
+        [ 75.66581705,  58.86837501],
+        [ 93.81408182, 160.49865775],
+        [ 95.6289083 , 249.42515514],
+        [144.62922319, 242.16584923],
+        [144.62922319, 193.16553434],
+        [150.07370262, 115.12799581],
+        [173.66644682,  49.79424263],
+        [220.85193524,  84.2759457 ],
+        [242.62985296, 142.35039297],
+        [246.25950592, 211.31379911],
+        [219.03710876, 245.79550218],
+        [200.57463293, 171.9494017 ],
+        [137.28352217,  33.42546117]
+    ]
+)
+
+l = viewer.add_points(manual_seeds)
+w = viewer.window.dock_widgets['watershed']
+w.markers.value = l
+w()
 nbscreenshot(viewer)
 ```
 

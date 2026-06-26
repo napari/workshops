@@ -23,6 +23,6 @@ if __name__ == '__main__':
     image_layer = viewer.add_image(image)
 
     blobs = threshold(image_layer.data, sigma=1, threshold=0.5)
-    blobs_layer = viewer.add_labels(blobs)
+    blobs_layer = viewer.add_image(blobs)
 
     napari.run()

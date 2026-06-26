@@ -122,7 +122,7 @@ def classify_features(
 
 if __name__ == '__main__':
     viewer = napari.Viewer()
-    image = data.cells3d()[:, 1]  # 3d
+    image = data.cells3d()[30, 1]  # 2d
     image_layer = viewer.add_image(image)
 
     viewer.window.add_function_widget(threshold_and_label, magic_kwargs={'auto_call': True})
