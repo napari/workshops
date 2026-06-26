@@ -33,16 +33,18 @@ viewer.close()
 
 # Diagnostic: verify window_size was saved to napari's YAML settings file.
 # This prints to CI build logs for debugging screenshot sizing issues.
-settings_path = Path(
-    os.getenv('NAPARI_CONFIG', _DEFAULT_CONFIG_PATH)
-).expanduser()
+settings_path = Path(os.getenv('NAPARI_CONFIG', _DEFAULT_CONFIG_PATH)).expanduser()
 if settings_path.exists():
     raw = settings_path.read_text()
     # YAML writes lists as multi-line by default
     if f'window_size:\n  - {WIDTH}\n  - {HEIGHT}' in raw:
-        print(f"seed_napari_geometry: YAML settings OK — {WIDTH}x{HEIGHT} at {settings_path}")
+        print(
+            f'seed_napari_geometry: YAML settings OK — {WIDTH}x{HEIGHT} at {settings_path}'
+        )
     else:
-        print(f"seed_napari_geometry: WARNING — unexpected window_size in {settings_path}")
-        print(f"  content:\n{raw}")
+        print(
+            f'seed_napari_geometry: WARNING — unexpected window_size in {settings_path}'
+        )
+        print(f'  content:\n{raw}')
 else:
-    print(f"seed_napari_geometry: WARNING — YAML not found at {settings_path}")
+    print(f'seed_napari_geometry: WARNING — YAML not found at {settings_path}')
