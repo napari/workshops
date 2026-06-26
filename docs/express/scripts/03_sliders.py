@@ -7,9 +7,7 @@ from skimage import data, filters
 
 def threshold(
     layer: napari.layers.Image,
-    sigma: Annotated[
-        float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 2, 'step': 0.1}
-    ] = 0.5,
+    sigma: Annotated[float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 2, 'step': 0.1}] = 0.5,
     threshold: Annotated[
         float, {'widget_type': 'FloatSlider', 'min': 0, 'max': 1, 'step': 0.05}
     ] = 0.3,
