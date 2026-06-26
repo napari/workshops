@@ -36,6 +36,8 @@ download button above.
 We begin with a pure Python function that takes a numpy array, applies a Gaussian
 blur and a threshold, and returns a binary mask.
 
+{button}`01_pure_python.py <./scripts/01_pure_python.py>`
+
 ```{code-cell} python
 :lineno-start: 1
 
@@ -79,6 +81,8 @@ automatically generates GUIs from Python function type annotations.
 Let's rewrite our function so it takes a napari `Image` layer instead of a raw
 array, and returns `LayerDataTuple` — a format napari understands for creating
 new layers.
+
+{button}`02_magicgui.py <./scripts/02_magicgui.py>`
 
 ```{code-cell} python:
 :lineno-start: 1
@@ -153,6 +157,8 @@ parameter, and use the `magic_kwargs={'auto_call': True}` argument when adding t
 function widget to napari.
 
 Now move the sliders and watch the magic happen!
+
+{button}`03_sliders.py <./scripts/03_sliders.py>`
 
 ```{code-cell} python
 :tags: [remove-output]
