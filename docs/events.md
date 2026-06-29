@@ -1,9 +1,7 @@
 ---
 label: events
-title: Events
+title: Workshop schedule
 ---
-
-# Workshop schedule
 
 Live workshops are virtual, instructor-led, and run in small cohorts for a more
 personalized experience. Self-guided versions of all materials are always freely
