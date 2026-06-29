@@ -38,15 +38,15 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-## [Introduction to napari](#intro-overview)
+## [Introduction to napari 🖱️](#intro-overview)
 
 **Level:** Beginner | **Duration:** ~4 hours
 
 Get started with napari's bundled application. Load and explore multi-dimensional images,
 annotate data, run interactive analysis, and discover community plugins. No Python
-experience required.
+experience required, everything is done through the graphical interface!
 
-## [Extending napari](#extend-overview)
+## [Extending napari with code ⌨️](#extend-overview)
 
 **Level:** Intermediate (napari Beginner) | **Duration:** ~4 hours
 
@@ -54,7 +54,7 @@ Write Python scripts that control napari programmatically, create interactive wi
 with magicgui, connect functions to layer events, implement mouse callbacks, and define
 custom colormaps. Requires basic Python familiarity.
 
-## [napari Express](#express-overview)
+## [napari express 🚀](#express-overview)
 
 **Level:** Intermediate | **Duration:** 90 minutes
 
