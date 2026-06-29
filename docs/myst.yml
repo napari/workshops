@@ -19,7 +19,7 @@ project:
   toc:
     - file: home.md
       title: Home
-    - title: Intro to napari (GUI)
+    - title: Intro to napari 🖱️
       children:
         - file: intro-gui/index.md
         - file: intro-gui/setup.md
@@ -27,11 +27,11 @@ project:
         - file: intro-gui/block2_gui.md
         - file: intro-gui/block3_plugins_and_annotation.md
         - file: intro-gui/block4_analysis_wrap_up.md
-    - title: Extending napari with Code
+    - title: Extending napari with Code ⌨️
       children:
         - file: extend/index.md
         - file: extend/setup.md
-    - title: napari Express
+    - title: napari Express 🚀
       children:
         - file: express/index.md
         - file: express/setup.md

@@ -284,6 +284,7 @@ def watershed(
     distance_field = ndi.distance_transform_edt(base_labels)
 
     # generate seeds for the watershed algorithm from point markers
+
     markers_array = np.zeros_like(base_labels, dtype=bool)
     markers_array[tuple(markers.data.astype(int).T)] = True
     markers = ndi.label(markers_array)[0]
