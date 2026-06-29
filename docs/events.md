@@ -29,7 +29,9 @@ Reach out on [Zulip](https://napari.zulipchat.com) or the
 
 [EuroSciPy schedule](https://euroscipy.org/schedule/#session/TRFRMH/)
 
-## Previous
+---
+
+## Past
 
 ### Introduction to napari — pilot
 
