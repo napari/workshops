@@ -36,7 +36,7 @@ border and face colors on the `Points` layer based on properties and a colormap,
 as their size based on the size of the underlying object. We also update the symbol
 when a point satisfies our thresholds!
 
-{button}`07_classify_features <./scripts/07_classify_features.py>`
+{button}`07_classify_features.py <./scripts/07_classify_features.py>`
 
 ```{code-cell} python
 :tags: [remove-output]
