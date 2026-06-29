@@ -14,10 +14,11 @@ interactive classification — all without leaving napari's GUI.
 By the end, you will have built complete interactive segmentation and
 classification workflows, and know how to turn them into a reusable plugins.
 
-```{tip}
+```{tip} Drag'n'drop scripts for maximum speed
 All standalone scripts from this workshop are available in the
 [scripts directory](https://github.com/napari/workshops/tree/main/docs/express/scripts), from the download button at the top right on each page, and in buttons above the script code.
-To run one, you can just drag and drop the button/link onto the napari canvas!
+
+To quickly run one, you can also simply drag and drop the button/link onto the napari canvas!
 ```
 
 ## Workshop modules

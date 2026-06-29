@@ -7,18 +7,22 @@ kernelspec:
   name: python3
 ---
 
-This guide walks you through setting up your environment for the "napari Express"
-workshop. This workshop uses a Python environment with `uv` or `pixi`.
+This page walks you through setting up your environment for the "napari Express"
+workshop. We recommend using a Python environment managed with `uv` or `pixi`.
 
 # Prerequisites
 
 - [**Git**](https://git-scm.com/) for cloning the repository (can also use a git GUI
   like [GitHub Desktop](https://desktop.github.com/download/))
-- [**uv**](https://docs.astral.sh/uv/#installation) or [**pixi**](https://pixi.sh/latest/#installation)
+- either [**uv**](https://docs.astral.sh/uv/#installation) or [**pixi**](https://pixi.sh/latest/#installation)
   for environment management and running scripts. 
 
 # Setup
 
+Choose your preferred method (`uv` or `pixi`):
+
+::::{tab-set}
+:::{tab-item} uv
 [Install uv](https://docs.astral.sh/uv/#installation) with a single command, then:
 
 ```bash
@@ -27,22 +31,19 @@ cd workshops
 uv sync --group express
 uv run napari
 ```
-
-A napari GUI window should open. If it does, your environment is ready for the workshop!
-
-Or if you prefer pixi, [install pixi](https://pixi.sh/latest/#installation) with a single command, then:
+:::
+:::{tab-item} pixi
+[Install pixi](https://pixi.sh/latest/#installation) with a single command, then:
 
 ```bash
 git clone https://github.com/napari/workshops.git
 cd workshops
 pixi run -e express napari
 ```
+:::
+::::
 
-```{admonition} Problems?
-:class: tip
-Reach out to the workshop instructors or ask for help in the
-[napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
-```
+A napari window similar to the one below should open. If it does, your environment is ready for the workshop!
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -59,4 +60,11 @@ nbscreenshot(viewer)
 ```{code-cell} python
 :tags: [remove-cell]
 viewer.close()
+```
+
+
+```{seealso} Problems?
+:class: tip
+Reach out to the workshop instructors or ask for help in the
+[napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
 ```
