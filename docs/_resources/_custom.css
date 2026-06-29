@@ -33,9 +33,13 @@ html.dark .sticky.shadow {
 /* ── Links inside article body ───────────────────────────────────────────────
  * Tailwind leaves content <a> elements with empty class attributes, so a
  * plain element selector is fine here.  Skip helper/icon links that carry
- * explicit Tailwind colour utilities.
+ * explicit Tailwind colour utilities.  This opts to use napari deep blue for
+ * links instead of deep-purple for dark mode, because of implicit norms with
+ * blue and purple hyperlinks. Also skip .button elements — the
+ * book-theme's button.css gives them white-on-primary styling, and our
+ * napari blue should not override that.
  */
-article.content a:not([class*="text-inherit"]):not([class*="no-underline"]):not([class*="text-gray"]):not([class*="text-stone"]) {
+article.content a:not([class*="text-inherit"]):not([class*="no-underline"]):not([class*="text-gray"]):not([class*="text-stone"]):not([class*="button"]) {
   color: var(--napari-deep-blue, #009bf2);
 }
 
@@ -78,4 +82,38 @@ samp {
     'Liberation Mono',
     'Courier New',
     monospace;
+}
+
+/* ── {button} role: napari-themed buttons ────────────────────────────────────
+ * Override the book-theme's default .button styling (white on bg-myst-primary)
+ * to use napari brand colors that match the site's navbar.
+ *
+ * Light mode: deep blue (#009bf2) fill, white text — fades to outline on hover.
+ * Dark mode:  purple (#4d485c) fill, white text — fades to napari-blue outline.
+ */
+article.content a.button {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-weight: 700;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  background-color: var(--napari-deep-blue, #009bf2);
+  color: white !important;
+  border: 2px solid var(--napari-deep-blue, #009bf2);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark article.content a.button {
+  background-color: var(--napari-purple, #4d485c);
+  border-color: var(--napari-purple, #4d485c);
+}
+
+article.content a.button:hover {
+  background-color: transparent;
+  color: var(--napari-deep-blue, #009bf2) !important;
+}
+
+html.dark article.content a.button:hover {
+  border-color: var(--napari-primary-blue, #80d1ff);
+  color: var(--napari-primary-blue, #80d1ff) !important;
 }
