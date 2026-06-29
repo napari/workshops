@@ -54,7 +54,7 @@ Write Python scripts that control napari programmatically, create interactive wi
 with magicgui, connect functions to layer events, implement mouse callbacks, and define
 custom colormaps. Requires basic Python familiarity.
 
-## [napari Express 🚀](#express-overview)
+## [napari express 🚀](#express-overview)
 
 **Level:** Intermediate | **Duration:** 90 minutes
 

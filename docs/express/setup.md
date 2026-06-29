@@ -7,7 +7,7 @@ kernelspec:
   name: python3
 ---
 
-This page walks you through setting up your environment for the "napari Express"
+This page walks you through setting up your environment for the **napari express 🚀**
 workshop. We recommend using a Python environment managed with `uv` or `pixi`.
 
 # Prerequisites
