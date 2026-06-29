@@ -23,15 +23,15 @@ In this final module we add a small interactive classification step to our
 pipeline, this time working on the Points layer. Finally, we test out our full
 workflow on 3D data!
 
-## 1. Classify features based on their sphericity
+## 1. Classify objects based on their features
 
 Let's finish up this workflow by adding a classification step. We calculate
-some more feature properties , and we add a new magic function that updates
+some more object properties, and we add a new magic function that updates
 the Points visualisation based on the `features` and our thresholds, and which
 saves which objects should be marked as `good`.
 
 You should recognize the magicgui pattern (with a new trick, `RangedSliders`!) and the
-code for extracting feature properties via `regionprops_table`. What's new is how we set
+code for extracting object properties via `regionprops_table`. What's new is how we set
 border and face colors on the `Points` layer based on properties and a colormap, as well
 as their size based on the size of the underlying object. We also update the symbol
 when a point satisfies our thresholds!
@@ -116,7 +116,7 @@ def classify_features(
     solidity: Annotated[tuple[float, float], {'widget_type': 'FloatRangeSlider', 'min': 0, 'max': 1, 'step': 0.05}] = (0, 1),
     intensity: Annotated[tuple[float, float], {'widget_type': 'FloatRangeSlider', 'min': 0, 'max': 1, 'step': 0.05}] = (0, 1),
 ) -> None:
-    """Classify features into good/bad based on solidity and mean intensity.
+    """Classify objects into good/bad based on their solidity and intensity features.
 
     Also updates the visualisation by altering colors and sizes based on values and thresholds.
     """

@@ -32,8 +32,8 @@ To run one, you can just drag and drop the button/link onto the napari canvas!
    refinement.
 
 3. [**Adding interactive classification and going 3D**](03_classification_and_3d) —
-   Add a mouse callback for Shift+Click label inspection and run the entire
-   pipeline on 3D data with zero code changes.
+   Make a new widget for interactively classifying objects based on their features,
+   and then run the entire pipeline on 3D data with zero code changes.
 
 ## Prerequisites
 
