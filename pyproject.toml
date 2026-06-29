@@ -72,7 +72,7 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.ruff]
-line-length = 88
+line-length = 100
 fix = true
 
 [tool.ruff.format]
