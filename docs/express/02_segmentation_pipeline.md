@@ -37,7 +37,7 @@ see each processing step.
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 1,11-12,21-23,28-30
 
 from skimage import data, filters, morphology, measure
@@ -112,7 +112,7 @@ results as layer `features`, then add a `Points` layer with the centroids.
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 27-29,36-37
 
 from skimage import data, filters, morphology, measure
@@ -210,7 +210,7 @@ and is also too computationally expensive to run continuously.
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 1,5,40-60,68
 
 from skimage import data, filters, morphology, measure, segmentation

@@ -16,13 +16,13 @@ classification workflows, and know how to turn them into a reusable plugins.
 
 ```{tip}
 All standalone scripts from this workshop are available in the
-[scripts directory](https://github.com/napari/workshops/tree/main/docs/express/scripts)
-or from the download button on each page.
+[scripts directory](https://github.com/napari/workshops/tree/main/docs/express/scripts), from the download button at the top right on each page, and in buttons above the script code.
+To run one, you can just drag and drop the button/link onto the napari canvas!
 ```
 
 ## Workshop modules
 
-1. [**From Python to interactive napari widget**](01_python_to_widget) —
+1. [**From pure Python to interactive napari widget**](01_python_to_widget) —
    Start with a pure Python threshold function, convert it to a `magicgui`
    widget, and add interactive sliders with real-time updates.
 
@@ -31,7 +31,7 @@ or from the download button on each page.
    features (area, centroid), Points layer visualization, and watershed
    refinement.
 
-3. [**Classification and 3D**](03_classification_and_3d) —
+3. [**Adding interactive classification and going 3D**](03_classification_and_3d) —
    Add a mouse callback for Shift+Click label inspection and run the entire
    pipeline on 3D data with zero code changes.
 

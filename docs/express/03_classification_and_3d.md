@@ -17,7 +17,7 @@ downloads:
     title: "Script 08 — Going 3D"
 ---
 
-# Classification and 3D
+# Adding interactive classification and going 3D
 
 In this final module we add a small interactive classification step to our
 pipeline, this time working on the Points layer. Finally, we test out our full
@@ -40,7 +40,7 @@ when a point satisfies our thresholds!
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 43,46,58-60,65,69-100,109
 
 from skimage import data, filters, morphology, measure, segmentation
@@ -226,11 +226,11 @@ The best part? **No code changes needed**, other than loading the data.
 napari's widgets automatically operate on whatever data the selected
 layer contains, whether it's 2D or 3D.
 
-{button}`08_going_3D <./scripts/08_going_3D.py>`
+{button}`08_going_3D.py <./scripts/08_going_3D.py>`
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 104
 
 from skimage import data, filters, morphology, measure, segmentation

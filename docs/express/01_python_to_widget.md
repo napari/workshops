@@ -19,7 +19,7 @@ downloads:
     title: "Script 03 — Annotated sliders"
 ---
 
-# From Python to interactive napari widget
+# From pure Python to interactive napari widget
 
 In this module, we start with a pure Python segmentation function and
 progressively integrate it with napari using `magicgui` widgets and
@@ -39,7 +39,7 @@ blur and a threshold, and returns a binary mask.
 {button}`01_pure_python.py <./scripts/01_pure_python.py>`
 
 ```{code-cell} python
-:lineno-start: 1
+:linenos:
 
 from skimage import data, filters
 import napari
@@ -109,7 +109,7 @@ new layers.
 {button}`02_magicgui.py <./scripts/02_magicgui.py>`
 
 ```{code-cell} python:
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 7,10,12-13,18-21
 
 from skimage import data, filters
@@ -188,7 +188,7 @@ Now move the sliders and watch the magic happen!
 
 ```{code-cell} python
 :tags: [remove-output]
-:lineno-start: 1
+:linenos:
 :emphasize-lines: 9,10,32
 
 from skimage import data, filters
