@@ -15,7 +15,7 @@ downloads:
     title: "Script 00 — Quick introduction to the napari GUI"
 ---
 
-# Lightning introduction to the napari GUI ⚡
+# Lightning introduction to the napari GUI
 
 Before we start working with python, image processing and creating a workflow,
 let's take a moment to familiarize with the napari graphical user interface (GUI).
