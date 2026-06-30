@@ -53,6 +53,7 @@ labels = viewer.add_points(
             [4, 10, 15],
             [5, 10, 50],
             [6, 50, 70],
+            [0, 0, 100],
         ]
     ),
     size=2,
@@ -67,10 +68,12 @@ labels = viewer.add_points(
             'layer controls',
             'menus',
             'Ctrl+Shift+p:\ncommand palette',
+            '',
         ],
         'anchor': 'lower_left',
-        'size': 20,
+        'size': 2,
         'color': 'white',
+        'scaling': True,
     },
     units='m',
 )

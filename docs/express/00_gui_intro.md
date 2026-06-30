@@ -43,10 +43,7 @@ see all the various parts 😉
 from pathlib import Path
 
 import napari
-from napari.utils import nbscreenshot
 import numpy as np
-
-print(__doc__)
 
 viewer = napari.Viewer()
 
@@ -60,6 +57,7 @@ labels = viewer.add_points(
             [4, 10, 15],
             [5, 10, 50],
             [6, 50, 70],
+            [0, 0, 100],
         ]
     ),
     size=2,
@@ -74,6 +72,7 @@ labels = viewer.add_points(
             'layer controls',
             'menus',
             'Ctrl+Shift+p:\ncommand palette',
+            '',
         ],
         'anchor': 'lower_left',
         'size': 20,
@@ -110,7 +109,14 @@ logo = viewer.open(
 viewer.dims.axis_labels = 'slides', 'y', 'x'
 viewer.dims.point = (0, 0, 0)
 viewer.reset_view()
+```
 
+```{code-cell} python
+:tags: [remove-cell]
+
+from napari.utils import nbscreenshot
+
+viewer.dims.tickness = 7
 nbscreenshot(viewer)
 ```
 
