@@ -34,6 +34,8 @@ to the next slides.
 Open some sample data (via menu or palette) and play around!
 """
 
+from pathlib import Path
+
 import napari
 import numpy as np
 
@@ -89,13 +91,10 @@ arrows = viewer.add_vectors(
     units='m',
 )
 
-napari_logo_url = (
-    'https://cdn.fosstodon.org/accounts/avatars/109/704/449/041/947/498/original/5e587b752e36cacb.png',
-)
 
 logo = viewer.open(
-    napari_logo_url,
-    scale=[0.035, 0.035],
+    Path('./docs/_resources/logo-dark.png'),
+    scale=[0.015, 0.015],
     translate=[7, 75],
     interpolation2d='spline36',
     units='m',
