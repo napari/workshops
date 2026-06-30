@@ -116,7 +116,7 @@ viewer.reset_view()
 
 from napari.utils import nbscreenshot
 
-viewer.dims.tickness = 7
+viewer.dims.thickness = 7
 nbscreenshot(viewer)
 ```
 

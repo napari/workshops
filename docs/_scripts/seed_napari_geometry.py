@@ -21,7 +21,7 @@ from napari.utils._base import _DEFAULT_CONFIG_PATH
 from qtpy.QtWidgets import QApplication
 
 WIDTH = 1200
-HEIGHT = 680
+HEIGHT = 700
 
 app = QApplication.instance() or QApplication(sys.argv)
 
