@@ -26,11 +26,6 @@ progressively integrate it with napari using `magicgui` widgets and
 customizable sliders. By the end, you will have an interactive thresholding
 widget inside napari that updates in real time.
 
-```{tip}
-All standalone scripts for this module are available for download using the
-download button above.
-```
-
 ## 1. A pure Python threshold function
 
 We begin with a pure Python function that takes a numpy array, applies a Gaussian

@@ -31,7 +31,7 @@ to the next slides.
 6. Command palette:
     - many actions (present in menus or not) can be accessed easily with this
 
-Open sample data (via menu or palette) and play around!
+Open some sample data (via menu or palette) and play around!
 """
 
 import napari
