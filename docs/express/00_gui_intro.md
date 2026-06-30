@@ -55,7 +55,7 @@ labels = viewer.add_points(
             [2, 55, 15],
             [3, 35, 15],
             [4, 10, 15],
-            [5, 10, 50],
+            [5, 5, 50],
             [6, 50, 70],
             [0, 0, 100],
         ]
@@ -75,8 +75,9 @@ labels = viewer.add_points(
             '',
         ],
         'anchor': 'lower_left',
-        'size': 20,
+        'size': 2,
         'color': 'white',
+        'scaling': True,
     },
     units='m',
 )
@@ -85,10 +86,10 @@ arrows = viewer.add_vectors(
     data=np.array(
         [
             [[1, 55, 55], [0, 8, 0]],
-            [[2, 60, 14], [0, 5, -5]],
-            [[3, 38, 14], [0, 0, -8]],
+            [[2, 60, 14], [0, 5, -8]],
+            [[3, 38, 14], [0, 4, -8]],
             [[4, 13, 14], [0, 0, -8]],
-            [[5, 10, 49], [0, -5, -5]],
+            [[5, 5, 49], [0, -8, -10]],
         ]
     ),
     edge_color='white',
@@ -112,11 +113,12 @@ viewer.reset_view()
 ```
 
 ```{code-cell} python
-:tags: [remove-cell]
+:tags: [remove-input]
 
 from napari.utils import nbscreenshot
 
-viewer.dims.thickness = 7
+viewer.dims.thickness = (10, 0, 0)
+viewer.dims.point = (3, 0, 0)
 nbscreenshot(viewer)
 ```
 

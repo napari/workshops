@@ -51,7 +51,7 @@ labels = viewer.add_points(
             [2, 55, 15],
             [3, 35, 15],
             [4, 10, 15],
-            [5, 10, 50],
+            [5, 5, 50],
             [6, 50, 70],
             [0, 0, 100],
         ]
@@ -82,10 +82,10 @@ arrows = viewer.add_vectors(
     data=np.array(
         [
             [[1, 55, 55], [0, 8, 0]],
-            [[2, 60, 14], [0, 5, -5]],
-            [[3, 38, 14], [0, 0, -8]],
+            [[2, 60, 14], [0, 5, -8]],
+            [[3, 38, 14], [0, 4, -8]],
             [[4, 13, 14], [0, 0, -8]],
-            [[5, 10, 49], [0, -5, -5]],
+            [[5, 5, 49], [0, -8, -10]],
         ]
     ),
     edge_color='white',
@@ -106,4 +106,5 @@ logo = viewer.open(
 viewer.dims.axis_labels = 'slides', 'y', 'x'
 viewer.dims.point = (0, 0, 0)
 viewer.reset_view()
+
 napari.run()
