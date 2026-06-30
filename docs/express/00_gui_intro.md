@@ -37,6 +37,88 @@ have to play around with the viewer size and resetting the view in order to
 see all the various parts 😉
 ```
 
+```{code-cell} python
+:tags: [remove-input]
+
+from pathlib import Path
+
+import napari
+from napari.utils import nbscreenshot
+import numpy as np
+
+print(__doc__)
+
+viewer = napari.Viewer()
+
+labels = viewer.add_points(
+    data=np.array(
+        [
+            [0, 20, 70],
+            [1, 50, 45],
+            [2, 55, 15],
+            [3, 35, 15],
+            [4, 10, 15],
+            [5, 10, 50],
+            [6, 50, 70],
+        ]
+    ),
+    size=2,
+    face_color='transparent',
+    border_width=0,
+    text={
+        'values': [
+            'napari\nfundamentals',
+            'dims sliders',
+            'viewer buttons',
+            'new layer buttons\nand layerlist',
+            'layer controls',
+            'menus',
+            'Ctrl+Shift+p:\ncommand palette',
+        ],
+        'anchor': 'lower_left',
+        'size': 20,
+        'color': 'white',
+    },
+    units='m',
+)
+
+arrows = viewer.add_vectors(
+    data=np.array(
+        [
+            [[1, 55, 55], [0, 8, 0]],
+            [[2, 60, 14], [0, 5, -5]],
+            [[3, 38, 14], [0, 0, -8]],
+            [[4, 13, 14], [0, 0, -8]],
+            [[5, 10, 49], [0, -5, -5]],
+        ]
+    ),
+    edge_color='white',
+    edge_width=1,
+    vector_style='arrow',
+    units='m',
+)
+
+
+logo = viewer.open(
+    Path('../../docs/_resources/logo-dark.png'),
+    scale=[0.015, 0.015],
+    translate=[7, 75],
+    interpolation2d='spline36',
+    units='m',
+)
+
+viewer.dims.axis_labels = 'slides', 'y', 'x'
+viewer.dims.point = (0, 0, 0)
+viewer.reset_view()
+
+nbscreenshot(viewer)
+```
+
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
+
 Key elements of the GUI:
 
 1. Dims sliders:
