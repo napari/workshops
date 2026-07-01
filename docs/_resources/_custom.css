@@ -117,3 +117,8 @@ html.dark article.content a.button:hover {
   border-color: var(--napari-primary-blue, #80d1ff);
   color: var(--napari-primary-blue, #80d1ff) !important;
 }
+
+/* Remove unnecessary padding on the right side of code cell output images */
+.thebe-output .jp-RenderedHTMLCommon {
+    padding-right: 0;
+}
