@@ -18,15 +18,23 @@ bundled app, this workshop uses a Python environment and `pixi`.
 
 # Setup
 
-[Install pixi](https://pixi.sh/latest/#installation) with a single command, then:
+[Install pixi](https://pixi.sh/latest/#installation) with a single command,
+then make a shallow clone of the napari workshops repository and use pixi to
+run the `extend` environment with the `napari` task:
 
 ```bash
-git clone https://github.com/napari/workshops.git
-cd workshops
+git clone --depth 1 https://github.com/napari/workshops.git napari-workshops
+cd napari-workshops
 pixi run -e extend napari
 ```
 
 A napari GUI window should open. If it does, your environment is ready for the workshop!
+
+```{admonition} Workshop data
+:class: note
+All data files used in this workshop are included in the repository under
+`docs/extend/data/`. You do not need to download anything separately.
+```
 
 ```{admonition} Problems?
 :class: tip
