@@ -181,25 +181,17 @@ The `menus` section adds the widget to napari's **Layers > Segment** menu,
 making it easy for users to find.
 ```
 
-### Step 4: Update __init__.py
-
-Open `src/napari_segment/__init__.py` and ensure it imports the widget
-function so it's accessible:
-
-```python
-from ._widget import threshold_widget
-```
-
 ## 5. Install and test (15 min)
 
 ### Install the plugin
 
 ```bash
 cd napari-segment
-pip install -e .
+uv venv -p 3.13
+.venv\Scripts\activate  # Windows
+source .venv/bin/activate  # macOS/Linux
 
-# Or with uv:
-uv pip install -e .
+uv pip install -e . --group dev
 ```
 
 The `-e` flag installs in **editable mode** — any changes you make to the
@@ -225,7 +217,7 @@ Your widget should appear as a dock panel in the viewer.
 
 ### Test with pytest
 
-The template already includes a test file. Run it:
+The template already includes a test file. Run it with pytest:
 
 ```bash
 cd napari-segment
@@ -285,3 +277,8 @@ In this block you:
 | 4 | Added your segmentation function to `_widget.py` |
 | 5 | Installed in editable mode and tested |
 | 6 | Learned how to publish to PyPI and the napari hub |
+
+## Want to contribute?
+
+Have you enjoyed your experience using pixi or uv?
+We'd love to update the napari-plugin-template to first class these tools!
