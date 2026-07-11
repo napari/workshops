@@ -51,13 +51,13 @@ pixi command, replacing `<new-plugin-name>` with your desired plugin name
 (e.g. `napari-segment`):
 
 ```bash
-pixi run -e extend copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
+pixi exec -w npe2 -w jinja2-time -w python=3.13 copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
 ```
 
-Alternatively, you could follow the instructions in the template's README to use uv:
+Alternatively, uv:
 
 ```bash
-uv tool run --with jinja2-time --with npe2 --python=3.13 copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
+uvx -w jinja2-time -w npe2 -p 3.13 copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
 ```
 
 ### Template prompts

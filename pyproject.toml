@@ -22,9 +22,6 @@ extend = [
     "jupyterlab",
     "jupyterlab-myst<2.7",  # does not work with current jupyterlab 4.6.1 https://github.com/jupyter-book/jupyterlab-myst/issues/296
     "jupytext",  # needed for executing the .mds
-    "copier",
-    "jinja2-time",
-    "npe2",
 ]
 express = [
     "scikit-image",
