@@ -17,7 +17,11 @@ dependencies = [
 extend = [
     "scikit-image",
     "magicgui",
+    "xarray",
+    "napari-ome-zarr",
     "jupyterlab",
+    "jupyterlab-myst<2.7",  # does not work with current jupyterlab 4.6.1 https://github.com/jupyter-book/jupyterlab-myst/issues/296
+    "jupytext",  # needed for executing the .mds
 ]
 express = [
     "scikit-image",
