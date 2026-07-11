@@ -18,25 +18,12 @@ kernelspec:
 **Goal:** Package the interactive segmentation workflow from Block 2 into a
 pip-installable napari plugin, then install and test it.
 
-```{admonition} Prerequisite
-:class: warning
-This block requires the `copier` template tool. Install it with:
-
-```bash
-pixi run -e extend pip install copier jinja2-time npe2
-```
-
-Or with uv:
-```bash
-uv tool run copier --help
-```
-```
-
 ## 1. What is a napari plugin? (5 min)
 
 A napari plugin is a Python package that declares **contributions** in a
 `napari.yaml` manifest file. napari reads this manifest to discover what your
-plugin provides without importing your code at startup.
+plugin provides without importing your code at startup. The manifest itself
+is registered as an **entry point** in `pyproject.toml`.
 
 ### Contribution types
 
@@ -59,18 +46,18 @@ project structure from a few prompts.
 
 ### Run the template
 
-Open a terminal and navigate to where you want your plugin. Then run:
+Open a terminal and navigate to where you want your plugin. Then run the
+pixi command, replacing `<new-plugin-name>` with your desired plugin name
+(e.g. `napari-segment`):
 
 ```bash
-copier copy --trust https://github.com/napari/napari-plugin-template napari-segment-widget
+pixi run -e extend copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
 ```
 
-```{tip}
-If you don't have `copier` installed, you can use uv instead:
+Alternatively, you could follow the instructions in the template's README to use uv:
+
 ```bash
-uv tool run --with jinja2-time --with npe2 copier copy --trust \
-    https://github.com/napari/napari-plugin-template napari-segment-widget
-```
+uv tool run --with jinja2-time --with npe2 --python=3.13 copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
 ```
 
 ### Template prompts
@@ -79,48 +66,35 @@ You'll be asked a series of questions. For this workshop, answer:
 
 | Prompt | Answer |
 |--------|--------|
-| `module_name` | `napari_segment_widget` |
-| `display_name` | `napari-segment-widget` |
+| `module_name` | `napari_segment` |
+| `display_name` | `napari-segment` |
 | `short_description` | `A napari widget for interactive thresholding and segmentation` |
-| `include_reader_plugin` | `No` |
-| `include_writer_plugin` | `No` |
-| `include_sample_data_plugin` | `No` |
+| `include_reader_plugin` | optional |
+| `include_writer_plugin` | optional |
+| `include_sample_data_plugin` | optional |
 | `include_widget_plugin` | **Yes** |
 | Other defaults | Press Enter to accept |
 
-### Generated structure
+### Structure and first steps
 
-```
-napari-segment-widget/
-├── src/
-│   └── napari_segment_widget/
-│       ├── __init__.py        # Package entry point
-│       ├── napari.yaml        # Plugin manifest
-│       ├── _widget.py         # Widget implementations
-│       └── _tests/
-│           ├── __init__.py
-│           └── test_widget.py
-├── pyproject.toml             # Build config + napari.manifest entry point
-├── .pre-commit-config.yaml
-├── LICENSE
-└── README.md
-```
+Now, we'll explore the generated project structure. An up-to-date reference
+is available in the [napari-plugin-template README](https://github.com/napari/napari-plugin-template).
 
 ## 3. Understanding napari.yaml (10 min)
 
-Open `src/napari_segment_widget/napari.yaml`. This is the **manifest** — the
+Open `src/napari_segment/napari.yaml`. This is the **manifest** — the
 heart of your plugin:
 
 ```yaml
-name: napari-segment-widget
-display_name: napari-segment-widget
+name: napari-segment
+display_name: napari-segment
 contributions:
   commands:
-    - id: napari-segment-widget.make_func_widget
-      python_name: napari_segment_widget._widget:threshold_autogenerate_widget
+    - id: napari-segment.make_func_widget
+      python_name: napari_segment._widget:threshold_autogenerate_widget
       title: Make threshold widget
   widgets:
-    - command: napari-segment-widget.make_func_widget
+    - command: napari-segment.make_func_widget
       autogenerate: true
       display_name: Threshold
 ```
@@ -136,7 +110,7 @@ manifest:
 
 ```toml
 [project.entry-points."napari.manifest"]
-napari.manifest = "napari_segment_widget:napari.yaml"
+napari.manifest = "napari_segment:napari.yaml"
 ```
 
 ```{tip}
@@ -146,7 +120,7 @@ entry points. This is how it discovers plugins without importing them.
 
 ## 4. Implementing the widget (20 min)
 
-Now let's add our segmentation logic. Open `src/napari_segment_widget/_widget.py`.
+Now let's add our segmentation logic. Open `src/napari_segment/_widget.py`.
 
 ### Step 1: Add imports
 
@@ -184,22 +158,22 @@ Add a new command and widget entry for our function:
 
 ```yaml
 commands:
-  - id: napari-segment-widget.make_func_widget
-    python_name: napari_segment_widget._widget:threshold_autogenerate_widget
+  - id: napari-segment.make_func_widget
+    python_name: napari_segment._widget:threshold_autogenerate_widget
     title: Make threshold widget
-  - id: napari-segment-widget.make_segment_widget
-    python_name: napari_segment_widget._widget:threshold_widget
+  - id: napari-segment.make_segment_widget
+    python_name: napari_segment._widget:threshold_widget
     title: Make segmentation widget
 widgets:
-  - command: napari-segment-widget.make_func_widget
+  - command: napari-segment.make_func_widget
     autogenerate: true
     display_name: Threshold
-  - command: napari-segment-widget.make_segment_widget
+  - command: napari-segment.make_segment_widget
     autogenerate: true
     display_name: Segmentation
 menus:
   napari/layers/segment:
-    - command: napari-segment-widget.make_segment_widget
+    - command: napari-segment.make_segment_widget
 ```
 
 ```{note}
@@ -209,7 +183,7 @@ making it easy for users to find.
 
 ### Step 4: Update __init__.py
 
-Open `src/napari_segment_widget/__init__.py` and ensure it imports the widget
+Open `src/napari_segment/__init__.py` and ensure it imports the widget
 function so it's accessible:
 
 ```python
@@ -221,7 +195,7 @@ from ._widget import threshold_widget
 ### Install the plugin
 
 ```bash
-cd napari-segment-widget
+cd napari-segment
 pip install -e .
 
 # Or with uv:
@@ -239,7 +213,7 @@ Launch napari:
 napari
 ```
 
-From the menu: **Plugins > napari-segment-widget > Segmentation**
+From the menu: **Plugins > napari-segment > Segmentation**
 
 Or find it at: **Layers > Segment > Make segmentation widget**
 
@@ -254,7 +228,7 @@ Your widget should appear as a dock panel in the viewer.
 The template already includes a test file. Run it:
 
 ```bash
-cd napari-segment-widget
+cd napari-segment
 pytest
 ```
 
@@ -270,29 +244,34 @@ To share your plugin with the world:
 ### 1. Push to GitHub
 
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/napari-segment-widget.git
+git remote add origin https://github.com/YOUR_USERNAME/napari-segment.git
 git push -u origin main
 ```
 
 ### 2. Publish to PyPI
 
 The template includes a GitHub Actions workflow (`.github/workflows/test_and_deploy.yml`)
-that automatically publishes to PyPI when you push a version tag:
+that automatically publishes to PyPI when you push a version tag. 
+The actual version number of the published package is derived from git tags via
+[setuptools_scm](https://github.com/pypa/setuptools_scm/).
 
 ```bash
 git tag v0.1.0
 git push --tags
 ```
 
+Or **create a GitHub Release** with a new tag:
+   - Go to [Releases](https://github.com/napari/napari-metadata/releases) →
+     "Draft a new release".
+   - Choose a tag matching the new version (e.g. `v0.4.0`).
+   - Target `main`.
+   - Click "Generate release notes" to auto-populate the changelog from merged
+     PRs.
+
 ### 3. Appear on napari hub
 
 Once published on PyPI, your plugin will automatically appear on
 [napari-hub.org](https://napari-hub.org) after a short delay.
-
-```{tip}
-Add a `DESCRIPTION.md` and `config.yml` in the `.napari-hub/` directory
-(copied by the template) to customize how your plugin appears on the hub.
-```
 
 ## Recap
 
@@ -306,9 +285,3 @@ In this block you:
 | 4 | Added your segmentation function to `_widget.py` |
 | 5 | Installed in editable mode and tested |
 | 6 | Learned how to publish to PyPI and the napari hub |
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Nothing to clean up in this block — it's mainly terminal-based
-```

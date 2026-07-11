@@ -1204,14 +1204,14 @@ wheels = [
 
 [[package]]
 name = "jupyterlab-myst"
-version = "2.7.0"
+version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jupyter-server", marker = "sys_platform != 'emscripten'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9c/a8/204e388b3b2117cd8daf635a6f54fe54dcb50742b006b1365f8782825808/jupyterlab_myst-2.7.0.tar.gz", hash = "sha256:c4e4b4b12da5a31ec6926d34ae7721f542892317011656a86f4e8fa0fbe7f367", size = 13012449, upload-time = "2026-06-17T22:39:13.786Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/04/91/63e3c2c54c707050c9844563c810829a8834fecd0b6b2c3506c2d7dd6995/jupyterlab_myst-2.6.0.tar.gz", hash = "sha256:1502e776153a43588eeb26ce04fb20a0a401805e20edbc57090c9ac932bd42e0", size = 12941853, upload-time = "2025-12-14T20:59:30.685Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/08/ad5d4d383807ca379c02b8fa94f744c30ea0929a9b3953a19b00bea52b8b/jupyterlab_myst-2.7.0-py3-none-any.whl", hash = "sha256:7c66aae898a5b0db84b1d4b83fa68d5d37f846b4f891621de78abb960678e70e", size = 2841893, upload-time = "2026-06-17T22:39:11.125Z" },
+    { url = "https://files.pythonhosted.org/packages/5c/70/f0563af672535bbecc96071ef1ade96f37433e68645a6ea45973dc07c915/jupyterlab_myst-2.6.0-py3-none-any.whl", hash = "sha256:9a0e0ffb318798998be91b7303ffca8a5f15c29bcf339c968c0c3edbc1926265", size = 2710158, upload-time = "2025-12-14T20:59:27.514Z" },
 ]
 
 [[package]]
@@ -3445,6 +3445,8 @@ express = [
 ]
 extend = [
     { name = "jupyterlab" },
+    { name = "jupyterlab-myst" },
+    { name = "jupytext" },
     { name = "magicgui" },
     { name = "napari-ome-zarr" },
     { name = "scikit-image" },
@@ -3459,6 +3461,7 @@ dev = [
     { name = "jupyter-book", specifier = ">=2" },
     { name = "jupyterlab" },
     { name = "jupyterlab-myst" },
+    { name = "jupyterlab-myst", specifier = "<2.7" },
     { name = "jupytext" },
     { name = "magicgui" },
     { name = "mystmd" },
@@ -3480,6 +3483,8 @@ express = [
 ]
 extend = [
     { name = "jupyterlab" },
+    { name = "jupyterlab-myst", specifier = "<2.7" },
+    { name = "jupytext" },
     { name = "magicgui" },
     { name = "napari-ome-zarr" },
     { name = "scikit-image" },
