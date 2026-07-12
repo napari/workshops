@@ -10,7 +10,8 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "napari[all]>=0.7.1",
+    "napari[all]>=0.8.0rc0",
+    "napari-metadata>=0.4.0",
 ]
 
 [dependency-groups]
@@ -20,6 +21,10 @@ extend = [
     "scipy",
     "xarray",
     "napari-ome-zarr",
+    "bioio",
+    "bioio-ome-tiff",
+    "bioio-ome-zarr",
+    "ndevio",
     "jupyterlab",
     "jupyterlab-myst<2.7",  # does not work with current jupyterlab 4.6.1 https://github.com/jupyter-book/jupyterlab-myst/issues/296
     "jupytext",  # needed for executing the .mds
