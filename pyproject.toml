@@ -61,6 +61,9 @@ napari = "napari"
 [tool.pixi.feature.extend.tasks]
 jupyter-lab = { cmd = "jupyter lab docs/extend" }
 
+[tool.pixi.feature.extend.dependencies]
+python = "==3.13"
+
 [tool.pixi.feature.express.tasks]
 jupyter-lab = { cmd = "jupyter lab docs/express" }
 

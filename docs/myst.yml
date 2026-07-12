@@ -39,6 +39,7 @@ project:
       children:
         - file: express/index.md
         - file: express/setup.md
+        - file: express/00_gui_intro.md
         - file: express/01_python_to_widget.md
         - file: express/02_segmentation_pipeline.md
         - file: express/03_classification_and_3d.md
