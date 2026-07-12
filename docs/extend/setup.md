@@ -48,19 +48,22 @@ resolve this is `pixi clean -e extend` to remove the environment, and then
 re-run `pixi run -e extend napari` to get a fresh environment.
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 import napari
 from napari.utils import nbscreenshot
 viewer = napari.Viewer()
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-input]
+
 nbscreenshot(viewer)
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 viewer.close()
 ```

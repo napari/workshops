@@ -1,4 +1,4 @@
-﻿---
+---
 label: extend-block4
 title: "4. From Script to Plugin"
 jupytext:
@@ -6,7 +6,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.7
+    jupytext_version: 1.19.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python

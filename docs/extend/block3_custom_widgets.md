@@ -1,4 +1,4 @@
-﻿---
+---
 label: extend-block3
 title: "3. Custom Widgets & Interactions"
 jupytext:

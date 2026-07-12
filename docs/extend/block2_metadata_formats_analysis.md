@@ -1,4 +1,4 @@
-﻿---
+---
 label: extend-block2
 title: "2. Python, Data, and Metadata"
 jupytext:
