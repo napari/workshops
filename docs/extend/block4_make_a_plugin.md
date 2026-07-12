@@ -24,12 +24,30 @@ A napari plugin is a Python package that declares **contributions** in a
 `napari.yaml` manifest file. napari reads this manifest to discover what your
 plugin provides without importing your code at startup. The manifest itself
 is registered as an **entry point** in `pyproject.toml`.
+To learn about the minimal requirements of a napari plugin, you can read through
+the [Your first plugin tutorial](https://napari.org/stable/plugins/building_a_plugin/first_plugin.html).
+However, for this workshop we will use the [napari-plugin-template](https://github.com/napari/napari-plugin-template).
 
 napari plugins can be found on [napari-hub.org](https://napari-hub.org).
 The hub is automatically updated when a plugin is published to [PyPI](https://pypi.org/),
 though many plugins are also available on [conda-forge](https://conda-forge.org/).
+While we won't deploy our plugin in this workshop, you can learn more by
+reading the [plugin deploy instructions](https://napari.org/dev/plugins/building_a_plugin/index.html#[plugin-test-deploy])
 
 ### Contribution types
+
+A contribution is a construct in `napari.yaml` (the manifest file), that napari
+uses for each specific type of plugin. Each contribution conforms to a function
+signature, i.e. the function linked to the contribution defines what napari
+provides to the plugin (e.g., data and parameters) and what the plugin returns
+to napari. napari is then able to use the functions pointed to in `napari.yaml`
+to carry out the plugin tasks. Please see the
+[contributions guide](https://napari.org/dev/plugins/building_a_plugin/guides.html) for more details.
+(And technical references for the
+[manifest](https://napari.org/dev/plugins/technical_references/manifest.html) and
+[contributions](https://napari.org/dev/plugins/technical_references/contributions.html).
+Many plugins will declare multiple contributions to provide all of the desired
+functionality.
 
 | Type | What it enables |
 |------|----------------|
@@ -40,7 +58,7 @@ though many plugins are also available on [conda-forge](https://conda-forge.org/
 | **Theme** | Customize the viewer's appearance |
 
 Today we'll make a **widget** plugin — the threshold-and-segment function from
-Block 2, packaged so anyone can install it with `pip` and use it in napari.
+Block 2, packaged so anyone can install it and use it in napari.
 
 ## 2. Scaffolding with napari-plugin-template (15 min)
 
@@ -50,8 +68,9 @@ project structure from a few prompts.
 
 ### Run the template
 
-Open a terminal and navigate to where you want your plugin. Then run the
-pixi command, replacing `<new-plugin-name>` with your desired plugin name
+Open a terminal and navigate to where you want your plugin; the following commands
+do not require the environments from this workshop, and are fully self-contained.
+Then run the pixi command, replacing `<new-plugin-name>` with your desired plugin name
 (e.g. `napari-segment`):
 
 ```bash
@@ -66,7 +85,11 @@ uvx -w jinja2-time -w npe2 -p 3.13 copier copy --trust https://github.com/napari
 
 ### Template prompts
 
-You'll be asked a series of questions. For this workshop, answer:
+You'll be asked a series of questions. When prompted for which plugins
+to include, you only need to answer `Yes` to `Include widget plugin?`,
+but you may be interested in exploring the other contributions as well.
+To read more about the prompts, you can refer to the `napari-plugin-template`
+[Prompts Reference](https://github.com/napari/napari-plugin-template/blob/main/PROMPTS.md)
 
 | Prompt | Answer |
 |--------|--------|
@@ -81,10 +104,38 @@ You'll be asked a series of questions. For this workshop, answer:
 | `include_widget_plugin` | **Yes** |
 | Other defaults | Press Enter to accept |
 
+After completing all of the questions, a directory will be created containing
+your new napari plugin. You will be given instructions on how to upload the
+initialized git repository to GitHub. By default, we will not be covering this
+aspect in the tutorial, but please feel free to ask the teaching team if you
+would like to give it a try.
+
 ### Structure and first steps
 
 Now, we'll explore the generated project structure. An up-to-date reference
 is available in the [napari-plugin-template README](https://github.com/napari/napari-plugin-template).
+
+See below for explanations about some of the most notable files, but do not
+hesitate to reach out to the teaching team if you have questions about any of
+the other files.
+
+- `.github/workflows/test_and_deploy.yml`: This is a
+  [github actions](https://github.com/features/actions) workflow that will
+  automatically run the tests and upload your plugin to pypi (thus making it
+  available through the built-in napari plugin browser. Please ask the teaching
+  team if you would like to learn how to set up your github repository to
+  support this workflow.
+- `pyproject.toml`: This file allows your plugin to be built as
+  a package and installed by pip. The `napari-plugin-template` has set everything
+  up in these files, so you are good to go!
+- The `src/` folder contains all the Python code for your plugin.
+- `src/napari_segment/_widget.py`: This file contains example
+  implementations for different widget contributions. This is where you will add
+  your `detect_spot()` function. 
+- The `src/napari_segment/napari.yaml` file declares commands and
+  contributions for each example widget in the `_widget.py` file. Look at these
+  carefully and match up which command & contribution belong to what Python code
+  in the `_widget.py` file.
 
 ## 3. Understanding napari.yaml (10 min)
 
@@ -164,6 +215,12 @@ def segment(
     cleaned = morphology.remove_small_holes(foreground, min_hole)
     cleaned = morphology.remove_small_objects(cleaned, min_size=min_obj)
     return cleaned
+```
+
+```{tip}
+The `@magic_factory` decorator is a mostly drop-in replacement for `@magicgui`, except this one *does not return a widget instance immediately*. Instead, it turns our function into a "widget factory function" that can be called to *create a widget instance*. This can be more convenient in many cases, if you are writing a library or package where someone else will be instantiating your widget.
+One additional important—and useful—distinction is that `@magic_factory` gains the `widget_init` keyword argument, which will be called with the new widget each time the factory function is called.
+For more details on the two `magicgui` decorators, see [the magicgui documentation](https://pyapp-kit.github.io/magicgui/decorators/).
 ```
 
 ### Step 3: Update napari.yaml
