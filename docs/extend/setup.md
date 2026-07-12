@@ -30,8 +30,14 @@ A napari GUI window should open. If it does, your environment is ready for the w
 
 ```{admonition} Problems?
 :class: tip
-Reach out to the workshop instructors or ask for help in the
+Reach out to the workshop instructors on the slack channel or ask for help in the
 [napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
+
+If you previously set up your environment and the instructor updated the config,
+Then you may need to run `pixi update` to get the latest environment, and in the
+worst case scenario may have binary dependency conflicts. The easiest way to
+resolve this is `pixi clean -e extend` to remove the environment, and then
+re-run `pixi run -e extend napari` to get a fresh environment.
 ```
 
 ```{code-cell} python
