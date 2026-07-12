@@ -1,6 +1,6 @@
 ﻿---
 label: extend-block2
-title: "2. Metadata, Formats, and Interactive Analysis"
+title: "2. Python, Data, and Metadata"
 jupytext:
   text_representation:
     extension: .md
@@ -372,28 +372,42 @@ reader matches, you can install one from the plugin manager.
 
 ---
 
-## 5. Interactive segmentation workflow (30 min)
+# 8. Writing analysis functions (10 min)
 
-Now let's put everything together and build an interactive segmentation workflow
-using the napari viewer connected to a Jupyter notebook.
-
-### Load the data
-
-We'll use the `cells3d` dataset — no external files needed.
+Now let's write our first analysis function. The spots image has some
+background autofluorescence — we can clean it up with a **gaussian high-pass
+filter**: subtract a blurred version of the image from the original, keeping
+only the sharp, spot-like features.
 
 ```{code-cell} ipython3
-from skimage import filters, feature, morphology, measure, segmentation, util
 from scipy import ndimage as ndi
 
-image_data = cells3d()
-membranes = image_data[:, 0, :, :]
-nuclei = image_data[:, 1, :, :]
+def gaussian_high_pass(image, sigma):
+    """Remove broad background signal by subtracting a gaussian-blurred copy.
 
-# Compute a maximum intensity projection for 2D analysis
-nuclei_mip = nuclei.max(axis=0)
+    Parameters
+    ----------
+    image : np.ndarray
+        The image to filter.
+    sigma : float
+        Width of the gaussian — larger values remove broader features.
 
-viewer.layers.clear()
-viewer.add_image(nuclei_mip, name='nuclei_mip')
+    Returns
+    -------
+    high_passed : np.ndarray
+        The filtered image with background suppressed.
+    """
+    low_pass = ndi.gaussian_filter(image, sigma)
+    high_passed = (image - low_pass).clip(0)
+    return high_passed
+```
+
+Let's test it on our spots data with `sigma=2`:
+
+```{code-cell} ipython3
+high_passed_spots = gaussian_high_pass(spots, 2)
+
+viewer.add_image(high_passed_spots, name='filtered spots', colormap='I Blue', blending='additive')
 ```
 
 ```{code-cell} ipython3
@@ -402,97 +416,20 @@ viewer.add_image(nuclei_mip, name='nuclei_mip')
 nbscreenshot(viewer)
 ```
 
-### Thresholding
+The spots stand out much more clearly against the background! But what if we
+want to try a different `sigma` value? We'd have to re-run the cell manually
+each time — not exactly an interactive exploration.
 
-Let's separate nuclei from background using automatic thresholding:
-
-```{code-cell} ipython3
-foreground = nuclei_mip >= filters.threshold_li(nuclei_mip)
-viewer.add_labels(foreground, name='foreground')
-```
-
-We can clean up small holes and debris:
-
-```{code-cell} ipython3
-foreground_processed = morphology.remove_small_holes(foreground, 60)
-foreground_processed = morphology.remove_small_objects(foreground_processed, min_size=50)
-
-viewer.layers['foreground'].data = foreground_processed
-```
-
-### Marker-controlled watershed
-
-Now we convert the binary mask into an instance segmentation (each nucleus
-gets a unique label). The approach: distance transform → find peaks →
-watershed.
-
-```{code-cell} ipython3
-distance = ndi.distance_transform_edt(foreground_processed)
-smoothed = filters.gaussian(distance, sigma=10)
-
-viewer.add_image(smoothed, name='distance')
-```
-
-```{code-cell} ipython3
-peak_local_max = feature.peak_local_max(
-    smoothed, min_distance=7, exclude_border=False
-)
-
-viewer.add_points(peak_local_max, name='peaks', size=5, face_color='red')
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-nbscreenshot(viewer)
-```
-
-Now seed the watershed from those peaks:
-
-```{code-cell} ipython3
-markers = util.label_points(
-    viewer.layers['peaks'].data,
-    output_shape=viewer.layers['nuclei_mip'].data.shape,
-)
-
-nuclei_segmentation = segmentation.watershed(
-    -smoothed, markers, mask=foreground_processed
-)
-
-viewer.add_labels(nuclei_segmentation, name='segmentation')
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-nbscreenshot(viewer)
-```
-
-### Measure and save
-
-```{code-cell} ipython3
-props = measure.regionprops_table(
-    nuclei_segmentation,
-    intensity_image=nuclei_mip,
-    properties=('label', 'area', 'centroid', 'intensity_mean'),
-)
-
-print(f'Found {len(props["label"])} nuclei')
-print(f'Average area: {np.mean(props["area"]):.0f} pixels')
-```
-
-```python
-# Save the segmentation
-viewer.layers['segmentation'].save('nuclei-automated-segmentation.tif', plugin='builtins')
-```
+In **Block 3**, we'll turn this function into an interactive widget with
+sliders, so we can tune parameters in real time — without writing any GUI code.
 
 ---
 
-## Sharing Time (5 min)
+# Sharing Time (5 min)
 
 - What was the largest or most interesting Zarr image you explored?
 - Did adding scale and units change how you think about the data?
-- How many nuclei did your segmentation find?
+- What would you want to measure or analyze in the spots + nuclei dataset?
 
 Share a screenshot on the **#workshops** stream on
 [Zulip](https://napari.zulipchat.com): press `Alt+C` to copy the canvas,
@@ -501,6 +438,5 @@ then paste into Zulip.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-viewer.layers.clear()
 viewer.close()
 ```
