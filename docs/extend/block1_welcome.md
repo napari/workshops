@@ -85,16 +85,18 @@ pixi run -e extend napari
 3. Use the **dimension slider** at the bottom to scroll through z-slices
 4. Toggle each layer on/off with the **eye icon** next to its name
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 import napari
 from napari.utils import nbscreenshot
 viewer = napari.Viewer()
 viewer.open_sample('napari', 'cells3d')
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-input]
+
 nbscreenshot(viewer)
 ```
 
@@ -146,14 +148,16 @@ When a layer has more dimensions than the two displayed on the canvas, sliders
 appear at the bottom. Drag a slider to move through z-slices, time points, or
 channels.
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 viewer.dims.ndisplay = 2
 viewer.dims.current_step = (23, 100, 100)
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-input]
+
 nbscreenshot(viewer)
 ```
 
@@ -176,15 +180,17 @@ In 3D mode, click-drag to rotate the volume. Give it a try!
 
 ![viewer buttons](https://napari.org/stable/_images/viewer-buttons.png)
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
 viewer.axes.visible = True
 viewer.dims.ndisplay = 3
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-input]
+
 nbscreenshot(viewer)
 ```
 
@@ -212,8 +218,9 @@ lets you change how that layer appears. The most important controls:
 - **Blending** — how overlapping layers are composited (try `additive`!)
 - **Opacity** — layer transparency from 0 (invisible) to 1 (fully opaque)
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 viewer.axes.visible = False
 viewer.dims.ndisplay = 2
 viewer.dims.current_step = (29, 100, 100)
@@ -226,8 +233,9 @@ membrane.contrast_limits = (0, 40000)
 membrane.colormap = 'orange'
 ```
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-input]
+
 nbscreenshot(viewer)
 ```
 
@@ -274,7 +282,7 @@ Speaking of which…
 **Tasks:**
 
 1. Open the [napari gallery](https://napari.org/stable/gallery) and find an example
-   that looks interesting — see the [](#recommended-examples) list below for ideas.
+   that looks interesting — see the [](#extend-recommended-examples) list below for ideas.
 2. Drag-and-drop the `.py` file Button onto the napari canvas.
 3. Explore the result! Try adjusting colors, contrast, or the 3D view.
 
@@ -287,7 +295,7 @@ Take a screenshot and post it to the **#workshops** stream on
 Add a note: *what example did you try, and what surprised or interested you?*
 ```
 
-(recommended-examples)=
+(extend-recommended-examples)=
 ## Recommended Examples
 
 1. 3D Layer Bounding Box Overlay
@@ -312,7 +320,8 @@ In **Block 2**, we'll switch from clicking to coding — controlling napari
 entirely from Python, loading our own data, and setting physical scales
 for real-world measurements.
 
-```{code-cell} python
+```{code-cell} ipython3
 :tags: [remove-cell]
+
 viewer.close()
 ```

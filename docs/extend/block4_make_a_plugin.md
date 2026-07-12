@@ -347,10 +347,9 @@ From the menu: **Plugins > napari-spot-detector > Detect Spots**
 
 Or find it at: **Layers > Analyze > Detect Spots**
 
-```{figure} https://napari.org/stable/_images/plugin-widget.png
+```{image} https://napari.org/stable/_images/plugin-widget.png
 :width: 400px
-
-Your widget should appear as a dock panel in the viewer.
+:alt: napari viewer with plugin widget dock panel
 ```
 
 ### Test with pytest
