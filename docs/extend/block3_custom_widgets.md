@@ -48,8 +48,10 @@ The `@magicgui` decorator reads type annotations on your function parameters
 and automatically generates corresponding GUI widgets:
 
 ```{code-cell} ipython3
-@magicgui(auto_call=True,
-          percentile={"widget_type": "IntSlider", "min": 0, "max": 100})
+@magicgui(
+    auto_call=True,
+    percentile={"widget_type": "IntSlider", "min": 0, "max": 100}
+)
 def threshold(image: ImageData, percentile: int = 50) -> LabelsData:
     """Threshold an image at a given percentile of its intensity range."""
     data_min = np.min(image)
@@ -94,10 +96,12 @@ from typing import Annotated
 
 viewer.add_image(nuclei_mip, name='nuclei_mip')
 
-@magicgui(auto_call=True,
-          percentile={"widget_type": "IntSlider", "min": 0, "max": 100},
-          min_hole={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10},
-          min_obj={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10})
+@magicgui(
+    auto_call=True,
+    percentile={"widget_type": "IntSlider", "min": 0, "max": 100},
+    min_hole={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10},
+    min_obj={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10}
+)
 def segment(
     image: ImageData,
     percentile: int = 50,

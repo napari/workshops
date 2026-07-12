@@ -96,6 +96,11 @@ nbscreenshot(viewer)
 > The `nuclei` channel (channel 1) shows cell nuclei stained with a dye.
 > The `membrane` channel (channel 0) shows cell membranes.
 
+```{code-cell} python
+:tags: [remove-cell]
+viewer.close()
+```
+
 ## Screenshots
 
 Save what you see in napari at any time:
@@ -107,15 +112,6 @@ Save what you see in napari at any time:
 Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard).
 Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
 
-```{code-cell} python
-:tags: [remove-input]
-nbscreenshot(viewer=viewer,canvas_only=True)
-```
-
-```{code-cell} python
-:tags: [remove-cell]
-viewer.close()
-```
 
 ## Opening Files from the Command Line
 

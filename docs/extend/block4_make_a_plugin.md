@@ -25,6 +25,10 @@ A napari plugin is a Python package that declares **contributions** in a
 plugin provides without importing your code at startup. The manifest itself
 is registered as an **entry point** in `pyproject.toml`.
 
+napari plugins can be found on [napari-hub.org](https://napari-hub.org).
+The hub is automatically updated when a plugin is published to [PyPI](https://pypi.org/),
+though many plugins are also available on [conda-forge](https://conda-forge.org/).
+
 ### Contribution types
 
 | Type | What it enables |
@@ -66,9 +70,11 @@ You'll be asked a series of questions. For this workshop, answer:
 
 | Prompt | Answer |
 |--------|--------|
+| `plugin_name` | `napari-segment` |
+| `display_name` | anything |
 | `module_name` | `napari_segment` |
-| `display_name` | `napari-segment` |
-| `short_description` | `A napari widget for interactive thresholding and segmentation` |
+| `short_description` | anything |
+| project info | as appropriate |
 | `include_reader_plugin` | optional |
 | `include_writer_plugin` | optional |
 | `include_sample_data_plugin` | optional |
@@ -90,11 +96,11 @@ name: napari-segment
 display_name: napari-segment
 contributions:
   commands:
-    - id: napari-segment.make_func_widget
+    - id: napari-segment.make_function_widget
       python_name: napari_segment._widget:threshold_autogenerate_widget
       title: Make threshold widget
   widgets:
-    - command: napari-segment.make_func_widget
+    - command: napari-segment.make_function_widget
       autogenerate: true
       display_name: Threshold
 ```
@@ -132,17 +138,25 @@ from napari.types import ImageData, LabelsData
 
 ### Step 2: Add the threshold function
 
-Replace or complement the existing `threshold_autogenerate_widget` function
-with our segmentation function from Block 2:
+Add our segmentation function from Block 3, except we change it from
+`@magicgui` to `@magic_factory` so we can call it from a command:
 
 ```python
-def threshold_widget(
-    image: ImageData,
+@magic_factory(
+    auto_call=True,
+    percentile={"widget_type": "IntSlider", "min": 0, "max": 100},
+     min_hole={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10},
+    min_obj={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10}
+)
+def segment(
+    image: 'napari.types.ImageData',
     percentile: int = 50,
     min_hole: int = 60,
     min_obj: int = 50,
-) -> LabelsData:
-    """Interactive thresholding with morphological cleaning."""
+) -> 'napari.types.LabelsData':
+    """Threshold + morphological cleaning."""
+    from skimage import morphology
+
     data_min = np.min(image)
     data_max = np.max(image)
     foreground = image > data_min + percentile / 100 * (data_max - data_min)
@@ -157,23 +171,17 @@ def threshold_widget(
 Add a new command and widget entry for our function:
 
 ```yaml
-commands:
-  - id: napari-segment.make_func_widget
-    python_name: napari_segment._widget:threshold_autogenerate_widget
-    title: Make threshold widget
-  - id: napari-segment.make_segment_widget
-    python_name: napari_segment._widget:threshold_widget
-    title: Make segmentation widget
-widgets:
-  - command: napari-segment.make_func_widget
-    autogenerate: true
-    display_name: Threshold
-  - command: napari-segment.make_segment_widget
-    autogenerate: true
-    display_name: Segmentation
-menus:
-  napari/layers/segment:
+contributions:
+  commands:
+    - id: napari-segment.make_segment_widget
+      python_name: napari_segment._widget:segment
+      title: Make segmentation widget
+  widgets:
     - command: napari-segment.make_segment_widget
+      display_name: Segmentation
+  menus:
+    napari/layers/segment:
+      - command: napari-segment.make_segment_widget
 ```
 
 ```{note}
@@ -185,6 +193,17 @@ making it easy for users to find.
 
 ### Install the plugin
 
+A single command will get you started because from the 
+root of the plugin. `uv run` will install the plugin in editable mode with the
+`dev` dependency-group:
+
+```bash
+cd napari
+uv run napari
+```
+
+For a more classical approach, you could personally create a virtual environment, activate it, and install the plugin in editable mode with:
+
 ```bash
 cd napari-segment
 uv venv -p 3.13
@@ -195,19 +214,17 @@ uv pip install -e . --group dev
 ```
 
 The `-e` flag installs in **editable mode** — any changes you make to the
-source code take effect immediately after restarting napari.
-
-### Test in napari
-
-Launch napari:
+source code take effect immediately after restarting napari. To launch:
 
 ```bash
 napari
 ```
 
+### Test in napari
+
 From the menu: **Plugins > napari-segment > Segmentation**
 
-Or find it at: **Layers > Segment > Make segmentation widget**
+Or find it at: **Layers > Segment > Segmentation**
 
 ```{figure} https://napari.org/stable/_images/plugin-widget.png
 :width: 400px
@@ -221,7 +238,7 @@ The template already includes a test file. Run it with pytest:
 
 ```bash
 cd napari-segment
-pytest
+uv run pytest
 ```
 
 ```{tip}
