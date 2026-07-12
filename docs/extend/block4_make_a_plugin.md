@@ -1,4 +1,4 @@
----
+﻿---
 label: extend-block4
 title: "4. From Script to Plugin"
 jupytext:
@@ -15,7 +15,7 @@ kernelspec:
 
 # Block 4: From Script to Plugin
 
-**Goal:** Package the interactive segmentation workflow from Block 2 into a
+**Goal:** Package the interactive spot detection widget from Block 3 into a
 pip-installable napari plugin, then install and test it.
 
 The primary steps in making a napari plugin are:
@@ -69,8 +69,8 @@ functionality.
 | **Sample data** | Provide built-in example datasets |
 | **Theme** | Customize the viewer's appearance |
 
-Today we'll make a **widget** plugin — the threshold-and-segment function from
-Block 2, packaged so anyone can install it and use it in napari.
+Today we'll make a **widget** plugin — the `detect_spots` function from
+Block 3, packaged so anyone can install it and use it in napari.
 
 ## 2. Scaffolding with napari-plugin-template (15 min)
 
@@ -83,7 +83,7 @@ project structure from a few prompts.
 Open a terminal and navigate to where you want your plugin; the following commands
 do not require the environments from this workshop, and are fully self-contained.
 Then run the pixi command, replacing `<new-plugin-name>` with your desired plugin name
-(e.g. `napari-segment`):
+(e.g. `napari-spot-detector`):
 
 ```bash
 pixi exec -w npe2 -w jinja2-time -w python=3.13 copier copy --trust https://github.com/napari/napari-plugin-template <new-plugin-name>
@@ -105,9 +105,9 @@ To read more about the prompts, you can refer to the `napari-plugin-template`
 
 | Prompt | Answer |
 |--------|--------|
-| `plugin_name` | `napari-segment` |
+| `plugin_name` | `napari-spot-detector` |
 | `display_name` | anything |
-| `module_name` | `napari_segment` |
+| `module_name` | `napari_spot_detector` |
 | `short_description` | anything |
 | project info | as appropriate |
 | `include_reader_plugin` | optional |
@@ -134,36 +134,36 @@ the other files.
 - `.github/workflows/test_and_deploy.yml`: This is a
   [github actions](https://github.com/features/actions) workflow that will
   automatically run the tests and upload your plugin to pypi (thus making it
-  available through the built-in napari plugin browser. Please ask the teaching
+  available through the built-in napari plugin browser). Please ask the teaching
   team if you would like to learn how to set up your github repository to
   support this workflow.
 - `pyproject.toml`: This file allows your plugin to be built as
   a package and installed by pip. The `napari-plugin-template` has set everything
   up in these files, so you are good to go!
 - The `src/` folder contains all the Python code for your plugin.
-- `src/napari_segment/_widget.py`: This file contains example
+- `src/napari_spot_detector/_widget.py`: This file contains example
   implementations for different widget contributions. This is where you will add
-  your `detect_spot()` function. 
-- The `src/napari_segment/napari.yaml` file declares commands and
+  your `detect_spots()` function.
+- The `src/napari_spot_detector/napari.yaml` file declares commands and
   contributions for each example widget in the `_widget.py` file. Look at these
   carefully and match up which command & contribution belong to what Python code
   in the `_widget.py` file.
 
 ## 3. Understanding napari.yaml (10 min)
 
-Open `src/napari_segment/napari.yaml`. This is the **manifest** — the
+Open `src/napari_spot_detector/napari.yaml`. This is the **manifest** — the
 heart of your plugin:
 
 ```yaml
-name: napari-segment
-display_name: napari-segment
+name: napari-spot-detector
+display_name: napari-spot-detector
 contributions:
   commands:
-    - id: napari-segment.make_function_widget
-      python_name: napari_segment._widget:threshold_autogenerate_widget
+    - id: napari-spot-detector.make_function_widget
+      python_name: napari_spot_detector._widget:threshold_autogenerate_widget
       title: Make threshold widget
   widgets:
-    - command: napari-segment.make_function_widget
+    - command: napari-spot-detector.make_function_widget
       autogenerate: true
       display_name: Threshold
 ```
@@ -179,7 +179,7 @@ manifest:
 
 ```toml
 [project.entry-points."napari.manifest"]
-napari.manifest = "napari_segment:napari.yaml"
+napari.manifest = "napari_spot_detector:napari.yaml"
 ```
 
 ```{tip}
@@ -187,7 +187,7 @@ When napari starts, it scans all installed packages for `napari.manifest`
 entry points. This is how it discovers plugins without importing them.
 ```
 
-Note that `src` doesn't appear in the path `napari_segment:napari.yaml`, but
+Note that `src` doesn't appear in the path `napari_spot_detector:napari.yaml`, but
 `napari.yaml` is definitely inside the `src/` folder. Python knows to look
 there because `pyproject.toml` declares:
 
@@ -198,7 +198,7 @@ where = ["src"]
 
 ## 4. Implementing the widget (20 min)
 
-Now let's add our segmentation logic. Open `src/napari_segment/_widget.py`.
+Now let's add our spot detection logic. Open `src/napari_spot_detector/_widget.py`.
 
 The template populates `_widget.py` with **four example widget approaches**:
 
@@ -211,50 +211,79 @@ The template populates `_widget.py` with **four example widget approaches**:
 4. **`QWidget` subclass** — full control over layout, callbacks, and events.
 
 We'll use **option 2 (`@magic_factory`)** — the sweet spot of control and
-simplicity for our segmentation function.
+simplicity for our spot detection function.
 
 ### Step 1: Add imports
 
 ```python
 import numpy as np
-from skimage import morphology
-from napari.types import ImageData, LabelsData
+from scipy import ndimage as ndi
+from skimage.feature import blob_log
+from napari.types import ImageData, LayerDataTuple
 ```
 
-### Step 2: Add the threshold function
+### Step 2: Add the spot detection function
 
-Add our segmentation function from Block 3, except we change it from
-`@magicgui` to `@magic_factory` so we can call it from a command:
+Add our `detect_spots` function from Block 3, switching from `@magicgui` to
+`@magic_factory` so napari can call it from the manifest:
 
 ```python
 @magic_factory(
     auto_call=True,
-    percentile={"widget_type": "IntSlider", "min": 0, "max": 100},
-     min_hole={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10},
-    min_obj={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10}
+    high_pass_sigma={"widget_type": "FloatSlider", "min": 0, "max": 20},
+    spot_threshold={"widget_type": "FloatSlider", "min": 0.01, "max": 1.0, "step": 0.01},
+    blob_sigma={"widget_type": "FloatSlider", "min": 1, "max": 20},
 )
-def segment(
-    image: 'napari.types.ImageData',
-    percentile: int = 50,
-    min_hole: int = 60,
-    min_obj: int = 50,
-) -> 'napari.types.LabelsData':
-    """Threshold + morphological cleaning."""
-    from skimage import morphology
+def detect_spots(
+    image: ImageData,
+    high_pass_sigma: float = 2.0,
+    spot_threshold: float = 0.1,
+    blob_sigma: float = 5.0,
+) -> LayerDataTuple:
+    """Detect spots in an image using Laplacian of Gaussian.
 
-    data_min = np.min(image)
-    data_max = np.max(image)
-    foreground = image > data_min + percentile / 100 * (data_max - data_min)
+    Parameters
+    ----------
+    image : np.ndarray
+        The image in which to detect spots.
+    high_pass_sigma : float
+        Sigma for the background-suppressing high-pass filter.
+    spot_threshold : float
+        Relative threshold for spot detection (lower = more spots).
+    blob_sigma : float
+        Expected spot size — passed as max_sigma to the detector.
+    """
+    # Suppress background with gaussian high-pass
+    low_pass = ndi.gaussian_filter(image, high_pass_sigma)
+    filtered = (image - low_pass).clip(0)
 
-    cleaned = morphology.remove_small_holes(foreground, min_hole)
-    cleaned = morphology.remove_small_objects(cleaned, min_size=min_obj)
-    return cleaned
+    # Detect spots with Laplacian of Gaussian
+    blobs = blob_log(
+        filtered,
+        max_sigma=blob_sigma,
+        threshold=None,
+        threshold_rel=spot_threshold,
+    )
+
+    # Convert to points: first two columns are y, x coordinates
+    coords = blobs[:, :2]
+    # Third column is the detected sigma — convert to diameters for sizing
+    sizes = 2 * np.sqrt(2) * blobs[:, 2]
+
+    return (coords, {"size": sizes, "face_color": "red"}, "Points")
 ```
 
 ```{tip}
-The `@magic_factory` decorator is a mostly drop-in replacement for `@magicgui`, except this one *does not return a widget instance immediately*. Instead, it turns our function into a "widget factory function" that can be called to *create a widget instance*. This can be more convenient in many cases, if you are writing a library or package where someone else will be instantiating your widget.
-One additional important—and useful—distinction is that `@magic_factory` gains the `widget_init` keyword argument, which will be called with the new widget each time the factory function is called.
-For more details on the two `magicgui` decorators, see [the magicgui documentation](https://pyapp-kit.github.io/magicgui/decorators/).
+The `@magic_factory` decorator is a mostly drop-in replacement for `@magicgui`,
+except this one *does not return a widget instance immediately*. Instead, it
+turns our function into a "widget factory function" that can be called to
+*create a widget instance*. This can be more convenient in many cases, if you
+are writing a library or package where someone else will be instantiating your
+widget. One additional important—and useful—distinction is that
+`@magic_factory` gains the `widget_init` keyword argument, which will be called
+with the new widget each time the factory function is called.
+For more details on the two `magicgui` decorators, see
+[the magicgui documentation](https://pyapp-kit.github.io/magicgui/decorators/).
 ```
 
 ### Step 3: Update napari.yaml
@@ -264,19 +293,19 @@ Add a new command and widget entry for our function:
 ```yaml
 contributions:
   commands:
-    - id: napari-segment.make_segment_widget
-      python_name: napari_segment._widget:segment
-      title: Make segmentation widget
+    - id: napari-spot-detector.make_detect_spots_widget
+      python_name: napari_spot_detector._widget:detect_spots
+      title: Make spot detection widget
   widgets:
-    - command: napari-segment.make_segment_widget
-      display_name: Segmentation
+    - command: napari-spot-detector.make_detect_spots_widget
+      display_name: Detect Spots
   menus:
-    napari/layers/segment:
-      - command: napari-segment.make_segment_widget
+    napari/layers/analyze:
+      - command: napari-spot-detector.make_detect_spots_widget
 ```
 
 ```{note}
-The `menus` section adds the widget to napari's **Layers > Segment** menu,
+The `menus` section adds the widget to napari's **Layers > Analyze** menu,
 making it easy for users to find.
 ```
 
@@ -284,19 +313,20 @@ making it easy for users to find.
 
 ### Install the plugin
 
-A single command will get you started because from the 
-root of the plugin. `uv run` will install the plugin in editable mode with the
+A single command will get you started from the root of the plugin.
+`uv run` will install the plugin in editable mode with the
 `dev` dependency-group:
 
 ```bash
-cd napari
+cd napari-spot-detector
 uv run napari
 ```
 
-For a more classical approach, you could personally create a virtual environment, activate it, and install the plugin in editable mode with:
+For a more classical approach, you could personally create a virtual
+environment, activate it, and install the plugin in editable mode with:
 
 ```bash
-cd napari-segment
+cd napari-spot-detector
 uv venv -p 3.13
 .venv\Scripts\activate  # Windows
 source .venv/bin/activate  # macOS/Linux
@@ -313,9 +343,9 @@ napari
 
 ### Test in napari
 
-From the menu: **Plugins > napari-segment > Segmentation**
+From the menu: **Plugins > napari-spot-detector > Detect Spots**
 
-Or find it at: **Layers > Segment > Segmentation**
+Or find it at: **Layers > Analyze > Detect Spots**
 
 ```{figure} https://napari.org/stable/_images/plugin-widget.png
 :width: 400px
@@ -328,7 +358,7 @@ Your widget should appear as a dock panel in the viewer.
 The template already includes a test file. Run it with pytest:
 
 ```bash
-cd napari-segment
+cd napari-spot-detector
 uv run pytest
 ```
 
@@ -344,14 +374,14 @@ To share your plugin with the world:
 ### 1. Push to GitHub
 
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/napari-segment.git
+git remote add origin https://github.com/YOUR_USERNAME/napari-spot-detector.git
 git push -u origin main
 ```
 
 ### 2. Publish to PyPI
 
 The template includes a GitHub Actions workflow (`.github/workflows/test_and_deploy.yml`)
-that automatically publishes to PyPI when you push a version tag. 
+that automatically publishes to PyPI when you push a version tag.
 The actual version number of the published package is derived from git tags via
 [setuptools_scm](https://github.com/pypa/setuptools_scm/).
 
@@ -377,11 +407,11 @@ Once published on PyPI, your plugin will automatically appear on
 
 Finished early? Here are some ways to extend your plugin:
 
-- **Add the filtered image as an output** — modify `segment()` to return
-  a `LayerDataTuple` with both the thresholded image and the cleaned labels.
+- **Add the filtered image as an output** — modify `detect_spots()` to also
+  return the high-pass filtered image as an Image layer in the `LayerDataTuple`.
 - **Add sample data** — implement the
   [sample data contribution](https://napari.org/dev/plugins/building_a_plugin/guides.html#sample-data)
-  so users can try your plugin without their own images.
+  so users can try your plugin with built-in example images.
 - **Write more tests** — expand `_tests/test_widget.py` with additional
   test cases using `make_test_viewer`.
 - **Add a reader** — if your work involves a custom file format, implement
@@ -399,7 +429,7 @@ In this block you:
 | 1 | Learned about plugin contribution types |
 | 2 | Scaffolded a plugin project with copier |
 | 3 | Understood `napari.yaml` manifest structure |
-| 4 | Added your segmentation function to `_widget.py` |
+| 4 | Added your spot detection function to `_widget.py` |
 | 5 | Installed in editable mode and tested |
 | 6 | Learned how to publish to PyPI and the napari hub |
 
