@@ -1,4 +1,4 @@
----
+﻿---
 label: extend-block2
 title: "2. Metadata, Formats, and Interactive Analysis"
 jupytext:
@@ -13,11 +13,109 @@ kernelspec:
   name: python3
 ---
 
-**Goal:** Set physical scales and units on image layers, load data with Python
-libraries, explore xarray for labeled arrays and Zarr for cloud-native data,
-and run an interactive segmentation workflow.
+**Goal:** Control napari entirely from Python — create viewers, add layers,
+adjust properties, set physical scales and units, load data from files and
+the cloud with xarray and Zarr, and write your first analysis function.
 
-## 1. Physical scale, units, and axis labels (10 min)
+# 1. Create a viewer from Python (10 min)
+
+In Block 1 we explored the napari GUI. Now let's do everything from code.
+Launching `napari.Viewer()` from a Jupyter notebook or Python script opens
+the napari GUI window — you can interact with it via the GUI **and**
+programmatically at the same time.
+
+```{code-cell} ipython3
+import napari
+
+# Create an empty viewer
+viewer = napari.Viewer()
+```
+
+```{tip}
+If you launch napari from a Python script (not a notebook), you need to call
+`napari.run()` to start the event loop and show the GUI. In Jupyter notebooks,
+this is handled automatically.
+```
+
+Let's load the **Cells (3D + 2Ch)** sample dataset and add it as layers —
+the same data we explored in Block 1, but now we're doing it from Python.
+
+```{code-cell} ipython3
+from skimage.data import cells3d
+
+image_data = cells3d()  # shape (60, 2, 256, 256) — (z, channels, y, x)
+print(f'Data shape: {image_data.shape}')
+```
+
+Split the channels and add them with different colormaps:
+
+```{code-cell} ipython3
+membrane_data = image_data[:, 0, :, :]
+nuclei_data = image_data[:, 1, :, :]
+
+membrane = viewer.add_image(
+    membrane_data,
+    name='membranes',
+    colormap='green',
+)
+nuclei = viewer.add_image(
+    nuclei_data,
+    name='nuclei',
+    colormap='magenta',
+    blending='additive',
+)
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+from napari.utils import nbscreenshot
+nbscreenshot(viewer)
+```
+
+```{tip}
+You can pass colormap, blending, opacity, contrast limits, and many other
+parameters directly in `viewer.add_image()`. Check the
+[docs](https://napari.org/stable/api/napari.Viewer.html#napari.Viewer.add_image)
+for the full list.
+```
+
+# 2. Screenshots in your notebook (3 min)
+
+Just like in the GUI, you can capture what's on screen — but from code:
+
+```{code-cell} ipython3
+from napari.utils import nbscreenshot
+nbscreenshot(viewer)
+# nbscreenshot(viewer, canvas_only=True)  # canvas only, no UI chrome
+```
+
+# 3. Exercise: Layer controls from Python (5 min)
+
+Every property you adjusted with sliders and dropdowns in the GUI can be
+set from Python. Try adjusting the nuclei layer:
+
+```{code-cell} ipython3
+nuclei_layer = viewer.layers['nuclei']
+nuclei_layer.opacity = 0.7
+nuclei_layer.contrast_limits = (0, 15000)
+nuclei_layer.colormap = 'cyan'
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+```{code-cell} ipython3
+# Reset for next section
+nuclei_layer.colormap = 'magenta'
+nuclei_layer.contrast_limits = (0, 65535)
+nuclei_layer.opacity = 1.0
+```
+
+# 4. Physical scale, units, and axis labels (10 min)
 
 Images from microscopes and other instruments have physical meaning — pixels
 correspond to real-world distances. napari can represent this with **scale**,
@@ -67,16 +165,11 @@ by default. We can rename them to reflect the actual axes:
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
 ```
 
-```{tip}
-You can also edit axis labels by right-clicking the roll-dimensions button
-and double-clicking the label in the popup.
-```
-
 ### The napari-metadata plugin
 
 The [napari-metadata](https://napari.org/napari-metadata/) plugin provides a
-dock widget for viewing and editing metadata. Install it via
-**Plugins > Install/Uninstall Plugins…** and open it from
+dock widget for viewing and editing all of this metadata in one place.
+Install it via **Plugins > Install/Uninstall Plugins…** and open it from
 **Plugins > napari-metadata: Layer metadata**.
 
 ![napari-metadata widget](https://napari.org/napari-metadata/_images/screenshot.png)
@@ -88,35 +181,53 @@ The widget shows three sections:
 
 ---
 
-## 2. Loading data with Python (10 min)
+# 5. Loading data with Python (10 min)
 
 napari's drag-and-drop and **File > Open** work well for many formats, but
 when you need precise control over data loading, you can use Python libraries
 directly.
 
-### Using skimage.io.imread
-
-For common image formats (TIFF, PNG, JPEG):
+Let's switch to a new dataset — we'll work with images of cell nuclei and
+fluorescent spots from an in situ sequencing experiment. These files are
+included in the workshop data.
 
 ```{code-cell} ipython3
 from skimage.io import imread
-
-# Load a cropped nuclei image from the workshop data
-# Path works both in MyST (CWD=docs/) and JupyterLab (CWD=notebook dir)
 from pathlib import Path
+
+# Cross-environment path: works in both MyST (CWD=docs/) and JupyterLab
 data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
 
-nuclei_slice = imread(data_dir / 'nuclei_cropped.tif')
-print(f'Shape: {nuclei_slice.shape}')
+nuclei = imread(data_dir / 'nuclei_cropped.tif')
+spots = imread(data_dir / 'spots_cropped.tif')
+
+print(f'Nuclei shape: {nuclei.shape}')
+print(f'Spots shape: {spots.shape}')
 ```
 
-### Using tifffile for advanced TIFF support
+Let's clear the viewer and add this new data:
 
-For multi-page TIFF, OME-TIFF, and other complex TIFF variants:
+```{code-cell} ipython3
+viewer.layers.clear()
+
+viewer.add_image(nuclei, name='nuclei', colormap='I Forest')
+viewer.add_image(spots, name='spots', colormap='I Orange', blending='additive')
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+### Other image reading libraries
+
+For multi-page TIFF, OME-TIFF, and other complex TIFF variants, `tifffile`
+provides more control:
 
 ```python
 from tifffile import imread
-nuclei = imread('extend/data/nuclei_cropped.tif')
+nuclei = imread(data_dir / 'nuclei_cropped.tif')
 ```
 
 ```{admonition} Why so many libraries?
@@ -130,23 +241,23 @@ microscope formats) provide support for everything else. Check the
 
 ---
 
-## 3. A quick look at xarray: labeled arrays (5 min)
+# 6. A quick look at xarray: labeled arrays (5 min)
 
 NumPy arrays are great, but they don't carry information about which axis is
 which. **xarray** adds dimension names and coordinate labels to arrays, making
 code more readable and robust.
 
 ```{code-cell} ipython3
+import numpy as np
 import xarray as xr
 
 # Wrap our nuclei data in an xarray DataArray with named dimensions
 labeled_nuclei = xr.DataArray(
-    nuclei,
-    dims=['z', 'y', 'x'],
+    nuclei_slice,
+    dims=['y', 'x'],
     coords={
-        'z': np.arange(nuclei.shape[0]) * 0.29,  # physical z coordinate (µm)
-        'y': np.arange(nuclei.shape[1]) * 0.13,   # physical y coordinate (µm)
-        'x': np.arange(nuclei.shape[2]) * 0.13,   # physical x coordinate (µm)
+        'y': np.arange(nuclei_slice.shape[0]) * 0.13,  # physical y (µm)
+        'x': np.arange(nuclei_slice.shape[1]) * 0.13,  # physical x (µm)
     },
     name='nuclei',
 )
@@ -180,7 +291,7 @@ details.
 
 ---
 
-## 4. Zarr and OME-Zarr: cloud-native image data (10 min)
+# 7. Zarr and OME-Zarr: cloud-native image data (10 min)
 
 **Zarr** is a chunked, compressed, n-dimensional array format designed for
 cloud storage. Instead of downloading the whole file, you can stream only
