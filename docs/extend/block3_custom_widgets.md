@@ -1,4 +1,4 @@
----
+﻿---
 label: extend-block3
 title: "3. Custom Widgets & Interactions"
 jupytext:
@@ -6,186 +6,77 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.7
+    jupytext_version: 1.19.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
-# Block 3: Custom Widgets & Interactions
-
 **Goal:** Add interactive GUI widgets, custom keybindings, layer event
 callbacks, and mouse drag interactions to napari — turning analysis functions
 into interactive tools.
 
-## 1. Interactive thresholding with magicgui (20 min)
+# Setup
 
-In Block 1 we ran segmentation steps cell by cell. Let's make it interactive
-by adding a slider that updates the threshold in real time — without writing
-any GUI code.
+Let's load the spots and nuclei data from Block 2 and get a fresh viewer:
 
 ```{code-cell} ipython3
 import napari
 import numpy as np
 from napari.utils import nbscreenshot
-from napari.types import ImageData, LabelsData
-from magicgui import magicgui
-from skimage.data import cells3d
+from pathlib import Path
+from skimage.io import imread
 
-# Load and prepare data
-image_data = cells3d()
-nuclei = image_data[:, 1, :, :]       # nuclei channel
-nuclei_mip = nuclei.max(axis=0)
+# Cross-environment path
+data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
+nuclei = imread(data_dir / 'nuclei_cropped.tif')
+spots = imread(data_dir / 'spots_cropped.tif')
 
 viewer = napari.Viewer()
-viewer.add_image(nuclei_mip, name='nuclei_mip')
+viewer.add_image(nuclei, name='nuclei', colormap='I Forest')
+viewer.add_image(spots, name='spots', colormap='I Orange', blending='additive')
 ```
 
-### A magicgui from a function
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+# 1. Interactive filtering with magicgui (25 min)
+
+In Block 2 we wrote a `gaussian_high_pass` function to clean up the spots
+image — but changing the `sigma` parameter meant re-running a cell each time.
+Let's make it interactive with **magicgui**.
 
 The `@magicgui` decorator reads type annotations on your function parameters
 and automatically generates corresponding GUI widgets:
 
 ```{code-cell} ipython3
-@magicgui(
-    auto_call=True,
-    percentile={"widget_type": "IntSlider", "min": 0, "max": 100}
-)
-def threshold(image: ImageData, percentile: int = 50) -> LabelsData:
-    """Threshold an image at a given percentile of its intensity range."""
-    data_min = np.min(image)
-    data_max = np.max(image)
-    return image > data_min + percentile / 100 * (data_max - data_min)
-```
-
-Now add it to the viewer as a dock widget:
-
-```{code-cell} ipython3
-viewer.window.add_dock_widget(threshold, area="right")
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-nbscreenshot(viewer)
-```
-
-```{tip}
-`auto_call=True` means the function runs automatically whenever any parameter
-changes — no need to press a "Run" button! The `ImageData` annotation tells
-magicgui to show a dropdown of available image layers, and `LabelsData` tells
-it the return type is a labels layer.
-```
-
-Try moving the **percentile** slider — the threshold result updates instantly.
-
-### Exercise: Add more controls
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Clean up before next section
-viewer.layers.clear()
-```
-
-Let's build a more complete widget with multiple parameters:
-
-```{code-cell} ipython3
-from typing import Annotated
-
-viewer.add_image(nuclei_mip, name='nuclei_mip')
-
-@magicgui(
-    auto_call=True,
-    percentile={"widget_type": "IntSlider", "min": 0, "max": 100},
-    min_hole={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10},
-    min_obj={"widget_type": "IntSlider", "min": 0, "max": 200, "step": 10}
-)
-def segment(
-    image: ImageData,
-    percentile: int = 50,
-    min_hole: int = 60,
-    min_obj: int = 50,
-) -> LabelsData:
-    """Threshold + morphological cleaning."""
-    from skimage import morphology
-
-    data_min = np.min(image)
-    data_max = np.max(image)
-    foreground = image > data_min + percentile / 100 * (data_max - data_min)
-
-    cleaned = morphology.remove_small_holes(foreground, min_hole)
-    cleaned = morphology.remove_small_objects(cleaned, min_size=min_obj)
-    return cleaned
-
-viewer.window.add_dock_widget(segment, area="right")
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-nbscreenshot(viewer)
-```
-
----
-
-## 2. Custom keybindings (15 min)
-
-Keybindings let you trigger actions with keyboard shortcuts. napari makes this
-remarkably easy.
-
-### A keybinding for morphological cleanup
-
-Let's bind `Shift-P` to clean up the threshold result:
-
-```{code-cell} ipython3
-from skimage import morphology
-
-@viewer.bind_key('Shift-P')
-def process_foreground(viewer):
-    """Remove small holes and objects from the threshold result."""
-    data = viewer.layers['segment result'].data
-    cleaned = morphology.remove_small_holes(data.astype(bool), 60)
-    cleaned = morphology.remove_small_objects(cleaned, min_size=50)
-    viewer.layers['segment result'].data = cleaned
-```
-
-### A keybinding for full segmentation
-
-Now bind `Shift-S` to run the complete watershed pipeline:
-
-```{code-cell} ipython3
-from skimage import feature, measure, segmentation as sk_seg, util
+from magicgui import magicgui
+from napari.types import ImageData
 from scipy import ndimage as ndi
 
-@viewer.bind_key('Shift-S')
-def complete_segmentation(viewer):
-    """Run the full watershed segmentation pipeline."""
-    foreground = viewer.layers['segment result'].data
-    distance = ndi.distance_transform_edt(foreground)
-    smoothed = ndi.gaussian_filter(distance, sigma=10)
+@magicgui
+def gaussian_high_pass(
+    image: ImageData, sigma: float = 2.0
+) -> ImageData:
+    """Apply a gaussian high-pass filter to suppress background.
 
-    peaks = feature.peak_local_max(smoothed, min_distance=7, exclude_border=False)
-
-    shape = viewer.layers['nuclei_mip'].data.shape
-    markers = util.label_points(peaks, output_shape=shape)
-
-    labels = sk_seg.watershed(-smoothed, markers, mask=foreground)
-
-    # Add or update the labels layer
-    if 'segmentation' in viewer.layers:
-        viewer.layers['segmentation'].data = labels
-    else:
-        viewer.add_labels(labels, name='segmentation')
+    Parameters
+    ----------
+    image : np.ndarray
+        The image to filter.
+    sigma : float
+        Width of the gaussian — larger values remove broader features.
+    """
+    low_pass = ndi.gaussian_filter(image, sigma)
+    return (image - low_pass).clip(0)
 ```
 
 ```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Simulate the keybinding to create an initial result for screenshots
-process_foreground(viewer)
-complete_segmentation(viewer)
+viewer.window.add_dock_widget(gaussian_high_pass)
 ```
 
 ```{code-cell} ipython3
@@ -194,31 +85,248 @@ complete_segmentation(viewer)
 nbscreenshot(viewer)
 ```
 
+Notice what just happened: `magicgui` read the `ImageData` type annotation
+and automatically created a dropdown that lists only image layers. The
+`sigma` parameter became a spin box. And because the return type is also
+`ImageData`, the result is automatically added as a new image layer.
+
+Press the **Run** button — the filtered result appears. Change the `sigma`
+value and press Run again: the layer updates in place.
+
 ```{tip}
-Keybindings can be attached to the viewer (`@viewer.bind_key`) or to
-individual layers (`@layer.bind_key`). Layer-specific bindings only fire
-when that layer type is active.
+Hover over the labels `image` and `sigma` — you should see tooltips with
+the docstring information. More *magic* from magicgui!
 ```
 
----
+````{admonition} A note about type hints
+:class: note
+Type hints like `ImageData` are not enforced at runtime, but they **can**
+raise `NameError` if the name isn't defined. We imported `ImageData` from
+`napari.types` to avoid this. Alternatively, you can use a forward reference
+in quotes (`"napari.types.ImageData"`) or add:
 
-## 3. Layer events (15 min)
+```python
+from __future__ import annotations
+```
+
+This makes **all** annotations strings automatically, so you never need to
+import types just for hinting.
+````
+
+The `gaussian_high_pass` object is both a widget **and** a callable function:
+
+```{code-cell} ipython3
+# Read the current sigma value from the widget
+print(gaussian_high_pass.sigma.value)
+
+# Call it as a plain function — still works!
+test_output = gaussian_high_pass(spots, sigma=5)
+print(f'Output shape: {test_output.shape}')
+```
+
+This means you can use the same function in a script **or** as a widget in
+napari — no code duplication.
+
+### Adding sliders and auto-call
+
+Let's make it even more interactive: replace the spin box with a slider
+and have the function run automatically whenever we move it.
+
+First, remove the old widget:
+
+```{code-cell} ipython3
+viewer.window.remove_dock_widget('all')
+```
+
+Now recreate it with widget configuration:
+
+```{code-cell} ipython3
+@magicgui(
+    auto_call=True,
+    sigma={"widget_type": "FloatSlider", "min": 0, "max": 20}
+)
+def gaussian_high_pass(
+    image: ImageData, sigma: float = 2.0
+) -> ImageData:
+    """Apply a gaussian high-pass filter to suppress background."""
+    low_pass = ndi.gaussian_filter(image, sigma)
+    return (image - low_pass).clip(0)
+
+viewer.window.add_dock_widget(gaussian_high_pass)
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+Now drag the slider — the filter updates instantly! `auto_call=True` means
+the function runs whenever any parameter changes, no Run button needed.
+
+You can also set widget values programmatically:
+
+```{code-cell} ipython3
+gaussian_high_pass.sigma.value = 8.0
+```
+
+### A more complete example: spot detection
+
+Let's build a widget for the full spot detection workflow. We'll use
+`skimage.feature.blob_log` to detect spots and return them as a Points
+layer with custom styling.
+
+When a function returns a `LayerDataTuple`, napari creates a new layer
+using whatever data **and** visualization settings you provide:
+
+- `(layer_data, layer_metadata, layer_type)` — data, display options, and type string
+- `layer_metadata` can include `size`, `face_color`, `symbol`, and more
+
+```{code-cell} ipython3
+viewer.window.remove_dock_widget('all')
+
+from skimage.feature import blob_log
+from napari.types import LayerDataTuple
+
+@magicgui(
+    auto_call=True,
+    high_pass_sigma={"widget_type": "FloatSlider", "min": 0, "max": 20},
+    spot_threshold={"widget_type": "FloatSlider", "min": 0.01, "max": 1.0, "step": 0.01},
+    blob_sigma={"widget_type": "FloatSlider", "min": 1, "max": 20},
+)
+def detect_spots(
+    image: ImageData,
+    high_pass_sigma: float = 2.0,
+    spot_threshold: float = 0.1,
+    blob_sigma: float = 5.0,
+) -> LayerDataTuple:
+    """Detect spots in an image using Laplacian of Gaussian.
+
+    Parameters
+    ----------
+    image : np.ndarray
+        The image in which to detect spots.
+    high_pass_sigma : float
+        Sigma for the background-suppressing high-pass filter.
+    spot_threshold : float
+        Relative threshold for spot detection (lower = more spots).
+    blob_sigma : float
+        Expected spot size — passed as max_sigma to the detector.
+    """
+    # Suppress background
+    filtered = gaussian_high_pass(image, high_pass_sigma)
+
+    # Detect spots with Laplacian of Gaussian
+    blobs = blob_log(
+        filtered,
+        max_sigma=blob_sigma,
+        threshold=None,
+        threshold_rel=spot_threshold,
+    )
+
+    # Convert to points: first two columns are y, x coordinates
+    coords = blobs[:, :2]
+    # Third column is the detected sigma — convert to diameters for sizing
+    sizes = 2 * np.sqrt(2) * blobs[:, 2]
+
+    return (coords, {"size": sizes, "face_color": "red"}, "Points")
+```
+
+```{code-cell} ipython3
+viewer.window.add_dock_widget(detect_spots, area="right")
+```
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+# Trigger the widget for the screenshot
+detect_spots.image.value = viewer.layers['spots']
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+Try adjusting the sliders. The spots update in real time — change
+`spot_threshold` to detect more or fewer spots, adjust `blob_sigma` to
+match the spot size in your image.
+
+# 2. Custom keybindings (15 min)
+
+Keybindings let you trigger actions with keyboard shortcuts. napari makes
+this remarkably easy with the `bind_key` decorator.
+
+Let's bind `Shift-D` to report how many spots were detected in the current
+Points layer. We'll attach it to the Points layer type so it only fires
+when a Points layer is active:
+
+```{code-cell} ipython3
+from napari.layers import Points
+from napari.utils.notifications import show_info
+
+@Points.bind_key("Shift-D")
+def report_spot_count(points_layer: Points):
+    """Print the number of detected spots in the active Points layer."""
+    count = len(points_layer.data)
+    show_info(f"Detected {count} spots")
+```
+
+Now select the Points layer created by `detect_spots` and press `Shift-D`.
+You should see a notification pop up in the viewer!
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+# Simulate for the notebook
+report_spot_count(viewer.layers['Points'])
+```
+
+```{tip}
+We used `show_info()` instead of `print()` — this displays a notification
+right in the napari viewer, which is much more visible than looking for
+output in a notebook or terminal. Check out
+[`napari.utils.notifications`](https://napari.org/dev/api/napari.utils.notifications.html)
+for `show_warning()` and `show_error()` too.
+```
+
+```{important}
+At the moment, `bind_key` shortcuts cannot overwrite napari's built-in
+shortcuts. If a built-in shortcut uses the same key combination, the
+built-in one wins — silently. Check **File > Preferences > Shortcuts**
+to see which keys are already taken.
+```
+
+Keybindings can also be attached to the viewer (fires regardless of which
+layer is active):
+
+```python
+@viewer.bind_key('Shift-R')
+def run_detector(viewer):
+    """Re-run spot detection with current settings."""
+    detect_spots(viewer.layers['spots'].data)
+```
+
+# 3. Layer events (15 min)
 
 napari layers emit **events** when their properties change — data, colormap,
 opacity, even individual point positions. You can connect custom functions
 (callbacks) to these events.
 
-Let's set up an example to demonstrate: we'll warp an image whenever a
-control point is moved.
+Let's demonstrate with a cool example: warping an image when control
+points are moved.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+# Clean up from the previous section
 viewer.layers.clear()
 ```
 
 ```{code-cell} ipython3
 import skimage as ski
+from functools import partial
 
 # Create a checkerboard image with four control points
 image = ski.data.checkerboard()
@@ -227,6 +335,12 @@ src = np.array([[66, 66], [133, 66], [66, 133], [133, 133]])
 viewer.add_image(image, name='checkerboard')
 viewer.add_points(src, name='source_points', symbol='+', face_color='red', size=5)
 moving_points = viewer.add_points(src.copy(), name='moving_points')
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
 ```
 
 ### The warp function
@@ -242,14 +356,13 @@ def warp(im_layer, src, dst):
     im_layer.data = (warped * 255).astype(image.dtype)
 
 # Pre-bind the image layer and source points
-from functools import partial
 warp_checkerboard = partial(warp, viewer.layers['checkerboard'], src)
 ```
 
 ### Connecting to the data event
 
-We want the warp to happen whenever a point moves. We connect a function to
-the layer's `data` event:
+We want the warp to happen whenever a point moves. We connect a callback
+to the layer's `data` event:
 
 ```{code-cell} ipython3
 def warp_on_point_changed(event):
@@ -266,7 +379,7 @@ and drag a point. The image warps when you release the mouse.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-# Reset image for next section
+# Reset for next section
 viewer.layers['checkerboard'].data = image
 ```
 
@@ -278,9 +391,7 @@ moving_points.events.data.disconnect(warp_on_point_changed)
 ```
 ```
 
----
-
-## 4. Mouse callbacks (15 min)
+# 4. Mouse callbacks (15 min)
 
 Layer events fire when a change *completes*. But what if you want to react
 while the user is dragging? That's where **mouse callbacks** come in.
@@ -288,7 +399,7 @@ while the user is dragging? That's where **mouse callbacks** come in.
 Mouse callbacks use a **generator pattern** — they `yield` to separate the
 logic for mouse press, drag, and release:
 
-```{code-cell} ipython3
+```python
 def some_mouse_callback(layer, event):
     # --- Mouse press ---
     print("Mouse pressed")
@@ -311,16 +422,16 @@ viewer.layers['checkerboard'].data = image
 
 ### Warping on drag
 
-Let's replace the layer event callback with a mouse drag callback that warps
-the image **as you drag** a point:
+Let's replace the layer event callback with a mouse drag callback that
+warps the image **as you drag** a point:
 
 ```{code-cell} ipython3
 def warp_on_move(points_layer, event):
     """Warp the image as the user drags a control point."""
-    # Nothing to do on mouse press
+    # --- Mouse press ---
     yield
 
-    # While dragging...
+    # --- Mouse drag ---
     while event.type == 'mouse_move':
         # Find which point is being dragged
         idx = list(points_layer.selected_data)[-1]
@@ -334,11 +445,8 @@ def warp_on_move(points_layer, event):
         yield
 
     # Nothing to do on mouse release
-```
 
-Attach the callback to the moving points layer:
-
-```{code-cell} ipython3
+# Attach the callback to the moving points layer
 moving_points.mouse_drag_callbacks.append(warp_on_move)
 ```
 
@@ -361,24 +469,22 @@ moving_points.mouse_drag_callbacks.remove(warp_on_move)
 ```
 ```
 
----
-
-## Recap
+# Recap
 
 In this block you learned to:
 
 | Technique | What it does | How to attach |
 |-----------|-------------|---------------|
 | **magicgui** | Auto-generate GUI widgets from functions | `@magicgui` + `viewer.window.add_dock_widget()` |
-| **Custom keybindings** | Trigger actions with keyboard shortcuts | `@viewer.bind_key('Shift-P')` / `@layer.bind_key('key')` |
+| **Custom keybindings** | Trigger actions with keyboard shortcuts | `@Points.bind_key('Shift-D')` / `@viewer.bind_key('key')` |
 | **Layer events** | React to property changes | `layer.events.data.connect(callback)` |
 | **Mouse callbacks** | React to mouse drag in real time | `layer.mouse_drag_callbacks.append(callback)` |
+
+In **Block 4**, we'll package our `detect_spots` widget into a
+pip-installable napari plugin that anyone can use.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
 viewer.close()
 ```
-
-In **Block 4**, we'll package these customizations into a pip-installable
-napari plugin.
