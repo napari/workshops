@@ -31,10 +31,10 @@ project:
       children:
         - file: extend/index.md
         - file: extend/setup.md
-        - file: extend/block1_welcome.md
-        - file: extend/block2_metadata_formats_analysis.md
-        - file: extend/block3_custom_widgets.md
-        - file: extend/block4_make_a_plugin.md
+        - file: extend/01_gui.md
+        - file: extend/02_code.md
+        - file: extend/03_widgets.md
+        - file: extend/04_plugin.md
     - title: napari Express 🚀
       children:
         - file: express/index.md

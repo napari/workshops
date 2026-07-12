@@ -1,6 +1,4 @@
 ---
-label: extend-block1
-title: "1. Welcome and GUI Walkthrough"
 jupytext:
   text_representation:
     extension: .md

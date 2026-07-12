@@ -1,6 +1,4 @@
 ---
-label: extend-block2
-title: "2. Python, Data, and Metadata"
 jupytext:
   text_representation:
     extension: .md
@@ -56,12 +54,12 @@ nuclei_data = image_data[:, 1, :, :]
 membrane = viewer.add_image(
     membrane_data,
     name='membranes',
-    colormap='green',
+    colormap='yellow',
 )
 nuclei = viewer.add_image(
     nuclei_data,
     name='nuclei',
-    colormap='magenta',
+    colormap='cyan',
     blending='additive',
 )
 ```
@@ -86,8 +84,7 @@ Just like in the GUI, you can capture what's on screen — but from code:
 
 ```{code-cell} ipython3
 from napari.utils import nbscreenshot
-nbscreenshot(viewer)
-# nbscreenshot(viewer, canvas_only=True)  # canvas only, no UI chrome
+nbscreenshot(viewer, canvas_only=True)
 ```
 
 # 3. Exercise: Layer controls from Python (5 min)
@@ -98,8 +95,8 @@ set from Python. Try adjusting the nuclei layer:
 ```{code-cell} ipython3
 nuclei_layer = viewer.layers['nuclei']
 nuclei_layer.opacity = 0.7
-nuclei_layer.contrast_limits = (0, 15000)
-nuclei_layer.colormap = 'cyan'
+nuclei_layer.contrast_limits = (0, 30000)
+nuclei_layer.colormap = 'magenta'
 ```
 
 ```{code-cell} ipython3
@@ -110,7 +107,7 @@ nbscreenshot(viewer)
 
 ```{code-cell} ipython3
 # Reset for next section
-nuclei_layer.colormap = 'magenta'
+nuclei_layer.colormap = 'cyan'
 nuclei_layer.contrast_limits = (0, 65535)
 nuclei_layer.opacity = 1.0
 ```
@@ -134,7 +131,7 @@ The `cells3d` data has voxel dimensions of approximately 0.29 µm in z and
 
 ```{code-cell} ipython3
 for layer in viewer.layers:
-    layer.scale = [0.29, 0.13, 0.13]
+    layer.scale = [0.13, 0.13, 0.13]
     layer.units = ('µm', 'µm', 'µm')
 ```
 
@@ -150,12 +147,6 @@ viewer.scale_bar.visible = True
 nbscreenshot(viewer)
 ```
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-viewer.scale_bar.visible = False
-```
-
 ### Axis labels
 
 The dimension sliders at the bottom of the viewer show generic index labels
@@ -163,6 +154,7 @@ by default. We can rename them to reflect the actual axes:
 
 ```{code-cell} ipython3
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
+viewer.floating_axes.visible = True
 ```
 
 ### The napari-metadata plugin
@@ -214,8 +206,15 @@ Let's clear the viewer and add this new data:
 ```{code-cell} ipython3
 viewer.layers.clear()
 
-viewer.add_image(nuclei, name='nuclei', colormap='I Forest')
-viewer.add_image(spots, name='spots', colormap='I Orange', blending='additive')
+viewer.add_image(
+    nuclei,
+    colormap='I Forest'
+)
+viewer.add_image(
+    spots,
+    colormap='I Orange',
+    blending='minimum'
+)
 ```
 
 ```{code-cell} ipython3
@@ -257,11 +256,11 @@ import xarray as xr
 
 # Wrap our nuclei data in an xarray DataArray with named dimensions
 labeled_nuclei = xr.DataArray(
-    nuclei_slice,
+    nuclei,
     dims=['y', 'x'],
     coords={
-        'y': np.arange(nuclei_slice.shape[0]) * 0.13,  # physical y (µm)
-        'x': np.arange(nuclei_slice.shape[1]) * 0.13,  # physical x (µm)
+        'y': np.arange(nuclei.shape[0]) * 0.13,  # physical y (µm)
+        'x': np.arange(nuclei.shape[1]) * 0.13,  # physical x (µm)
     },
     name='nuclei',
 )
@@ -411,7 +410,12 @@ Let's test it on our spots data with `sigma=2`:
 ```{code-cell} ipython3
 high_passed_spots = gaussian_high_pass(spots, 2)
 
-viewer.add_image(high_passed_spots, name='filtered spots', colormap='I Blue', blending='additive')
+viewer.add_image(
+    high_passed_spots,
+    name='filtered spots',
+    colormap='I Blue',
+    blending='minimum'
+)
 ```
 
 ```{code-cell} ipython3
