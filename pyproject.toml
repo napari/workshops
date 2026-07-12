@@ -17,6 +17,7 @@ dependencies = [
 extend = [
     "scikit-image",
     "magicgui",
+    "scipy",
     "xarray",
     "napari-ome-zarr",
     "jupyterlab",
