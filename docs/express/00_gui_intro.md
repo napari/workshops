@@ -26,7 +26,7 @@ Run the first script to start a quick tour of the GUI:
 
 ```{tip} Rememeber
 All scripts mentioned in a page are available on the download button at the top right,
-as well as in button such as the one above. Drag and drop it into napari!.
+as well as in button such as the one above. Drag and drop it into napari!
 ```
 
 ```{warning}
