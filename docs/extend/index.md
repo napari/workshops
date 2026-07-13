@@ -15,13 +15,13 @@ mouse interactions, and package your custom tools as pip-installable napari plug
 
 | Time | Activity | Duration |
 |------|----------|----------|
-| 0:00 | [**Block 1**](block1_welcome) — Welcome and GUI Walkthrough | 55 min |
+| 0:00 | [**Block 1**](#extend-block1) — Welcome and GUI Walkthrough | 55 min |
 | 0:55 | ☕ Break | 10 min |
-| 0:55 | [**Block 2**](block2_metadata_formats_analysis) — Python, Data, and Metadata | 65 min |
+| 0:55 | [**Block 2**](#extend-block2) — Python, Data, and Metadata | 65 min |
 | 2:00 | ☕ Break | 10 min |
-| 2:15 | [**Block 3**](block3_custom_widgets) — Custom Widgets & Interactions | 70 min |
+| 2:15 | [**Block 3**](#extend-block3) — Custom Widgets & Interactions | 70 min |
 | 3:25 | ☕ Break | 10 min |
-| 3:40 | [**Block 4**](block4_make_a_plugin) — From Script to Plugin | 60 min |
+| 3:40 | [**Block 4**](#extend-block4) — From Script to Plugin | 60 min |
 | 4:40 | Wrap-up, survey, resources | 10 min |
 
 ## Prerequisites

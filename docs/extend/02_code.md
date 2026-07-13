@@ -1,4 +1,6 @@
 ---
+label: extend-block2
+title: "2. Python, Data, and Metadata"
 jupytext:
   text_representation:
     extension: .md
@@ -368,9 +370,10 @@ ldt[0]
 ```
 
 ```{code-cell} ipython3
-for data, kwargs, layer_type in nimg.get_layer_data_tuples():
-    add_method = getattr(viewer, f'add_{layer_type}')
-    add_method(data, **kwargs)
+for data, kwargs, _layer_type in nimg.get_layer_data_tuples():
+    # add_method = getattr(viewer, f'add_{layer_type}')
+    # add_method(data, **kwargs)
+    viewer.add_image(data, **kwargs)
 ```
 
 In **Block 3**, we'll take our programmatic understanding of napari to the
