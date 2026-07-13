@@ -293,7 +293,7 @@ viewer.window.add_dock_widget(detect_spots, area="right")
 :tags: [remove-cell]
 
 # Trigger the widget for the screenshot
-detect_spots.image.value = viewer.layers['spots'].data
+detect_spots(viewer.layers['spots'].data)
 ```
 
 ```{code-cell} ipython3
@@ -374,12 +374,15 @@ points are moved.
 :tags: [remove-cell]
 
 # Clean up from the previous section
-viewer.layers.clear()
+viewer.close()
 ```
 
 ```{code-cell} ipython3
 import skimage as ski
 from functools import partial
+
+# Start a new viewer to get rid of the auto-running functions
+viewer = napari.Viewer()
 
 # Create a checkerboard image with four control points
 image = ski.data.checkerboard()
@@ -518,7 +521,6 @@ Clean up mouse callbacks when you're done:
 
 ```python
 moving_points.mouse_drag_callbacks.remove(warp_on_move)
-```
 ```
 
 # Recap
