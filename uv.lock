@@ -184,14 +184,14 @@ wheels = [
 
 [[package]]
 name = "anyio"
-version = "4.14.1"
+version = "4.14.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "idna" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3b/72/5562aabb8dd7181e8e860622a38bea08d17842b99ecd4c91f84ac95251b0/anyio-4.14.1.tar.gz", hash = "sha256:8d648a3544c1a700e3ff78615cd679e4c5c3f149904287e73687b2596963629e", size = 254831, upload-time = "2026-06-24T20:56:06.017Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz", hash = "sha256:cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f", size = 260176, upload-time = "2026-07-12T20:29:07.082Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/7b/90df4a0a816d98d6ea26f559d87836d494a2cf1fcf063be67df50a7bcc30/anyio-4.14.1-py3-none-any.whl", hash = "sha256:4e5533c5b8ff0a24f5d7a176cbe6877129cd183893f66b537f8f227d10527d72", size = 124875, upload-time = "2026-06-24T20:56:04.413Z" },
+    { url = "https://files.pythonhosted.org/packages/da/35/f2287558c17e29fafc8ef3daf819bb9834061cfa43bff8014f7df7f63bdc/anyio-4.14.2-py3-none-any.whl", hash = "sha256:9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494", size = 125813, upload-time = "2026-07-12T20:29:05.763Z" },
 ]
 
 [[package]]
@@ -1993,7 +1993,7 @@ wheels = [
 
 [[package]]
 name = "napari"
-version = "0.8.0rc0"
+version = "0.8.0rc1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "app-model" },
@@ -2033,9 +2033,9 @@ dependencies = [
     { name = "vispy" },
     { name = "wrapt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f0/2a/db7175c5d35a8c8fbc3d29ba97e8192f472a7e8e2a14647f43108c1626e0/napari-0.8.0rc0.tar.gz", hash = "sha256:3deeedfc9640787326a399915f4f2a5f652ca205ed87692bc7853f078d21bf9e", size = 3187028, upload-time = "2026-07-12T13:18:02.436Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/56/7b/6921e8fff89be9a966124209d2a8d2985069719471b4c9f04643c768796b/napari-0.8.0rc1.tar.gz", hash = "sha256:8217037f811ef8a105e5a13a2892242290b450f5e5bf93e39a7a8681ce5a909e", size = 3189323, upload-time = "2026-07-12T20:35:34.435Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/1a/cdf87194d56e138546bd69d4cfc77a05896b5e02c75f8eb9a5b80c9ac9c8/napari-0.8.0rc0-py3-none-any.whl", hash = "sha256:8a247f5cf9c41ae47f6706831d55b9bed5ec40268569b1ac783a14a243e7c3c7", size = 3576556, upload-time = "2026-07-12T13:17:59.95Z" },
+    { url = "https://files.pythonhosted.org/packages/33/91/ce3a0b527999a357eeda6815ba11be6231ec1b029c607bec39f1bad4bab2/napari-0.8.0rc1-py3-none-any.whl", hash = "sha256:98619c7aed663e761d71d0d3a0e9692ea38ead402f3fba4799d0722ed3fa1d22", size = 3581417, upload-time = "2026-07-12T20:35:32.302Z" },
 ]
 
 [package.optional-dependencies]
