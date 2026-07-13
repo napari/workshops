@@ -298,17 +298,14 @@ Add a note: *what example did you try, and what surprised or interested you?*
 (extend-recommended-examples)=
 ## Recommended Examples
 
-1. 3D Layer Bounding Box Overlay
-2. Add points 3D
-3. Anisotropic data with scale
-4. Annotate segmentation with text
-5. Colorbars and auto-tiling in grid mode
-6. Displaying xarray data in napari
-7. Heart with multiple annotations
-8. Image points 3D
-9. Labels 3D
-10. Surface with texture and vertex colors
-11. Tracks 3D
+1. Displaying Xarray data in napari
+2. Interactive Control Over Parallel Computations
+3. Set Multiscale Resolution Level
+4. Surface with texture and vertex colors
+5. 3D Vector field and image across time
+6. Heart with multiple annotations
+7. Tracks 3D
+8. Surface with multiple textures
 
 # Sharing Time (3 min)
 
