@@ -167,12 +167,6 @@ dock widget for viewing and editing all of this metadata in one place.
 Install it via **Plugins > Install/Uninstall Plugins…** and open it from
 **Plugins > napari-metadata: Layer metadata**.
 
-```{image} https://napari.org/napari-metadata/en/latest/_images/screenshot.png
-:width: 400px
-:alt: napari-metadata widget showing axis labels, scale, translation, and units
-:target: https://napari.org/napari-metadata/
-```
-
 The widget shows three sections:
 1. **File metadata** — read-only properties (shape, dtype, file path)
 2. **Axes metadata** — editable axis labels, scale, translation, and units

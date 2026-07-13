@@ -347,11 +347,6 @@ From the menu: **Plugins > napari-spot-detector > Detect Spots**
 
 Or find it at: **Layers > Analyze > Detect Spots**
 
-```{image} https://napari.org/stable/_images/plugin-widget.png
-:width: 400px
-:alt: napari viewer with plugin widget dock panel
-```
-
 ### Test with pytest
 
 The template already includes a test file. Run it with pytest:
@@ -390,7 +385,7 @@ git push --tags
 ```
 
 Or **create a GitHub Release** with a new tag:
-   - Go to [Releases](https://github.com/napari/napari-metadata/releases) →
+   - Go to Releases [e.g. napari-metadata](https://github.com/napari/napari-metadata/releases) →
      "Draft a new release".
    - Choose a tag matching the new version (e.g. `v0.4.0`).
    - Target `main`.
