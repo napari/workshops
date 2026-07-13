@@ -370,6 +370,7 @@ ldt[0]
 ```
 
 ```{code-cell} ipython3
+viewer.clear()
 for data, kwargs, _layer_type in nimg.get_layer_data_tuples():
     # add_method = getattr(viewer, f'add_{layer_type}')
     # add_method(data, **kwargs)

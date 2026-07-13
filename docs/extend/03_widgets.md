@@ -306,6 +306,12 @@ Try adjusting the sliders. The spots update in real time — change
 `spot_threshold` to detect more or fewer spots, adjust `blob_sigma` to
 match the spot size in your image.
 
+```{admonition} Practice Challenge
+In Block 2, you learned how to return not only this `LayerDataTuple`, but
+ndevio returned a `list` of `LayerDataTuple`s. Can you modify `detect_spots()`
+to also return the high-pass filtered image as an image layer?
+Hint: Only the return statement needs to change!
+```
 # 3. Custom keybindings (15 min)
 
 Keybindings let you trigger actions with keyboard shortcuts. napari makes
