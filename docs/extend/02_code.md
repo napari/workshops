@@ -133,6 +133,8 @@ The `cells3d` data has voxel dimensions of approximately 0.29 µm in z and
 for layer in viewer.layers:
     layer.scale = [0.13, 0.13, 0.13]
     layer.units = ('µm', 'µm', 'µm')
+
+# viewer.fit_to_view()
 ```
 
 Now enable the scale bar to see the physical scale:
@@ -150,7 +152,8 @@ nbscreenshot(viewer)
 ### Axis labels
 
 The dimension sliders at the bottom of the viewer show generic index labels
-by default. We can rename them to reflect the actual axes:
+by default. We can rename them to reflect the actual axes and show the floating
+axes overlay:
 
 ```{code-cell} ipython3
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
@@ -174,8 +177,6 @@ The widget shows three sections:
 1. **File metadata** — read-only properties (shape, dtype, file path)
 2. **Axes metadata** — editable axis labels, scale, translation, and units
 3. **Copy metadata** — propagate metadata from one layer to others
-
----
 
 # 5. Loading data with Python (10 min)
 
@@ -242,108 +243,72 @@ microscope formats) provide support for everything else. Check the
 [napari hub](https://napari-hub.org) for format-specific reader plugins.
 ```
 
----
-
-# 6. A quick look at xarray: labeled arrays (5 min)
-
-NumPy arrays are great, but they don't carry information about which axis is
-which. **xarray** adds dimension names and coordinate labels to arrays, making
-code more readable and robust.
-
-```{code-cell} ipython3
-import numpy as np
-import xarray as xr
-
-# Wrap our nuclei data in an xarray DataArray with named dimensions
-labeled_nuclei = xr.DataArray(
-    nuclei,
-    dims=['y', 'x'],
-    coords={
-        'y': np.arange(nuclei.shape[0]) * 0.13,  # physical y (µm)
-        'x': np.arange(nuclei.shape[1]) * 0.13,  # physical x (µm)
-    },
-    name='nuclei',
-)
-print(labeled_nuclei)
-```
-
-When you pass an xarray DataArray to napari's `add_image()`, napari
-automatically reads the dimension names and coordinate values:
-
-```{code-cell} ipython3
-viewer2 = napari.Viewer()
-viewer2.add_image(labeled_nuclei)
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-nbscreenshot(viewer2)
-```
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-viewer2.close()
-```
-
-Notice how the dimension sliders already have the correct axis labels and
-the scale is set from the coordinate values. The [napari docs on xarray
-support](https://napari.org/stable/gallery/display_xarray_data.html) has more
-details.
-
----
-
-# 7. Zarr and OME-Zarr: cloud-native image data (10 min)
+# 6. Zarr and OME-Zarr: cloud-native image data (10 min)
 
 **Zarr** is a chunked, compressed, n-dimensional array format designed for
 cloud storage. Instead of downloading the whole file, you can stream only
 the parts you need.
 
 **OME-Zarr** is a standardized specification for bioimaging data built on top
-of Zarr — it's what the [Image Data Resource (IDR)](https://idr.openmicroscopy.org/)
+of Zarr — it's what the 
 uses to host thousands of public microscopy images.
 
 ### Opening a remote OME-Zarr image
 
-First, we need the `napari-ome-zarr` reader plugin:
+```{admonition} Readers and plugins
+:class: tip
+napari uses a **plugin-based reader system**. Different file formats are
+handled by different reader plugins:
+- **Built-in**: PNG, JPEG, TIFF (basic), CSV
+- **[napari-ome-zarr](https://napari-hub.org/plugins/napari-ome-zarr)**: OME-Zarr,
+  streaming from cloud URLs
+- **[ndevio](https://napari-hub.org/plugins/ndevio)**: OME-TIFF, Zarr, major microscopy formats, and bioformats support
+- **Other plugins**: Search [napari-hub.org](https://napari-hub.org) for your format
 
-```python
-# In the napari GUI:
-# Plugins > Install/Uninstall Plugins… > search "napari-ome-zarr" > Install > Restart
+When you attempt to open a file onto the canvas, napari asks which reader to use.
+In addition to Pythonic dependency management, you can also install them from the
+napari plugin manager (**Plugins > Install/Uninstall Plugins…**).
 ```
 
-Or from the terminal:
-```bash
-pixi run -e extend pip install napari-ome-zarr
+We will first use the specialized [napari-ome-zarr](https://github.com/ome/napari-ome-zarr)
+plugin to open public OME-Zarr datasets directly from the
+[Image Data Resource (IDR)](https://idr.openmicroscopy.org/). This plugin is
+not included in the default napari installation, but the `extend` feature includes
+napari-ome-zarr.
+
+```{important}
+The experimental Asynchronous Rendering feature in napari is especially useful for 
+remote datasets because the viewer is not "blocked" while data is being downloaded.
+Enable it in **File > Preferences > Experimental > Render Images Asynchronously**.
 ```
 
-Now let's stream a public image from the IDR:
+Now let's stream a public image from the [IDR Catalog of OME-NGFF samples](https://idr.github.io/ome-ngff-samples/).
 
 ```{code-cell} ipython3
 :tags: [remove-output]
 
-# NOTE: This cell requires an internet connection
+# plants: https://livingobjects.ebi.ac.uk/idr/zarr/v0.5/idr0157/Asterella%20gracilis%20SWE/IMG_1033-1112%20Asterella%20gracilis%20(Mannia%20gracilis)%20stature.ome.zarr
+# brain slice: https://livingobjects.ebi.ac.uk/idr/zarr/v0.4/idr0048A/9846152.zarr/
+# cells: https://livingobjects.ebi.ac.uk/idr/zarr/v0.4/idr0047A/4496763.zarr
+
 # If the connection is slow, try this fallback URL:
 # https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr
 
-zarr_url = "https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr"
+zarr_url = "https://livingobjects.ebi.ac.uk/idr/zarr/v0.4/idr0048A/9846152.zarr/"
 
 viewer_zarr = napari.Viewer()
 viewer_zarr.open(zarr_url, plugin='napari-ome-zarr')
+```
+
+```{tip}
+You can copy an image link and "paste" it into the napari GUI to open it!
+Use the "Ctrl+N" shortcut (New Image) when the link is copied to your clipboard.
 ```
 
 ```{code-cell} ipython3
 :tags: [remove-input]
 
 nbscreenshot(viewer_zarr)
-```
-
-```{tip}
-For the best experience with large remote datasets, enable **Asynchronous
-Rendering** in napari's settings (**File > Preferences > Experimental >
-Render Images Asynchronously**). This lets napari load data in pieces
-without freezing the interface.
 ```
 
 ### Explore more OME-Zarr datasets
@@ -358,86 +323,70 @@ without freezing the interface.
 viewer_zarr.close()
 ```
 
-```{admonition} Readers and plugins
-:class: tip
-napari uses a **plugin-based reader system**. Different file formats are
-handled by different reader plugins:
-- **Built-in**: PNG, JPEG, TIFF (basic), CSV
-- **[ndevio](https://napari-hub.org/plugins/ndevio)**: OME-TIFF, BigTIFF, and
-  many proprietary microscope formats
-- **[napari-ome-zarr](https://napari-hub.org/plugins/napari-ome-zarr)**: OME-Zarr,
-  streaming from cloud URLs
-- **Other plugins**: Search [napari-hub.org](https://napari-hub.org) for your format
+# 7. Full-circle: from plugin to code to napari (10 min)
 
-When you drag a file onto the canvas, napari asks which reader to use. If no
-reader matches, you can install one from the plugin manager.
-```
+To wrap this all up, let's now use [bioio](https://bioio-devs.github.io/bioio/OVERVIEW.html)
+to see how we can programmatically interact with a broad number of bioimaging formats.
+By default, the `extend` environment install bioio-ome-zarr and bioio-ome-tiff, but
+there are many other bioio plugins available. 
 
----
+Then, we'll use [ndevio](https://github.com/ndev-kit/ndevio) as a flexible napari plugin
+that uses bioio and its metadata system to make napari-ready data, in addition to 
+its general use as a napari reader plugin.
 
-# 8. Writing analysis functions (10 min)
+Under the hood, bioio uses **xarray** to represent image data with named
+dimensions — that's what gives us meaningful axis labels like `T`, `C`, `Z`,
+`Y`, `X` instead of opaque index numbers.
 
-Now let's write our first analysis function. The spots image has some
-background autofluorescence — we can clean it up with a **gaussian high-pass
-filter**: subtract a blurred version of the image from the original, keeping
-only the sharp, spot-like features.
+We're going to look at a multiscale chicken embryo:
 
 ```{code-cell} ipython3
-from scipy import ndimage as ndi
+from bioio import BioImage
+import bioio
 
-def gaussian_high_pass(image, sigma):
-    """Remove broad background signal by subtracting a gaussian-blurred copy.
+# note the trailing forward slash must be absent
+img = BioImage("https://livingobjects.ebi.ac.uk/idr/zarr/v0.5/idr0066/ExpD_chicken_embryo_MIP.ome.zarr")
 
-    Parameters
-    ----------
-    image : np.ndarray
-        The image to filter.
-    sigma : float
-        Width of the gaussian — larger values remove broader features.
-
-    Returns
-    -------
-    high_passed : np.ndarray
-        The filtered image with background suppressed.
-    """
-    low_pass = ndi.gaussian_filter(image, sigma)
-    high_passed = (image - low_pass).clip(0)
-    return high_passed
-```
-
-Let's test it on our spots data with `sigma=2`:
-
-```{code-cell} ipython3
-high_passed_spots = gaussian_high_pass(spots, 2)
-
-viewer.add_image(
-    high_passed_spots,
-    name='filtered spots',
-    colormap='I Blue',
-    blending='minimum'
-)
+print(img.dims)
+print(img.shape)
+img.xarray_dask_data
 ```
 
 ```{code-cell} ipython3
-:tags: [remove-input]
+from ndevio import nImage
 
-nbscreenshot(viewer)
+nimg = nImage("https://livingobjects.ebi.ac.uk/idr/zarr/v0.5/idr0066/ExpD_chicken_embryo_MIP.ome.zarr")
+# sublcasses BioImage, so it contains all properties:
+print(nimg.dims)
+# and ndevio logic for "reasonable" defaults
+nimg.reference_xarray
 ```
 
-The spots stand out much more clearly against the background! But what if we
-want to try a different `sigma` value? We'd have to re-run the cell manually
-each time — not exactly an interactive exploration.
+```{code-cell} ipython3
+# the 0th data is the highest resolution, while the -1th data is the coursest
+nimg.layer_data[-1]
+```
 
-In **Block 3**, we'll turn this function into an interactive widget with
-sliders, so we can tune parameters in real time — without writing any GUI code.
+```{code-cell} ipython3
+ldt = nimg.get_layer_data_tuples()
+print(type(ldt))
+ldt[0]
+```
 
----
+```{code-cell} ipython3
+for data, kwargs, layer_type in nimg.get_layer_data_tuples():
+    add_method = getattr(viewer, f'add_{layer_type}')
+    add_method(data, **kwargs)
+```
+
+In **Block 3**, we'll take our programmatic understanding of napari to the
+next step by creating an interactive widget with sliders,
+so we can tune parameters in real time — without writing any GUI code.
 
 # Sharing Time (5 min)
 
-- What was the largest or most interesting Zarr image you explored?
-- Did adding scale and units change how you think about the data?
-- What would you want to measure or analyze in the spots + nuclei dataset?
+- What was the most interesting image you explored? Why?
+- Did managing and visualizing metadata improve your understanding of the data?
 
 Share a screenshot on the **#workshops** stream on
 [Zulip](https://napari.zulipchat.com): press `Alt+C` to copy the canvas,

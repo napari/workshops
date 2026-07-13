@@ -35,7 +35,7 @@ spots = imread(data_dir / 'spots_cropped.tif')
 
 viewer = napari.Viewer()
 viewer.add_image(nuclei, name='nuclei', colormap='I Forest')
-viewer.add_image(spots, name='spots', colormap='I Orange', blending='additive')
+viewer.add_image(spots, name='spots', colormap='I Orange', blending='minimum')
 ```
 
 ```{code-cell} ipython3
@@ -44,7 +44,60 @@ viewer.add_image(spots, name='spots', colormap='I Orange', blending='additive')
 nbscreenshot(viewer)
 ```
 
-# 1. Interactive filtering with magicgui (25 min)
+# 1. Writing analysis functions (10 min)
+
+First, let's write the analysis function we'll turn into a widget. The spots
+image has some background autofluorescence — we can clean it up with a
+**gaussian high-pass filter**: subtract a blurred version of the image from
+the original, keeping only the sharp, spot-like features.
+
+```{code-cell} ipython3
+from scipy import ndimage as ndi
+
+def gaussian_high_pass(image, sigma):
+    """Remove broad background signal by subtracting a gaussian-blurred copy.
+
+    Parameters
+    ----------
+    image : np.ndarray
+        The image to filter.
+    sigma : float
+        Width of the gaussian — larger values remove broader features.
+
+    Returns
+    -------
+    high_passed : np.ndarray
+        The filtered image with background suppressed.
+    """
+    low_pass = ndi.gaussian_filter(image, sigma)
+    high_passed = (image - low_pass).clip(0)
+    return high_passed
+```
+
+Let's test it on our spots data with `sigma=2`:
+
+```{code-cell} ipython3
+high_passed_spots = gaussian_high_pass(spots, 2)
+
+viewer.add_image(
+    high_passed_spots,
+    name='filtered spots',
+    colormap='I Blue',
+    blending='minimum'
+)
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+nbscreenshot(viewer)
+```
+
+The spots stand out much more clearly against the background! But what if we
+want to try a different `sigma` value? We'd have to re-run the cell manually
+each time — not exactly an interactive exploration.
+
+# 2. Interactive filtering with magicgui (25 min)
 
 In Block 2 we wrote a `gaussian_high_pass` function to clean up the spots
 image — but changing the `sigma` parameter meant re-running a cell each time.
@@ -253,7 +306,7 @@ Try adjusting the sliders. The spots update in real time — change
 `spot_threshold` to detect more or fewer spots, adjust `blob_sigma` to
 match the spot size in your image.
 
-# 2. Custom keybindings (15 min)
+# 3. Custom keybindings (15 min)
 
 Keybindings let you trigger actions with keyboard shortcuts. napari makes
 this remarkably easy with the `bind_key` decorator.
@@ -308,7 +361,7 @@ def run_detector(viewer):
     detect_spots(viewer.layers['spots'].data)
 ```
 
-# 3. Layer events (15 min)
+# 4. Layer events (15 min)
 
 napari layers emit **events** when their properties change — data, colormap,
 opacity, even individual point positions. You can connect custom functions
@@ -389,9 +442,8 @@ Always disconnect callbacks when you're done:
 ```python
 moving_points.events.data.disconnect(warp_on_point_changed)
 ```
-```
 
-# 4. Mouse callbacks (15 min)
+# 5. Mouse callbacks (15 min)
 
 Layer events fire when a change *completes*. But what if you want to react
 while the user is dragging? That's where **mouse callbacks** come in.
