@@ -128,15 +128,17 @@ depend on this metadata.
 
 ## Setting layer scale
 
-The `cells3d` data has voxel dimensions of approximately 0.29 µm in z and
-0.13 µm in xy. Let's set them:
+napari handles units and physical scale on a per-layer and axis basis and uses
+[Pint](https://pint.readthedocs.io/en/stable/) for parsing units. Read more
+about napari's unit rendering in the
+[scale and unit aware rendering guide](https://napari.org/stable/guides/units.html).
 
 ```{code-cell} ipython3
 for layer in viewer.layers:
     layer.scale = [0.13, 0.13, 0.13]
-    layer.units = ('µm', 'µm', 'µm')
+    layer.units = ('µm', 'µm', 'micrometer')
 
-# viewer.fit_to_view()
+viewer.fit_to_view()  # fit the extent of all the layers to the canvas
 ```
 
 Now enable the scale bar to see the physical scale:

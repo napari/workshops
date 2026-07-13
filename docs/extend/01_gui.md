@@ -281,7 +281,7 @@ Speaking of which…
 
 **Tasks:**
 
-1. Open the [napari gallery](https://napari.org/stable/gallery) and find an example
+1. Open the [napari gallery](https://napari.org/dev/gallery) and find an example
    that looks interesting — see the [](#extend-recommended-examples) list below for ideas.
 2. Drag-and-drop the `.py` file Button onto the napari canvas.
 3. Explore the result! Try adjusting colors, contrast, or the 3D view.
