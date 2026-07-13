@@ -1,6 +1,4 @@
 ---
-label: extend-block2
-title: "2. Python, Data, and Metadata"
 jupytext:
   text_representation:
     extension: .md
@@ -66,13 +64,6 @@ nuclei = viewer.add_image(
 )
 ```
 
-```{code-cell} ipython3
-:tags: [remove-input]
-
-from napari.utils import nbscreenshot
-nbscreenshot(viewer)
-```
-
 ```{tip}
 You can pass colormap, blending, opacity, contrast limits, and many other
 parameters directly in `viewer.add_image()`. Check the
@@ -85,8 +76,11 @@ for the full list.
 Just like in the GUI, you can capture what's on screen — but from code:
 
 ```{code-cell} ipython3
+:tags: [remove-input]
+
 from napari.utils import nbscreenshot
-nbscreenshot(viewer, canvas_only=True)
+nbscreenshot(viewer)
+# nbscreenshot(viewer, canvas_only=True)  # capture just the scene, no GUI!
 ```
 
 # 3. Exercise: Layer controls from Python (5 min)
@@ -96,8 +90,8 @@ set from Python. Try adjusting the nuclei layer:
 
 ```{code-cell} ipython3
 nuclei_layer = viewer.layers['nuclei']
-nuclei_layer.opacity = 0.7
-nuclei_layer.contrast_limits = (0, 30000)
+nuclei_layer.opacity = 0.9
+nuclei_layer.contrast_limits = (0, 20000)
 nuclei_layer.colormap = 'magenta'
 ```
 
@@ -145,6 +139,7 @@ Now enable the scale bar to see the physical scale:
 
 ```{code-cell} ipython3
 viewer.scale_bar.visible = True
+viewer.dims.point = (3, 0, 0)  # the set point of the dims slider is relative to the scale of your data
 ```
 
 ```{code-cell} ipython3
@@ -356,7 +351,7 @@ from ndevio import nImage
 nimg = nImage("https://livingobjects.ebi.ac.uk/idr/zarr/v0.5/idr0066/ExpD_chicken_embryo_MIP.ome.zarr")
 # sublcasses BioImage, so it contains all properties:
 print(nimg.dims)
-# and ndevio logic for "reasonable" defaults
+# and ndevio logic for "reasonable" defaults for napari
 nimg.reference_xarray
 ```
 
@@ -366,13 +361,13 @@ nimg.layer_data[-1]
 ```
 
 ```{code-cell} ipython3
-ldt = nimg.get_layer_data_tuples()
-print(type(ldt))
-ldt[0]
+ldts = nimg.get_layer_data_tuples()
+print(type(ldts))
+ldts[0]
 ```
 
 ```{code-cell} ipython3
-viewer.clear()
+viewer.layers.clear()
 for data, kwargs, _layer_type in nimg.get_layer_data_tuples():
     # add_method = getattr(viewer, f'add_{layer_type}')
     # add_method(data, **kwargs)
