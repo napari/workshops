@@ -41,7 +41,7 @@ viewer.dims.axis_labels = ('CoE', 'PC', 'Z', 'Y', 'X')
 # viewer.dims.ndisplay = 3
 viewer.dims.set_point(1, 1)
 viewer.dims.set_point(0, 2)
-viewer.axes.visible = True
+viewer.floating_axes.visible = True
 viewer.scale_bar.visible = True
 viewer.scale_bar.unit = 'pixel'
 viewer.camera.angles = (20, -35, 110)

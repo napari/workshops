@@ -62,11 +62,19 @@ else:
 viewer = napari.Viewer()
 
 image = viewer.add_image(
-    img, name='tribolium', colormap='magma', contrast_limits=[0, 120], rendering='attenuated_mip'
+    img, name='tribolium',
+    colormap='magma',
+    contrast_limits=[0, 120],
+    rendering='attenuated_mip',
+    units='um',
 )
 
 labels_layer = viewer.add_labels(
-    labels, name='tribolium labels', opacity=0.8, iso_gradient_mode='smooth'
+    labels,
+    name='tribolium labels',
+    opacity=0.8,
+    iso_gradient_mode='smooth',
+    units='um',
 )
 
 viewer.dims.ndisplay = 3
@@ -74,9 +82,8 @@ viewer.dims.axis_labels = ('Time', 'Z', 'Y', 'X')
 viewer.grid.enabled = True
 viewer.camera.angles = (90, -20, 15)
 
-viewer.axes.visible = True
+viewer.floating_axes.visible = True
 viewer.scale_bar.visible = True
-viewer.scale_bar.unit = 'um'
 viewer.scale_bar.font_size = 20
 
 viewer.fit_to_view(margin=0.2)
