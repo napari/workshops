@@ -1,4 +1,6 @@
 ---
+label: extend-block2
+title: "2. Python, Data, and Metadata"
 jupytext:
   text_representation:
     extension: .md
@@ -64,13 +66,6 @@ nuclei = viewer.add_image(
 )
 ```
 
-```{code-cell} ipython3
-:tags: [remove-input]
-
-from napari.utils import nbscreenshot
-nbscreenshot(viewer)
-```
-
 ```{tip}
 You can pass colormap, blending, opacity, contrast limits, and many other
 parameters directly in `viewer.add_image()`. Check the
@@ -83,8 +78,11 @@ for the full list.
 Just like in the GUI, you can capture what's on screen — but from code:
 
 ```{code-cell} ipython3
+:tags: [remove-input]
+
 from napari.utils import nbscreenshot
-nbscreenshot(viewer, canvas_only=True)
+nbscreenshot(viewer)
+# nbscreenshot(viewer, canvas_only=True)  # capture just the scene, no GUI!
 ```
 
 # 3. Exercise: Layer controls from Python (5 min)
@@ -94,8 +92,8 @@ set from Python. Try adjusting the nuclei layer:
 
 ```{code-cell} ipython3
 nuclei_layer = viewer.layers['nuclei']
-nuclei_layer.opacity = 0.7
-nuclei_layer.contrast_limits = (0, 30000)
+nuclei_layer.opacity = 0.9
+nuclei_layer.contrast_limits = (0, 20000)
 nuclei_layer.colormap = 'magenta'
 ```
 
@@ -126,21 +124,24 @@ depend on this metadata.
 
 ## Setting layer scale
 
-The `cells3d` data has voxel dimensions of approximately 0.29 µm in z and
-0.13 µm in xy. Let's set them:
+napari handles units and physical scale on a per-layer and axis basis and uses
+[Pint](https://pint.readthedocs.io/en/stable/) for parsing units. Read more
+about napari's unit rendering in the
+[scale and unit aware rendering guide](https://napari.org/stable/guides/units.html).
 
 ```{code-cell} ipython3
 for layer in viewer.layers:
     layer.scale = [0.13, 0.13, 0.13]
-    layer.units = ('µm', 'µm', 'µm')
+    layer.units = ('µm', 'µm', 'micrometer')
 
-# viewer.fit_to_view()
+viewer.fit_to_view()  # fit the extent of all the layers to the canvas
 ```
 
 Now enable the scale bar to see the physical scale:
 
 ```{code-cell} ipython3
 viewer.scale_bar.visible = True
+viewer.dims.point = (3, 0, 0)  # the set point of the dims slider is relative to the scale of your data
 ```
 
 ```{code-cell} ipython3
@@ -352,7 +353,7 @@ from ndevio import nImage
 nimg = nImage("https://livingobjects.ebi.ac.uk/idr/zarr/v0.5/idr0066/ExpD_chicken_embryo_MIP.ome.zarr")
 # sublcasses BioImage, so it contains all properties:
 print(nimg.dims)
-# and ndevio logic for "reasonable" defaults
+# and ndevio logic for "reasonable" defaults for napari
 nimg.reference_xarray
 ```
 
@@ -362,15 +363,17 @@ nimg.layer_data[-1]
 ```
 
 ```{code-cell} ipython3
-ldt = nimg.get_layer_data_tuples()
-print(type(ldt))
-ldt[0]
+ldts = nimg.get_layer_data_tuples()
+print(type(ldts))
+ldts[0]
 ```
 
 ```{code-cell} ipython3
-for data, kwargs, layer_type in nimg.get_layer_data_tuples():
-    add_method = getattr(viewer, f'add_{layer_type}')
-    add_method(data, **kwargs)
+viewer.layers.clear()
+for data, kwargs, _layer_type in nimg.get_layer_data_tuples():
+    # add_method = getattr(viewer, f'add_{layer_type}')
+    # add_method(data, **kwargs)
+    viewer.add_image(data, **kwargs)
 ```
 
 In **Block 3**, we'll take our programmatic understanding of napari to the
