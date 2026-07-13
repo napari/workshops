@@ -34,8 +34,8 @@ nuclei = imread(data_dir / 'nuclei_cropped.tif')
 spots = imread(data_dir / 'spots_cropped.tif')
 
 viewer = napari.Viewer()
-viewer.add_image(nuclei, name='nuclei', colormap='I Forest')
-viewer.add_image(spots, name='spots', colormap='I Orange', blending='minimum')
+viewer.add_image(nuclei, name='nuclei', colormap='gray')
+viewer.add_image(spots, name='spots', colormap='magenta', blending='additive')
 ```
 
 ```{code-cell} ipython3
@@ -77,13 +77,13 @@ def gaussian_high_pass(image, sigma):
 Let's test it on our spots data with `sigma=2`:
 
 ```{code-cell} ipython3
-high_passed_spots = gaussian_high_pass(spots, 2)
+high_passed_spots = gaussian_high_pass(spots, 3)
 
 viewer.add_image(
     high_passed_spots,
     name='filtered spots',
-    colormap='I Blue',
-    blending='minimum'
+    colormap='green',
+    blending='additive'
 )
 ```
 
@@ -115,7 +115,7 @@ from scipy import ndimage as ndi
 def gaussian_high_pass(
     image: ImageData, sigma: float = 2.0
 ) -> ImageData:
-    """Apply a gaussian high-pass filter to suppress background.
+    """Remove broad background signal by subtracting a gaussian-blurred copy.
 
     Parameters
     ----------
@@ -201,7 +201,7 @@ Now recreate it with widget configuration:
 def gaussian_high_pass(
     image: ImageData, sigma: float = 2.0
 ) -> ImageData:
-    """Apply a gaussian high-pass filter to suppress background."""
+    """Remove broad background signal by subtracting a gaussian-blurred copy."""
     low_pass = ndi.gaussian_filter(image, sigma)
     return (image - low_pass).clip(0)
 
@@ -282,7 +282,7 @@ def detect_spots(
     # Third column is the detected sigma — convert to diameters for sizing
     sizes = 2 * np.sqrt(2) * blobs[:, 2]
 
-    return (coords, {"size": sizes, "face_color": "red"}, "Points")
+    return (coords, {"size": sizes, "face_color": "yellow"}, "Points")
 ```
 
 ```{code-cell} ipython3
@@ -293,7 +293,8 @@ viewer.window.add_dock_widget(detect_spots, area="right")
 :tags: [remove-cell]
 
 # Trigger the widget for the screenshot
-detect_spots(viewer.layers['spots'].data)
+detect_spots.blob_sigma.value = 4
+# Why do we get new layers? Perhaps there is metadata that can help with this, passed as the "name" kwarg
 ```
 
 ```{code-cell} ipython3
@@ -360,11 +361,17 @@ to see which keys are already taken.
 Keybindings can also be attached to the viewer (fires regardless of which
 layer is active):
 
-```python
+```{code-cell} ipython3
 @viewer.bind_key('Shift-R')
 def run_detector(viewer):
     """Re-run spot detection with current settings."""
     detect_spots(viewer.layers['spots'].data)
+```
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+viewer.close()
 ```
 
 # 4. Layer events (15 min)
@@ -374,14 +381,7 @@ opacity, even individual point positions. You can connect custom functions
 (callbacks) to these events.
 
 Let's demonstrate with a cool example: warping an image when control
-points are moved.
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Clean up from the previous section
-viewer.close()
-```
+points are moved. This has been adopted from the scikit-image [Use thin-plate splines for image warping](https://scikit-image.org/docs/stable/auto_examples/transform/plot_tps_deformation.html) example.
 
 ```{code-cell} ipython3
 import skimage as ski
@@ -412,8 +412,8 @@ We'll use thin-plate splines to warp the image based on point positions:
 ```{code-cell} ipython3
 def warp(im_layer, src, dst):
     """Warp an image from source to destination points using TPS."""
-    tps = ski.transform.ThinPlateSplineTransform()
-    tps.estimate(dst, src)
+    tps = ski.transform.ThinPlateSplineTransform.from_estimate(dst, src)
+    # tps.from_estimate(dst, src)
     warped = ski.transform.warp(image, tps)
     im_layer.data = (warped * 255).astype(image.dtype)
 
@@ -438,18 +438,19 @@ moving_points.events.data.connect(warp_on_point_changed)
 Now select the **moving_points** layer, switch to the **Select points** tool,
 and drag a point. The image warps when you release the mouse.
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Reset for next section
-viewer.layers['checkerboard'].data = image
-```
 
 ```{important}
 Always disconnect callbacks when you're done:
 
 ```python
 moving_points.events.data.disconnect(warp_on_point_changed)
+```
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+# Reset for next section
+viewer.layers['checkerboard'].data = image
 ```
 
 # 5. Mouse callbacks (15 min)
@@ -473,12 +474,6 @@ def some_mouse_callback(layer, event):
 
     # --- Mouse release ---
     print("Mouse released")
-```
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-viewer.layers['checkerboard'].data = image
 ```
 
 ## Warping on drag
