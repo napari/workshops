@@ -270,7 +270,7 @@ def detect_spots(
     # Third column is the detected sigma — convert to diameters for sizing
     sizes = 2 * np.sqrt(2) * blobs[:, 2]
 
-    return (coords, {"size": sizes, "face_color": "red"}, "Points")
+    return (coords, {"name": "detected_spots","size": sizes, "face_color": "yellow"}, "Points")
 ```
 
 ```{tip}
@@ -313,7 +313,7 @@ making it easy for users to find.
 
 ### Install the plugin
 
-A single command will get you started from the root of the plugin.
+A single command will get you started from the root of the plugin:
 `uv run` will install the plugin in editable mode with the
 `dev` dependency-group:
 
