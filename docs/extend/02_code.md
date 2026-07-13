@@ -124,7 +124,7 @@ measurements. The scale bar, axis overlays, and measurement tools all
 depend on this metadata.
 ```
 
-### Setting layer scale
+## Setting layer scale
 
 The `cells3d` data has voxel dimensions of approximately 0.29 µm in z and
 0.13 µm in xy. Let's set them:
@@ -149,7 +149,7 @@ viewer.scale_bar.visible = True
 nbscreenshot(viewer)
 ```
 
-### Axis labels
+## Axis labels
 
 The dimension sliders at the bottom of the viewer show generic index labels
 by default. We can rename them to reflect the actual axes and show the floating
@@ -160,7 +160,7 @@ viewer.dims.axis_labels = ['Z', 'Y', 'X']
 viewer.floating_axes.visible = True
 ```
 
-### The napari-metadata plugin
+## The napari-metadata plugin
 
 The [napari-metadata](https://napari.org/napari-metadata/) plugin provides a
 dock widget for viewing and editing all of this metadata in one place.
@@ -218,7 +218,7 @@ viewer.add_image(
 nbscreenshot(viewer)
 ```
 
-### Other image reading libraries
+## Other image reading libraries
 
 For multi-page TIFF, OME-TIFF, and other complex TIFF variants, `tifffile`
 provides more control:
@@ -247,7 +247,7 @@ the parts you need.
 of Zarr — it's what the 
 uses to host thousands of public microscopy images.
 
-### Opening a remote OME-Zarr image
+## Opening a remote OME-Zarr image
 
 ```{admonition} Readers and plugins
 :class: tip
@@ -305,7 +305,7 @@ Use the "Ctrl+N" shortcut (New Image) when the link is copied to your clipboard.
 nbscreenshot(viewer_zarr)
 ```
 
-### Explore more OME-Zarr datasets
+## Explore more OME-Zarr datasets
 
 - [OME-NGFF Samples collection](https://idr.github.io/ome-ngff-samples/)
 - [2024 NGFF Challenge](https://ome.github.io/ome2024-ngff-challenge/) — filter by

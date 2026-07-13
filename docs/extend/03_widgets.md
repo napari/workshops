@@ -180,7 +180,7 @@ print(f'Output shape: {test_output.shape}')
 This means you can use the same function in a script **or** as a widget in
 napari — no code duplication.
 
-### Adding sliders and auto-call
+## Adding sliders and auto-call
 
 Let's make it even more interactive: replace the spin box with a slider
 and have the function run automatically whenever we move it.
@@ -223,7 +223,7 @@ You can also set widget values programmatically:
 gaussian_high_pass.sigma.value = 8.0
 ```
 
-### A more complete example: spot detection
+## A more complete example: spot detection
 
 Let's build a widget for the full spot detection workflow. We'll use
 `skimage.feature.blob_log` to detect spots and return them as a Points
@@ -293,7 +293,7 @@ viewer.window.add_dock_widget(detect_spots, area="right")
 :tags: [remove-cell]
 
 # Trigger the widget for the screenshot
-detect_spots.image.value = viewer.layers['spots']
+detect_spots.image.value = viewer.layers['spots'].data
 ```
 
 ```{code-cell} ipython3
@@ -396,7 +396,7 @@ moving_points = viewer.add_points(src.copy(), name='moving_points')
 nbscreenshot(viewer)
 ```
 
-### The warp function
+## The warp function
 
 We'll use thin-plate splines to warp the image based on point positions:
 
@@ -412,7 +412,7 @@ def warp(im_layer, src, dst):
 warp_checkerboard = partial(warp, viewer.layers['checkerboard'], src)
 ```
 
-### Connecting to the data event
+## Connecting to the data event
 
 We want the warp to happen whenever a point moves. We connect a callback
 to the layer's `data` event:
@@ -472,7 +472,7 @@ def some_mouse_callback(layer, event):
 viewer.layers['checkerboard'].data = image
 ```
 
-### Warping on drag
+## Warping on drag
 
 Let's replace the layer event callback with a mouse drag callback that
 warps the image **as you drag** a point:
