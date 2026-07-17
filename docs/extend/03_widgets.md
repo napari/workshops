@@ -29,7 +29,7 @@ from pathlib import Path
 from skimage.io import imread
 
 # Cross-environment path
-data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
+data_dir = Path('extend/data')
 nuclei = imread(data_dir / 'nuclei_cropped.tif')
 spots = imread(data_dir / 'spots_cropped.tif')
 
