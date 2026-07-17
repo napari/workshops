@@ -43,6 +43,8 @@ project:
         - file: express/01_python_to_widget.md
         - file: express/02_segmentation_pipeline.md
         - file: express/03_classification_and_3d.md
+    - title: napari sprint guide
+      file: sprints.md
     - title: Workshop schedule
       file: events.md
     - title: Instructors
