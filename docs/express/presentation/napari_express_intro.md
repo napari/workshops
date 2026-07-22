@@ -10,6 +10,11 @@ options:
   implicit_slide_ends: true
 ---
 
+<!-- // To run this presentation in a terminal:
+  presenterm napari_express_intro.md -t gruvbox-dark -x
+To generate an html version:
+  presenterm napari_express_intro.md -t gruvbox-dark --export-html
+-->
 
 napari express 🚀
 ===
