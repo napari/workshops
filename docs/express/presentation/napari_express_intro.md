@@ -16,7 +16,7 @@ napari express 🚀
 
 <!-- alignment: center -->
 <!-- new_lines: 4 -->
-![image:w:60%](/home/brisvag/git/napari-resources/logo/generated/gradient-text-side-dark.png)
+![image:w:60%](./gradient-text-side-dark.png)
 ![image:w:20%](./workshop_qrcode.png)
 [](https://napari.org/workshops/express)
 
