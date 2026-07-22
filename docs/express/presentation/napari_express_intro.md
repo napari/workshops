@@ -87,7 +87,7 @@ core concepts and the napari interface
 
 1. launch napari (`uv run napari`)
 2. **Lightning introduction to the napari GUI**
-3. Drag'n'Drop the `00_lightning_gui_intro.py` button on to the napari canvas
+3. Drag'n'Drop the `00_lightning_gui_intro.py` button onto the napari canvas
 
 let's begin!
 ===
