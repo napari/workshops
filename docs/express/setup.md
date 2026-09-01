@@ -62,7 +62,6 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-
 ```{seealso} Problems?
 :class: tip
 Reach out to the workshop instructors or ask for help in the
