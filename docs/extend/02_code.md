@@ -97,6 +97,8 @@ nuclei_layer.contrast_limits = (0, 20000)
 nuclei_layer.colormap = 'magenta'
 ```
 
+You can also toggle the continuous **auto-contrast** when adding an image or on an existing layer `layer.auto_contrast = True`.
+
 ```{code-cell} ipython3
 :tags: [remove-input]
 
@@ -140,7 +142,7 @@ viewer.fit_to_view()  # fit the extent of all the layers to the canvas
 Now enable the scale bar to see the physical scale:
 
 ```{code-cell} ipython3
-viewer.scale_bar.visible = True
+viewer.canvas.overlays.scale_bar.visible = True
 viewer.dims.point = (3, 0, 0)  # the set point of the dims slider is relative to the scale of your data
 ```
 
@@ -150,15 +152,27 @@ viewer.dims.point = (3, 0, 0)  # the set point of the dims slider is relative to
 nbscreenshot(viewer)
 ```
 
+```{tip}
+Once scale and/or unit metadata are set, the status bar coordinates (bottom-left
+of the viewer) show physical values with increased precision — floats rather
+than integers — so you can estimate real-world positions as you explore.
+```
+
 ## Axis labels
 
-The dimension sliders at the bottom of the viewer show generic index labels
-by default. We can rename them to reflect the actual axes and show the floating
-axes overlay:
+The dimension sliders at the bottom of the viewer and the
+axes overlay are **automatically labelled** from the axis labels of the layers
+in the viewer. When you set `axis_labels` on a layer — or load data that ships
+with them, like an xarray `DataArray` or a plugin reading an OME-Zarr — 
+the viewer picks them up with no extra work.
+
+Let's set the axis labels on our layers and see them propagate to the viewer:
 
 ```{code-cell} ipython3
-viewer.dims.axis_labels = ['Z', 'Y', 'X']
-viewer.floating_axes.visible = True
+for layer in viewer.layers:
+    layer.axis_labels = ['Z', 'Y', 'X']
+
+viewer.canvas.overlays.axes.visible = True
 ```
 
 ## The napari-metadata plugin

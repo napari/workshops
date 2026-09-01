@@ -361,7 +361,7 @@ Just watch out: the processing speed will be much slower than before!
 :tags: [remove-input]
 
 viewer.dims.ndisplay = 3
-viewer.camera.angles = -30, 0, -45
+viewer.scene.camera.angles = -30, 0, -45
 
 t = viewer.window.dock_widgets['threshold and label']
 t.sigma.value = 0.84

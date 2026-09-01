@@ -181,7 +181,7 @@ enable the layer name overlay on each layer, to make it easier to know what's wh
 
 ```{code-cell} python
 :tags: [remove-output]
-viewer.grid.enabled = True
+viewer.canvas.grid.enabled = True
 for layer in viewer.layers:
     layer.name_overlay.visible = True
 viewer.reset_view()

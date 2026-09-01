@@ -62,6 +62,13 @@ Everyone should now have napari open. You should see:
 - A **layer controls** panel on the top-left
 - **Viewer buttons** at the bottom of the canvas
 
+```{tip} Take a tour!
+If napari is open and you'd like a quick guided tour of the interface, open
+**Help > Take a tour** (available since napari 0.9.0). It highlights the
+canvas, layer list, layer controls, viewer buttons, dimension sliders, and
+status bar, so you can get your bearings in seconds.
+```
+
 If napari is open, give a 👍 as a Zoom reaction.
 
 ```{code-cell} python
