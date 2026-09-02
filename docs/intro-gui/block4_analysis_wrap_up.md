@@ -80,8 +80,8 @@ segmented = ndi.label(cleaned)[0]
 labels_layer = viewer.add_labels(segmented)
 
 # viewer.dims.current_step = (27, 0, 0)
-viewer.dims.ndisplay=3
-viewer.camera.angles = (-20, 35, -40)
+viewer.dims.ndisplay = 3
+viewer.scene.camera.angles = (-20, 35, -40)
 ```
 
 ```{code-cell} python

@@ -210,7 +210,9 @@ viewer.close()
 4. Each click drops a point; Use the Backspace/Delete key to remove the last added point (or the x icon)                        
 5. Switch to the **Select** tool to move existing points
 
-Compare visualization in 2D with checking `out_of_slice_display` in layer controls — it shows points that are outside the current z-slice.
+Compare visualization in 2D by changing the `projection mode` in layer controls 
+and right clicking on the dimension slider to change the number of displayed
+slices (we call this Thick Slicing).
 
 ## Shapes layer — outlining a region
 

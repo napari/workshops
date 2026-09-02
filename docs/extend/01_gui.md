@@ -184,7 +184,7 @@ In 3D mode, click-drag to rotate the volume. Give it a try!
 :tags: [remove-cell]
 
 viewer.dims.axis_labels = ['Z', 'Y', 'X']
-viewer.axes.visible = True
+viewer.scene.overlays.axes.visible = True
 viewer.dims.ndisplay = 3
 ```
 
@@ -198,8 +198,9 @@ nbscreenshot(viewer)
 
 napari can display helpful overlays on the canvas. Here are the most useful ones:
 
-- **Floating Axes**: **View > Axes > Floating Axes Visible** — shows axis labels in the corner of the canvas.
-- **Scale bar**: **View > Scale Bar > Visible** — displays the physical scale in real-world units. We'll set units in Block 2.
+- **Scene Axes**: **View > Scene Axes > Toggle Scene Axes** — shows the x/y/z axes in 3D.
+- **Canvas Axes**: **View > Canvas Axes > Toggle Canvas Axes** — shows axis labels in the corner of the canvas.
+- **Scale bar**: **View > Scale Bar > Toggle Scale Bar** — displays the physical scale in real-world units. We'll set units in Block 2.
 - **Color bar**: Right-click a layer or use **Layers > Measure > Color Bar** — shows the colormap-to-intensity mapping for the selected layer.
 
 ```{tip} The Command Palette
@@ -221,7 +222,7 @@ lets you change how that layer appears. The most important controls:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-viewer.axes.visible = False
+viewer.scene.overlays.axes.visible = False
 viewer.dims.ndisplay = 2
 viewer.dims.current_step = (29, 100, 100)
 nuclei = viewer.layers['nuclei']

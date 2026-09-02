@@ -65,7 +65,7 @@ viewer.add_shapes(
 )
 
 viewer.dims.ndisplay = 3
-viewer.camera.angles = (-30, 15, -35)
+viewer.scene.camera.angles = (-30, 15, -35)
 
 if __name__ == '__main__':
     napari.run()

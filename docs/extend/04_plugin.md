@@ -68,6 +68,7 @@ functionality.
 | **Widget** | Add GUI panels for analysis, measurement, etc. |
 | **Sample data** | Provide built-in example datasets |
 | **Theme** | Customize the viewer's appearance |
+| **Configuration** | Ship user preferences for your plugin |
 
 Today we'll make a **widget** plugin — the `detect_spots` function from
 Block 3, packaged so anyone can install it and use it in napari.
