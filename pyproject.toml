@@ -72,7 +72,7 @@ jupyter-lab = { cmd = "jupyter lab docs/express" }
 _copy-css = "python docs/_scripts/copy_theme_css.py"
 _seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
 _docs-clean = { cmd = "cd docs && jupyter-book clean -y" }
-_docs-build = { cmd = "cd docs && jupyter-book build --html --execute --strict", depends-on = ["_copy-css", "_seed-geometry"] }
+_docs-build = { cmd = "cd docs && jupyter-book build --html --execute --strict && cd .. && npx --yes pagefind@1.5.2 --site docs/_build/html && python docs/_scripts/inject_search_widget.py", depends-on = ["_copy-css", "_seed-geometry"] }
 docs-live = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["_docs-clean", "_copy-css", "_seed-geometry"] }
 
 [tool.pixi.environments]
