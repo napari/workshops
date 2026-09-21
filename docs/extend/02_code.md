@@ -201,8 +201,7 @@ included in the workshop data.
 from skimage.io import imread
 from pathlib import Path
 
-# Cross-environment path: works in both MyST (CWD=docs/) and JupyterLab
-data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
+data_dir = Path('data')
 
 nuclei = imread(data_dir / 'nuclei_cropped.tif')
 spots = imread(data_dir / 'spots_cropped.tif')

@@ -75,8 +75,7 @@ Alternatively, you can load the data locally, if you cloned the repository:
 from skimage import io
 from pathlib import Path
 
-# CWD is project root (docs/) in MyST, notebook dir in JupyterLab
-data_dir = next(p for p in [Path('extend/data'), Path('data')] if p.exists())
+data_dir = Path('../extend/data')
 
 nuclei = io.imread(data_dir / 'nuclei_cropped.tif')
 spots = io.imread(data_dir / 'spots_cropped.tif')

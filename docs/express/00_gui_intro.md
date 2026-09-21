@@ -98,7 +98,7 @@ arrows = viewer.add_vectors(
     units='m',
 )
 
-data_dir = next(p for p in [Path('../_resources'), Path('_resources')] if p.exists())
+data_dir = Path('../_resources')
 logo = viewer.open(
     Path(data_dir / 'logo-dark.png'),
     scale=[0.015, 0.015],
