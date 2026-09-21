@@ -40,8 +40,7 @@ express = [
 dev = [
     {include-group = "extend"},
     {include-group = "express"},
-    "mystmd",
-    "jupyter-book>=2",
+    "mystmd>=1.11.0",
     "jupyterlab-myst",
     "jupytext",
     "napari-sphinx-theme",
@@ -71,9 +70,9 @@ jupyter-lab = { cmd = "jupyter lab docs/express" }
 [tool.pixi.feature.dev.tasks]
 _copy-css = "python docs/_scripts/copy_theme_css.py"
 _seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
-_docs-clean = { cmd = "cd docs && jupyter-book clean -y" }
-_docs-build = { cmd = "cd docs && jupyter-book build --html --execute --strict", depends-on = ["_copy-css", "_seed-geometry"] }
-docs-live = { cmd = "cd docs && jupyter-book start --execute .", depends-on = ["_docs-clean", "_copy-css", "_seed-geometry"] }
+_docs-clean = { cmd = "cd docs && myst clean -y" }
+_docs-build = { cmd = "cd docs && myst build --html --execute --strict", depends-on = ["_copy-css", "_seed-geometry"] }
+docs-live = { cmd = "cd docs && myst start --execute", depends-on = ["_docs-clean", "_copy-css", "_seed-geometry"] }
 
 [tool.pixi.environments]
 default = { solve-group = "default" }
