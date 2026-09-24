@@ -1,4 +1,5 @@
 ---
+label: home
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -15,8 +16,9 @@ curious about what napari can do — these workshops are designed to meet you wh
 No prior napari experience required. Some workshops require Python familiarity; the
 introductory workshop uses napari's graphical interface and is accessible to all.
 
-Live workshops are available — see the [workshop events](#events) for upcoming
-sessions and past events.
+All materials here are self-guided and modular: each workshop is offered in more than
+one session length, so you can pick the format that fits your time. Live,
+instructor-led sessions are listed in the [workshop schedule](#events).
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -38,29 +40,25 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-## [Introduction to napari 🖱️](#intro-overview)
+## Workshop catalogue
 
-**Level:** Beginner | **Duration:** ~4 hours
+Each workshop is a family of modules taught at different session lengths. Pick a
+workshop, then pick the length that fits your time.
 
-Get started with napari's bundled application. Load and explore multi-dimensional images,
-annotate data, run interactive analysis, and discover community plugins. No Python
-experience required, everything is done through the graphical interface!
+| Workshop | What you'll learn | Level | Code experience |
+|---|---|---|---|
+| [Introduction to napari: the viewer](#intro-gui-90-overview) | Load, explore, and annotate multi-dimensional images; find and use community plugins — all in the napari bundled app | Beginner | None |
+| [Introduction to napari: with Python](#extend-90-overview) | Control napari from Python: correct scales and units, and your own interactive widgets with magicgui | Beginner–intermediate | Some scripting (Python for the half-day session) |
+| [napari express](#express-overview) | A fast tour for Pythonistas: build segmentation and classification workflows without leaving napari | Intermediate | Python |
 
-## [Extending napari with code ⌨️](#extend-overview)
+## Running a workshop
 
-**Level:** Intermediate (napari Beginner) | **Duration:** ~4 hours
+Want to attend, host, or sponsor a workshop? Announcements and registration links appear
+in the [workshop schedule](#events); for anything else, send us an e-mail at 
+info@napari.org or reach out on our [Zulip](https://napari.zulipchat.com).
 
-Write Python scripts that control napari programmatically, create interactive widgets
-with magicgui, connect functions to layer events, implement mouse callbacks, and define
-custom colormaps. Requires basic Python familiarity.
-
-## [napari express 🚀](#express-overview)
-
-**Level:** Intermediate | **Duration:** 90 minutes
-
-A quickstart tour through napari's capabilities for interactive image analysis.
-Build a complete cell segmentation workflow using magicgui widgets, annotated
-sliders, quantitative features, and mouse callbacks — all from Python.
+If you are teaching or organizing a session, start with the
+[organizer guide](#organizer-guide) and the [instructor guide](#instructor-guide).
 
 ## Resources
 

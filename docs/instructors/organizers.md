@@ -1,3 +1,8 @@
+---
+title: Organizer Guide
+label: organizer-guide
+---
+
 # Organizer Guide
 
 This document is for the people handling the **logistics** of running a napari

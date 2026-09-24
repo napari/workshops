@@ -12,8 +12,8 @@ and see how plugins can analyze them. Everything runs in the **napari bundled
 app**.
 
 It is the first of two 90-minute companions. To go further, continue with
-[**Intro to napari: Extending**](#extend-90-overview) and start controlling
-napari from Python.
+[**Introduction to napari: with Python**](#extend-90-overview) and start
+controlling napari from Python.
 
 # Prerequisites
 
@@ -50,7 +50,7 @@ napari from Python.
 
 # Related
 
-- Continue with [**Intro to napari: Extending**](#extend-90-overview), which
-  assumes the skills learned here plus a little scripting experience.
+- Continue with [**Introduction to napari: with Python**](#extend-90-overview),
+  which assumes the skills learned here plus a little scripting experience.
 - Prefer the full-length experience? See the
-  [4-hour Introduction to napari](#intro-overview).
+  [half-day Introduction to napari](#intro-overview).
