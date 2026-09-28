@@ -43,6 +43,7 @@ viewer.add_image(spots, name='spots', colormap='magenta', blending='additive')
 nbscreenshot(viewer)
 ```
 
+(extend-block3-functions)=
 # 1. Writing analysis functions (10 min)
 
 First, let's write the analysis function we'll turn into a widget. The spots
@@ -96,7 +97,8 @@ The spots stand out much more clearly against the background! But what if we
 want to try a different `sigma` value? We'd have to re-run the cell manually
 each time — not exactly an interactive exploration.
 
-# 2. Interactive filtering with magicgui (25 min)
+(extend-block3-magicgui)=
+# 2. Interactive filtering with magicgui (20 min)
 
 In Block 2 we wrote a `gaussian_high_pass` function to clean up the spots
 image — but changing the `sigma` parameter meant re-running a cell each time.
@@ -312,7 +314,8 @@ ndevio returned a `list` of `LayerDataTuple`s. Can you modify `detect_spots()`
 to also return the high-pass filtered image as an image layer?
 Hint: Only the return statement needs to change!
 ```
-# 3. Custom keybindings (15 min)
+(extend-block3-keybindings)=
+# 3. Custom keybindings (10 min)
 
 Keybindings let you trigger actions with keyboard shortcuts. napari makes
 this remarkably easy with the `bind_key` decorator.
@@ -373,7 +376,8 @@ def run_detector(viewer):
 viewer.close()
 ```
 
-# 4. Layer events (15 min)
+(extend-block3-events)=
+# 4. Layer events (10 min)
 
 napari layers emit **events** when their properties change — data, colormap,
 opacity, even individual point positions. You can connect custom functions
@@ -452,7 +456,8 @@ moving_points.events.data.disconnect(warp_on_point_changed)
 viewer.layers['checkerboard'].data = image
 ```
 
-# 5. Mouse callbacks (15 min)
+(extend-block3-mouse)=
+# 5. Mouse callbacks (10 min)
 
 Layer events fire when a change *completes*. But what if you want to react
 while the user is dragging? That's where **mouse callbacks** come in.

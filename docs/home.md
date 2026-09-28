@@ -47,8 +47,8 @@ workshop, then pick the length that fits your time.
 
 | Workshop | What you'll learn | Level | Code experience |
 |---|---|---|---|
-| [Introduction to napari: the viewer](#intro-gui-90-overview) | Load, explore, and annotate multi-dimensional images; find and use community plugins — all in the napari bundled app | Beginner | None |
-| [Introduction to napari: with Python](#extend-90-overview) | Control napari from Python: correct scales and units, and your own interactive widgets with magicgui | Beginner–intermediate | Some scripting (Python for the half-day session) |
+| [Introduction to napari: the viewer](#intro-overview) | Load, explore, and annotate multi-dimensional images; find and use community plugins — all in the napari bundled app | Beginner | None |
+| [Introduction to napari: with Python](#extend-overview) | Control napari from Python: correct scales and units, and your own interactive widgets with magicgui | Beginner–intermediate | Some scripting (Python knowledge needed for the half-day schedule) |
 | [napari express](#express-overview) | A fast tour for Pythonistas: build segmentation and classification workflows without leaving napari | Intermediate | Python |
 
 ## Running a workshop

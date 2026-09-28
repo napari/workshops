@@ -17,6 +17,7 @@ kernelspec:
 adjust properties, set physical scales and units, load data from files and
 the cloud with xarray and Zarr, and write your first analysis function.
 
+(extend-block2-viewer)=
 # 1. Create a viewer from Python (10 min)
 
 In Block 1 we explored the napari GUI. Now let's do everything from code.
@@ -73,6 +74,7 @@ parameters directly in `viewer.add_image()`. Check the
 for the full list.
 ```
 
+(extend-block2-screenshots)=
 # 2. Screenshots in your notebook (3 min)
 
 Just like in the GUI, you can capture what's on screen — but from code:
@@ -85,6 +87,7 @@ nbscreenshot(viewer)
 # nbscreenshot(viewer, canvas_only=True)  # capture just the scene, no GUI!
 ```
 
+(extend-block2-controls)=
 # 3. Exercise: Layer controls from Python (5 min)
 
 Every property you adjusted with sliders and dropdowns in the GUI can be
@@ -112,6 +115,7 @@ nuclei_layer.contrast_limits = (0, 65535)
 nuclei_layer.opacity = 1.0
 ```
 
+(extend-block2-scale)=
 # 4. Physical scale, units, and axis labels (10 min)
 
 Images from microscopes and other instruments have physical meaning — pixels
@@ -187,6 +191,7 @@ The widget shows three sections:
 2. **Axes metadata** — editable axis labels, scale, translation, and units
 3. **Copy metadata** — propagate metadata from one layer to others
 
+(extend-block2-loading)=
 # 5. Loading data with Python (10 min)
 
 napari's drag-and-drop and **File > Open** work well for many formats, but
@@ -251,6 +256,7 @@ microscope formats) provide support for everything else. Check the
 [napari hub](https://napari-hub.org) for format-specific reader plugins.
 ```
 
+(extend-block2-zarr)=
 # 6. Zarr and OME-Zarr: cloud-native image data (10 min)
 
 **Zarr** is a chunked, compressed, n-dimensional array format designed for

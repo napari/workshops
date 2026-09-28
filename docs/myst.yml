@@ -19,34 +19,26 @@ project:
   toc:
     - title: Home
       file: home.md
-    - title: "Introduction to napari: the viewer"
+    - title: "Intro to napari: the viewer"
       children:
-        - title: 90-minute session
-          children:
-            - file: intro-gui-90/index.md
-            - file: intro-gui-90/setup.md
-        - title: Half-day session
-          children:
-            - file: intro-gui/index.md
-            - file: intro-gui/setup.md
-            - file: intro-gui/block1_welcome.md
-            - file: intro-gui/block2_gui.md
-            - file: intro-gui/block3_plugins_and_annotation.md
-            - file: intro-gui/block4_analysis_wrap_up.md
-    - title: "Introduction to napari: with Python"
+        - file: intro-gui/index.md
+        - file: intro-gui/setup.md
+        - file: intro-gui/schedule-90.md
+        - file: intro-gui/schedule-360.md
+        - file: intro-gui/block1_welcome.md
+        - file: intro-gui/block2_gui.md
+        - file: intro-gui/block3_plugins_and_annotation.md
+        - file: intro-gui/block4_analysis_wrap_up.md
+    - title: "Intro to napari: with Python"
       children:
-        - title: 90-minute session
-          children:
-            - file: extend-90/index.md
-            - file: extend-90/setup.md
-        - title: Half-day session
-          children:
-            - file: extend/index.md
-            - file: extend/setup.md
-            - file: extend/01_gui.md
-            - file: extend/02_code.md
-            - file: extend/03_widgets.md
-            - file: extend/04_plugin.md
+        - file: extend/index.md
+        - file: extend/setup.md
+        - file: extend/schedule-90.md
+        - file: extend/schedule-360.md
+        - file: extend/01_gui.md
+        - file: extend/02_code.md
+        - file: extend/03_widgets.md
+        - file: extend/04_plugin.md
     - title: napari express
       children:
         - file: express/index.md

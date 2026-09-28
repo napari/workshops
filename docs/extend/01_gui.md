@@ -115,7 +115,7 @@ Save what you see in napari at any time:
 Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard).
 Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
 
-# GUI Essentials Walkthrough (15 min)
+# GUI Essentials Walkthrough (155 min)
 
 Follow along as we walk through the major parts of the napari
 interface.

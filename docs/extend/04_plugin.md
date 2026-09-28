@@ -150,7 +150,7 @@ the other files.
   carefully and match up which command & contribution belong to what Python code
   in the `_widget.py` file.
 
-## 3. Understanding napari.yaml (10 min)
+## 3. Understanding napari.yaml (5 min)
 
 Open `src/napari_spot_detector/napari.yaml`. This is the **manifest** — the
 heart of your plugin:
@@ -197,7 +197,7 @@ there because `pyproject.toml` declares:
 where = ["src"]
 ```
 
-## 4. Implementing the widget (20 min)
+## 4. Implementing the widget (15 min)
 
 Now let's add our spot detection logic. Open `src/napari_spot_detector/_widget.py`.
 
@@ -310,7 +310,7 @@ The `menus` section adds the widget to napari's **Layers > Analyze** menu,
 making it easy for users to find.
 ```
 
-## 5. Install and test (15 min)
+## 5. Install and test (10 min)
 
 ### Install the plugin
 

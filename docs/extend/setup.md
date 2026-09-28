@@ -13,18 +13,34 @@ bundled app, this workshop uses a Python environment and `pixi`.
 
 # Prerequisites
 
-- [**Git**](https://git-scm.com/) for cloning the repository (can also use a git GUI like [Github Desktop](https://desktop.github.com/download/))
 - [**pixi**](https://pixi.sh/latest/#installation) for running the workshop tasks and environment management
+- [**Git**](https://git-scm.com/) if you prefer cloning over downloading a ZIP
 
 # Setup
 
-[Install pixi](https://pixi.sh/latest/#installation) with a single command,
-then make a shallow clone of the napari workshops repository and use pixi to
-run the `extend` environment with the `napari` task:
+```{important}
+Please complete this setup **before the workshop** - the first run downloads
+napari and its dependencies and can take a few minutes.
+```
+
+1. Install [pixi](https://pixi.sh/latest/#installation).
+2. Get the workshop files using either method:
+
+   - Clone with git:
+
+     ```bash
+     git clone --depth 1 https://github.com/napari/workshops.git napari-workshops
+     cd napari-workshops
+     ```
+
+   - Or download as ZIP:
+
+     [Download workshops as a ZIP](https://github.com/napari/workshops/archive/refs/heads/main.zip),
+     unpack it, and open a terminal in the extracted folder.
+
+3. Run the extend environment:
 
 ```bash
-git clone --depth 1 https://github.com/napari/workshops.git napari-workshops
-cd napari-workshops
 pixi run -e extend napari
 ```
 
@@ -38,14 +54,16 @@ All data files used in this workshop are included in the repository under
 
 ```{admonition} Problems?
 :class: tip
-Reach out to the workshop instructors on the slack channel or ask for help in the
+Reach out to the workshop instructors or ask for help in the
 [napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
 
-If you previously set up your environment and the instructor updated the config,
-Then you may need to run `pixi update` to get the latest environment, and in the
-worst case scenario may have binary dependency conflicts. The easiest way to
-resolve this is `pixi clean -e extend` to remove the environment, and then
-re-run `pixi run -e extend napari` to get a fresh environment.
+If you previously set up your environment and the instructor updated the
+configuration, first try `pixi update`. If that does not resolve issues,
+the easiest reset is:
+
+`pixi clean -e extend`
+
+and then re-run `pixi run -e extend napari`.
 ```
 
 ```{code-cell} ipython3

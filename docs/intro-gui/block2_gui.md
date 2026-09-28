@@ -10,6 +10,7 @@ kernelspec:
 **Goal:** Navigate the viewer confidently, adjust how images look, try the
 napari gallery, and understand image metadata.
 
+(block2-gui-walkthrough)=
 # Instructor-guided GUI Walkthrough (25 min)
 
 Follow along as the instructor walks through the major parts of the napari

@@ -113,9 +113,17 @@ during, and after the workshop.
   - **Welcome & introductions** — participants post their name, field, and type of images they work with
   - **Installation issues** — for troubleshooting before and during the workshop
   - **Screenshots** — participants post screenshots from breakout exercises
-  - **Block 1 Q&A**, **Block 2 Q&A**, **Block 3 Q&A**, **Block 4 Q&A** — per-block question threads
+  - **`<segment> Q&A`** — one topic per major segment, named after the rows in
+    your session's schedule table (see the note below)
 - Include the Zulip stream invite link in the pre-workshop email and Zoom
   chat on the day.
+
+**Naming the Q&A topics:** take the names from the **session you are teaching**
+rather than a fixed list. A half-day session has four numbered blocks, so
+`Block 1 Q&A` … `Block 4 Q&A` works. A 90-minute session runs segments instead,
+so use the segment names from its schedule table (for example
+`Exploring the viewer Q&A`, `Plugins Q&A`). Every session overview page carries
+its own schedule table.
 - After the workshop, announce the stream in `#general` so the broader
   community can benefit from the Q&A.
 
@@ -155,17 +163,20 @@ on **[DATE]** at **[TIME]**
 Fill out the [pre-workshop survey] (SURVEY_LINK) to help us tailor the session to your needs.
 After the workshop, we'll share a follow-up survey to get your feedback, so that we can improve future sessions.
 
-This workshop will be run on the recently released napari 0.7.0 bundled application.
-We encourage you to install the napari bundled app before we start — installation can
-take a few minutes and troubleshooting can be challenging to do live during the
-session.  Follow the
-[installation instructions](https://napari.org/workshops/intro-napari/setup/)
-for your operating system.
-If you are working on an institutional device,
-please follow your institution's software guidelines,
-and reach out to your IT department if you need help.
+**Set up before the workshop.** The exact steps depend on which session you
+registered for; both setup pages are linked from the
+[workshop catalogue](https://napari.org/workshops/).
 
-Once napari opens and you see an empty viewer, you're all set. You can preview the workshop at https://napari.org/workshops/intro-napari/
+- **No-code session (viewer):** install the **napari bundled app** before we
+  start. Installation can take a few minutes and troubleshooting is hard to do
+  live, so please do it in advance. Once napari opens and you see an empty
+  viewer, you're all set.
+- **Scripting session (Python):** install **pixi**, download the workshop files,
+  and run the environment command once before the session. The first run solves
+  and downloads the environment, which takes several minutes.
+
+If you are working on an institutional device, please follow your institution's
+software guidelines, and reach out to your IT department if you need help.
 
 **Day of the workshop:**
 
@@ -174,10 +185,11 @@ Zoom link: [ZOOM_LINK]
 
 **What to expect:**
 
-- This is a **GUI-only** workshop — no Python or coding knowledge required.
-- We'll work through napari together on-screen, so have napari open and
+- Sessions are either **no-code (viewer, GUI only)** or **scripting (Python)** —
+  your session's overview page says which one you registered for.
+- We'll work through the material together on-screen, so have napari open and
   ready on your computer.
-- There will be short breaks and time for your own exploration.
+- Longer sessions include short breaks and time for your own exploration.
 
 **Questions before the workshop?**
 Post in the [napari Zulip chat] (ZULIP_WORKSHOP_LINK) or reply to

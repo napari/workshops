@@ -17,6 +17,13 @@ welcome to use that instead. However, we strongly encourage using a new, clean
 environment containing the newest version of napari.
 ```
 
+```{important}
+Please install the bundled app **before the workshop** — the download is
+large and can take a while on slower connections. If you run into trouble,
+ask for help on [Zulip](https://napari.zulipchat.com); instructors are also
+available on-site to help.
+```
+
 # Download and install the bundled app
 
 Follow the official napari documentation for step-by-step instructions:
@@ -35,8 +42,7 @@ Once napari is open you should see the napari viewer - an empty window with a la
 the left and a canvas in the center. If it opens successfully, you are ready for the
 workshop.
 
-```{admonition} Problems installing?
-:class: tip
+```{tip} Having trouble?
 Reach out to the workshop instructors or ask for help in the
 [napari Zulip chat](https://napari.zulipchat.com/#narrow/stream/212875-general).
 ```

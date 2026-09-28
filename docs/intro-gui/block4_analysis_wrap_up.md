@@ -11,6 +11,7 @@ kernelspec:
 using a plugin GUI, take a brief look at the napari console, and learn where
 to go from here.
 
+(block4-analysis-segmentation)=
 # napari-skimage Segmentation Demo (5 min + 20 min hands-on)
 
 [napari-skimage](https://napari-hub.org/plugins/napari-skimage)
@@ -100,6 +101,7 @@ viewer.close()
 - What measurements were in the regionprops table?
 - Open questions about the workflow or napari in general?
 
+(block4-analysis-next)=
 # Where to Go From Here (5 min)
 
 ## Learning Resources
@@ -124,6 +126,7 @@ viewer.close()
 - Browse [napari-hub.org](https://napari-hub.org) for plugins relevant to your field
 - Add a new example or sample data to napari!
 
+(block4-analysis-wrapup)=
 # Survey + Wrap-up (10 min)
 
 Please fill in the post-workshop survey (link shared by instructors).

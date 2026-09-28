@@ -22,13 +22,13 @@ with live streaming for remote attendees.
 📅 **Wednesday, September 30, 2026** — Room 1170
 
 - **9:05–10:30 am US Central** —
-  [Introduction to napari: the viewer](#intro-gui-90-overview), part 1 of 2
+  [Introduction to napari: the viewer](#intro-overview), part 1 of 2
   (no code).
-  [Install the bundled app before you attend](#intro-gui-90-setup).
+  [Install the bundled app before you attend](#intro-setup).
 - **11:00 am–12:30 pm US Central** —
-  [Introduction to napari: with Python](#extend-90-overview), part 2 of 2
+  [Introduction to napari: with Python](#extend-overview), part 2 of 2
   (some scripting experience helpful).
-  [Set up your environment before you attend](#extend-90-setup).
+  [Set up your environment before you attend](#extend-setup).
 
 Either session can be attended on its own — each overview lists its own
 prerequisites (see the [workshop catalogue](#home)).

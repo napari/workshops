@@ -10,6 +10,7 @@ kernelspec:
 **Goal:** Install a plugin from the napari hub, open images with it, and
 manually annotate images using Points, Shapes, and Labels layers.
 
+(intro-block3-plugins)=
 # Plugins and the napari Hub (5 min)
 
 napari's functionality can be extended with **plugins** — Python packages
@@ -40,6 +41,7 @@ If a plugin doesn't work as expected, check its GitHub page or ask on
 [forum.image.sc](https://forum.image.sc/tag/napari).
 ```
 
+(intro-block3-ndevio)=
 # Opening Images with ndevio (10 min)
 
 [ndevio](https://napari-hub.org/plugins/ndevio) is a plugin that
@@ -95,6 +97,7 @@ then paste (`Ctrl+V`) into Zulip.
 - What format did you open? What did you notice about how it loaded?
 ```
 
+(intro-block3-ome-zarr)=
 # napari-ome-zarr and the IDR (10 min)
 
 napari-ome-zarr lets you
@@ -157,6 +160,7 @@ then paste (`Ctrl+V`) into Zulip.
 - What did the metadata widget show for axis scales and units?
 - Any plugins you found interesting while browsing napari-hub?
 
+(intro-block3-annotation)=
 # What Is Annotation? (5 min)
 
 **Manual annotation** means marking up images by hand. Common reasons:

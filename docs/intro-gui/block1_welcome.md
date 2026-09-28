@@ -9,6 +9,7 @@ kernelspec:
 
 **Goal:** Get napari installed and open your first images.
 
+(intro-block1-welcome)=
 # Welcome (10 min)
 
 - Introduce instructors and helpers
@@ -31,6 +32,7 @@ other desktop app. No Python or command line required.
 2. **Install:** Run the installer and follow the on-screen prompts.
 3. **Launch:** Open napari from your Applications folder / Start Menu / desktop shortcut.
 
+(intro-block1-about)=
 # About napari (10 min)
 
 napari is a free, open-source, multi-dimensional image viewer for Python and
@@ -83,6 +85,7 @@ viewer = napari.Viewer()
 nbscreenshot(viewer)
 ```
 
+(intro-block1-images)=
 # What Are Images? (10 min)
 
 Before diving into napari, a quick conceptual grounding:
