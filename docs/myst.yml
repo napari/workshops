@@ -19,7 +19,7 @@ project:
   toc:
     - title: Home
       file: home.md
-    - title: "Intro to napari: the viewer"
+    - title: "Intro to napari: with the App"
       children:
         - file: intro-gui/index.md
         - file: intro-gui/setup.md
