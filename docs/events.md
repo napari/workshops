@@ -22,7 +22,7 @@ with live streaming for remote attendees.
 📅 **Wednesday, September 30, 2026** — Room 1170
 
 - **9:05–10:30 am US Central** —
-  [Introduction to napari: the viewer](#intro-overview), part 1 of 2
+  [Introduction to napari: with the App](#intro-overview), part 1 of 2
   (no code).
   [Install the bundled app before you attend](#intro-setup).
 - **11:00 am–12:30 pm US Central** —

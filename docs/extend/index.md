@@ -21,7 +21,7 @@ Choose the schedule that fits your session:
 - Completing the [installation instructions](#extend-setup)
 - Some scripting experience - Python scripts, ImageJ/Fiji macros, or similar
 - If doing the 90-minute session: comfort navigating the napari viewer
-	([Introduction to napari: the viewer](#intro-overview) or equivalent)
+	([Introduction to napari: with the App](#intro-overview) or equivalent)
 
 ## Content map
 

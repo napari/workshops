@@ -34,13 +34,13 @@ Each segment points at the matching part of the full content in this module.
 - Completing the [installation instructions](#extend-setup) - your environment
   should be ready before the workshop
 - Comfort navigating the napari viewer
-  ([Introduction to napari: the viewer](#intro-overview) or equivalent)
+  ([Introduction to napari: with the App](#intro-overview) or equivalent)
 - Some scripting experience - Python scripts, ImageJ/Fiji macros, or similar
 
 ## Related
 
 - Just getting started with the viewer?
-  [Introduction to napari: the viewer](#intro-overview) (no code).
+  [Introduction to napari: with the App](#intro-overview) (no code).
 - Want the whole thing rather than the 90-minute path?
   [Half-day schedule](#extend-schedule-360) continues from where this session
   stops, including Zarr, custom keybindings, and plugin packaging.
