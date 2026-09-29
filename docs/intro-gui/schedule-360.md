@@ -10,7 +10,9 @@ title: Schedule (Half-day)
 
 **Mode key:** **show** = present information or point out features; **demo** =
 the instructor carries out a workflow live while participants watch;
-**follow along** = participants carry out the steps with the instructor.
+**follow along** = participants carry out the steps with the instructor;
+**explore** = attendees investigate independently, with the instructor available
+to help but not leading each step.
 
 | Time | Segment | Source | Mode |
 |------|---------|--------|------|
@@ -24,7 +26,7 @@ the instructor carries out a workflow live while participants watch;
 | 1:00 | **Break** | — | — |
 | 1:10 | Instructor-guided GUI walkthrough | [GUI walkthrough](#block2-gui-walkthrough) | follow along |
 | 1:35 | Layer metadata with napari-metadata | [Layer metadata](#intro-block2-metadata) | follow along |
-| 1:40 | Gallery exploration breakout | [Gallery exploration](#intro-block2-gallery) | follow along |
+| 1:40 | Gallery exploration breakout | [Gallery exploration](#intro-block2-gallery) | explore |
 | 1:55 | Sharing time | [Sharing time](#intro-block2-sharing) | show |
 | 2:00 | **Break** | — | — |
 | 2:10 | Plugins and the napari Hub | [Plugins](#intro-block3-plugins) | follow along |
@@ -35,7 +37,7 @@ the instructor carries out a workflow live while participants watch;
 | 2:45 | Annotation with Points and Shapes | [Annotation](#intro-block3-annotation) | follow along |
 | 2:55 | **Break** | — | — |
 | 3:05 | napari-skimage segmentation demo | [Segmentation](#block4-analysis-segmentation) | demo |
-| 3:10 | Segmentation workflow hands-on | [Segmentation](#block4-analysis-segmentation) | follow along |
+| 3:10 | Segmentation workflow hands-on | [Segmentation](#block4-analysis-segmentation) | explore |
 | 3:30 | Sharing time and Q&A | [Sharing and Q&A](#intro-block4-sharing) | show |
 | 3:35 | Where to go from here | [Next steps](#block4-analysis-next) | show |
 | 3:40 | Survey and wrap-up | [Wrap-up](#block4-analysis-wrapup) | show |

@@ -141,7 +141,7 @@ so we can help — and improve the workshop for next time!
 
 ## Key Interactions
 
-- **Zoom:** right-click and drag or scroll wheel (two-finger scroll on trackpad)
+- **Canvas zoom:** right-click and drag or scroll wheel (two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas — hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** in the viewer button row (bottom-left)
 

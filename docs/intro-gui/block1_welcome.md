@@ -15,13 +15,15 @@ kernelspec:
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
 - Ask about accessibility needs (private DMs ok)
-- Share the Zulip **#napari-workshop-[DATE]** stream link in the Zoom chat; invite participants
-  to post an introduction: *"What field are you from, and what kind of images do
-  you work with?"*
-- Zoom etiquette
-  - Cameras tend to improve the experience, but it's ok to keep off
-  - 👍 reaction = ready to continue; ✋ = stuck/question
-  - If asking questions in chat, please send them to everyone unless it needs to be private
+- Share the Zulip **#napari-workshop-[DATE]** stream link with participants; for
+  online sessions, post it in the meeting chat, and for in-person sessions,
+  display or distribute the link. Invite participants to post an introduction:
+  *"What field are you from, and what kind of images do you work with?"*
+- Online participation (if applicable)
+  - Cameras can make online sessions more engaging, but are optional
+  - 👍 reaction = ready to continue; ✋ = stuck or have a question
+  - Ask questions in the meeting chat where everyone can see them, unless they
+    need to be private
 
 # Download napari
 
@@ -74,7 +76,8 @@ canvas, layer list, layer controls, viewer buttons, dimension sliders, and
 status bar, so you can get your bearings in seconds.
 ```
 
-If napari is open, give a 👍 as a Zoom reaction.
+If napari is open, signal you're ready to continue (for example, raise a hand
+in person or use a 👍 reaction online).
 
 ```{code-cell} python
 :tags: [remove-cell]

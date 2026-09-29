@@ -13,7 +13,9 @@ teaching materials.
 
 **Mode key:** **show** = present information or point out features; **demo** =
 the instructor carries out a workflow live while participants watch;
-**follow along** = participants carry out the steps with the instructor.
+**follow along** = participants carry out the steps with the instructor;
+**explore** = attendees investigate independently, with the instructor available
+to help but not leading each step.
 
 | Time | Segment | Source | Mode |
 |------|---------|--------|------|

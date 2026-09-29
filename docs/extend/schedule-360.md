@@ -9,17 +9,19 @@ title: Schedule (Half-day)
 
 **Mode key:** **show** = present information or point out features; **demo** =
 the instructor carries out a workflow live while participants watch;
-**follow along** = participants carry out the steps with the instructor.
+**follow along** = participants carry out the steps with the instructor;
+**explore** = attendees investigate independently, with the instructor available
+to help but not leading each step.
 
 | Time | Segment | Source | Mode |
 |------|---------|--------|------|
 | 0:00 | Welcome and workshop overview | [GUI workshop material](01_gui.md) | show |
 | 0:15 | napari fundamentals: images and multidimensional data | [GUI workshop material](01_gui.md) | show |
 | 0:25 | Open your first image and orient in the viewer | [GUI workshop material](01_gui.md) | follow along |
-| 0:40 | Gallery breakout and sharing | [GUI workshop material](01_gui.md) | follow along |
+| 0:40 | Gallery breakout and sharing | [GUI workshop material](01_gui.md) | explore |
 | 0:50 | **Break** | — | — |
 | 1:00 | Create a viewer and add layers from Python | [Create a viewer](02_code.md#extend-block2-viewer) | follow along |
-| 1:15 | Layer controls, screenshots, and small exercises | [Layer controls](02_code.md#extend-block2-controls) | follow along |
+| 1:15 | Layer controls, screenshots, and small exercises | [Layer controls](02_code.md#extend-block2-controls) | explore |
 | 1:25 | Physical scale, units, and axis labels | [Physical scale](02_code.md#extend-block2-scale) | follow along |
 | 1:35 | Load local data and remote OME-Zarr | [Loading data](02_code.md#extend-block2-loading), [OME-Zarr](02_code.md#extend-block2-zarr) | follow along |
 | 1:50 | Sharing and Q&A | [Python workshop material](02_code.md) | show |

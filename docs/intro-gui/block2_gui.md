@@ -48,7 +48,7 @@ nbscreenshot(viewer)
 
 ## Key Interactions
 
-- **Zoom:** right-click and drag or scroll wheel (or two-finger scroll on trackpad)
+- **Canvas zoom:** right-click and drag or scroll wheel (or two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas, hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** (bottom-right row of viewer buttons)
 
