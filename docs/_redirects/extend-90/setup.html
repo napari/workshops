@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    const targetUrl = new URL('../extend/setup/', window.location.href);
+    if (targetUrl.hostname === 'localhost' && targetUrl.port === '3100') {
+      targetUrl.port = '3000';
+    }
+    window.location.replace(targetUrl.href);
+  </script>
+  <meta http-equiv="refresh" content="0; url=../extend/setup/">
+  <link rel="canonical" href="../extend/setup/">
+  <title>Page moved</title>
+</head>
+<body>
+  <p>These setup instructions have moved. <a href="../extend/setup/">Continue to setup and installation.</a></p>
+</body>
+</html>
