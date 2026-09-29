@@ -37,9 +37,6 @@ This workshop has **four blocks**:
 | **3** | Custom Widgets and Interactions — build interactive GUIs with magicgui, keybindings, and mouse callbacks |
 | **4** | From Script to Plugin — package your custom tools as pip-installable napari plugins |
 
-The workshop blurb says it best:
-
-```{admonition}
 With everything from microscopes to telescopes to satellites, scientists
 produce image data in countless formats, shapes, sizes, and dimensions.
 napari is a Python library for multidimensional image visualization, but it
@@ -51,7 +48,6 @@ analysis in napari, then show how to extend the napari user interface to
 make analysis workflows as easy as pushing a button, and finally show how
 to share these extensions as *plugins*, which can be easily installed by
 users and collaborators.
-```
 
 # About napari
 
@@ -73,6 +69,13 @@ A quick conceptual grounding before we open our first image:
 - **Scale and units** — each pixel corresponds to a real-world physical size
 
 # Open Your First Image
+
+```{tip} Take a tour!
+If napari is open and you'd like a quick guided tour of the interface, open
+**Help > Take a tour** (available since napari 0.9.0). It highlights the
+canvas, layer list, layer controls, viewer buttons, dimension sliders, and
+status bar, so you can get your bearings in seconds.
+```
 
 Let's get the viewer up and running with a sample dataset:
 
