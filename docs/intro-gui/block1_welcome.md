@@ -43,14 +43,17 @@ scientific image analysis. It is:
 - **Interoperable** — works with NumPy arrays, tiff files, zarr, and more
 - **Interactive** — explore and annotate your data with a handy GUI
 
+(intro-block1-install)=
 # Install the downloaded bundle
 
+(intro-block1-demo)=
 # napari Demo
 
 During this demo, just **watch** — you don't need to follow along yet.
 Focus on seeing what napari can do, not on reproducing every step.
 You'll have plenty of hands-on time shortly.
 
+(intro-block1-check-in)=
 # Installation Check-in
 
 ```{tip}
@@ -100,6 +103,7 @@ Before diving into napari, a quick conceptual grounding:
 napari can display all of these — the dimension sliders let you navigate indexes
 beyond the 2D canvas.
 
+(intro-block1-first-image)=
 # Open Your First Image and take Screenshots
 
 1. In napari, select: **File > Open Sample > napari builtins > Cells (3D + 2Ch)**

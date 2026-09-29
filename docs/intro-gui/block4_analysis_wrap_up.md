@@ -95,6 +95,7 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
+(intro-block4-sharing)=
 # Sharing Time and Q&A
 
 - How many nuclei did your segmentation find? *(check the Zulip stream for screenshots!)*

@@ -234,6 +234,7 @@ change different properties. You can also access individual
 layers using `viewer.layers` — the starting point for scripting napari in
 your own workflows.
 
+(intro-block2-metadata)=
 # Layer Metadata with napari-metadata
 
 The [**napari-metadata**](https://napari.org/napari-metadata/)
@@ -256,6 +257,7 @@ details, see the progress made with units in the
 and the [axis names guide](https://napari.org/stable/guides/axis-names.html).
 ```
 
+(intro-block2-gallery)=
 # Gallery Exploration Breakout
 
 ```{admonition} Breakout
@@ -303,6 +305,7 @@ Take a screenshot and post it to the **#workshops** stream on
 17. Tracks 3D
 
 
+(intro-block2-sharing)=
 # Sharing Time
 
 - What did you find in the gallery? *(check the Zulip stream for screenshots!)*

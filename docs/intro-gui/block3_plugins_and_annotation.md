@@ -154,6 +154,7 @@ then paste (`Ctrl+V`) into Zulip.
 - (Optional) Include what the metadata widget showed for axis scales and units.
 ```
 
+(intro-block3-sharing)=
 # Sharing Time
 
 - What did you open? *(check the Zulip stream for screenshots!)*
