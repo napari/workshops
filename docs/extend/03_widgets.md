@@ -44,7 +44,7 @@ nbscreenshot(viewer)
 ```
 
 (extend-block3-functions)=
-# 1. Writing analysis functions (10 min)
+# 1. Writing analysis functions
 
 First, let's write the analysis function we'll turn into a widget. The spots
 image has some background autofluorescence — we can clean it up with a
@@ -98,7 +98,7 @@ want to try a different `sigma` value? We'd have to re-run the cell manually
 each time — not exactly an interactive exploration.
 
 (extend-block3-magicgui)=
-# 2. Interactive filtering with magicgui (20 min)
+# 2. Interactive filtering with magicgui
 
 In Block 2 we wrote a `gaussian_high_pass` function to clean up the spots
 image — but changing the `sigma` parameter meant re-running a cell each time.
@@ -315,7 +315,7 @@ to also return the high-pass filtered image as an image layer?
 Hint: Only the return statement needs to change!
 ```
 (extend-block3-keybindings)=
-# 3. Custom keybindings (10 min)
+# 3. Custom keybindings
 
 Keybindings let you trigger actions with keyboard shortcuts. napari makes
 this remarkably easy with the `bind_key` decorator.
@@ -377,7 +377,7 @@ viewer.close()
 ```
 
 (extend-block3-events)=
-# 4. Layer events (10 min)
+# 4. Layer events
 
 napari layers emit **events** when their properties change — data, colormap,
 opacity, even individual point positions. You can connect custom functions
@@ -457,7 +457,7 @@ viewer.layers['checkerboard'].data = image
 ```
 
 (extend-block3-mouse)=
-# 5. Mouse callbacks (10 min)
+# 5. Mouse callbacks
 
 Layer events fire when a change *completes*. But what if you want to react
 while the user is dragging? That's where **mouse callbacks** come in.

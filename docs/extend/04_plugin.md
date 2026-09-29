@@ -30,7 +30,7 @@ A functional napari plugin only needs **4 files** to be shared:
 napari-plugin-template generates all of these — plus testing, CI, and
 documentation scaffolding — so you can focus on the code.
 
-## 1. What is a napari plugin? (5 min)
+## 1. What is a napari plugin?
 
 A napari plugin is a Python package that declares **contributions** in a
 `napari.yaml` manifest file. napari reads this manifest to discover what your
@@ -73,7 +73,7 @@ functionality.
 Today we'll make a **widget** plugin — the `detect_spots` function from
 Block 3, packaged so anyone can install it and use it in napari.
 
-## 2. Scaffolding with napari-plugin-template (15 min)
+## 2. Scaffolding with napari-plugin-template
 
 The [napari-plugin-template](https://github.com/napari/napari-plugin-template)
 uses [Copier](https://copier.readthedocs.io/) to generate a complete plugin
@@ -150,7 +150,7 @@ the other files.
   carefully and match up which command & contribution belong to what Python code
   in the `_widget.py` file.
 
-## 3. Understanding napari.yaml (5 min)
+## 3. Understanding napari.yaml
 
 Open `src/napari_spot_detector/napari.yaml`. This is the **manifest** — the
 heart of your plugin:
@@ -197,7 +197,7 @@ there because `pyproject.toml` declares:
 where = ["src"]
 ```
 
-## 4. Implementing the widget (15 min)
+## 4. Implementing the widget
 
 Now let's add our spot detection logic. Open `src/napari_spot_detector/_widget.py`.
 
@@ -310,7 +310,7 @@ The `menus` section adds the widget to napari's **Layers > Analyze** menu,
 making it easy for users to find.
 ```
 
-## 5. Install and test (10 min)
+## 5. Install and test
 
 ### Install the plugin
 
@@ -362,7 +362,7 @@ See the `_tests/test_widget.py` file — it uses `napari`'s `make_test_viewer`
 fixture to test widgets without opening a GUI window.
 ```
 
-## 6. Publishing overview (5 min)
+## 6. Publishing overview
 
 To share your plugin with the world:
 

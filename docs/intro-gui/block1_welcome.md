@@ -10,7 +10,7 @@ kernelspec:
 **Goal:** Get napari installed and open your first images.
 
 (intro-block1-welcome)=
-# Welcome (10 min)
+# Welcome
 
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
@@ -33,7 +33,7 @@ other desktop app. No Python or command line required.
 3. **Launch:** Open napari from your Applications folder / Start Menu / desktop shortcut.
 
 (intro-block1-about)=
-# About napari (10 min)
+# About napari
 
 napari is a free, open-source, multi-dimensional image viewer for Python and
 scientific image analysis. It is:
@@ -45,13 +45,13 @@ scientific image analysis. It is:
 
 # Install the downloaded bundle
 
-# napari Demo (10 min)
+# napari Demo
 
 During this demo, just **watch** — you don't need to follow along yet.
 Focus on seeing what napari can do, not on reproducing every step.
 You'll have plenty of hands-on time shortly.
 
-# Installation Check-in (5 min)
+# Installation Check-in
 
 ```{tip}
 The first launch can take up to a minute. Subsequent launches are much faster.
@@ -86,7 +86,7 @@ nbscreenshot(viewer)
 ```
 
 (intro-block1-images)=
-# What Are Images? (10 min)
+# What Are Images?
 
 Before diving into napari, a quick conceptual grounding:
 
@@ -100,7 +100,7 @@ Before diving into napari, a quick conceptual grounding:
 napari can display all of these — the dimension sliders let you navigate indexes
 beyond the 2D canvas.
 
-# Open Your First Image and take Screenshots (5 min)
+# Open Your First Image and take Screenshots
 
 1. In napari, select: **File > Open Sample > napari builtins > Cells (3D + 2Ch)**
 2. Two layers appear in the layer list: `membrane` and `nuclei`

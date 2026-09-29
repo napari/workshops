@@ -17,7 +17,7 @@ kernelspec:
 your way around the napari viewer — from the GUI essentials to running example
 scripts.
 
-# Welcome (10 min)
+# Welcome
 
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
@@ -26,7 +26,7 @@ scripts.
   you work with?"*
 - Ask about accessibility needs (private DMs on Zulip will be monitored)
 
-# Workshop Overview (5 min)
+# Workshop Overview
 
 This workshop has **four blocks**:
 
@@ -53,7 +53,7 @@ to share these extensions as *plugins*, which can be easily installed by
 users and collaborators.
 ```
 
-# About napari (3 min)
+# About napari
 
 [napari](https://napari.org) is a free, open-source, multi-dimensional image viewer for Python. It is:
 
@@ -62,7 +62,7 @@ users and collaborators.
 - **Interoperable** — works with NumPy, xarray, Zarr, TIFF, and more
 - **Interactive** — explore and annotate your data with a GUI or from Python
 
-# What Are Images? (3 min)
+# What Are Images?
 
 A quick conceptual grounding before we open our first image:
 
@@ -72,7 +72,7 @@ A quick conceptual grounding before we open our first image:
 - **Labels** — images where pixel values are integer categories (0=background, 1=object1, etc.)
 - **Scale and units** — each pixel corresponds to a real-world physical size
 
-# Open Your First Image (5 min)
+# Open Your First Image
 
 Let's get the viewer up and running with a sample dataset:
 
@@ -115,7 +115,7 @@ Save what you see in napari at any time:
 Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard).
 Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
 
-# GUI Essentials Walkthrough (155 min)
+# GUI Essentials Walkthrough
 
 Follow along as we walk through the major parts of the napari
 interface.
@@ -274,7 +274,7 @@ napari canvas. napari runs it automatically.
 
 Speaking of which…
 
-# Gallery Exploration Breakout (10 min)
+# Gallery Exploration Breakout
 
 ```{admonition} Breakout
 :class: tip
@@ -308,7 +308,7 @@ Add a note: *what example did you try, and what surprised or interested you?*
 7. Tracks 3D
 8. Surface with multiple textures
 
-# Sharing Time (3 min)
+# Sharing Time
 
 - What did you find in the gallery? *(check the Zulip stream for screenshots!)*
 - Any surprising layer types or visualizations?

@@ -18,7 +18,7 @@ adjust properties, set physical scales and units, load data from files and
 the cloud with xarray and Zarr, and write your first analysis function.
 
 (extend-block2-viewer)=
-# 1. Create a viewer from Python (10 min)
+# 1. Create a viewer from Python
 
 In Block 1 we explored the napari GUI. Now let's do everything from code.
 Launching `napari.Viewer()` from a Jupyter notebook or Python script opens
@@ -75,7 +75,7 @@ for the full list.
 ```
 
 (extend-block2-screenshots)=
-# 2. Screenshots in your notebook (3 min)
+# 2. Screenshots in your notebook
 
 Just like in the GUI, you can capture what's on screen — but from code:
 
@@ -88,7 +88,7 @@ nbscreenshot(viewer)
 ```
 
 (extend-block2-controls)=
-# 3. Exercise: Layer controls from Python (5 min)
+# 3. Exercise: Layer controls from Python
 
 Every property you adjusted with sliders and dropdowns in the GUI can be
 set from Python. Try adjusting the nuclei layer:
@@ -116,7 +116,7 @@ nuclei_layer.opacity = 1.0
 ```
 
 (extend-block2-scale)=
-# 4. Physical scale, units, and axis labels (10 min)
+# 4. Physical scale, units, and axis labels
 
 Images from microscopes and other instruments have physical meaning — pixels
 correspond to real-world distances. napari can represent this with **scale**,
@@ -192,7 +192,7 @@ The widget shows three sections:
 3. **Copy metadata** — propagate metadata from one layer to others
 
 (extend-block2-loading)=
-# 5. Loading data with Python (10 min)
+# 5. Loading data with Python
 
 napari's drag-and-drop and **File > Open** work well for many formats, but
 when you need precise control over data loading, you can use Python libraries
@@ -257,7 +257,7 @@ microscope formats) provide support for everything else. Check the
 ```
 
 (extend-block2-zarr)=
-# 6. Zarr and OME-Zarr: cloud-native image data (10 min)
+# 6. Zarr and OME-Zarr: cloud-native image data
 
 **Zarr** is a chunked, compressed, n-dimensional array format designed for
 cloud storage. Instead of downloading the whole file, you can stream only
@@ -337,7 +337,7 @@ nbscreenshot(viewer_zarr)
 viewer_zarr.close()
 ```
 
-# 7. Full-circle: from plugin to code to napari (10 min)
+# 7. Full-circle: from plugin to code to napari
 
 To wrap this all up, let's now use [bioio](https://bioio-devs.github.io/bioio/OVERVIEW.html)
 to see how we can programmatically interact with a broad number of bioimaging formats.
@@ -399,7 +399,7 @@ In **Block 3**, we'll take our programmatic understanding of napari to the
 next step by creating an interactive widget with sliders,
 so we can tune parameters in real time — without writing any GUI code.
 
-# Sharing Time (5 min)
+# Sharing Time
 
 - What was the most interesting image you explored? Why?
 - Did managing and visualizing metadata improve your understanding of the data?

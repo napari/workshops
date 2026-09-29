@@ -11,7 +11,7 @@ kernelspec:
 napari gallery, and understand image metadata.
 
 (block2-gui-walkthrough)=
-# Instructor-guided GUI Walkthrough (25 min)
+# Instructor-guided GUI Walkthrough
 
 Follow along as the instructor walks through the major parts of the napari
 interface using the **Cells (3D + 2Ch)** sample image.
@@ -234,7 +234,7 @@ change different properties. You can also access individual
 layers using `viewer.layers` — the starting point for scripting napari in
 your own workflows.
 
-# Layer Metadata with napari-metadata  (5 min)
+# Layer Metadata with napari-metadata
 
 The [**napari-metadata**](https://napari.org/napari-metadata/)
 plugin lets you view and edit layer metadata, including 
@@ -256,7 +256,7 @@ details, see the progress made with units in the
 and the [axis names guide](https://napari.org/stable/guides/axis-names.html).
 ```
 
-# Gallery Exploration Breakout (15 min)
+# Gallery Exploration Breakout
 
 ```{admonition} Breakout
 :class: tip
@@ -303,7 +303,7 @@ Take a screenshot and post it to the **#workshops** stream on
 17. Tracks 3D
 
 
-# Sharing Time (5 min)
+# Sharing Time
 
 - What did you find in the gallery? *(check the Zulip stream for screenshots!)*
 - Any surprising layer types or visualizations?

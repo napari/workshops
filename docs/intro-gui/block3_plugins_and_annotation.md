@@ -11,7 +11,7 @@ kernelspec:
 manually annotate images using Points, Shapes, and Labels layers.
 
 (intro-block3-plugins)=
-# Plugins and the napari Hub (5 min)
+# Plugins and the napari Hub
 
 napari's functionality can be extended with **plugins** — Python packages
 contributed by the community.
@@ -42,7 +42,7 @@ If a plugin doesn't work as expected, check its GitHub page or ask on
 ```
 
 (intro-block3-ndevio)=
-# Opening Images with ndevio (10 min)
+# Opening Images with ndevio
 
 [ndevio](https://napari-hub.org/plugins/ndevio) is a plugin that
 adds enhanced reading support for a wide range of file formats,
@@ -98,7 +98,7 @@ then paste (`Ctrl+V`) into Zulip.
 ```
 
 (intro-block3-ome-zarr)=
-# napari-ome-zarr and the IDR (10 min)
+# napari-ome-zarr and the IDR
 
 napari-ome-zarr lets you
 stream images directly from the web — no download required. The
@@ -154,14 +154,14 @@ then paste (`Ctrl+V`) into Zulip.
 - (Optional) Include what the metadata widget showed for axis scales and units.
 ```
 
-# Sharing Time (5 min)
+# Sharing Time
 
 - What did you open? *(check the Zulip stream for screenshots!)*
 - What did the metadata widget show for axis scales and units?
 - Any plugins you found interesting while browsing napari-hub?
 
 (intro-block3-annotation)=
-# What Is Annotation? (5 min)
+# What Is Annotation?
 
 **Manual annotation** means marking up images by hand. Common reasons:
 
@@ -177,7 +177,7 @@ Two fundamental approaches:
 | **Vector** | Points, Shapes | Marking locations, outlines |
 | **Raster** | Labels | Pixel-wise segmentation masks |
 
-# Annotation with Points and Shapes (10 min)
+# Annotation with Points and Shapes
 
 Use the **Cells (3D + 2Ch)** sample for this exercise.
 You may use {download}`scripts/annotation.py` to have a base visualization for modification.
