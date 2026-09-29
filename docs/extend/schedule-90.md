@@ -11,6 +11,10 @@ the opening sections of the half-day
 [Introduction to napari: with Python](#extend-overview) blocks in order.
 Each segment points at the matching part of the full content in this module.
 
+**Mode key:** **show** = present information or point out features; **demo** =
+the instructor carries out a workflow live while participants watch;
+**follow along** = participants carry out the steps with the instructor.
+
 | Time | Segment | Source | Mode |
 |------|---------|--------|------|
 | 0:00 | Welcome and environment check | — | show |
