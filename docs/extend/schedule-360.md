@@ -5,67 +5,34 @@ title: Schedule (Half-day)
 
 # Workshop schedule
 
-**Total time:** ~4 hours
+**Total time:** 4 hours, including two 10-minute breaks.
 
-| Time | Activity | Duration |
-|------|----------|----------|
-| 0:00 | [**Block 1**](#extend-block1) - Welcome and GUI Walkthrough | 50 min |
-| 0:50 | Break | 10 min |
-| 1:00 | [**Block 2**](#extend-block2) - Python, Data, and Metadata | 55 min |
-| 1:55 | Break | 10 min |
-| 2:05 | [**Block 3**](#extend-block3) - Custom Widgets and Interactions | 60 min |
-| 3:05 | [**Block 4**](#extend-block4) - From Script to Plugin and wrap-up | 55 min |
-| 4:00 | End | — |
+**Mode key:** **show** = present information or point out features; **demo** =
+the instructor carries out a workflow live while participants watch;
+**follow along** = participants carry out the steps with the instructor.
 
-## Block 1 - Welcome and GUI Walkthrough (50 min)
-
-**By the end of this block you will:** know the workshop flow, understand
-napari fundamentals, and be comfortable navigating the viewer GUI.
-
-| Segment | Time |
-|---------|------|
-| Welcome and workshop overview | 15 min |
-| napari fundamentals (what images are, multidimensional data) | 10 min |
-| Open first image and viewer orientation | 15 min |
-| Gallery breakout and sharing | 15 min |
-
-## Break (10 min)
-
-## Block 2 - Python, Data, and Metadata (55 min)
-
-**By the end of this block you will:** control napari from Python, set physical
-metadata correctly, and open local and remote datasets.
-
-| Segment | Time |
-|---------|------|
-| Create a viewer and add layers from Python | 15 min |
-| Layer controls, screenshots, and small exercises | 10 min |
-| Physical scale, units, and axis labels | 15 min |
-| Load local data plus remote OME-Zarr | 20 min |
-| Sharing and Q&A | 5 min |
-
-## Break (10 min)
-
-## Block 3 - Custom Widgets and Interactions (60 min)
-
-**By the end of this block you will:** build interactive analysis widgets,
-connect event-driven behavior, and use keybindings and mouse callbacks.
-
-| Segment | Time |
-|---------|------|
-| Write and test analysis functions | 10 min |
-| Build interactive controls with magicgui | 20 min |
-| Keybindings and layer events | 15 min |
-| Mouse callbacks, recap, and transition to plugins | 10 min |
-
-## Block 4 - From Script to Plugin (55 min)
-
-**By the end of this block you will:** scaffold a plugin, implement a widget
-contribution, and validate it locally.
-
-| Segment | Time |
-|---------|------|
-| Plugin model and contribution types | 10 min |
-| Scaffold with napari-plugin-template | 10 min |
-| Implement and wire the widget | 15 min |
-| Install, test, publishing overview, and wrap-up | 15 min |
+| Time | Segment | Source | Mode |
+|------|---------|--------|------|
+| 0:00 | Welcome and workshop overview | [GUI workshop material](01_gui.md) | show |
+| 0:15 | napari fundamentals: images and multidimensional data | [GUI workshop material](01_gui.md) | show |
+| 0:25 | Open your first image and orient in the viewer | [GUI workshop material](01_gui.md) | follow along |
+| 0:40 | Gallery breakout and sharing | [GUI workshop material](01_gui.md) | follow along |
+| 0:50 | **Break** | — | — |
+| 1:00 | Create a viewer and add layers from Python | [Create a viewer](02_code.md#extend-block2-viewer) | follow along |
+| 1:15 | Layer controls, screenshots, and small exercises | [Layer controls](02_code.md#extend-block2-controls) | follow along |
+| 1:25 | Physical scale, units, and axis labels | [Physical scale](02_code.md#extend-block2-scale) | follow along |
+| 1:35 | Load local data and remote OME-Zarr | [Loading data](02_code.md#extend-block2-loading), [OME-Zarr](02_code.md#extend-block2-zarr) | follow along |
+| 1:50 | Sharing and Q&A | [Python workshop material](02_code.md) | show |
+| 1:55 | **Break** | — | — |
+| 2:05 | Write and test analysis functions | [Analysis functions](03_widgets.md#extend-block3-functions) | follow along |
+| 2:15 | Build interactive controls with magicgui | [magicgui](03_widgets.md#extend-block3-magicgui) | follow along |
+| 2:35 | Keybindings and layer events | [Keybindings](03_widgets.md#extend-block3-keybindings), [Layer events](03_widgets.md#extend-block3-events) | follow along |
+| 2:50 | Mouse callbacks | [Mouse callbacks](03_widgets.md#extend-block3-mouse) | follow along |
+| 3:00 | **Break** | — | — |
+| 3:05 | Plugin model and contribution types | [Plugin workshop material](04_plugin.md) | show |
+| 3:10 | Scaffold with napari-plugin-template | [Plugin workshop material](04_plugin.md) | follow along |
+| 3:25 | Understand napari.yaml | [Plugin workshop material](04_plugin.md) | show |
+| 3:30 | Implement and wire the widget | [Plugin workshop material](04_plugin.md) | follow along |
+| 3:40 | Install and test | [Plugin workshop material](04_plugin.md) | follow along |
+| 3:45 | Publishing overview | [Plugin workshop material](04_plugin.md) | show |
+| 4:00 | End | — | — |
