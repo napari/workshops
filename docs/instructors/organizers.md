@@ -148,6 +148,8 @@ These workshops run through [NumFOCUS](https://numfocus.org/) on
 
 Send via `ti.to` **one week before** the workshop and again **the day before**.
 Adapt the bracketed fields.
+Before sending, keep only the setup instructions for the workshop attendees
+registered for and delete the other block.
 
 ```markdown
 **Subject:** [napari workshop] See you [DATE] — setup instructions inside
@@ -163,17 +165,17 @@ on **[DATE]** at **[TIME]**
 Fill out the [pre-workshop survey] (SURVEY_LINK) to help us tailor the session to your needs.
 After the workshop, we'll share a follow-up survey to get your feedback, so that we can improve future sessions.
 
-**Set up before the workshop.** The exact steps depend on which session you
-registered for; both setup pages are linked from the
-[workshop catalogue](https://napari.org/workshops/).
+**Set up before the workshop.** Find your session's overview page in the
+[workshop catalogue](https://napari.org/workshops/) for full setup instructions.
 
-- **No-code session (viewer):** install the **napari bundled app** before we
-  start. Installation can take a few minutes and troubleshooting is hard to do
-  live, so please do it in advance. Once napari opens and you see an empty
-  viewer, you're all set.
-- **Scripting session (Python):** install **pixi**, download the workshop files,
-  and run the environment command once before the session. The first run solves
-  and downloads the environment, which takes several minutes.
+**For Introduction to napari: with the App (no-code):** install the
+**napari bundled app** before we start. Installation can take a few minutes
+and troubleshooting is hard to do live, so please do it in advance. Once
+napari opens and you see an empty viewer, you're all set.
+
+**For a Python workshop:** install **pixi**, download the workshop files, and
+run the environment command once before the session. The first run solves and
+downloads the environment, which takes several minutes.
 
 If you are working on an institutional device, please follow your institution's
 software guidelines, and reach out to your IT department if you need help.
