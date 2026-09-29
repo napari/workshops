@@ -4,6 +4,9 @@ project:
   authors:
     - name: napari core team
   github: https://github.com/napari/workshops
+  static_files:
+    - _redirects/intro-gui-90
+    - _redirects/extend-90
   error_rules:
     - rule: link-resolves
       severity: ignore
