@@ -12,7 +12,7 @@ using a plugin GUI, take a brief look at the napari console, and learn where
 to go from here.
 
 (block4-analysis-segmentation)=
-# napari-skimage Segmentation Demo (5 min + 20 min hands-on)
+# napari-skimage Segmentation Demo
 
 [napari-skimage](https://napari-hub.org/plugins/napari-skimage)
 provides GUI access to common image-processing steps powered by scikit-image —
@@ -95,14 +95,15 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
-# Sharing Time and Q&A (5 min)
+(intro-block4-sharing)=
+# Sharing Time and Q&A
 
 - How many nuclei did your segmentation find? *(check the Zulip stream for screenshots!)*
 - What measurements were in the regionprops table?
 - Open questions about the workflow or napari in general?
 
 (block4-analysis-next)=
-# Where to Go From Here (5 min)
+# Where to Go From Here
 
 ## Learning Resources
 
@@ -127,7 +128,7 @@ viewer.close()
 - Add a new example or sample data to napari!
 
 (block4-analysis-wrapup)=
-# Survey + Wrap-up (10 min)
+# Survey + Wrap-up
 
 Please fill in the post-workshop survey (link shared by instructors).
 

@@ -11,6 +11,12 @@ guide for the 90-minute path: each segment points at the matching part of the
 full content in this module, which stays the single source of truth for
 teaching materials.
 
+**Mode key:** **show** = present information or point out features; **demo** =
+the instructor carries out a workflow live while participants watch;
+**follow along** = participants carry out the steps with the instructor;
+**explore** = attendees investigate independently, with the instructor available
+to help but not leading each step.
+
 | Time | Segment | Source | Mode |
 |------|---------|--------|------|
 | 0:00 | Welcome, logistics, code of conduct | [Block 1 §Welcome](#intro-block1-welcome) | show |

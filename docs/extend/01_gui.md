@@ -17,7 +17,7 @@ kernelspec:
 your way around the napari viewer — from the GUI essentials to running example
 scripts.
 
-# Welcome (10 min)
+# Welcome
 
 - Introduce instructors and helpers
 - Share the [Code of Conduct](https://napari.org/stable/community/code_of_conduct.html)
@@ -26,7 +26,7 @@ scripts.
   you work with?"*
 - Ask about accessibility needs (private DMs on Zulip will be monitored)
 
-# Workshop Overview (5 min)
+# Workshop Overview
 
 This workshop has **four blocks**:
 
@@ -37,9 +37,6 @@ This workshop has **four blocks**:
 | **3** | Custom Widgets and Interactions — build interactive GUIs with magicgui, keybindings, and mouse callbacks |
 | **4** | From Script to Plugin — package your custom tools as pip-installable napari plugins |
 
-The workshop blurb says it best:
-
-```{admonition}
 With everything from microscopes to telescopes to satellites, scientists
 produce image data in countless formats, shapes, sizes, and dimensions.
 napari is a Python library for multidimensional image visualization, but it
@@ -51,9 +48,8 @@ analysis in napari, then show how to extend the napari user interface to
 make analysis workflows as easy as pushing a button, and finally show how
 to share these extensions as *plugins*, which can be easily installed by
 users and collaborators.
-```
 
-# About napari (3 min)
+# About napari
 
 [napari](https://napari.org) is a free, open-source, multi-dimensional image viewer for Python. It is:
 
@@ -62,7 +58,7 @@ users and collaborators.
 - **Interoperable** — works with NumPy, xarray, Zarr, TIFF, and more
 - **Interactive** — explore and annotate your data with a GUI or from Python
 
-# What Are Images? (3 min)
+# What Are Images?
 
 A quick conceptual grounding before we open our first image:
 
@@ -72,7 +68,14 @@ A quick conceptual grounding before we open our first image:
 - **Labels** — images where pixel values are integer categories (0=background, 1=object1, etc.)
 - **Scale and units** — each pixel corresponds to a real-world physical size
 
-# Open Your First Image (5 min)
+# Open Your First Image
+
+```{tip} Take a tour!
+If napari is open and you'd like a quick guided tour of the interface, open
+**Help > Take a tour** (available since napari 0.9.0). It highlights the
+canvas, layer list, layer controls, viewer buttons, dimension sliders, and
+status bar, so you can get your bearings in seconds.
+```
 
 Let's get the viewer up and running with a sample dataset:
 
@@ -115,7 +118,7 @@ Save what you see in napari at any time:
 Keyboard shortcut: `Alt+S` (saves to file) or `Alt+C` (copies to clipboard).
 Add Shift to include the viewer UI: `Alt+Shift+S` or `Alt+Shift+C`.
 
-# GUI Essentials Walkthrough (155 min)
+# GUI Essentials Walkthrough
 
 Follow along as we walk through the major parts of the napari
 interface.
@@ -138,7 +141,7 @@ so we can help — and improve the workshop for next time!
 
 ## Key Interactions
 
-- **Zoom:** right-click and drag or scroll wheel (two-finger scroll on trackpad)
+- **Canvas zoom:** right-click and drag or scroll wheel (two-finger scroll on trackpad)
 - **Pan:** click and drag on the canvas — hold Shift to pan in 3D mode
 - **Reset view:** click the **home button** in the viewer button row (bottom-left)
 
@@ -274,7 +277,7 @@ napari canvas. napari runs it automatically.
 
 Speaking of which…
 
-# Gallery Exploration Breakout (10 min)
+# Gallery Exploration Breakout
 
 ```{admonition} Breakout
 :class: tip
@@ -308,7 +311,7 @@ Add a note: *what example did you try, and what surprised or interested you?*
 7. Tracks 3D
 8. Surface with multiple textures
 
-# Sharing Time (3 min)
+# Sharing Time
 
 - What did you find in the gallery? *(check the Zulip stream for screenshots!)*
 - Any surprising layer types or visualizations?
