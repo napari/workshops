@@ -42,8 +42,7 @@ layer = viewer.add_image(
 viewer.dims.set_point(1, 1)
 viewer.dims.set_point(0, 2)
 viewer.canvas.overlays.axes.visible = True
-viewer.scale_bar.visible = True
-viewer.scale_bar.unit = 'pixel'
+viewer.canvas.overlays.scale_bar.visible = True
 viewer.camera.angles = (20, -35, 110)
 layer.reset_contrast_limits()
 
