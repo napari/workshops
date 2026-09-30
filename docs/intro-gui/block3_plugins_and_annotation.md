@@ -129,7 +129,7 @@ use option 2 or 3 from the file menu above.
 ```{caution}
 Streaming large remote datasets requires a network connection. If the connection
 is slow during the workshop, we recommend 
-`https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr`.
+`https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.5/idr0062A/6001240_labels.zarr`
 ```
 
 **After it loads, open napari-metadata** (**Plugins > napari-metadata: Metadata Widget**)
