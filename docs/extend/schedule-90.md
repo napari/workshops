@@ -25,7 +25,7 @@ to help but not leading each step.
 | 0:25 | Your data and its meaning (scale, units, axis labels) | [Block 2 §4-5](#extend-block2-scale) | follow along |
 | 0:40 | **Break** | — | — |
 | 0:45 | From function to control panel (magicgui) | [Block 3 §1-2](#extend-block3-functions) | follow along |
-| 1:05 | Demo - interactions, keybindings, and plugins | [Block 3 §3-5](#extend-block3-keybindings) and [Block 4](#extend-block4) | demo |
+| 1:05 | Demo - interactions and plugins | [Block 3 §3-4](#extend-block3-events) and [Block 4](#extend-block4) | demo |
 | 1:20 | Survey and wrap-up | — | show |
 | 1:25 | Buffer | — | — |
 
@@ -49,4 +49,4 @@ to help but not leading each step.
   [Introduction to napari: with the App](#intro-overview) (no code).
 - Want the whole thing rather than the 90-minute path?
   [Half-day schedule](#extend-schedule-360) continues from where this session
-  stops, including Zarr, custom keybindings, and plugin packaging.
+  stops, including Zarr, layer and mouse interactions, and plugin packaging.
