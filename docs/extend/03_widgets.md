@@ -340,7 +340,7 @@ You should see a notification pop up in the viewer!
 :tags: [remove-cell]
 
 # Simulate for the notebook
-report_spot_count(viewer.layers['Points'])
+report_spot_count(viewer.layers['points'])
 ```
 
 ```{tip}
