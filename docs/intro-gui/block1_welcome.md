@@ -102,9 +102,12 @@ Before diving into napari, a quick conceptual grounding:
 - A common (but not universal) **convention**: TZYX ordering for time, depth, height, and width dimensions
 - **multi-channel images**  — can be just another dimension in the array (e.g. RGB(A) is shape height, width, 3 (or 4))
 - **labels** — images where pixel values are integers representing categories (e.g. 0=background, 1=cell1, 2=cell2, etc.)
+- **scale and units** — each pixel corresponds to a real-world physical size
 
 napari can display all of these — the dimension sliders let you navigate indexes
 beyond the 2D canvas.
+
+![Diagram showing that images are arrays of numbers rendered as pixel brightness, zero-based indexing, n-dimensional TZYX stacks, multi-channel images as an extra axis, integer-labeled images, and a brief comparison of raster arrays vs. vector graphics (Points, Shapes, Vectors, Tracks layers).](../_resources/arrays_and_images_diagram.svg)
 
 (intro-block1-first-image)=
 # Open Your First Image and take Screenshots
