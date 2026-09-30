@@ -13,9 +13,9 @@ kernelspec:
   name: python3
 ---
 
-**Goal:** Add interactive GUI widgets, custom keybindings, layer event
-callbacks, and mouse drag interactions to napari — turning analysis functions
-into interactive tools.
+**Goal:** Add interactive GUI widgets, layer event callbacks, and mouse
+drag interactions to napari — turning analysis functions into interactive
+tools.
 
 # Setup
 
@@ -314,70 +314,8 @@ ndevio returned a `list` of `LayerDataTuple`s. Can you modify `detect_spots()`
 to also return the high-pass filtered image as an image layer?
 Hint: Only the return statement needs to change!
 ```
-(extend-block3-keybindings)=
-# 3. Custom keybindings
-
-Keybindings let you trigger actions with keyboard shortcuts. napari makes
-this remarkably easy with the `bind_key` decorator.
-
-Let's bind `Shift-D` to report how many spots were detected in the current
-Points layer. We'll attach it to the Points layer type so it only fires
-when a Points layer is active:
-
-```{code-cell} ipython3
-from napari.layers import Points
-from napari.utils.notifications import show_info
-
-@Points.bind_key("Shift-D")
-def report_spot_count(points_layer: Points):
-    """Print the number of detected spots in the active Points layer."""
-    count = len(points_layer.data)
-    show_info(f"Detected {count} spots")
-```
-
-Now select the Points layer created by `detect_spots` and press `Shift-D`.
-You should see a notification pop up in the viewer!
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-# Simulate for the notebook
-report_spot_count(viewer.layers['points'])
-```
-
-```{tip}
-We used `show_info()` instead of `print()` — this displays a notification
-right in the napari viewer, which is much more visible than looking for
-output in a notebook or terminal. Check out
-[`napari.utils.notifications`](https://napari.org/dev/api/napari.utils.notifications.html)
-for `show_warning()` and `show_error()` too.
-```
-
-```{important}
-At the moment, `bind_key` shortcuts cannot overwrite napari's built-in
-shortcuts. If a built-in shortcut uses the same key combination, the
-built-in one wins — silently. Check **File > Preferences > Shortcuts**
-to see which keys are already taken.
-```
-
-Keybindings can also be attached to the viewer (fires regardless of which
-layer is active):
-
-```{code-cell} ipython3
-@viewer.bind_key('Shift-R')
-def run_detector(viewer):
-    """Re-run spot detection with current settings."""
-    detect_spots(viewer.layers['spots'].data)
-```
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-viewer.close()
-```
-
 (extend-block3-events)=
-# 4. Layer events
+# 3. Layer events
 
 napari layers emit **events** when their properties change — data, colormap,
 opacity, even individual point positions. You can connect custom functions
@@ -457,7 +395,7 @@ viewer.layers['checkerboard'].data = image
 ```
 
 (extend-block3-mouse)=
-# 5. Mouse callbacks
+# 4. Mouse callbacks
 
 Layer events fire when a change *completes*. But what if you want to react
 while the user is dragging? That's where **mouse callbacks** come in.
@@ -535,7 +473,6 @@ In this block you learned to:
 | Technique | What it does | How to attach |
 |-----------|-------------|---------------|
 | **magicgui** | Auto-generate GUI widgets from functions | `@magicgui` + `viewer.window.add_dock_widget()` |
-| **Custom keybindings** | Trigger actions with keyboard shortcuts | `@Points.bind_key('Shift-D')` / `@viewer.bind_key('key')` |
 | **Layer events** | React to property changes | `layer.events.data.connect(callback)` |
 | **Mouse callbacks** | React to mouse drag in real time | `layer.mouse_drag_callbacks.append(callback)` |
 

@@ -34,7 +34,7 @@ This workshop has **four blocks**:
 |-------|-------|
 | **1** | Welcome and GUI Walkthrough — get oriented in the napari viewer |
 | **2** | Python, Data, and Metadata — control napari from Python, set physical scales, work with xarray and Zarr |
-| **3** | Custom Widgets and Interactions — build interactive GUIs with magicgui, keybindings, and mouse callbacks |
+| **3** | Custom Widgets and Interactions — build interactive GUIs with magicgui, layer events, and mouse callbacks |
 | **4** | From Script to Plugin — package your custom tools as pip-installable napari plugins |
 
 With everything from microscopes to telescopes to satellites, scientists

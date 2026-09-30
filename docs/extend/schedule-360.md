@@ -28,7 +28,7 @@ to help but not leading each step.
 | 1:55 | **Break** | — | — |
 | 2:05 | Write and test analysis functions | [Analysis functions](03_widgets.md#extend-block3-functions) | follow along |
 | 2:15 | Build interactive controls with magicgui | [magicgui](03_widgets.md#extend-block3-magicgui) | follow along |
-| 2:35 | Keybindings and layer events | [Keybindings](03_widgets.md#extend-block3-keybindings), [Layer events](03_widgets.md#extend-block3-events) | follow along |
+| 2:35 | Layer events | [Layer events](03_widgets.md#extend-block3-events) | follow along |
 | 2:50 | Mouse callbacks | [Mouse callbacks](03_widgets.md#extend-block3-mouse) | follow along |
 | 3:00 | **Break** | — | — |
 | 3:05 | Plugin model and contribution types | [Plugin workshop material](04_plugin.md) | show |
