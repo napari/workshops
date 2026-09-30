@@ -6,7 +6,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.4
+    jupytext_version: 1.19.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -16,6 +16,15 @@ kernelspec:
 **Goal:** Control napari entirely from Python — create viewers, add layers,
 adjust properties, set physical scales and units, load data from files and
 the cloud with xarray and Zarr, and write your first analysis function.
+
+```{important}
+Open these notebooks in the same `extend` environment with pixi to follow along.
+From the root of the workshop repo, run from the command line
+`pixi run -e extend jupyter-lab` to launch JupyterLab in your browser.
+
+Then navigate to the `docs/extend` folder and *right-click* open `02_code.md` and
+select `Open With > Notebook`.
+```
 
 (extend-block2-viewer)=
 # 1. Create a viewer from Python
