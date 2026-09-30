@@ -34,16 +34,15 @@ layer = viewer.add_image(
     name='spectral averages',
     rendering='attenuated_mip',
     colormap='gray',
+    units=('pixel', 'pixel', 'pixel', 'pixel', 'pixel'),
+    axis_labels=('PC', 'CoE', 'Z', 'Y', 'X'),
 )
 
 # Start in the middle coefficient bin so the first view is representative.
-viewer.dims.axis_labels = ('CoE', 'PC', 'Z', 'Y', 'X')
-# viewer.dims.ndisplay = 3
 viewer.dims.set_point(1, 1)
 viewer.dims.set_point(0, 2)
-viewer.axes.visible = True
-viewer.scale_bar.visible = True
-viewer.scale_bar.unit = 'pixel'
+viewer.canvas.overlays.axes.visible = True
+viewer.canvas.overlays.scale_bar.visible = True
 viewer.camera.angles = (20, -35, 110)
 layer.reset_contrast_limits()
 
