@@ -62,11 +62,20 @@ users and collaborators.
 
 A quick conceptual grounding before we open our first image:
 
-- **Images are arrays of numbers** — each pixel has an intensity value
-- **n-dimensional** — images can have more dimensions than just height and width
-- **Common convention**: TZYX — time, depth (z), height (y), width (x)
-- **Labels** — images where pixel values are integer categories (0=background, 1=object1, etc.)
-- **Scale and units** — each pixel corresponds to a real-world physical size
+Before diving into napari, a quick conceptual grounding:
+
+- **Images are arrays of numbers** — each pixel has a value (brightness, intensity)
+- **n-dimensional images** — beyond rows and columns in an array, images can have more array indexes
+- **zero-based indexing** — the first element/pixel is at position 0, not 1
+- A common (but not universal) **convention**: TZYX ordering for time, depth, height, and width dimensions
+- **multi-channel images**  — can be just another dimension in the array (e.g. RGB(A) is shape height, width, 3 (or 4))
+- **labels** — images where pixel values are integers representing categories (e.g. 0=background, 1=cell1, 2=cell2, etc.)
+- **scale and units** — each pixel corresponds to a real-world physical size
+
+napari can display all of these — the dimension sliders let you navigate indexes
+beyond the 2D canvas.
+
+![Diagram showing that images are arrays of numbers rendered as pixel brightness, zero-based indexing, n-dimensional TZYX stacks, multi-channel images as an extra axis, integer-labeled images, and a brief comparison of raster arrays vs. vector graphics (Points, Shapes, Vectors, Tracks layers).](../_resources/arrays_and_images_diagram.svg)
 
 # Open Your First Image
 
