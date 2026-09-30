@@ -1,12 +1,10 @@
 ---
-label: extend-block3
-title: "3. Custom Widgets & Interactions"
 jupytext:
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.4
+    jupytext_version: 1.19.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -283,7 +281,7 @@ def detect_spots(
     # Third column is the detected sigma — convert to diameters for sizing
     sizes = 2 * np.sqrt(2) * blobs[:, 2]
 
-    return (coords, {"size": sizes, "face_color": "yellow"}, "Points")
+    return (coords, {"name": "points", "size": sizes, "border_color": "yellow", "face_color": "#ffffff00"}, "Points")
 ```
 
 ```{code-cell} ipython3
@@ -342,7 +340,7 @@ You should see a notification pop up in the viewer!
 :tags: [remove-cell]
 
 # Simulate for the notebook
-report_spot_count(viewer.layers['Points'])
+report_spot_count(viewer.layers['points'])
 ```
 
 ```{tip}
