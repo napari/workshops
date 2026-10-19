@@ -18,7 +18,7 @@ introductory workshop uses napari's graphical interface and is accessible to all
 
 All materials here are self-guided and modular: each workshop is offered in more than
 one session length, so you can pick the format that fits your time. Live,
-instructor-led sessions are listed in the [workshop schedule](#events).
+instructor-led sessions are listed on the [Events](#events) page.
 
 ```{code-cell} python
 :tags: [remove-cell]
@@ -51,14 +51,34 @@ workshop, then pick the length that fits your time.
 | [Introduction to napari: with Python](#extend-overview) | Control napari from Python: correct scales and units, and your own interactive widgets with magicgui | Beginner–intermediate | Some scripting (Python knowledge needed for the half-day schedule) |
 | [napari express](#express-overview) | A fast tour for Pythonistas: build segmentation and classification workflows without leaving napari | Intermediate | Python |
 
+## About this site
+
+This site is the home for workshops about napari:
+
+- **Workshop catalogue** (the workshops in the sidebar): self-guided workshop
+  materials, maintained by the napari team and free for anyone to learn from
+  or teach with.
+- **[Events](#events)**: upcoming and past live workshops, both those taught
+  by the napari team and those organized by the community.
+- **[Past workshops](#past-workshops)**: a record of workshops and tutorials
+  about napari that community members have developed and taught over the
+  years.
+- **Instructors**: the [organizer guide](#organizer-guide) and
+  [instructor guide](#instructor-guide), for anyone running a session.
+
 ## Running a workshop
 
-Want to attend, host, or sponsor a workshop? Announcements and registration links appear
-in the [workshop schedule](#events); for anything else, send us an e-mail at 
-info@napari.org or reach out on our [Zulip](https://napari.zulipchat.com).
+Want to attend, host, or sponsor a workshop taught by the napari team?
+Announcements and registration links appear on the [Events](#events) page;
+for anything else, send us an e-mail at info@napari.org or reach out on our
+[Zulip](https://napari.zulipchat.com).
 
-If you are teaching or organizing a session, start with the
-[organizer guide](#organizer-guide) and the [instructor guide](#instructor-guide).
+Want to run your own workshop about napari? You are welcome to teach with
+the catalogue materials as they are, adapt them, or build your own. Either
+way, the [organizer guide](#organizer-guide) and the
+[instructor guide](#instructor-guide) are a good place to start. Let us know
+about your workshop and we will list it on the [Events](#events-community)
+page, and afterwards on [Past workshops](#past-workshops).
 
 ## Resources
 

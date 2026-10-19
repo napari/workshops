@@ -6,11 +6,25 @@ Workshop materials for learning [napari](https://napari.org), the open-source
 multi-dimensional image viewer for scientific data analysis.
 
 The full workshop site is at **[napari.org/workshops](https://napari.org/workshops/)**.
+It brings together:
+
+- **Workshop catalogue**: self-guided, modular workshop materials maintained by
+  the napari team, free for anyone to learn from or teach with.
+- **[Events](https://napari.org/workshops/events/)**: upcoming
+  workshops, taught by the napari team or organized by the community.
+- **[Past workshops](https://napari.org/workshops/past-workshops/)**: a record of
+  workshops and tutorials about napariy.
+- **Instructor resources**: organizer and instructor guides for running a
+  session.
 
 ## Contributing
 
 Contributions are encouraged — whether it's fixing typos, improving explanations, or adding
 new content. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and build instructions.
+
+Taught a workshop about napari, or have one coming up? Open a pull request adding it
+to [`docs/events.md`](docs/events.md) (upcoming) or
+[`docs/past-workshops.md`](docs/past-workshops.md) (past), and we'll list it on the site.
 
 ##  Resources
 
