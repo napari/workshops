@@ -43,7 +43,7 @@ dev = [
     "mystmd>=1.11.0",
     "jupyterlab-myst",
     "jupytext",
-    "napari-sphinx-theme",
+    "napari-sphinx-theme[search]",
     "prek",
     "ruff",
 ]
@@ -72,6 +72,9 @@ _copy-css = "python docs/_scripts/copy_theme_css.py"
 _seed-geometry = "python docs/_scripts/seed_napari_geometry.py"
 _docs-clean = { cmd = "cd docs && myst clean -y" }
 _docs-build = { cmd = "cd docs && myst build --html --execute --strict", depends-on = ["_copy-css", "_seed-geometry"] }
+# Index the built site and add the unified napari.org search. Uses $BASE_URL.
+_docs-search = { cmd = "python -m napari_sphinx_theme.search prepare --site docs/_build/html --site-name workshops --hook-button .myst-search-bar --root-selector article", depends-on = ["_docs-build"] }
+docs-build = { depends-on = ["_docs-search"] }
 docs-live = { cmd = "cd docs && myst start --execute", depends-on = ["_docs-clean", "_copy-css", "_seed-geometry"] }
 
 [tool.pixi.environments]
